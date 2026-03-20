@@ -1,25 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Meta Tags -->
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+description: Charm Payments master rule — design, compliance, copy, code quality
+globs:
+  - "**/*.html"
+  - "**/assets/css/*.css"
+  - "**/assets/scss/*.scss"
+  - "**/assets/js/script.js"
+alwaysApply: true
+---
 
-        <!-- Essential CSS Files -->
-        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-        <link rel="stylesheet" href="assets/css/flaticon_finto.css">
-        <link rel="stylesheet" href="assets/css/scrollCue.css">
-        <link rel="stylesheet" href="assets/css/remixicon.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/responsive.css">
+# Charm Payments — Master Cursor Rule
 
-        <!-- Title & Favicon -->
-        <title>Terms & Conditions — Charm Payments</title>
-        <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    </head>
-    <body>
-                <!-- Start Preloader Area -->
+You are working on Charm Payments — a merchant payment processing platform built on the Finto HTML template, deployed via GitHub to Vercel at charm-payments.vercel.app.
+
+## IDENTITY
+- Product: Charm Payments — merchant payment processing (not a bank, not a consumer wallet)
+- Users: Small and mid-size business owners
+- Stack: Finto HTML + vanilla JS + Bootstrap + Remixicon + scrollCue
+- Gateway: NMI with First Data/Fiserv acquiring
+- Brand: Primary #0c3a30 (dark green) · Accent #9edd05 (lime green)
+- Email: merchants@charmpayments.com
+- Phone: +1 (314) 555-0198
+- Copyright: © Charm Payments — A Charm Holdings LLC Company
+
+## NEVER DO THIS
+- Never rename or remove Finto CSS class names
+- Never use hello@finto.com or +001 (808) 5550148 or HiBootstrap
+- Never use "Finto - Fintech, Banking, & Finance HTML Template" as a page title
+- Never add dropdown menus to the navbar — flat 5-link nav only
+- Never hardcode absolute URLs — all asset paths are relative
+- Never commit broken internal links
+
+## ALWAYS DO THIS
+- Every page title: "[Page Name] — Charm Payments"
+- Every page uses the STANDARD NAV and STANDARD FOOTER defined below
+- Every page mentioning payment processing includes the compliance disclaimer
+- Icons use Remixicon ri- classes only
+- External links: target="_blank" rel="noopener noreferrer"
+- Images: descriptive alt text; decorative: alt="" aria-hidden="true"
+- One H1 per page
+
+## COMPLIANCE DISCLAIMER (required on every page mentioning payment processing)
+"Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds are subject to the terms of the Merchant Agreement."
+
+## COPY RULES
+- 8th grade reading level max
+- Never: "unhackable", "guaranteed approval", "lowest rates in the industry"
+- CTAs must be descriptive: "Apply for Your Merchant Account" not "Submit"
+- Rate claims must be specific and complete
+
+## SEO
+- Title: "[Page Name] — Charm Payments"
+- Meta description: 150-160 chars, merchant search intent
+- One H1 per page, never skip heading levels H1 > H2 > H3
+
+## STANDARD NAV
+Use this exact block on every page after <body>:
+
+        <!-- Start Preloader Area -->
         <div class="preloader-area text-center position-fixed top-0 bottom-0 start-0 end-0" id="preloader">
             <div class="loader position-absolute start-0 end-0">
                 <div class="wavy position-relative fw-light">
@@ -120,104 +157,11 @@
             </div>
         </div>
         <!-- End Mobile Navbar Area -->
-        <!-- Search Modal -->
-        <div class="search-modal modal fade" id="exampleModal" tabindex="-1" 
-        aria-hidden="true">
-            <div class="modal-dialog modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header position-relative">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="popup-form">
-                            <input type="text" class="form-control" placeholder="Search here">
-                            <button type="submit" class="popup-btn">
-                                <i class="ri-search-line"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Search Modal -->
 
-        <!-- Start Page Banner Area -->
-        <div 
-            class="page-banner-area position-relative overflow-hidden" 
-            style="background-image: url(assets/images/hero/hero-image-2.svg)"
-        >
-            <div class="container">
-                <div class="page-banner-content">
-                    <h1>Terms Of Services</h1>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li>Terms Of Services</li>
-                    </ul>
-                </div>
-            </div>
+## STANDARD FOOTER
+Use this exact block on every page before </body>:
 
-            <div class="shape-image">
-                <img class="page-banner-shape-1 moveHorizontal_reverse" src="assets/images/shape/page-banner-shape-1.png" alt="shape">
-                <img class="page-banner-shape-2 moveVertical" src="assets/images/shape/page-banner-shape-2.png" alt="shape">
-            </div>
-        </div>
-        <!-- End Page Banner Area -->
-        
-        <!-- Start Privacy Policy Area -->
-        <div class="privacy-policy-area ptb-120">
-            <div class="container">
-                <div class="privacy-policy-content" data-cues="slideInUp" data-duration="700">
-                    <div class="information-collection">
-                        <h4>Last Updated On Sep 10, 2024</h4>
-                        <p>We are at the forefront of revolutionizing the financial landscape through cutting-edge fintech solutions. Our mission is to bridge the gap between traditional banking and modern technology, offering innovative and seamless financial services that cater to the evolving needs of individuals and businesses alike. With a robust suite of products ranging from digital banking and payment processing to wealth management and blockchain applications, we empower our clients to navigate the complexities of the financial world with ease and confidence. Our commitment to security, transparency, and customer.</p>
-                    </div>
-                    <div class="information-collection">
-                        <h4>Refunds</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                    <div class="information-collection">
-                        <h4>Product Delivery</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                    <div class="information-collection">
-                        <h4>Product Updates</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                    <div class="information-collection">
-                        <h4>Modifications</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                    <div class="information-collection">
-                        <h4>Unauthorized Usage</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                    <div class="information-collection">
-                        <h4>Licensing And Usage</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                    
-                    <div class="information-collection">
-                        <h4>Help/Support</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                    <div class="information-collection">
-                        <h4>Proprietary</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                    <div class="information-collection">
-                        <h4>Anti- Juggle</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                    <div class="information-collection mb-0">
-                        <h4>Price Changes</h4>
-                        <p>By integrating advanced technology with financial expertise, we provide a comprehensive suite of services that cater to both individuals and businesses. From digital banking and seamless payment processing to sophisticated investment tools and personalized financial management, our offerings are designed to simplify your financial life. Our commitment to security, efficiency, and customer satisfaction ensures that you can trust us with your most important financial needs. Join us at Finto and experience a new era of banking and finance, where cutting-edge technology meets exceptional service.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Privacy Policy Area -->
-
-                <!-- Start Footer Area -->
+        <!-- Start Footer Area -->
         <div class="footer-area bg-color-0c3a30 pt-120">
             <div class="container">
                 <div class="row" data-cues="slideInUp" data-duration="800">
@@ -312,12 +256,3 @@
         <!-- Go top Btn -->
         <div class="go-top"><i class="ri-arrow-up-fill"></i></div>
         <!-- Go top Btn End -->
-        <!-- JS Files -->
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/swiper-bundle.min.js"></script>
-        <script src="assets/js/fslightbox.min.js"></script>
-        <script src="assets/js/smooth-scroll.js"></script>
-        <script src="assets/js/scrollCue.min.js"></script>
-        <script src="assets/js/script.js"></script>
-    </body>
-</html>
