@@ -42,7 +42,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/">
-            <Image src="/images/logo.png" alt="Charm Payments" width={160} height={40} priority />
+            <Image src="/images/logo.png" alt="Charm Payments" width={220} height={66} priority />
           </Link>
           <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
             {navLinks.map((link) => (

@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <Image src="/images/white-logo.png" alt="Charm Payments" width={160} height={40} />
+            <Image src="/images/white-logo.png" alt="Charm Payments" width={220} height={66} />
             <p className="mt-4 text-sm text-white/70 leading-relaxed">
               Enterprise payment processing for businesses of all sizes — powered by NMI Gateway and First Data/Fiserv acquiring.
             </p>
