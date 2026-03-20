@@ -35,3 +35,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Legacy Finto trees — Next.js entry is the app; brand logos live in /public/images/
+/assets/
+/public/assets/

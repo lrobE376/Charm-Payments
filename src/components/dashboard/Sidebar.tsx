@@ -30,7 +30,7 @@ export default function DashboardSidebar({ merchant }: { merchant: Merchant }) {
     <aside className="hidden lg:flex w-64 bg-brand-dark flex-col min-h-screen" aria-label="Dashboard navigation">
       <div className="p-6 border-b border-white/10">
         <Link href="/">
-          <Image src="/assets/images/white-logo.png" alt="Charm Payments" width={140} height={36} />
+          <Image src="/images/white-logo.png" alt="Charm Payments" width={140} height={36} />
         </Link>
       </div>
       <div className="px-4 py-4 border-b border-white/10">

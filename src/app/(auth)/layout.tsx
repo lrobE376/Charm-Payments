@@ -6,7 +6,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
     <div className="min-h-screen bg-brand-light flex flex-col">
       <header className="bg-white border-b border-gray-100 px-6 py-4">
         <Link href="/">
-          <Image src="/assets/images/logo.png" alt="Charm Payments" width={140} height={36} />
+          <Image src="/images/logo.png" alt="Charm Payments" width={140} height={36} />
         </Link>
       </header>
       <main className="flex-1 flex items-center justify-center p-6">{children}</main>
