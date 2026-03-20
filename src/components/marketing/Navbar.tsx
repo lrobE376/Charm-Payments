@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Button from '@/components/ui/Button'
 
@@ -15,6 +15,12 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
   return (
     <>
       <div className="bg-brand-dark text-white text-sm py-2 hidden md:block">
@@ -30,7 +36,10 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm" aria-label="Main navigation">
+      <nav
+        className={`bg-white border-b border-gray-100 sticky top-0 z-50 transition-shadow duration-300 ${scrolled ? 'shadow-md' : 'shadow-sm'}`}
+        aria-label="Main navigation"
+      >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/">
             <Image src="/assets/images/logo.png" alt="Charm Payments" width={160} height={40} priority />

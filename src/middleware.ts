@@ -1,9 +1,27 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+function canUseSupabase(): { url: string; anonKey: string } | null {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim()
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim()
+  if (!url || !anonKey) return null
+  try {
+    const parsed = new URL(url)
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return null
+  } catch {
+    return null
+  }
+  return { url, anonKey }
+}
+
 export async function middleware(request: NextRequest) {
+  const creds = canUseSupabase()
+  if (!creds) {
+    return NextResponse.next({ request })
+  }
+
   let supabaseResponse = NextResponse.next({ request })
-  const supabase = createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+  const supabase = createServerClient(creds.url, creds.anonKey, {
     cookies: {
       getAll() {
         return request.cookies.getAll()
