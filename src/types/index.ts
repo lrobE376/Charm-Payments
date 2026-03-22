@@ -1,3 +1,14 @@
+export type { Lead, LeadSource, LeadStatus, CreateLeadInput } from './lead'
+export type { Ticket, TicketPriority, TicketStatus, CreateTicketInput } from './ticket'
+export type {
+  MerchantAccount,
+  MerchantAccountGateway,
+  MerchantAccountProcessor,
+  MerchantAccountStatus,
+  CreateMerchantAccountInput,
+} from './merchant-account'
+export type { IntegrationResult, IntegrationProvider } from './integration'
+
 export type TransactionStatus = 'approved' | 'declined' | 'pending' | 'settled' | 'refunded' | 'disputed' | 'voided'
 export type CardType = 'visa' | 'mastercard' | 'amex' | 'discover' | 'other'
 export type MerchantStatus = 'pending' | 'approved' | 'suspended' | 'closed'

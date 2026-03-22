@@ -47,7 +47,7 @@ export default async function DisputesPage() {
         </div>
       )}
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">Disputes</h2>
+        <h1 className="text-2xl font-bold text-gray-900">Disputes</h1>
         <p className="text-sm text-gray-500 mt-1">Chargebacks and retrieval requests</p>
       </div>
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">

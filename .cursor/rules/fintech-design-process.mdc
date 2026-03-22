@@ -1,0 +1,45 @@
+---
+description: Senior fintech design process for every page
+globs:
+  - src/**/*.tsx
+alwaysApply: false
+---
+
+# Senior Fintech Design Process
+
+Before designing any page or component, evaluate:
+- Merchant trust signals
+- Conversion flow
+- Accessibility (WCAG 2.1 AA)
+- SEO structure
+- Fintech compliance requirements
+- Visual hierarchy and typography
+- Mobile-first layout
+
+## Design Philosophy
+1. Trust — Merchants must immediately feel this is legitimate.
+2. Clarity — Avoid jargon. 8th grade reading level.
+3. Control — Show the merchant what they can do next.
+4. Mobile First — Design mobile layouts first.
+5. One Job Per Screen — One primary action per page.
+
+## Spacing (留白 — Intentional White Space)
+- Sections: 80-100px top/bottom
+- Cards: 40px padding
+- White space creates calm. Calm creates trust.
+
+## Image Strategy
+Images must demonstrate product usage or show real merchants.
+Preferred: product UI mockups, payment flows, real merchant photos.
+Avoid: generic decorative stock photos with no product context.
+Decorative: alt="" aria-hidden="true"
+
+## Output Format
+When asked to design a page:
+1. Explain reasoning behind the layout
+2. Describe the UX flow
+3. Show section hierarchy
+4. Generate JSX using existing Charm Payments design system
+
+Do not invent new design systems. Follow globals.css tokens,
+existing CSS classes, and established page patterns exactly.

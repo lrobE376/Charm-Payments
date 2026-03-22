@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
+import PrimaryCTA from '@/components/conversion/PrimaryCTA'
 import {
   Monitor,
   RefreshCw,
@@ -7,6 +9,7 @@ import {
   Building2,
   Smartphone,
   Shield,
+  CreditCard,
   CheckCircle,
   ArrowRight,
 } from 'lucide-react'
@@ -14,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: 'Payment Processing Solutions',
   description:
-    'Virtual terminal, recurring billing, e-commerce gateway, ACH processing, mobile payments, and high-risk merchant accounts — all through one NMI-powered platform.',
+    'Explore Charm Payments merchant solutions — virtual terminal, recurring billing, ACH processing, e-commerce gateway, and high-risk merchant accounts.',
 }
 
 const solutions = [
@@ -90,6 +93,18 @@ const solutions = [
       'Dedicated high-risk support team',
     ],
   },
+  {
+    icon: CreditCard,
+    name: 'Charm Cards',
+    description:
+      'Digital business cards with a built-in Pay Me button, Apple & Google Wallet saving, NFC tap sharing, and lead capture — every merchant gets one.',
+    features: [
+      'Apple & Google Wallet saving built in',
+      'Pay Me button links to your Charm Payments account',
+      'NFC tap + QR code sharing',
+      'Lead capture and analytics dashboard',
+    ],
+  },
 ] as const
 
 const integrations = [
@@ -123,17 +138,46 @@ export default function ServicesPage() {
           <div className="absolute bottom-36 right-[18%] h-2 w-2 rounded-full bg-brand-accent/35 animate-float" style={{ animationDelay: '1s' }} />
           <div className="absolute right-[30%] top-16 h-1 w-1 rounded-full bg-white/30" />
         </div>
-        <div className="relative z-10 mx-auto max-w-4xl">
-          <span className="section-label !border-white/20 !bg-white/10 !text-brand-accent">SOLUTIONS</span>
-          <h1 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
-            Payment Processing Solutions for Every Business
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
-            One NMI-powered platform for card-present and card-not-present payments, recurring revenue, and specialized underwriting — built for how you actually run your business.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <span className="stats-badge !bg-white/10 !text-white !border-white/15">200+ Cart Integrations</span>
-            <span className="stats-badge !bg-white/10 !text-white !border-white/15">99.99% Uptime</span>
+        <div className="relative z-10 mx-auto max-w-6xl px-6 lg:flex lg:items-center lg:gap-16">
+          <div className="lg:w-1/2">
+            <span className="section-label !border-white/20 !bg-white/10 !text-brand-accent">SOLUTIONS</span>
+            <h1 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              Payment Processing Solutions for Every Business
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
+              One NMI-powered platform for card-present and card-not-present payments, recurring revenue, and specialized underwriting — built for how you actually run your business.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <span className="stats-badge !bg-white/10 !text-white !border-white/15">200+ Cart Integrations</span>
+              <span className="stats-badge !bg-white/10 !text-white !border-white/15">99.99% Uptime</span>
+            </div>
+            <div className="mt-10 flex justify-center">
+              <PrimaryCTA variant="on-dark" />
+            </div>
+          </div>
+
+          <div className="hidden lg:flex lg:w-1/2 justify-center mt-12 lg:mt-0">
+            <div className="relative w-full max-w-[480px]">
+              <div className="rounded-[24px] overflow-hidden shadow-2xl animate-float">
+                <Image
+                  src="/images/christiann-koepke-WiE01mC9AtY-unsplash.jpg"
+                  alt="Customer using Apple Pay at checkout"
+                  width={600}
+                  height={700}
+                  className="w-full h-[520px] object-cover object-center"
+                  priority
+                />
+              </div>
+              <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 animate-float-slow">
+                <div className="w-9 h-9 rounded-full bg-brand-accent flex items-center justify-center shrink-0">
+                  <CheckCircle className="w-5 h-5 text-brand-dark" />
+                </div>
+                <div>
+                  <p className="text-[11px] text-gray-400 font-medium uppercase tracking-wide">Tap to Pay</p>
+                  <p className="text-sm font-bold text-brand-dark">Apple Pay ✓</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -172,14 +216,46 @@ export default function ServicesPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/contact"
+                  href={name === 'Charm Cards' ? '/cards' : '/contact'}
                   className="group mt-8 inline-flex items-center gap-2 font-semibold text-brand-dark transition hover:text-brand-accent"
                 >
-                  Learn More
+                  {name === 'Charm Cards' ? 'See Charm Cards Features' : 'Talk to Our Team'}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
                 </Link>
               </article>
             ))}
+          </div>
+
+          <div className="mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="rounded-[20px] overflow-hidden shadow-lg">
+                <Image
+                  src="/images/sumup-K8c091KtYXs-unsplash.jpg"
+                  alt="Merchant accepting tap-to-pay in retail store"
+                  width={500}
+                  height={400}
+                  className="w-full h-[260px] object-cover object-center"
+                />
+              </div>
+              <div className="rounded-[20px] overflow-hidden shadow-lg">
+                <Image
+                  src="/images/pexels-pavel-danilyuk-6612717.jpg"
+                  alt="iPhone tap-to-pay at restaurant counter"
+                  width={500}
+                  height={400}
+                  className="w-full h-[260px] object-cover object-center"
+                />
+              </div>
+              <div className="rounded-[20px] overflow-hidden shadow-lg">
+                <Image
+                  src="/images/sumup-aM4vzfIsAo0-unsplash.jpg"
+                  alt="Boutique owner processing a card payment"
+                  width={500}
+                  height={400}
+                  className="w-full h-[260px] object-cover object-center"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -256,12 +332,7 @@ export default function ServicesPage() {
           Our team will map your volume, industry, and checkout flow to the right products — no jargon, no pressure.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link href="/contact" className="btn-primary justify-center">
-            Talk to Our Team
-          </Link>
-          <Link href="/pricing" className="btn-outline justify-center">
-            View Pricing
-          </Link>
+          <PrimaryCTA />
         </div>
       </section>
     </>

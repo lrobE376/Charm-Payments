@@ -22,12 +22,12 @@ export default async function TransactionsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">Transactions</h2>
+        <h1 className="text-2xl font-bold text-gray-900">Transactions</h1>
         <p className="text-sm text-gray-500 mt-1">Full history of card and ACH activity</p>
       </div>
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm min-w-[900px]">
+          <table className="w-full text-sm min-w-[1000px]">
             <thead>
               <tr className="bg-gray-50 text-left">
                 <th className="px-4 py-3 font-medium text-gray-500">Transaction ID</th>
@@ -35,6 +35,7 @@ export default async function TransactionsPage() {
                 <th className="px-4 py-3 font-medium text-gray-500">Cardholder</th>
                 <th className="px-4 py-3 font-medium text-gray-500">Card</th>
                 <th className="px-4 py-3 font-medium text-gray-500 text-right">Amount</th>
+                <th className="px-4 py-3 font-medium text-gray-500">Type</th>
                 <th className="px-4 py-3 font-medium text-gray-500 text-right">Fee</th>
                 <th className="px-4 py-3 font-medium text-gray-500 text-right">Net</th>
                 <th className="px-4 py-3 font-medium text-gray-500">Status</th>
@@ -48,7 +49,9 @@ export default async function TransactionsPage() {
                   </td>
                 </tr>
               )}
-              {transactions?.map((t) => (
+              {transactions?.map((t) => {
+                const isCredit = t.status !== 'refunded' && Number(t.amount) > 0
+                return (
                 <tr key={t.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-4 py-3 font-mono text-xs text-gray-600">{t.transaction_id}</td>
                   <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{formatDateTime(t.created_at)}</td>
@@ -57,13 +60,21 @@ export default async function TransactionsPage() {
                     {t.card_type} {maskCardNumber(t.card_last4)}
                   </td>
                   <td className="px-4 py-3 text-right font-semibold text-gray-900">{formatCurrency(Number(t.amount))}</td>
+                  <td className="px-4 py-3">
+                    {isCredit ? (
+                      <span className="text-green-600 font-semibold text-xs bg-green-50 px-2 py-1 rounded-full">Credit</span>
+                    ) : (
+                      <span className="text-red-600 font-semibold text-xs bg-red-50 px-2 py-1 rounded-full">Debit</span>
+                    )}
+                  </td>
                   <td className="px-4 py-3 text-right text-gray-600">{formatCurrency(Number(t.fee))}</td>
                   <td className="px-4 py-3 text-right text-gray-900">{formatCurrency(Number(t.net_amount))}</td>
                   <td className="px-4 py-3">
                     <Badge status={t.status} />
                   </td>
                 </tr>
-              ))}
+                )
+              })}
             </tbody>
           </table>
         </div>

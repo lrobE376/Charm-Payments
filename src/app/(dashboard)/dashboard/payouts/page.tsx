@@ -22,7 +22,7 @@ export default async function PayoutsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">Payouts</h2>
+        <h1 className="text-2xl font-bold text-gray-900">Payouts</h1>
         <p className="text-sm text-gray-500 mt-1">Deposits to your linked bank account</p>
       </div>
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">

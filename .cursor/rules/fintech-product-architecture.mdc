@@ -1,0 +1,48 @@
+---
+description: Fintech product architecture rules for financial features
+globs:
+  - src/**/*.tsx
+  - src/app/api/**/*.ts
+alwaysApply: true
+---
+
+# Fintech Product Architecture
+
+## Balance Display
+- Always show: currency symbol, thousands separators, two decimal
+  places. Example: $1,245.34
+- Use skeleton loaders when balance data is loading.
+
+## Transaction History
+- Always display: transaction name, date, amount, debit/credit
+  indicator.
+- Green = money received. Red = money spent.
+- Support pagination or infinite scroll. Never load unlimited lists.
+
+## Transfers and Payments
+- All transfer flows: Enter amount → Select recipient →
+  Review details → Confirm.
+- Confirmation screen must show: amount, recipient, account used,
+  estimated processing time.
+- Users must explicitly confirm before any transfer executes.
+
+## Financial Actions
+- Dangerous actions require confirmation dialogs:
+  sending money, deleting payment methods, closing accounts.
+
+## Error Handling
+- Bad: "Error processing request"
+- Good: "We couldn't send your payment. Please check your
+  balance or try again."
+
+## Sensitive Data
+- Card numbers: show last four digits only. Example: **** 4821
+- SSN must never appear in the UI after collection.
+
+## Loading States
+- All financial actions must show a loading state.
+- Disable buttons during submission to prevent duplicate actions.
+
+## Data Accuracy
+- Financial data must always come from the server.
+- Never calculate balances on the client.

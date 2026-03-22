@@ -1,0 +1,17 @@
+---
+description: Security-first development rules
+globs:
+  - src/**/*.tsx
+  - src/**/*.ts
+  - src/app/api/**/*.ts
+alwaysApply: true
+---
+
+# Security Priority
+
+- Security takes priority over convenience.
+- Never expose sensitive data in console logs, client responses,
+  or error messages.
+- Authentication must always be verified server-side.
+- Never trust client input.
+- All financial actions require authenticated sessions.

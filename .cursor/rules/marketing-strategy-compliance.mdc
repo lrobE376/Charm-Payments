@@ -1,0 +1,44 @@
+---
+description: Ethical fintech marketing, FTC compliance, conversion
+globs:
+  - src/app/(marketing)/**/*.tsx
+alwaysApply: true
+---
+
+# Marketing Strategy & Compliance
+
+## Core Principle
+Every page must clearly answer: What real problem does this solve?
+If a section does not explain value it should not exist.
+
+## FTC and BBB Compliance
+- No misleading statements, exaggerated claims, or hidden conditions.
+- Use "free" only when there is no hidden cost.
+- Security claims must be factual.
+- Never: "unhackable", "guaranteed approval",
+  "lowest rates in the industry".
+
+## Page Structure
+Hero → Social Proof → Features → Benefits → How It Works →
+Security & Trust → FAQ → Final CTA
+
+## Hero Rules
+Must answer in 3 seconds: What is this? Who is it for?
+Why should I care?
+Include: headline, subheadline, primary CTA, product image
+or real merchant photo.
+
+## Features vs Benefits
+Features = what the product does.
+Benefits = why it matters to the merchant.
+Always translate: Feature: Virtual Terminal →
+Benefit: Accept payments from anywhere, no hardware needed.
+
+## CTA Rules
+One primary action per page. Descriptive labels only:
+"Apply for Your Merchant Account" not "Submit"
+"Get Your Charm Card" not "Learn More"
+
+## SEO
+H1 = page purpose. H2 = major sections.
+Headings must match merchant search intent.

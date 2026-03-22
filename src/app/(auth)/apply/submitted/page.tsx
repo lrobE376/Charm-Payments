@@ -2,7 +2,11 @@ import Link from 'next/link'
 import { CheckCircle2 } from 'lucide-react'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'Application Submitted' }
+export const metadata: Metadata = {
+  title: 'Application Submitted — Charm Payments',
+  description:
+    'Your Charm Payments merchant account application has been received. Our team will review it and contact you within 1-2 business days.',
+}
 
 export default function ApplySubmittedPage() {
   return (

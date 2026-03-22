@@ -1,10 +1,8 @@
-'use client'
-
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowUpRight,
   Shield,
-  Zap,
   BarChart3,
   Phone,
   CreditCard,
@@ -12,10 +10,13 @@ import {
   Globe,
   CheckCircle,
   Star,
-  Clock,
-  Link2,
-  Wallet,
+  X,
+  Check,
 } from 'lucide-react'
+import PrimaryCTA from '@/components/conversion/PrimaryCTA'
+import ProofSection from '@/components/conversion/ProofSection'
+import SavingsCalculator from '@/components/conversion/SavingsCalculator'
+import SocialProofStrip from '@/components/conversion/SocialProofStrip'
 
 const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400'] as const
 
@@ -64,14 +65,45 @@ const solutions = [
     desc: 'Search, export, and reconcile batches the moment they hit your MID.',
     icon: BarChart3,
   },
-]
+] as const
+
+const comparisonRows = [
+  {
+    label: 'Pricing model',
+    other: 'Flat-rate (bundled & opaque)',
+    charm: 'Interchange-plus (transparent)',
+  },
+  {
+    label: 'Statement clarity',
+    other: 'Hard to audit — fees buried',
+    charm: 'Line-item audit — we show every cost',
+  },
+  {
+    label: 'Support',
+    other: 'Phone trees / chatbots',
+    charm: 'Direct human line — local St. Louis team',
+  },
+  {
+    label: 'Onboarding',
+    other: 'Weeks of back-and-forth',
+    charm: '24-hour approval target on complete apps',
+  },
+  {
+    label: 'Contracts',
+    other: 'Long-term lock-ins common',
+    charm: 'No long-term contracts — earn it monthly',
+  },
+] as const
 
 function MarqueeStrip() {
   return (
     <>
       {marqueeItems.map((item) => (
-        <span key={item} className="flex items-center gap-2 whitespace-nowrap px-6 text-sm font-semibold text-[var(--heading)]">
-          <span className="w-2 h-2 rounded-full bg-brand-accent shrink-0" aria-hidden="true" />
+        <span
+          key={item}
+          className="flex items-center gap-2 whitespace-nowrap px-6 text-sm font-semibold text-sales-navy"
+        >
+          <span className="h-2 w-2 shrink-0 animate-pulse-ring rounded-full bg-sales-green" aria-hidden />
           {item}
         </span>
       ))}
@@ -79,280 +111,414 @@ function MarqueeStrip() {
   )
 }
 
+const localHeroPhotos = [
+  {
+    src: '/images/local/pexelsketutsubiyanto4353613.jpg',
+    alt: 'Barber at work serving a client',
+    tall: true,
+  },
+  {
+    src: '/images/local/pexelsmartproduction7667447.jpg',
+    alt: 'Retail shop owner with smartphone at checkout',
+    tall: false,
+  },
+  {
+    src: '/images/local/pexelspaveldanilyuk6612717.jpg',
+    alt: 'Salon professional with client',
+    tall: false,
+  },
+  {
+    src: '/images/local/pexelsrdne7697434.jpg',
+    alt: 'Boutique small business interior',
+    tall: false,
+  },
+] as const
+
+function LocalHeroSection() {
+  const [tall, ...rest] = localHeroPhotos
+
+  return (
+    <section className="bg-brand-light section-ptb" aria-labelledby="local-hero-heading">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12 lg:items-center">
+          <div className="lg:col-span-5">
+            <span className="section-label">ST. LOUIS BUILT</span>
+            <h2 id="local-hero-heading" className="font-display mt-3 text-3xl font-bold md:text-4xl gradient-text">
+              The Local Partner Who Has Your Back
+            </h2>
+            <p className="mt-4 leading-relaxed text-gray-600">
+              We&apos;re not a San Francisco startup with a chatbot for support. We&apos;re a St. Louis company — same time zone, same hustle. When your terminal goes
+              down on a Saturday, we pick up.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {(['500+ Merchants Served', '48hr Approval', 'STL-Based Support'] as const).map((label) => (
+                <span key={label} className="rounded-full bg-brand-dark px-4 py-2 text-sm font-bold text-white">
+                  {label}
+                </span>
+              ))}
+            </div>
+            <Link href="/apply" className="btn-primary mt-8 inline-flex">
+              Apply Today — No Obligation
+            </Link>
+          </div>
+
+          <div className="lg:col-span-7">
+            <div className="grid grid-cols-2 grid-rows-3 gap-3">
+              <div className="relative col-start-1 row-span-3 row-start-1 min-h-0">
+                <Image
+                  src={tall.src}
+                  alt={tall.alt}
+                  width={560}
+                  height={700}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="h-full w-full rounded-2xl object-cover aspect-[4/5]"
+                />
+              </div>
+              {rest.map((photo) => (
+                <div key={photo.src} className="relative col-start-2 min-h-0">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={400}
+                    height={400}
+                    sizes="(min-width: 1024px) 28vw, 50vw"
+                    className="h-full w-full rounded-2xl object-cover aspect-square"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function HomePage() {
   return (
     <div className="relative">
-      {/* SECTION 1 — HERO */}
+      {/* SECTION 1 — HERO (B2B / sales-led) */}
       <section
-        className="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28"
-        style={{ background: 'linear-gradient(135deg, #edf1ee 0%, #f5f9f0 100%)' }}
+        className="relative overflow-hidden pt-10 pb-20 lg:pt-14 lg:pb-28"
+        style={{ background: 'linear-gradient(145deg, #0a192f 0%, #0f2847 52%, #0a192f 100%)' }}
       >
-        <div className="shape-blob w-[420px] h-[420px] bg-brand-accent -top-20 -right-24 lg:right-0" aria-hidden="true" />
-        <div className="shape-blob w-[380px] h-[380px] bg-brand-dark -bottom-32 -left-20" aria-hidden="true" />
+        <div className="shape-blob -right-24 -top-20 h-[420px] w-[420px] bg-sales-green/20 lg:right-0" aria-hidden />
+        <div className="shape-blob -bottom-32 -left-20 h-[380px] w-[380px] bg-white/5" aria-hidden />
 
-        <div className="hidden lg:block absolute top-24 right-[42%] w-16 h-16 rounded-full border-2 border-brand-dark/15 animate-rotation" aria-hidden="true" />
-        <div className="hidden lg:block absolute top-40 right-[48%] w-3 h-3 rounded-full bg-brand-accent animate-float" aria-hidden="true" />
-        <div className="hidden lg:block absolute bottom-32 left-[40%] w-4 h-4 rounded-full bg-brand-dark/30 animate-float-slow" aria-hidden="true" />
+        <div className="absolute right-[42%] top-24 hidden h-16 w-16 animate-rotation rounded-full border-2 border-white/10 lg:block" aria-hidden />
+        <div className="absolute right-[48%] top-40 hidden h-3 w-3 animate-float rounded-full bg-sales-green lg:block" aria-hidden />
+        <div className="absolute bottom-32 left-[40%] hidden h-4 w-4 animate-float-slow rounded-full bg-white/20 lg:block" aria-hidden />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14 lg:gap-10 items-center">
-          <div>
+        <div className="relative z-10 mx-auto max-w-6xl px-6 lg:flex lg:items-center lg:gap-16">
+          <div className="lg:w-1/2">
             <div
-              className="stats-badge animate-fadeinup opacity-0"
+              className="inline-flex animate-fadeinup items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white/90 opacity-0 backdrop-blur-sm"
               style={{ animationDelay: '0.05s', animationFillMode: 'forwards' }}
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-brand-accent animate-pulse-ring shrink-0" aria-hidden="true" />
-              Enterprise Payment Processing — NMI Gateway
+              <span className="h-2 w-2 shrink-0 animate-pulse-ring rounded-full bg-sales-green" aria-hidden />
+              Merchant accounts · NMI Gateway · First Data / Fiserv
             </div>
             <h1
-              className="text-4xl md:text-5xl lg:text-[3.25rem] font-bold mt-4 leading-tight animate-fadeinup opacity-0"
-              style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}
+              className="font-display animate-fadeinup mt-6 whitespace-pre-line text-4xl font-bold leading-tight text-white opacity-0 md:text-5xl lg:text-[3.15rem]"
+              style={{ animationDelay: '0.12s', animationFillMode: 'forwards' }}
             >
-              Accept Payments{' '}
-              <span className="accent-underline">
-                Anywhere
-              </span>{' '}
-              Your Customers Want to Pay
+              {`Stop Losing Revenue to Hidden Fees and Slow Support.`}
             </h1>
             <p
-              className="text-lg text-[var(--paragraph)]/90 mt-6 max-w-xl leading-relaxed animate-fadeinup opacity-0"
-              style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}
+              className="mt-6 max-w-xl animate-fadeinup text-lg leading-relaxed text-white/80 opacity-0"
+              style={{ animationDelay: '0.22s', animationFillMode: 'forwards' }}
             >
-              Transparent rates, enterprise infrastructure, and a team that answers the phone — built for merchants who outgrew generic processors.
+              We audit your current merchant statement and beat your rate—guaranteed. Local St. Louis support. 24-hour approval. No contracts.
             </p>
             <div
-              className="flex flex-wrap gap-4 mt-8 animate-fadeinup opacity-0"
-              style={{ animationDelay: '0.35s', animationFillMode: 'forwards' }}
+              className="mt-8 animate-fadeinup opacity-0"
+              style={{ animationDelay: '0.32s', animationFillMode: 'forwards' }}
             >
-              <Link href="/apply" className="btn-primary">
-                Apply for Your Merchant Account
-                <ArrowUpRight className="w-5 h-5" aria-hidden="true" />
-              </Link>
-              <Link href="/pricing" className="btn-outline">
-                View Pricing
-              </Link>
+              <PrimaryCTA variant="sales-dark-audit" primary="Apply Now" secondary="Free Rate Audit" />
             </div>
             <ul
-              className="mt-10 flex flex-wrap gap-3 list-none m-0 p-0 animate-fadeinup opacity-0"
-              style={{ animationDelay: '0.45s', animationFillMode: 'forwards' }}
+              className="mt-10 flex animate-fadeinup flex-wrap gap-3 p-0 opacity-0 [list-style:none]"
+              style={{ animationDelay: '0.42s', animationFillMode: 'forwards' }}
             >
-              {['No setup fees', 'No long-term contracts', '48-hr approval', 'PCI DSS compliant'].map((label) => (
+              {[
+                'Free statement audit',
+                'Interchange-plus pricing',
+                '24-hour approval',
+                'PCI DSS compliant',
+              ].map((label) => (
                 <li
                   key={label}
-                  className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-dark)]/10 bg-white/80 px-3 py-1.5 text-xs font-semibold text-[var(--heading)] shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/95"
                 >
-                  <CheckCircle className="w-3.5 h-3.5 text-brand-accent shrink-0" aria-hidden="true" />
+                  <CheckCircle className="h-3.5 w-3.5 shrink-0 text-sales-green" aria-hidden />
                   {label}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="hidden lg:block relative min-h-[480px] z-10">
-            <div
-              className="absolute top-0 right-0 w-72 charm-card p-6 animate-float animate-fadeinup opacity-0"
-              style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}
-            >
-              <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Monthly volume</p>
-              <p className="text-3xl font-bold text-brand-dark mt-1">$84,320</p>
-              <div className="flex items-end gap-1 h-24 mt-4">
-                {[40, 55, 35, 60, 45, 70, 50, 65, 55, 75, 60, 90].map((h, i) => (
-                  <div
-                    key={i}
-                    className={`flex-1 rounded-t ${i === 11 ? 'bg-brand-accent' : 'bg-brand-dark/20'}`}
-                    style={{ height: `${h}%` }}
-                  />
-                ))}
+          <div className="mt-12 hidden justify-center lg:mt-0 lg:flex lg:w-1/2">
+            <div className="relative w-full max-w-[500px]">
+              <div className="animate-float relative overflow-hidden rounded-[24px] border border-white/10 shadow-2xl shadow-black/40">
+                <Image
+                  src="/images/sumup-uALOu8Rdv9M-unsplash.jpg"
+                  alt="Business owner accepting payment at her boutique"
+                  width={600}
+                  height={680}
+                  className="h-[540px] w-full object-cover object-center"
+                  priority
+                />
+                <div className="pointer-events-none absolute inset-0 bg-sales-navy/20" aria-hidden />
+              </div>
+              <div className="animate-float-slow absolute -bottom-5 -left-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-white px-4 py-3 shadow-xl">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sales-green">
+                  <CheckCircle className="h-5 w-5 text-sales-navy" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-medium uppercase tracking-wide text-gray-400">Payment Received</p>
+                  <p className="text-sm font-bold text-sales-navy">$142.00 ✓</p>
+                </div>
+              </div>
+              <div className="animate-float absolute -right-4 -top-4 rounded-2xl border border-sales-green/40 bg-sales-navy px-4 py-3 shadow-xl">
+                <p className="text-[11px] font-bold uppercase tracking-wide text-sales-green">Charm Payments</p>
+                <p className="text-sm font-semibold text-white">Processing Active</p>
               </div>
             </div>
-
-            <div
-              className="absolute top-36 left-0 w-64 charm-card p-5 animate-float-slow animate-fadeinup opacity-0"
-              style={{ animationDelay: '0.35s', animationFillMode: 'forwards' }}
-            >
-              <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Recent</p>
-              <ul className="mt-3 space-y-2 text-sm">
-                <li className="flex justify-between">
-                  <span className="text-gray-600">Visa •••• 4242</span>
-                  <span className="font-semibold text-brand-dark">$128.00</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-gray-600">MC •••• 8891</span>
-                  <span className="font-semibold text-brand-dark">$2,450.00</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-gray-600">ACH ****9981</span>
-                  <span className="font-semibold text-brand-dark">$890.50</span>
-                </li>
-              </ul>
-            </div>
-
-            <div
-              className="absolute bottom-8 right-12 w-max charm-card px-4 py-3 flex items-center gap-2 animate-fadeinup opacity-0 shadow-brand-md"
-              style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}
-            >
-              <span className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                <CheckCircle className="w-5 h-5 text-green-600" aria-hidden="true" />
-              </span>
-              <span className="text-sm font-semibold text-[var(--heading)]">Payment Approved — 1.2s</span>
-            </div>
-
-            <div className="absolute top-12 left-16 w-28 h-28 rounded-full border border-brand-dark/10" aria-hidden="true" />
-            <div className="absolute bottom-20 left-24 w-20 h-20 rounded-full border-2 border-brand-accent/25 animate-rotation" aria-hidden="true" />
           </div>
         </div>
       </section>
 
+      <SocialProofStrip />
+
       {/* SECTION 2 — MARQUEE */}
-      <section className="bg-white border-y border-gray-100/80 overflow-hidden" aria-hidden="true">
+      <section className="overflow-hidden border-y border-gray-100/80 bg-slate-50/80" aria-hidden>
         <div className="marquee-wrapper py-4">
           <MarqueeStrip />
           <MarqueeStrip />
         </div>
       </section>
 
-      {/* SECTION 3 — SOLUTIONS */}
-      <section id="solutions" className="bg-white section-ptb scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto">
-            <span className="section-label">OUR SOLUTIONS</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">
-              Everything You Need to <span className="gradient-text">Start Processing</span>
-            </h2>
-            <p className="text-[var(--paragraph)]/85 mt-4 text-lg">
-              One NMI gateway login covers every channel — from retail POS integrations to complex MOTO and e-commerce stacks.
-            </p>
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="h-[200px] overflow-hidden rounded-[20px] border border-gray-200/80 shadow-md">
+            <Image
+              src="/images/pexels-rdne-7697434.jpg"
+              alt="Barber shop owner using Charm Payments"
+              width={400}
+              height={300}
+              className="h-full w-full object-cover object-top"
+            />
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
-            {solutions.map(({ title, desc, icon: Icon }, i) => (
-              <div
-                key={title}
-                className={`group relative rounded-[20px] border border-[rgba(8,39,32,0.08)] p-8 transition-all duration-500 hover:shadow-brand-md hover:-translate-y-1 reveal ${revealDelays[i % 4]}`}
-                style={{ background: '#fffaeb' }}
-              >
-                <div className="w-12 h-12 rounded-xl bg-brand-dark flex items-center justify-center transition-colors duration-300 group-hover:bg-brand-accent">
-                  <Icon className="w-6 h-6 text-white group-hover:text-brand-dark transition-colors" aria-hidden="true" />
-                </div>
-                <h3 className="text-xl font-bold mt-5">{title}</h3>
-                <p className="text-sm text-[var(--paragraph)]/80 mt-3 leading-relaxed">{desc}</p>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-1 text-sm font-bold text-brand-dark mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  Learn more
-                  <ArrowUpRight className="w-4 h-4" />
-                </Link>
-              </div>
-            ))}
+          <div className="h-[200px] overflow-hidden rounded-[20px] border border-gray-200/80 shadow-md">
+            <Image
+              src="/images/pexels-amina-filkins-5414041.jpg"
+              alt="Florist small business owner"
+              width={400}
+              height={300}
+              className="h-full w-full object-cover object-top"
+            />
           </div>
-        </div>
-      </section>
-
-      {/* SECTION 4 — WHY CHARM */}
-      <section
-        className="relative overflow-hidden section-ptb text-white"
-        style={{ background: 'linear-gradient(135deg, #0c3a30 0%, #0f4a3d 100%)' }}
-      >
-        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-white/5 blur-3xl" aria-hidden="true" />
-        <div className="absolute bottom-10 left-10 w-40 h-40 rounded-full border border-white/10 animate-float-slow hidden lg:block" aria-hidden="true" />
-        <div className="absolute top-40 left-1/4 w-2 h-2 rounded-full bg-brand-accent animate-float hidden lg:block" aria-hidden="true" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center">
-          <div className="reveal">
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.15em] text-brand-accent bg-white/10 border border-brand-accent/40 px-4 py-1 rounded-full mb-4">
-              WHY CHARM PAYMENTS
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white !text-white">Stop Overpaying on Processing Fees</h2>
-            <p className="text-white/70 mt-4 text-lg leading-relaxed">
-              Interchange-plus statements, dedicated underwriting, and gateway engineers who understand high-growth merchants — not call-center scripts.
-            </p>
-            <ul className="mt-8 space-y-4 list-none m-0 p-0">
-              {['Transparent Pricing', 'Fast Approvals', 'Real Support', 'No Long-Term Contracts'].map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <span className="w-6 h-6 rounded-full bg-brand-accent flex items-center justify-center shrink-0">
-                    <CheckCircle className="w-4 h-4 text-brand-dark" aria-hidden="true" />
-                  </span>
-                  <span className="font-semibold text-white/90">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <Link href="/apply" className="btn-accent mt-10">
-              Get Started
-              <ArrowUpRight className="w-5 h-5" />
-            </Link>
+          <div className="h-[200px] overflow-hidden rounded-[20px] border border-gray-200/80 shadow-md">
+            <Image
+              src="/images/pexels-ketut-subiyanto-4353613.jpg"
+              alt="Café owner managing her business"
+              width={400}
+              height={300}
+              className="h-full w-full object-cover object-top"
+            />
           </div>
-
-          <div className="grid grid-cols-2 gap-4 reveal delay-200">
-            {[
-              { label: 'Avg. approval', value: '48hrs', icon: Clock },
-              { label: 'Gateway uptime', value: '99.99%', icon: Zap },
-              { label: 'Cart integrations', value: '200+', icon: Link2 },
-              { label: 'Settlement', value: '1–2 days', icon: Wallet },
-            ].map(({ label, value, icon: Icon }) => (
-              <div
-                key={label}
-                className="rounded-2xl p-6 border border-white/10 bg-[rgba(255,255,255,0.06)] backdrop-blur-sm"
-              >
-                <Icon className="w-5 h-5 text-brand-accent mb-3" aria-hidden="true" />
-                <p className="text-3xl font-bold text-white">{value}</p>
-                <p className="text-xs uppercase tracking-wider text-white/50 mt-2 font-semibold">{label}</p>
-              </div>
-            ))}
+          <div className="h-[200px] overflow-hidden rounded-[20px] border border-gray-200/80 shadow-md">
+            <Image
+              src="/images/pexels-mart-production-7667447.jpg"
+              alt="Small business owner with smartphone"
+              width={400}
+              height={300}
+              className="h-full w-full object-cover object-top"
+            />
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* SECTION 5 — HOW IT WORKS */}
-      <section id="how-it-works" className="bg-brand-light section-ptb scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto">
-            <span className="section-label">HOW IT WORKS</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">
-              Live in <span className="gradient-text">Days, Not Months</span>
-            </h2>
-            <p className="text-[var(--paragraph)]/85 mt-4">Our deployment team handles MID setup, risk profiles, and integration testing for you.</p>
+      <SavingsCalculator />
+
+      {/* WHY WE WIN — COMPARISON */}
+      <section className="scroll-mt-24 bg-white section-ptb" id="compare">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">WHY WE WIN</span>
+            <h2 className="font-display mt-3 text-3xl font-bold text-sales-navy md:text-4xl">Flat-rate apps vs. real processing</h2>
+            <p className="mt-3 text-lg text-[var(--paragraph)]/85">
+              Interchange-plus means you see true cost — not a blended rate that hides margin. That&apos;s how high-volume merchants stop overpaying.
+            </p>
           </div>
 
-          <div className="relative mt-16">
-            <div className="hidden lg:block absolute top-[52px] left-[12%] right-[12%] h-0.5 bg-brand-dark/10 z-0" aria-hidden="true" />
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6 relative z-10">
-              {[
-                { n: '01', t: 'Apply Online', d: 'Secure application with volume estimates and business docs.' },
-                { n: '02', t: 'Get Approved', d: 'Underwriting clears most merchants within 24–48 hours.' },
-                { n: '03', t: 'We Configure Everything', d: 'Gateway keys, fraud rules, and cart connections go live.' },
-                { n: '04', t: 'Start Processing', d: 'Accept omnichannel payments with real-time reporting.' },
-              ].map(({ n, t, d }, idx) => (
-                <div key={n} className={`text-center reveal ${revealDelays[idx % 4]}`}>
-                  <div
-                    className={`mx-auto w-24 h-24 rounded-2xl flex items-center justify-center text-2xl font-black text-white shadow-brand-md ${
-                      idx === 3 ? 'bg-brand-accent text-brand-dark' : 'bg-brand-dark'
-                    }`}
-                  >
-                    {n}
+          <div className="mt-12 overflow-hidden rounded-2xl border border-gray-200 shadow-brand-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3">
+              <div className="hidden bg-gray-100/90 p-4 text-xs font-bold uppercase tracking-wider text-gray-500 md:block md:border-r md:border-gray-200" />
+              <div className="border-b border-gray-200 bg-red-50/80 p-4 text-center md:border-b-0 md:border-r">
+                <p className="text-sm font-bold text-gray-800">The Other Guys</p>
+                <p className="mt-1 text-xs text-gray-600">Typical flat-rate & bundled stacks</p>
+              </div>
+              <div className="border-b border-gray-200 bg-sales-green/10 p-4 text-center md:border-b-0">
+                <p className="text-sm font-bold text-sales-navy">Charm Payments</p>
+                <p className="mt-1 text-xs text-sales-navy/80">Interchange-plus · local support</p>
+              </div>
+            </div>
+            <div className="divide-y divide-gray-100">
+              {comparisonRows.map((row) => (
+                <div key={row.label} className="grid grid-cols-1 items-stretch md:grid-cols-3">
+                  <div className="border-b border-gray-100 bg-gray-50/80 p-4 text-sm font-semibold text-sales-navy md:border-b-0 md:border-r md:border-gray-200">
+                    {row.label}
                   </div>
-                  <h3 className="font-bold text-lg mt-6">{t}</h3>
-                  <p className="text-sm text-[var(--paragraph)]/75 mt-2 leading-relaxed">{d}</p>
+                  <div className="flex gap-2 border-b border-gray-100 p-4 text-sm text-gray-600 md:border-b-0 md:border-r">
+                    <X className="mt-0.5 h-4 w-4 shrink-0 text-red-500" aria-hidden />
+                    <span>{row.other}</span>
+                  </div>
+                  <div className="flex gap-2 bg-sales-green/5 p-4 text-sm font-medium text-sales-navy">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-sales-green" aria-hidden />
+                    <span>{row.charm}</span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="text-center mt-14 reveal">
-            <Link href="/apply" className="btn-primary inline-flex">
-              Start Your Application
-              <ArrowUpRight className="w-5 h-5" />
+          <p className="mt-8 text-center text-sm text-gray-500">
+            Competitors named illustratively — compare your actual statement side-by-side in a{' '}
+            <Link href="/quote" className="font-semibold text-sales-navy underline-offset-2 hover:underline">
+              free rate audit
             </Link>
+            .
+          </p>
+        </div>
+      </section>
+
+      <LocalHeroSection />
+
+      {/* SECTION — SOLUTIONS */}
+      <section id="solutions" className="scroll-mt-24 bg-slate-50 section-ptb">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">ENTERPRISE TOOLS</span>
+            <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">
+              Enterprise Tools for <span className="text-sales-green">Local Legends</span>
+            </h2>
+            <p className="mt-4 text-lg text-[var(--paragraph)]/85">
+              One NMI gateway login covers every channel — from retail POS integrations to complex MOTO and e-commerce stacks.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {solutions.map(({ title, desc, icon: Icon }, i) => (
+              <div
+                key={title}
+                className={`group relative rounded-[20px] border border-gray-200/90 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sales-green/45 hover:shadow-sales-glow-lg reveal ${revealDelays[i % 4]}`}
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sales-navy transition-all duration-300 group-hover:bg-sales-green group-hover:shadow-md">
+                  <Icon className="h-6 w-6 text-white transition-colors duration-300 group-hover:text-sales-navy" aria-hidden />
+                </div>
+                <h3 className="mt-5 text-xl font-bold text-sales-navy">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--paragraph)]/80">{desc}</p>
+                <Link
+                  href="/services"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-sales-navy opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                >
+                  See All Payment Solutions
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div className="mt-14 flex justify-center">
+            <PrimaryCTA className="justify-center" variant="sales" primary="Apply Now" secondary="Free Rate Audit" />
           </div>
         </div>
       </section>
 
-      {/* SECTION 6 — TESTIMONIALS */}
-      <section className="bg-white section-ptb">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="section-label">MERCHANT REVIEWS</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">Trusted by Growing Businesses</h2>
+      <ProofSection />
+
+      {/* SECTION — HOW IT WORKS */}
+      <section id="how-it-works" className="scroll-mt-24 bg-white section-ptb">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">HOW IT WORKS</span>
+            <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">
+              From application to first sale in <span className="text-sales-green">three steps</span>
+            </h2>
+            <p className="mt-4 text-[var(--paragraph)]/85">No engineering project — we handle underwriting, gateway setup, and go-live testing.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 mt-14">
+
+          <div className="relative mt-14">
+            <div className="absolute left-[10%] right-[10%] top-12 hidden h-0.5 bg-sales-navy/10 lg:block" aria-hidden />
+            <ol className="relative z-10 grid list-none gap-10 p-0 md:grid-cols-3 md:gap-8">
+              {[
+                {
+                  n: '01',
+                  t: 'Apply in minutes',
+                  d: 'Tell us about your business, volume, and how you take payments — online, in-store, or both.',
+                },
+                {
+                  n: '02',
+                  t: 'Approved in as little as 24 hours',
+                  d: 'Submit a complete application — we target same-day to 24-hour approval when everything checks out.',
+                },
+                {
+                  n: '03',
+                  t: 'Start accepting payments',
+                  d: 'Gateway keys, fraud rules, and cart connections go live — you\'re ready to run real transactions.',
+                },
+              ].map(({ n, t, d }, idx) => (
+                <li key={n} className={`text-center reveal ${revealDelays[idx % 4]}`}>
+                  <div
+                    className={`mx-auto flex h-20 w-20 items-center justify-center rounded-2xl text-2xl font-black shadow-brand-md ${
+                      idx === 2 ? 'bg-sales-green text-sales-navy' : 'bg-sales-navy text-white'
+                    }`}
+                  >
+                    {n}
+                  </div>
+                  <h3 className="mt-6 text-lg font-bold text-sales-navy">{t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--paragraph)]/75">{d}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="mx-auto mt-16 max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="grid items-center gap-8 md:grid-cols-2">
+              <div className="overflow-hidden rounded-[24px] border border-gray-200 shadow-xl">
+                <Image
+                  src="/images/pexels-rdne-7697211.jpg"
+                  alt="Barber checking his Charm Payments dashboard between clients"
+                  width={700}
+                  height={500}
+                  className="h-[400px] w-full object-cover object-top"
+                />
+              </div>
+              <div>
+                <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">ST. LOUIS BUILT</span>
+                <h3 className="font-display mb-3 mt-4 text-2xl font-bold text-sales-navy">
+                  Built for the business owners who keep St. Louis running.
+                </h3>
+                <p className="leading-relaxed text-paragraph">
+                  From barbershops to boutiques, Charm Payments gives every St. Louis merchant enterprise-grade payment tools — with local support and no hidden fees.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-14 flex justify-center reveal">
+            <PrimaryCTA variant="sales" primary="Apply Now" secondary="Free Rate Audit" />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION — TESTIMONIALS */}
+      <section className="bg-slate-50 section-ptb">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">MERCHANT REVIEWS</span>
+            <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">Trusted by Growing Businesses</h2>
+          </div>
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
             {[
               {
                 quote: '“Charm Payments got us live before our launch weekend. Transparent pricing finally matched what we were promised.”',
@@ -373,15 +539,15 @@ export default function HomePage() {
                 initial: 'J',
               },
             ].map((t) => (
-              <div key={t.name} className="charm-card p-8 reveal">
+              <div key={t.name} className="charm-card reveal border border-gray-100 p-8">
                 <div className="flex gap-1">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-brand-accent text-brand-accent" aria-hidden="true" />
+                    <Star key={i} className="h-4 w-4 fill-sales-green text-sales-green" aria-hidden />
                   ))}
                 </div>
-                <p className="text-gray-600 italic mt-4 leading-relaxed">{t.quote}</p>
-                <div className="flex items-center gap-3 mt-6">
-                  <div className="w-11 h-11 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold">{t.initial}</div>
+                <p className="mt-4 italic leading-relaxed text-gray-600">{t.quote}</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-sales-navy font-bold text-white">{t.initial}</div>
                   <div>
                     <p className="font-bold text-[var(--heading)]">{t.name}</p>
                     <p className="text-xs text-gray-500">{t.role}</p>
@@ -390,45 +556,36 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <p className="text-center text-xs text-gray-400 mt-10">Testimonials are illustrative. Individual merchant results may vary.</p>
+          <p className="mt-10 text-center text-xs text-gray-400">Testimonials are illustrative. Individual merchant results may vary.</p>
         </div>
       </section>
 
-      {/* SECTION 7 — FINAL CTA */}
+      {/* SECTION — FINAL CTA */}
       <section
-        className="relative overflow-hidden section-ptb text-center px-6"
-        style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 50%, #0f4a3d 100%)' }}
+        className="relative overflow-hidden section-ptb px-6 text-center"
+        style={{ background: 'linear-gradient(145deg, #0a192f 0%, #0f2847 50%, #0a192f 100%)' }}
       >
-        <div className="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
-          <div className="absolute left-[20%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/40 to-transparent" />
-          <div className="absolute right-[30%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden>
+          <div className="absolute bottom-0 left-[20%] top-0 w-px bg-gradient-to-b from-transparent via-white/40 to-transparent" />
+          <div className="absolute bottom-0 right-[30%] top-0 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent" />
         </div>
-        <div className="hidden lg:block absolute top-16 right-[15%] w-20 h-20 rounded-full border border-white/15 animate-rotation" aria-hidden="true" />
-        <div className="hidden lg:block absolute bottom-24 left-[20%] w-3 h-3 rounded-full bg-brand-accent animate-float" aria-hidden="true" />
+        <div className="absolute right-[15%] top-16 hidden h-20 w-20 animate-rotation rounded-full border border-white/15 lg:block" aria-hidden />
+        <div className="absolute bottom-24 left-[20%] hidden h-3 w-3 animate-float rounded-full bg-sales-green lg:block" aria-hidden />
 
-        <div className="relative z-10 max-w-3xl mx-auto">
-          <span className="section-label !text-brand-accent !bg-white/10 !border-brand-accent/40">GET STARTED</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white !text-white mt-4">
-            Ready to Stop Overpaying on Processing?
-          </h2>
-          <p className="text-white/70 mt-4 text-lg leading-relaxed">
-            Talk to a human, compare statements, or apply online — whichever fits your timeline.
+        <div className="relative z-10 mx-auto max-w-3xl">
+          <span className="inline-block rounded-full border border-sales-green/50 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-sales-green">
+            STOP OVERPAYING TODAY
+          </span>
+          <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Ready to see what your statement is hiding?</h2>
+          <p className="mt-4 text-lg leading-relaxed text-white/75">
+            Apply online or book a free rate audit — we&apos;ll line-item your current processor and show exactly what changes with Charm.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 mt-10">
-            <Link href="/apply" className="btn-accent">
-              Apply Now
-              <ArrowUpRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/contact"
-              className="btn-outline !text-white !border-white/40 !shadow-none hover:!bg-white hover:!text-brand-dark hover:!border-white"
-            >
-              Request Free Analysis
-            </Link>
+          <div className="mt-10 flex flex-wrap justify-center">
+            <PrimaryCTA variant="sales-dark" primary="Stop Overpaying Today" secondary="Free Rate Audit" />
           </div>
-          <p className="text-white/30 text-xs mt-10 leading-relaxed max-w-xl mx-auto">
-            Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant
-            funds are subject to the terms of the Merchant Agreement.
+          <p className="mx-auto mt-10 max-w-xl text-xs leading-relaxed text-white/35">
+            Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds
+            are subject to the terms of the Merchant Agreement.
           </p>
         </div>
       </section>

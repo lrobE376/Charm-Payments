@@ -1,0 +1,53 @@
+---
+description: Fintech design intelligence — trust, clarity, control
+globs:
+  - src/**/*.tsx
+alwaysApply: true
+---
+
+# Fintech Design Intelligence
+
+Every design decision must support one of three feelings:
+- Trust — my money is safe / this company is legitimate
+- Clarity — I understand this product
+- Control — I can manage my account easily
+
+If a section does not support one of those three it should not exist.
+
+## Layout
+- Hero: left column headline + CTA, right column product UI or photo
+- Page structure: Hero → Features → Benefits → How It Works →
+  Trust Signals → FAQ → Final CTA
+- One primary CTA per page
+- Product UI or real people must appear every 2-3 sections
+
+## Spacing
+- Hero padding: 120px top/bottom
+- Sections: 80px top/bottom
+- Cards: 40px padding
+- White space creates calm. Calm creates trust.
+
+## Typography
+- H1: 36-48px — one per page
+- H2: 28-32px — section headings
+- Body: minimum 16px
+- Fonts: Outfit (headings) · Inter Tight (body)
+
+## Trust Signals — every page needs at least 3
+- Compliance language (payment facilitator disclaimer)
+- Social proof — merchant count, reviews, ratings
+- Security language — encryption, fraud monitoring
+- Product transparency — fees, how it works
+- Real product screenshots or real people photos
+
+## Images
+- Must demonstrate product usage or show real merchants
+- No generic decorative stock photos
+- Decorative images: alt="" aria-hidden="true"
+
+## WCAG 2.1 AA
+- Color contrast minimum 4.5:1
+- Keyboard navigation on all interactive elements
+- Labels on all form inputs
+- Descriptive alt text on meaningful images
+- Visible focus states: outline: 3px solid #9edd05

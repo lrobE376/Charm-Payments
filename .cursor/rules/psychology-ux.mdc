@@ -1,0 +1,113 @@
+---
+description: Behavioral economics and neuromarketing UX rules for conversion optimization
+globs:
+  - src/**/*.tsx
+  - src/app/(marketing)/**/*.tsx
+alwaysApply: true
+---
+
+# Psychology-First UX — Behavioral Economics & Neuromarketing
+
+## HICK'S LAW — Navigation
+- Maximum 5 navigation links — no more, no exceptions
+- Current Charm Payments nav (correct order):
+  Solutions · Charm Cards · How It Works · Pricing · Contact
+- No dropdowns — flat nav only
+- Mobile menu mirrors desktop exactly
+- Fewer choices = faster decisions = higher conversion
+
+## VON RESTORFF ISOLATION EFFECT — CTA Color
+- Primary CTA uses brand-accent (#9edd05) ONLY
+- #9edd05 must NOT appear as a background color anywhere
+  except on primary CTA buttons and key highlights
+- This makes the CTA visually isolated — the eye finds it
+  instantly without conscious effort
+- Secondary actions use btn-outline (transparent/border)
+- Never use btn-accent for decorative elements — it dilutes
+  the isolation effect
+
+## F-PATTERN & Z-PATTERN LAYOUTS
+- Hero: headline top-left, subheadline below, CTA bottom-left,
+  image right — follows F-pattern eye movement
+- Feature sections: alternate image left/right to create Z-pattern
+  across the page scroll
+- Place the highest-value copy (headline, value prop, price)
+  in the top-left of every section — that is where eyes land first
+- Never center-align body copy — left-align for readability
+  and F-pattern compliance (headlines and labels may center)
+
+## ZEIGARNIK EFFECT — Progress & Completion
+- Multi-step forms MUST show a visual progress bar
+- Apply form: show "Step X of 4" with filled progress indicator
+- Progress bar uses brand-accent (#9edd05) fill on brand-light track
+- Incomplete state creates psychological drive to finish
+- Never show all form fields at once — step-by-step reduces
+  abandonment by reducing perceived effort
+- Step labels: "Business Info" · "Owner Info" ·
+  "Banking Info" · "Review & Submit"
+
+## MICRO-INTERACTIONS — Instant Variable Reward
+- All hover states: transition duration 200ms exactly
+- Button hover: scale(1.02) + slight shadow increase
+- Card hover: translateY(-4px) + shadow increase
+- Link hover: color shift to brand-accent in 200ms
+- Form input focus: border color → brand-accent in 200ms
+- Success states: checkmark animation 200ms ease-out
+- Never use transitions longer than 300ms on interactive elements
+- Satisfies user need for immediate feedback = dopamine loop
+
+## SOCIAL PROOF PLACEMENT — Trust Anchoring
+- Trust signals must appear BEFORE the price is shown
+- Page order: Hero → Social Proof → Features → Pricing
+- Never show pricing before establishing credibility
+- Social proof types in priority order:
+  1. Merchant count or processing volume
+  2. Named testimonials with photo, name, business
+  3. Partner/processor logos (NMI, First Data, Fiserv, Visa, MC)
+  4. Security badges (PCI DSS, SSL)
+- Position trust signals within first 2 scrolls (above ~1400px)
+
+## COGNITIVE LOAD REDUCTION — 60-30-10 Color Rule
+- 60% — neutral/white/brand-light backgrounds
+- 30% — brand-dark (#0c3a30) for text and dark sections
+- 10% — brand-accent (#9edd05) for CTAs and highlights ONLY
+- Generous white space: section-ptb (100px top/bottom)
+- Cards: minimum 40px padding (p-10)
+- Never stack more than 3 competing visual elements in one
+  viewport — one hero image, one headline, one CTA per fold
+- Visual noise kills conversion — when in doubt, remove
+
+## PRINCIPLE OF LEAST EFFORT — Button & CTA Placement
+- Primary CTA must be reachable without moving the mouse far
+  from natural resting position (center-right of viewport)
+- Hero CTA: left column, vertically centered in viewport
+- Sticky nav CTA: top-right (always visible, always reachable)
+- Final section CTA: center of page, large, high contrast
+- Never make the user search for how to take action
+
+## AESTHETIC-USABILITY EFFECT
+- Beautiful design makes users more forgiving of bugs
+- Users perceive premium-looking sites as more trustworthy
+- Consistent spacing, typography, and color = perceived quality
+- Charm Payments must feel as polished as Stripe or Brex
+- If a section looks "good enough" — it is not good enough
+
+## LOSS AVERSION — Copy Framing
+- Frame benefits as avoiding loss, not gaining benefit
+- Bad: "Get faster payments"
+- Good: "Stop waiting 3-5 days for your money"
+- Bad: "Low processing fees"
+- Good: "Keep more of every sale"
+- Bad: "Apply today"
+- Good: "Don't lose another sale to payment issues"
+- Loss framing increases urgency without false scarcity claims
+
+## BEFORE BUILDING ANY PAGE OR COMPONENT
+Answer these questions:
+1. What is the ONE action the user should take?
+2. Where do eyes land first on this page? (F/Z pattern)
+3. Is the CTA color isolated from all other brand-accent uses?
+4. Does social proof appear before pricing?
+5. Is cognitive load minimized — 60-30-10 color, white space?
+6. Do all micro-interactions run at exactly 200ms?
+7. Is loss aversion framing applied to the primary headline?

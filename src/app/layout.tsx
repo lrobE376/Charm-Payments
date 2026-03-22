@@ -5,7 +5,7 @@ import { Toaster } from 'sonner'
 export const metadata: Metadata = {
   title: { default: 'Charm Payments — Payment Processing Built for Business', template: '%s — Charm Payments' },
   description:
-    'Enterprise-grade payment processing for businesses of all sizes. Accept cards, ACH, and more — powered by NMI gateway infrastructure.',
+    'Charm Payments gives St. Louis small businesses enterprise-grade payment processing — credit cards, ACH, Apple Pay, and more. Powered by NMI and First Data.',
   metadataBase: new URL('https://charm-payments.vercel.app'),
 }
 

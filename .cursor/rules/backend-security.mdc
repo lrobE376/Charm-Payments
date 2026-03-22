@@ -1,0 +1,18 @@
+---
+description: Backend API security rules
+globs:
+  - src/app/api/**/*.ts
+alwaysApply: true
+---
+
+# Backend Security
+
+- Never expose NMI, Supabase service role keys, or any secret keys
+  to the client.
+- Every protected API route must verify the Supabase session.
+- Sensitive data must never appear in logs. Never log:
+  SSN, credit card numbers, authentication tokens, passwords.
+- All API routes must return consistent error responses:
+  { error: string, code: string }
+- Sensitive routes must be rate-limited: signup, login, KYC submission.
+- Validate all input before processing. Never trust client data.

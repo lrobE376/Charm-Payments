@@ -1,0 +1,20 @@
+---
+description: Product UX quality standards
+globs:
+  - src/**/*.tsx
+alwaysApply: true
+---
+
+# Product Quality
+
+- Every page must have one clear primary action:
+  Homepage → Apply for Your Merchant Account
+  Pricing → Choose Your Plan
+  Cards → Get Your Charm Card
+  Contact → Send Message
+
+- All async operations must include loading states.
+- All error states must provide an explanation and a next step.
+- Button labels must describe actions. Avoid: "Submit", "Continue",
+  "Click here". Use descriptive actions instead.
+- One primary CTA per page — no competing actions.

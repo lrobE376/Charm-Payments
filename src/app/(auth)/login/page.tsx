@@ -2,30 +2,25 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
-import { createClient } from '@/lib/supabase/client'
+import { signIn } from './actions'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 
 export default function LoginPage() {
-  const router = useRouter()
+  const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
 
-  async function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setError(null)
+    const formData = new FormData(e.currentTarget)
     setLoading(true)
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-    setLoading(false)
-    if (error) {
-      toast.error(error.message)
-      return
+    try {
+      const result = await signIn(formData)
+      if (result?.error) setError(result.error)
+    } finally {
+      setLoading(false)
     }
-    router.push('/dashboard')
-    router.refresh()
   }
 
   return (
@@ -33,15 +28,13 @@ export default function LoginPage() {
       <h1 className="text-2xl font-bold text-gray-900">Merchant Login</h1>
       <p className="text-sm text-gray-500 mt-2">Sign in to your Charm Payments dashboard.</p>
       <form onSubmit={onSubmit} className="mt-8 space-y-5">
-        <Input label="Email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-        <Input
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <Input label="Email" name="email" type="email" autoComplete="email" required />
+        <Input label="Password" name="password" type="password" autoComplete="current-password" required />
+        {error && (
+          <p className="text-sm text-red-600" role="alert">
+            {error}
+          </p>
+        )}
         <Button type="submit" className="w-full" loading={loading}>
           Sign In
         </Button>

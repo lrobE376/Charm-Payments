@@ -20,6 +20,7 @@ export default function Footer() {
                   ['Terms & Conditions', '/terms'],
                   ['Privacy Policy', '/privacy'],
                   ['Pricing Plans', '/pricing'],
+                  ['Get a Quote', '/quote'],
                   ['FAQ', '/faq'],
                   ['Contact Us', '/contact'],
                 ] as const
@@ -35,6 +36,11 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white/50 mb-4">Our Solutions</h3>
             <ul className="space-y-3 text-sm list-none m-0 p-0">
+              <li key="Charm Cards">
+                <Link href="/cards" className="text-white/70 hover:text-brand-accent transition-colors">
+                  Charm Cards
+                </Link>
+              </li>
               {['Virtual Terminal', 'Recurring Billing', 'E-Commerce Gateway', 'ACH Processing', 'High-Risk Merchants'].map((s) => (
                 <li key={s}>
                   <Link href="/services" className="text-white/70 hover:text-brand-accent transition-colors">
@@ -63,6 +69,22 @@ export default function Footer() {
               Merchant funds are subject to the terms of the Merchant Agreement.
             </p>
           </div>
+        </div>
+      </div>
+      <div className="border-t border-white/10 bg-black/20">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">Processing partners &amp; infrastructure</p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-6 md:gap-12">
+            <div className="flex h-12 min-w-[140px] items-center justify-center rounded-lg border border-white/15 bg-white/5 px-6">
+              <span className="text-sm font-black tracking-tight text-white">NMI Gateway</span>
+            </div>
+            <div className="flex h-12 min-w-[140px] items-center justify-center rounded-lg border border-white/15 bg-white/5 px-6">
+              <span className="text-sm font-black tracking-tight text-white">First Data</span>
+            </div>
+          </div>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-[10px] leading-relaxed text-white/35">
+            Enterprise-grade gateway and acquiring rails — bank-level security and PCI-compliant tokenization.
+          </p>
         </div>
       </div>
       <div className="border-t border-white/10">

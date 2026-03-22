@@ -1,0 +1,19 @@
+---
+description: Accessibility requirements WCAG 2.1 AA
+globs:
+  - src/**/*.tsx
+alwaysApply: true
+---
+
+# Accessibility (WCAG 2.1 AA)
+
+- Contrast: Normal text must meet 4.5:1; large text 3:1.
+- Keyboard: All interactive elements must be reachable with Tab.
+  Visible focus indicators must be present. If outline is removed,
+  replace with: :focus-visible { outline: 3px solid #9edd05; outline-offset: 2px; }
+- Images: Informative images need descriptive alt text.
+  Decorative images use alt="".
+- Forms: Every input must have a label. Placeholder text cannot be
+  the only label. Error messages must be announced with role="alert".
+- Motion: Respect prefers-reduced-motion.
+- Touch targets: Must be at least 44px x 44px.

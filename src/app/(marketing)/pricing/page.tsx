@@ -1,9 +1,15 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
+import PrimaryCTA from '@/components/conversion/PrimaryCTA'
 import { Check, Minus } from 'lucide-react'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'Payment Processing Pricing' }
+export const metadata: Metadata = {
+  title: { absolute: 'Pricing — Charm Payments' },
+  description:
+    'Simple, transparent payment processing pricing for St. Louis merchants. No hidden fees. Flat-rate and interchange-plus plans available.',
+}
 
 const rows: { feature: string; starter: boolean | string; growth: boolean | string; enterprise: boolean | string }[] = [
   { feature: 'Virtual Terminal', starter: true, growth: true, enterprise: true },
@@ -31,12 +37,101 @@ export default function PricingPage() {
   return (
     <div>
       <section className="bg-brand-dark text-white py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-sm font-semibold text-brand-accent uppercase tracking-wide">Pricing</p>
-          <h1 className="text-4xl md:text-5xl font-bold mt-4">Simple Transparent Pricing</h1>
-          <p className="text-white/75 mt-4 max-w-2xl text-lg">
-            Flat-rate and interchange-plus plans with no hidden platform fees on Starter and Growth. Your Schedule of Fees lists every pass-through network cost.
+        <div className="max-w-7xl mx-auto px-6 lg:flex lg:items-center lg:gap-16">
+          <div className="lg:w-1/2">
+            <p className="text-sm font-semibold text-brand-accent uppercase tracking-wide">Pricing</p>
+            <h1 className="text-4xl md:text-5xl font-bold mt-4">Simple Transparent Pricing</h1>
+            <p className="text-white/75 mt-4 max-w-2xl text-lg">
+              Flat-rate and interchange-plus plans with no hidden platform fees on Starter and Growth. Your Schedule of Fees lists every pass-through network cost.
+            </p>
+            <div className="mt-8">
+              <PrimaryCTA variant="on-dark" />
+            </div>
+          </div>
+          <div className="hidden lg:flex lg:w-1/2 justify-center mt-12 lg:mt-0">
+            <div className="relative w-full max-w-[480px]">
+              <div className="rounded-[24px] overflow-hidden shadow-2xl animate-float">
+                <Image
+                  src="/images/pexels-shkrabaanthony-7342621.jpg"
+                  alt="Small business owner reviewing her pricing plan"
+                  width={600}
+                  height={700}
+                  className="w-full h-[500px] object-cover object-top"
+                  priority
+                />
+              </div>
+              <div className="absolute -top-4 -right-4 bg-brand-dark rounded-2xl shadow-xl px-4 py-3 animate-float">
+                <p className="text-[11px] text-brand-accent font-bold uppercase tracking-wide">No Hidden Fees</p>
+                <p className="text-sm font-semibold text-white">Transparent Pricing</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 bg-brand-light">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="section-label mx-auto mb-8">TRUSTED BY ST. LOUIS MERCHANTS</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+            {[
+              { label: 'NMI Gateway', sub: 'Powered by' },
+              { label: 'First Data', sub: 'Acquiring bank' },
+              { label: 'Fiserv', sub: 'Processing network' },
+              { label: 'PCI DSS', sub: 'Compliant' },
+            ].map((item) => (
+              <div key={item.label} className="text-center">
+                <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">{item.sub}</p>
+                <p className="font-bold text-brand-dark text-lg" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-sm text-gray-500">
+            Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds
+            are subject to the terms of the Merchant Agreement.
           </p>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white border-y border-gray-100">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-2xl font-bold text-center text-gray-900">What you pay now vs Charm</h2>
+          <p className="mt-3 text-center text-gray-600 max-w-2xl mx-auto">
+            Most merchants discover hidden margin in bundled rates and vague line items. Here&apos;s how we compare on the things that affect your take-home.
+          </p>
+          <div className="mt-10 overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+            <table className="w-full text-sm min-w-[520px]">
+              <thead>
+                <tr className="bg-gray-50 text-left">
+                  <th className="px-4 py-3 font-semibold text-gray-700">Topic</th>
+                  <th className="px-4 py-3 font-semibold text-gray-600">Typical processor</th>
+                  <th className="px-4 py-3 font-semibold text-brand-dark">Charm Payments</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {[
+                  ['Pricing clarity', 'Bundled flat rates & “qualified” tiers', 'Interchange-plus or transparent flat — you see pass-through costs'],
+                  ['Hidden fees', 'PCI, batch, support, or “software” line items', 'No surprise platform fees on Starter & Growth'],
+                  ['Contracts', 'Multiyear lock-ins common', 'No long-term contracts on Starter & Growth'],
+                  ['Deposits', 'Opaque reserve or slow funding', 'Predictable settlement timelines — outlined in your agreement'],
+                  ['Support', 'Queues & scripts', 'Real humans for gateway and underwriting questions'],
+                ].map(([a, b, c]) => (
+                  <tr key={a as string}>
+                    <td className="px-4 py-3 font-medium text-gray-900">{a}</td>
+                    <td className="px-4 py-3 text-gray-600">{b}</td>
+                    <td className="px-4 py-3 text-gray-800 font-medium">{c}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-6 text-center text-xs text-gray-500 max-w-2xl mx-auto">
+            Illustrative comparison — your current agreement controls pricing elsewhere. Email a statement for a line-by-line review.
+          </p>
+          <div className="mt-8 flex justify-center">
+            <PrimaryCTA />
+          </div>
         </div>
       </section>
 
@@ -47,7 +142,7 @@ export default function PricingPage() {
             <p className="text-3xl font-bold text-brand-dark mt-4">
               2.9% + $0.30<span className="text-base font-normal text-gray-500 block mt-1">per card transaction</span>
             </p>
-            <p className="text-sm text-gray-600 mt-2">No monthly fee</p>
+            <p className="text-sm text-gray-600 mt-2">No monthly fee (transaction fees apply)</p>
             <ul className="mt-6 space-y-2 text-sm text-gray-700 flex-1">
               {['Virtual terminal & hosted page', 'ACH / eCheck', 'Basic fraud screening', 'Email support'].map((x) => (
                 <li key={x} className="flex gap-2">
@@ -101,10 +196,37 @@ export default function PricingPage() {
             </Button>
           </div>
         </div>
+
+        <div className="mt-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="rounded-[20px] overflow-hidden shadow-lg">
+              <Image
+                src="/images/sumup-qCYj9p4Xp2w-unsplash.jpg"
+                alt="Business owner processing a contactless payment"
+                width={600}
+                height={400}
+                className="w-full h-[260px] object-cover object-top"
+              />
+            </div>
+            <div className="rounded-[20px] overflow-hidden shadow-lg">
+              <Image
+                src="/images/pexels-mikhail-nilov-7681664.jpg"
+                alt="Professional business owner on a call"
+                width={600}
+                height={400}
+                className="w-full h-[260px] object-cover object-top"
+              />
+            </div>
+          </div>
+        </div>
+
         <p className="max-w-3xl mx-auto text-center text-sm text-gray-600 mt-10 px-6">
           Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant
           funds are subject to the terms of the Merchant Agreement.
         </p>
+        <div className="mt-10 flex justify-center">
+          <PrimaryCTA />
+        </div>
       </section>
 
       <section className="py-16 bg-white">
@@ -138,12 +260,15 @@ export default function PricingPage() {
               </tbody>
             </table>
           </div>
+          <div className="mt-10 flex justify-center">
+            <PrimaryCTA />
+          </div>
         </div>
       </section>
 
       <section className="py-16 bg-brand-dark text-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-2xl font-bold">Free statement analysis</h2>
+          <h2 className="text-2xl font-bold">No Monthly Fee Statement Analysis</h2>
           <p className="text-white/75 mt-4 leading-relaxed">
             Email a recent processing statement to{' '}
             <a href="mailto:merchants@charmpayments.com" className="text-brand-accent font-medium hover:underline">
@@ -152,12 +277,7 @@ export default function PricingPage() {
             . We will line-item your effective rate and estimate savings on Charm Payments — no obligation.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <Button variant="secondary" asChild>
-              <Link href="/contact">Request Free Analysis</Link>
-            </Button>
-            <Button variant="ghost" className="border-white text-white hover:bg-white/10" asChild>
-              <Link href="/apply">Apply for Merchant Account</Link>
-            </Button>
+            <PrimaryCTA variant="on-dark" />
           </div>
         </div>
       </section>

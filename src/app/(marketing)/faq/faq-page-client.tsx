@@ -1,8 +1,10 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronDown } from 'lucide-react'
+import PrimaryCTA from '@/components/conversion/PrimaryCTA'
+import { ArrowRight, ChevronDown } from 'lucide-react'
 
 type Category = 'pricing' | 'approval' | 'tech' | 'chargebacks'
 
@@ -87,7 +89,7 @@ const faqItems: { id: number; category: Category; q: string; a: string }[] = [
     id: 12,
     category: 'chargebacks',
     q: 'How can I prevent chargebacks?',
-    a: 'The best chargeback prevention is clear communication with your customers — use a recognizable business name on card statements, provide clear refund policies, and respond quickly to customer complaints. On the technical side, use AVS (Address Verification) and CVV verification on card-not-present transactions, enable 3D Secure for e-commerce, and keep transaction records and shipping confirmations for every order. Our iSpyFraud screening also flags suspicious transactions before they process.',
+    a: 'Our chargeback prevention tools include real-time alerts, dispute documentation support, and fraud screening through the NMI gateway. Clear communication with your customers also helps — use a recognizable business name on card statements, provide clear refund policies, and respond quickly to customer complaints. On the technical side, use AVS (Address Verification) and CVV verification on card-not-present transactions, enable 3D Secure for e-commerce, and keep transaction records and shipping confirmations for every order. Our iSpyFraud screening also flags suspicious transactions before they process.',
   },
 ]
 
@@ -168,7 +170,7 @@ export function FaqPageClient() {
                   >
                     <span className="font-display font-bold text-[var(--heading)] md:text-lg">{item.q}</span>
                     <ChevronDown
-                      className={`mt-0.5 h-5 w-5 shrink-0 text-brand-dark transition-transform duration-300 ${
+                      className={`mt-0.5 h-5 w-5 shrink-0 text-brand-dark transition-transform duration-200 ${
                         isOpen ? 'rotate-180' : ''
                       }`}
                       aria-hidden
@@ -186,30 +188,44 @@ export function FaqPageClient() {
         </div>
       </section>
 
+      <div className="mx-auto mb-8 mt-16 max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-8 md:grid-cols-2">
+          <div>
+            <span className="section-label">REAL SUPPORT</span>
+            <h2 className="mt-4 mb-3 text-2xl font-bold text-brand-dark" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Still have questions? We&apos;re a St. Louis company. Call us.
+            </h2>
+            <p className="text-paragraph mb-6 leading-relaxed">
+              Unlike national processors, Charm Payments is local. Real people, real answers, no offshore call centers.
+            </p>
+            <Link href="/contact" className="btn-accent inline-flex items-center gap-2">
+              Talk to Someone <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="overflow-hidden rounded-[20px] shadow-xl">
+            <Image
+              src="/images/sumup-vfCarwPznBw-unsplash.jpg"
+              alt="Charm Payments merchant support"
+              width={600}
+              height={400}
+              className="h-[300px] w-full object-cover object-center"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* SECTION 3 — CTA */}
       <section className="bg-brand-light px-6 py-16 text-center">
         <h2 className="font-display text-2xl font-bold text-[var(--heading)] md:text-3xl">Still Have Questions?</h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-gray-600">
           Our merchant support team is here to help. We typically respond within 2 business hours.
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link href="/contact" className="btn-primary justify-center">
-            Contact Our Team
-          </Link>
-          <Link href="/apply" className="btn-outline justify-center">
-            Apply Now
-          </Link>
+        <div className="mt-8 flex justify-center">
+          <PrimaryCTA primary="Apply Now" secondary="Get Instant Quote" />
         </div>
         <p className="mx-auto mt-8 max-w-2xl text-xs leading-relaxed text-gray-500">
-          Charm Payments is a payment facilitator, not a bank. Card processing services are provided by third-party processors subject to their terms. See our{' '}
-          <Link href="/privacy" className="font-medium text-brand-dark underline-offset-2 hover:underline">
-            Privacy Policy
-          </Link>{' '}
-          and{' '}
-          <Link href="/terms" className="font-medium text-brand-dark underline-offset-2 hover:underline">
-            Terms of Service
-          </Link>
-          .
+          Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant
+          funds are subject to the terms of the Merchant Agreement.
         </p>
       </section>
     </>

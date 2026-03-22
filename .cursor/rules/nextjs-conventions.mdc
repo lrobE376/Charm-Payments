@@ -1,0 +1,22 @@
+---
+description: Next.js architectural conventions
+globs:
+  - src/**/*.tsx
+  - src/**/*.ts
+alwaysApply: true
+---
+
+# Next.js Conventions
+
+- Always use Next.js Link from next/link for internal navigation.
+  Never use <a href> for internal routes.
+- Use next/image for all images.
+- Client components that use hooks or browser APIs must include
+  'use client' at the top.
+- Server components must not include 'use client'.
+- Never use localStorage or sessionStorage.
+  Authentication state must come from Supabase session.
+- All API calls must go through /app/api/ routes.
+- Client components must never call Supabase directly.
+- Public environment variables must use the NEXT_PUBLIC_ prefix.
+- Secret environment variables must never use the NEXT_PUBLIC_ prefix.

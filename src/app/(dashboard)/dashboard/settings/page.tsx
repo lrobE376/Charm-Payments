@@ -24,7 +24,7 @@ export default async function SettingsPage() {
   return (
     <div className="space-y-6 max-w-2xl">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">Settings</h2>
+        <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
         <p className="text-sm text-gray-500 mt-1">Account details (read-only)</p>
       </div>
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-4">

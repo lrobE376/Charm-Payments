@@ -2,14 +2,27 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, CreditCard, ArrowDownToLine, AlertCircle, Settings, LogOut } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import {
+  LayoutDashboard,
+  CreditCard,
+  ArrowDownToLine,
+  AlertCircle,
+  Settings,
+  LogOut,
+  Users,
+  Building2,
+  Ticket,
+} from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { createClient } from '@/lib/supabase/client'
+import { signOut } from '@/app/(dashboard)/actions'
 import type { Merchant } from '@/types'
 
 const navItems = [
   { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
+  { label: 'Leads', href: '/dashboard/leads', icon: Users },
+  { label: 'Accounts', href: '/dashboard/accounts', icon: Building2 },
+  { label: 'Tickets', href: '/dashboard/tickets', icon: Ticket },
   { label: 'Transactions', href: '/dashboard/transactions', icon: CreditCard },
   { label: 'Payouts', href: '/dashboard/payouts', icon: ArrowDownToLine },
   { label: 'Disputes', href: '/dashboard/disputes', icon: AlertCircle },
@@ -18,13 +31,6 @@ const navItems = [
 
 export default function DashboardSidebar({ merchant }: { merchant: Merchant }) {
   const pathname = usePathname()
-  const router = useRouter()
-
-  async function handleSignOut() {
-    const supabase = createClient()
-    await supabase.auth.signOut()
-    router.push('/login')
-  }
 
   return (
     <aside className="hidden lg:flex w-64 bg-brand-dark flex-col min-h-screen" aria-label="Dashboard navigation">
@@ -67,14 +73,15 @@ export default function DashboardSidebar({ merchant }: { merchant: Merchant }) {
         })}
       </nav>
       <div className="p-3 border-t border-white/10">
-        <button
-          type="button"
-          onClick={handleSignOut}
-          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:bg-white/10 hover:text-white transition-colors w-full min-h-[44px]"
-        >
-          <LogOut className="w-4 h-4" aria-hidden="true" />
-          Sign Out
-        </button>
+        <form action={signOut}>
+          <button
+            type="submit"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:bg-white/10 hover:text-white transition-colors w-full min-h-[44px]"
+          >
+            <LogOut className="w-4 h-4" aria-hidden="true" />
+            Sign Out
+          </button>
+        </form>
       </div>
     </aside>
   )

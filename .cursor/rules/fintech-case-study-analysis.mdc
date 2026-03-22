@@ -1,0 +1,40 @@
+---
+description: Case study analysis before designing any page
+globs:
+  - src/app/(marketing)/**/*.tsx
+alwaysApply: false
+---
+
+# Fintech Case Study Analysis
+
+Before designing any page perform this analysis:
+
+1. Problem — Who is the merchant? What problem do they face?
+   Why do current processors fail them?
+
+2. Psychology — What makes merchants trust a new processor?
+   How does the page reduce anxiety and build confidence?
+
+3. Industry Context — How does Charm Payments fit the future
+   of payments: embedded finance, real-time payments, ISO model,
+   NMI gateway ecosystem?
+
+4. Trust & Compliance — Payment facilitator disclaimer,
+   transparent fees, security messaging, FTC compliance.
+
+5. User Journey — Where did this merchant come from?
+   What do they need to know? What decision must they make?
+
+6. Page Structure — Propose section order with reason for each.
+
+7. SEO — What search queries does this page answer?
+   What headings match merchant intent?
+
+8. Design — Clarity over cleverness. White space.
+   Mobile-first. Real merchant photos or product UI.
+   No decorative stock imagery.
+
+9. Accessibility — WCAG 2.1 AA. Heading hierarchy.
+   Alt text. Keyboard nav. Focus states.
+
+Only after completing this analysis generate the page layout.

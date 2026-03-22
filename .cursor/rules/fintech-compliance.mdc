@@ -1,0 +1,29 @@
+---
+description: Fintech regulatory compliance rules
+globs:
+  - src/**/*.tsx
+alwaysApply: true
+---
+
+# Fintech Compliance
+
+- Every page mentioning payment processing must include:
+  "Charm Payments is a payment facilitator, not a bank. Payment
+  processing services are provided through our licensed acquiring
+  bank partner. Merchant funds are subject to the terms of the
+  Merchant Agreement."
+
+- Every page mentioning banking or deposits (Charm Wallet) must
+  include: "Charm is not a bank. Banking services are provided by
+  a sponsor bank, Member FDIC. Deposits are FDIC insured up to
+  $250,000."
+
+- Every form collecting SSN must include:
+  "We collect your SSN to verify your identity and prevent fraud.
+  It is never stored on our servers."
+
+- Privacy Policy and Terms links must appear on every page with a form.
+- Never use the word "free" if there are hidden costs.
+- Never use "bank" to describe Charm without the disclaimer nearby.
+- All marketing language must be clear and truthful.
+- FTC truth-in-advertising standards apply to all copy.

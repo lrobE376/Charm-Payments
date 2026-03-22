@@ -15,7 +15,11 @@
   --shadow-sm: 0px 4px 6px 0px rgba(8,39,32,0.06);
   --shadow-md: 0px 8px 24px 0px rgba(8,39,32,0.10);
   --shadow-lg: 0px 20px 60px 0px rgba(8,39,32,0.15);
-  --transition: all ease 0.5s;
+  --transition: all ease 0.2s;
+}
+
+.text-paragraph {
+  color: var(--paragraph);
 }
 
 * { box-sizing: border-box; }
@@ -102,8 +106,26 @@ h1, h2, h3, h4, h5, h6 {
 .section-pt { padding-top: 100px; }
 .section-pb { padding-bottom: 100px; }
 
+/* Charm Cards NFC demo (CardsNfcDemo) */
+@keyframes charm-nfc-pulse {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+@keyframes charm-nfc-ripple {
+  0% { transform: scale(0.45); opacity: 0.55; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+@keyframes charm-nfc-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-charm-nfc-pulse { animation: charm-nfc-pulse 1.2s ease-in-out infinite; }
+.animate-charm-nfc-ripple { animation: charm-nfc-ripple 0.65s ease-out forwards; }
+.animate-charm-nfc-fade-in { animation: charm-nfc-fade-in 0.4s ease forwards; }
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-float,.animate-float-slow,.animate-rotation,.animate-marquee,.animate-fadeinup,.animate-pulse-ring,.marquee-wrapper,.reveal,.reveal-left,.reveal-right {
+  .animate-float,.animate-float-slow,.animate-rotation,.animate-marquee,.animate-fadeinup,.animate-pulse-ring,.marquee-wrapper,.reveal,.reveal-left,.reveal-right,
+  .animate-charm-nfc-pulse, .animate-charm-nfc-ripple, .animate-charm-nfc-fade-in {
     animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important;
   }
 }

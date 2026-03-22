@@ -1,0 +1,46 @@
+---
+description: Charm Payments design system — Next.js Tailwind
+globs:
+  - src/**/*.tsx
+  - src/app/globals.css
+alwaysApply: true
+---
+
+# Design System
+
+## Brand Colors (CSS variables — never hardcode inline)
+--brand-dark: #0c3a30
+--brand-accent: #9edd05
+--brand-light: #edf1ee
+--brand-card: #fffaeb
+
+## Fonts
+Headings: Outfit (font-display)
+Body: Inter Tight
+
+## CSS Classes (globals.css — never recreate)
+.charm-card · .btn-primary · .btn-accent · .btn-outline
+.section-label · .gradient-text · .accent-underline
+.stats-badge · .section-ptb · .shape-blob
+.animate-float · .animate-float-slow · .animate-rotation
+.animate-fadeinup · .reveal · .delay-100 through .delay-400
+
+## Section Backgrounds
+Dark hero: style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 100%)' }}
+Dark CTA: style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 50%, #0f4a3d 100%)' }}
+Light section: className="bg-brand-light"
+Card background: className="bg-brand-card"
+
+## Dark Section Overrides
+section-label: !border-white/20 !bg-white/10 !text-brand-accent
+btn-outline white: !text-white !border-white/40 !shadow-none
+  hover:!bg-white hover:!text-brand-dark hover:!border-white
+
+## Rules
+- Never use .reveal on static server pages
+- Never recreate classes already in globals.css
+- Never use Finto CSS classes, data-aos, data-cues, or Remixicon
+- All icons use lucide-react
+- All internal links use next/link Link component
+- All images use next/image Image component
+- Cards use rounded-[20px] or rounded-[24px]

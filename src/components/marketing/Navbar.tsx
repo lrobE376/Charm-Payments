@@ -8,6 +8,7 @@ import Button from '@/components/ui/Button'
 
 const navLinks = [
   { label: 'Solutions', href: '/#solutions' },
+  { label: 'Charm Cards', href: '/cards' },
   { label: 'How It Works', href: '/#how-it-works' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Contact', href: '/contact' },
@@ -23,21 +24,18 @@ export default function Navbar() {
   }, [])
   return (
     <>
-      <div className="bg-brand-dark text-white text-sm py-2 hidden md:block">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <span>Enterprise Payment Processing — Powered by NMI Gateway</span>
-          <div className="flex gap-6">
-            <a href="tel:+13145550198" className="hover:text-brand-accent transition-colors">
-              +1 (314) 555-0198
-            </a>
-            <a href="mailto:merchants@charmpayments.com" className="hover:text-brand-accent transition-colors">
-              merchants@charmpayments.com
-            </a>
-          </div>
+      <div className="hidden bg-brand-dark py-2 text-sm text-white md:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-end gap-6 px-6">
+          <a href="tel:+13145550198" className="transition-colors hover:text-brand-accent">
+            +1 (314) 555-0198
+          </a>
+          <a href="mailto:merchants@charmpayments.com" className="transition-colors hover:text-brand-accent">
+            merchants@charmpayments.com
+          </a>
         </div>
       </div>
       <nav
-        className={`bg-white border-b border-gray-100 sticky top-0 z-50 transition-shadow duration-300 ${scrolled ? 'shadow-md' : 'shadow-sm'}`}
+        className={`border-b border-gray-100 bg-white transition-shadow duration-200 ${scrolled ? 'shadow-md' : 'shadow-sm'}`}
         aria-label="Main navigation"
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -63,7 +61,7 @@ export default function Navbar() {
           </div>
           <button
             type="button"
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+            className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-lg hover:bg-gray-100"
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}

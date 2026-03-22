@@ -11,7 +11,11 @@ export default function DashboardHeader({ merchant }: { merchant: Merchant }) {
         </p>
       </div>
       <div className="flex items-center gap-3">
-        <button type="button" className="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="View notifications">
+        <button
+          type="button"
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          aria-label="View notifications"
+        >
           <Bell className="w-4 h-4 text-gray-600" aria-hidden="true" />
         </button>
         <div className="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center text-white text-xs font-bold">

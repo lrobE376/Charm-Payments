@@ -1,0 +1,23 @@
+---
+description: Content and copy standards
+globs:
+  - src/**/*.tsx
+alwaysApply: true
+---
+
+# Content Standards
+
+- Each page must contain exactly one H1.
+- Headings must follow logical order: H1 > H2 > H3.
+- Link text must clearly describe the destination.
+  Never use vague phrases such as "click here" or "read more".
+- External links must include target="_blank" and
+  rel="noopener noreferrer".
+- Empty states must include an explanation and a clear next action.
+- Loading states must appear during asynchronous operations.
+- Error states must include a human-readable explanation and
+  a recovery action.
+- Placeholder copy must be replaced before a page is complete.
+- 8th grade reading level maximum on all pages.
+- Never use: "unhackable", "guaranteed approval",
+  "lowest rates in the industry".

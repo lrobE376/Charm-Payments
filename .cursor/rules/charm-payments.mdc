@@ -53,6 +53,93 @@ You are working on Charm Payments — a merchant payment processing platform bui
 - Meta description: 150-160 chars, merchant search intent
 - One H1 per page, never skip heading levels H1 > H2 > H3
 
+## PRODUCTION BUILD — EXPECTED OUTPUT
+
+npm run build must complete with zero errors.
+
+STATIC PAGES (○) — 16 routes:
+/
+/_not-found
+/apply
+/apply/submitted
+/cards
+/charm-cards
+/charm-cards/apply
+/charm-cards/login
+/contact
+/faq
+/login
+/pricing
+/privacy
+/quote
+/services
+/terms
+
+DYNAMIC ROUTES (ƒ):
+/dashboard
+/dashboard/accounts
+/dashboard/disputes
+/dashboard/leads
+/dashboard/payouts
+/dashboard/settings
+/dashboard/tickets
+/dashboard/transactions
+/api/apply
+/api/auth/callback
+/api/contact
+/api/integrations/nmi
+/api/integrations/ooma
+/api/integrations/pipedrive
+/api/leads
+/api/tickets
+Middleware
+
+RULES:
+- Build must complete zero errors.
+- Static generation step shows 35/35 — do not change this number without
+  intentionally adding/removing a static route.
+- All marketing pages must remain ○ static.
+- All dashboard and API routes must remain ƒ dynamic.
+- Dashboard routes MUST be dynamic (ƒ) — they require
+  live session data. Never attempt to make them static.
+- API routes MUST be dynamic (ƒ) — they handle POST
+  requests. Never attempt to make them static.
+- All marketing pages MUST be static (○) — no session
+  required, no 'use client' on page.tsx files.
+- "Generating static pages (N/N)" in build output is
+  Next.js internal batch count — do NOT equate N to
+  the number of ○ routes. Use the route table instead.
+- If a marketing page.tsx becomes dynamic unexpectedly,
+  find and remove any hook, cookie, or session call
+  that forced it dynamic.
+- The correct assertion for CI is: marketing static routes
+  show ○ in the build table. Not a specific N count for
+  “Generating static pages”.
+
+## OOMA + PIPEDRIVE INTEGRATION
+
+Auto-sync flow:
+Lead created → syncLeadToPipedrive() → Person + Org + Deal
+Phone clicked → formatDialLink() → Ooma dial
+Call logged → POST /api/integrations/ooma → logCallActivity()
+Note added → addNoteToDeal() → Pipedrive deal
+
+Environment variables required:
+PIPEDRIVE_API_TOKEN — Pipedrive personal API token
+PIPEDRIVE_DOMAIN — e.g. yourcompany.pipedrive.com
+OOMA_EXTENSION — Ooma Office extension number
+OOMA_ACCOUNT_ID — Ooma account ID for web dial links
+
+Rules:
+- Never expose PIPEDRIVE_API_TOKEN to the client
+- Never use NEXT_PUBLIC_ prefix on integration tokens
+- All Pipedrive calls go through src/lib/integrations/pipedrive.ts
+- All Ooma formatting goes through src/lib/integrations/ooma.ts
+- If API token is missing, log server-side only — never expose
+  the missing token error to the client response
+- Leads dashboard uses a client child component (leads-dashboard-client.tsx)
+  for call log onClick; page.tsx remains a Server Component for data load
+
 ## STANDARD NAV
 Use this exact block on every page after <body>:
 
