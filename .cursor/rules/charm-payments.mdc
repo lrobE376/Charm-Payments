@@ -1,5 +1,5 @@
 ---
-description: Charm Payments master rule — design, compliance, copy, code quality
+description: Charm Payments master rule — identity, compliance, integrations, build, Cursor workflow (visual rules live in ui-ux-design-principles.mdc)
 globs:
   - "**/*.html"
   - "**/assets/css/*.css"
@@ -8,41 +8,49 @@ globs:
 alwaysApply: true
 ---
 
+# See ui-ux-design-principles.mdc for all visual, layout, and accessibility rules.
+
 # Charm Payments — Master Cursor Rule
 
-You are working on Charm Payments — a merchant payment processing platform built on the Finto HTML template, deployed via GitHub to Vercel at charm-payments.vercel.app.
+You are working on Charm Payments — a merchant payment processing platform (Next.js 14 App Router on Vercel; legacy Finto HTML assets may still exist under `public/assets`).
 
 ## IDENTITY
 - Product: Charm Payments — merchant payment processing (not a bank, not a consumer wallet)
 - Users: Small and mid-size business owners
-- Stack: Finto HTML + vanilla JS + Bootstrap + Remixicon + scrollCue
+- Stack: Next.js 14 (App Router) + TypeScript + Tailwind + Supabase; legacy reference: Finto HTML + Bootstrap + Remixicon + scrollCue under `public/assets`
 - Gateway: NMI with First Data/Fiserv acquiring
-- Brand: Primary #0c3a30 (dark green) · Accent #9edd05 (lime green)
+- Brand: Primary #0c3a30 (dark green) · Accent #9edd05 (lime green) — use tokens via CSS variables / Tailwind `brand-*` per ui-ux-design-principles.mdc
 - Email: merchants@charmpayments.com
 - Phone: +1 (314) 555-0198
 - Copyright: © Charm Payments — A Charm Holdings LLC Company
 
-## NEVER DO THIS
-- Never rename or remove Finto CSS class names
+## NEVER DO THIS (Finto / legacy HTML only)
+- Never rename or remove Finto CSS class names in legacy `public/assets` templates
+- Never hardcode absolute URLs in HTML files — all asset paths are relative
 - Never use hello@finto.com or +001 (808) 5550148 or HiBootstrap
 - Never use "Finto - Fintech, Banking, & Finance HTML Template" as a page title
-- Never add dropdown menus to the navbar — flat 5-link nav only
-- Never hardcode absolute URLs — all asset paths are relative
-- Never commit broken internal links
 
-## ALWAYS DO THIS
-- Every page title: "[Page Name] — Charm Payments"
-- Every page uses the STANDARD NAV and STANDARD FOOTER defined below
-- Every page mentioning payment processing includes the compliance disclaimer
-- Icons use Remixicon ri- classes only
-- External links: target="_blank" rel="noopener noreferrer"
-- Images: descriptive alt text; decorative: alt="" aria-hidden="true"
-- One H1 per page
+## CURSOR PROMPT RULES
+- When editing code, put the **file path at the top** of the request when it helps scope the change.
+- Prefer **Server Components** by default in `page.tsx`; use `'use client'` only when hooks or browser APIs are required.
+- **Never** use the `.reveal` class on **static** server-rendered blocks — it requires client JS to add `.visible` and can leave content invisible.
+- Deliver **complete files** or complete diffs — no placeholders, no `TODO` stubs, unless the user explicitly allows them.
 
 ## COMPLIANCE DISCLAIMER (required on every page mentioning payment processing)
 "Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds are subject to the terms of the Merchant Agreement."
 
-## COPY RULES
+## PRODUCTS (reference naming)
+- **Charm Payments** — core merchant processing, gateway, underwriting
+- **Charm Cards** — digital + physical NFC business cards (separate marketing tone; see ui-ux-design-principles.mdc)
+- **Suites** — bundled/positioning language when applicable
+- **Wallet** — Apple / Google Wallet passes where relevant
+
+## CONTEXT (team & ops)
+- Primary operator context: **Lee Robertson**, St. Louis–area operations
+- Support and merchant-facing email list centers on **merchants@charmpayments.com**
+- Local positioning: **St. Louis** trusted partner; phone and address copy stay consistent with IDENTITY above unless the user supplies updates
+
+## COPY RULES (compliance-adjacent)
 - 8th grade reading level max
 - Never: "unhackable", "guaranteed approval", "lowest rates in the industry"
 - CTAs must be descriptive: "Apply for Your Merchant Account" not "Submit"
@@ -51,13 +59,25 @@ You are working on Charm Payments — a merchant payment processing platform bui
 ## SEO
 - Title: "[Page Name] — Charm Payments"
 - Meta description: 150-160 chars, merchant search intent
-- One H1 per page, never skip heading levels H1 > H2 > H3
+- Heading hierarchy and one H1 per page: follow ui-ux-design-principles.mdc
+
+## FEATURE SUBPAGES (`/features/*` except `/features`)
+All **10** product feature routes under `src/app/(marketing)/features/<slug>/` are **full marketing pages** (hero → how it works → use cases → FAQ with `<details>` → dark CTA + compliance disclaimer). They are **Server Components** only — no `'use client'` on `page.tsx`.
+
+## NAVBAR (marketing) — `src/components/marketing/Navbar.tsx`
+- **`'use client'`** — dropdown hover/click state, Escape, and click-outside to close.
+- **Mega-nav (never flatten to a simple 5-link bar):**
+  - **Products** — dropdown: **Accept Payments** (5 links) + **Manage & Grow** (5 links); footer **See all features →** `/features`. Each item has its own **`/features/<slug>`** page.
+  - **Solutions** — dropdown: 6 industry **`/solutions/<slug>`** pages; footer **All solutions →** `/services`.
+  - **Pricing** → `/pricing`, **Contact** → `/contact` (direct links).
+  - **Merchant Login** → `/login`, **Apply Now** (primary CTA, existing button pattern).
+- **Desktop:** panels open on **hover** and **click**; **mobile:** same groups as **accordion** sections in the slide-down panel.
 
 ## PRODUCTION BUILD — EXPECTED OUTPUT
 
 npm run build must complete with zero errors.
 
-STATIC PAGES (○) — 16 routes:
+STATIC PAGES (○) — 34 routes:
 /
 /_not-found
 /apply
@@ -68,12 +88,30 @@ STATIC PAGES (○) — 16 routes:
 /charm-cards/login
 /contact
 /faq
+/features
+/features/ach
+/features/card-present
+/features/ecommerce
+/features/fraud-protection
+/features/invoicing
+/features/qr-codes
+/features/recurring-billing
+/features/tap-to-pay
+/features/text-to-pay
+/features/virtual-terminal
 /login
 /pricing
 /privacy
 /quote
 /services
+/solutions/beauty
+/solutions/ecommerce
+/solutions/high-risk
+/solutions/restaurants
+/solutions/retail
+/solutions/services
 /terms
+/wallet
 
 DYNAMIC ROUTES (ƒ):
 /dashboard
@@ -84,6 +122,7 @@ DYNAMIC ROUTES (ƒ):
 /dashboard/settings
 /dashboard/tickets
 /dashboard/transactions
+/dashboard/wallet
 /api/apply
 /api/auth/callback
 /api/contact
@@ -92,12 +131,31 @@ DYNAMIC ROUTES (ƒ):
 /api/integrations/pipedrive
 /api/leads
 /api/tickets
+/api/wallet/balance
+/api/wallet/transactions
+/api/wallet/transfer
+/api/wallet/onboard
+/api/webhooks/nmi
 Middleware
+
+## STRIPE TREASURY (Charm Wallet / merchant balance)
+- **Integration:** Stripe Connect + Treasury (Financial Accounts, inbound/outbound transfers).
+- **Service:** `src/lib/services/stripe-service.ts` — Connect onboarding, balance, transactions, outbound transfer, NMI settlement credit hook.
+- **Client:** `src/lib/stripe.ts` — server-only Stripe SDK; **never** import in client components.
+- **Types:** `src/types/stripe.ts`
+- **Status:** Sandbox — live Treasury API calls are **commented** until Treasury access is approved on the platform account. **Demo stubs** return realistic data when `STRIPE_SECRET_KEY` is unset or Treasury is not wired.
+- **Live switch:** Remove `TODO` blocks and uncomment Stripe Treasury calls in `stripe-service.ts` when approved.
+- **Rules:**
+  - `STRIPE_SECRET_KEY` **never** exposed to the client; **never** use `NEXT_PUBLIC_` on secret keys.
+  - All Stripe calls **server-side only** (API routes, server actions, `stripe-service.ts`).
+  - `WalletTransferForm` requires **explicit confirmation** (checkbox) before transfer; never auto-submit.
+  - FDIC / sponsor-bank copy on wallet UI where balances are shown (`/wallet` marketing, `/dashboard/wallet`).
+  - Use `formatCurrency` from `src/lib/utils` for displayed dollar amounts; Stripe amounts in API remain in **cents** where applicable.
 
 RULES:
 - Build must complete zero errors.
-- Static generation step shows 35/35 — do not change this number without
-  intentionally adding/removing a static route.
+- Static generation step shows **59/59** (Next.js internal batch) — it increases when
+  static routes are added; do not treat this N as the ○ route count (use the table above).
 - All marketing pages must remain ○ static.
 - All dashboard and API routes must remain ƒ dynamic.
 - Dashboard routes MUST be dynamic (ƒ) — they require
@@ -140,206 +198,6 @@ Rules:
 - Leads dashboard uses a client child component (leads-dashboard-client.tsx)
   for call log onClick; page.tsx remains a Server Component for data load
 
-## STANDARD NAV
-Use this exact block on every page after <body>:
+### CHARM DASHBOARD — TONE AND UI RULES
 
-        <!-- Start Preloader Area -->
-        <div class="preloader-area text-center position-fixed top-0 bottom-0 start-0 end-0" id="preloader">
-            <div class="loader position-absolute start-0 end-0">
-                <div class="wavy position-relative fw-light">
-                    <span class="d-inline-block"><img src="assets/images/favicon.png" alt="favicon"></span>
-                    <span class="d-inline-block">C</span>
-                    <span class="d-inline-block">H</span>
-                    <span class="d-inline-block">A</span>
-                    <span class="d-inline-block">R</span>
-                    <span class="d-inline-block">M</span>
-                </div>
-            </div>
-        </div>
-        <!-- End Preloader Area -->
-
-        <div class="top-header-info">
-            <!-- Start Top Header Area -->
-            <div class="top-header-area bg-color-0c3a30">
-                <div class="container-fluid side-padding">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-12">
-                            <ul class="left-side">
-                                <li><span>Enterprise Payment Processing — Powered by NMI Gateway</span></li>
-                                <li><a href="tel:+13145550198"><i class="flaticon-phone-call"></i> <b>Phone:</b> +1 (314) 555-0198</a></li>
-                                <li><a href="mailto:merchants@charmpayments.com"><i class="flaticon-email-1"></i> <b>Email:</b> merchants@charmpayments.com</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <ul class="right-side">
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">Help</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Top Header Area -->
-
-            <!-- Start Navbar Area -->
-            <nav class="navbar navbar-expand-lg bg-color-ffffff" id="navbar">
-                <div class="container-fluid side-padding position-relative">
-                    <a class="navbar-brand logo-brand p-0" href="index.html">
-                        <img src="assets/images/logo.png" alt="Charm Payments">
-                    </a>
-                    <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#navbarOffcanvas" role="button" aria-controls="navbarOffcanvas">
-                        <span class="burger-menu">
-                            <span class="top-bar"></span>
-                            <span class="middle-bar"></span>
-                            <span class="bottom-bar"></span>
-                        </span>
-                    </a>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item"><a class="nav-link" href="index.html#solutions">Solutions</a></li>
-                            <li class="nav-item"><a class="nav-link" href="index.html#how-it-works">How It Works</a></li>
-                            <li class="nav-item"><a class="nav-link" href="index.html#industries">Industries</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="others-options">
-                        <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled">
-                            <li>
-                                <button type="button" class="search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="ri-search-line"></i> Search
-                                </button>
-                            </li>
-                            <li><a href="contact.html" class="default-btn">Get Started <i class="ri-arrow-right-up-line"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- End Navbar Area -->
-        </div>
-
-        <!-- Start Mobile Navbar Area -->
-        <div class="mobile-navbar offcanvas offcanvas-end border-0" data-bs-backdrop="static" tabindex="-1" id="navbarOffcanvas">
-            <div class="offcanvas-header">
-                <a href="index.html" class="logo d-inline-block">
-                    <img src="assets/images/white-logo.png" alt="Charm Payments logo">
-                </a>
-                <button type="button" class="close-btn bg-transparent position-relative lh-1 p-0 border-0" data-bs-dismiss="offcanvas" aria-label="Close navigation menu">
-                    <i class="ri-close-fill"></i>
-                </button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="mobile-menu">
-                    <li class="mobile-menu-list without-icon"><a href="index.html#solutions" class="nav-link">Solutions</a></li>
-                    <li class="mobile-menu-list without-icon"><a href="index.html#how-it-works" class="nav-link">How It Works</a></li>
-                    <li class="mobile-menu-list without-icon"><a href="index.html#industries" class="nav-link">Industries</a></li>
-                    <li class="mobile-menu-list without-icon"><a href="pricing.html" class="nav-link">Pricing</a></li>
-                    <li class="mobile-menu-list without-icon"><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="others-options">
-                    <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled">
-                        <li><a href="contact.html" class="default-btn">Get Started <i class="ri-arrow-right-up-line"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- End Mobile Navbar Area -->
-
-## STANDARD FOOTER
-Use this exact block on every page before </body>:
-
-        <!-- Start Footer Area -->
-        <div class="footer-area bg-color-0c3a30 pt-120">
-            <div class="container">
-                <div class="row" data-cues="slideInUp" data-duration="800">
-                    <div class="col-xl-4 col-lg-9 col-md-6">
-                        <div class="footer-weight">
-                            <h2 class="text-white">Get Payment Industry Updates</h2>
-                            <form class="footer-form position-relative">
-                                <input type="email" class="form-control" placeholder="Enter Your Email" aria-label="Email for newsletter">
-                                <button type="submit" class="default-btn">Subscribe <i class="ri-arrow-right-up-line"></i></button>
-                            </form>
-                            <ul class="social">
-                                <li><span>Follow Us:</span></li>
-                                <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="ri-facebook-fill"></i></a></li>
-                                <li><a href="https://www.twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a></li>
-                                <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="ri-instagram-line"></i></a></li>
-                                <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-4 col-md-6">
-                        <div class="footer-weight part-two ps-5">
-                            <h3 class="text-white">Quick Links</h3>
-                            <ul class="service-link">
-                                <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="pricing.html">Pricing Plans</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="footer-weight part-three ps-5">
-                            <h3 class="text-white">Our Solutions</h3>
-                            <ul class="service-link">
-                                <li><a href="services.html">Virtual Terminal</a></li>
-                                <li><a href="services.html">Recurring Billing</a></li>
-                                <li><a href="services.html">E-Commerce Gateway</a></li>
-                                <li><a href="services.html">ACH Processing</a></li>
-                                <li><a href="services.html">High-Risk Merchants</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="footer-weight ps-5">
-                            <h3 class="text-white">Get In Touch</h3>
-                            <ul class="get-touch">
-                                <li>
-                                    <img class="phone" src="assets/images/svg/mail.svg" alt="">
-                                    <span class="text-white"><b>Email:</b></span>
-                                    <a href="mailto:merchants@charmpayments.com">merchants@charmpayments.com</a>
-                                </li>
-                                <li>
-                                    <img class="phone" src="assets/images/svg/phone.svg" alt="">
-                                    <span class="text-white"><b>Phone:</b></span>
-                                    <a href="tel:+13145550198">+1 (314) 555-0198</a>
-                                </li>
-                            </ul>
-                            <p style="color:rgba(255,255,255,0.45);font-size:11px;margin-top:20px;line-height:1.6;">Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds are subject to the terms of the Merchant Agreement.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Area -->
-
-        <!-- Start Copyright Area -->
-        <div class="copyright-area bg-color-0c3a30">
-            <div class="container">
-                <div class="copyright-border">
-                    <div class="row g-4 align-items-center">
-                        <div class="col-lg-4 col-md-6">
-                            <p>© <span>Charm Payments</span> — A Charm Holdings LLC Company</p>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="copy-image" data-cues="zoomIn" data-duration="700">
-                                <a href="index.html" class="d-block"><img src="assets/images/white-logo.png" alt="Charm Payments"></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <ul>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Copyright Area -->
-
-        <!-- Go top Btn -->
-        <div class="go-top"><i class="ri-arrow-up-fill"></i></div>
-        <!-- Go top Btn End -->
+Dashboard pages are utility-first. No marketing copy, no section labels, no hero sections, no gradient-text. Typography is gray-900 headings, gray-500 subtext, white on dark sidebar. Data is the hero — tables, stat cards, and charts get maximum breathing room. CTAs in the dashboard are functional (Export, Retry, Dispute) never promotional. The compliance disclaimer does not appear in dashboard views.

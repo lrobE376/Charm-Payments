@@ -1,0 +1,100 @@
+---
+description: UI/UX design principles — trust hierarchy, hierarchy, color, typography, conversion, forms, imagery, a11y, tone split
+alwaysApply: true
+---
+
+# UI/UX Design Principles — Apply to Every Page
+
+## TRUST HIERARCHY (Merchant Processing)
+
+Every page that mentions payments, processing, or fees must include **at least one trust signal** in the visible viewport: the compliance disclaimer, a payment network logo row (Visa / Mastercard / Amex / Discover / ACH), or the **"NMI Certified Partner"** badge.
+
+- Trust signals must appear **BEFORE** the primary CTA, never after.
+- A merchant must feel safe before they are asked to act.
+
+## VISUAL HIERARCHY — THE 3-SECOND RULE
+
+Every page must answer within ~3 seconds for a first-time visitor:
+
+1. **What is this?** → **H1**
+2. **Who is it for?** → One subheading or bullet list
+3. **What do I do next?** → One primary CTA (`btn-accent` or `btn-primary`)
+
+Never put two **primary** CTAs side by side — one is always primary, one is always secondary (`btn-outline`).
+
+## COLOR USAGE RULES
+
+- **`bg-brand-dark`** (`#0c3a30`): high-authority moments — hero, pricing, testimonials, final CTA. **Maximum 3 dark sections per page.**
+- **`bg-brand-light`** (`#edf1ee`): neutral content — feature lists, how-it-works, comparisons.
+- **`bg-brand-card`** (`#fffaeb`) and **`bg-white`**: cards, forms, content that needs to breathe.
+- **`bg-brand-accent`** (`#9edd05`): **NEVER** as a section background. Only badges, highlights, active states, and **`btn-accent`**. Overusing accent destroys conversion power.
+- **Never** more than **2 dark sections back-to-back** without a light section between them.
+
+## TYPOGRAPHY HIERARCHY
+
+- **H1:** `font-display` (Outfit), `text-4xl` minimum, **one per page**, always above the fold.
+- **H2:** `font-display`, `text-3xl`, section headings only.
+- **H3:** `font-display`, `text-xl`, card headings and subsections.
+- **Body:** Inter Tight, `text-base` or `text-lg`, color `var(--paragraph)`.
+- **Section labels:** always **`.section-label`** — never invent a new pill/badge style.
+- **`gradient-text`:** **maximum one instance per page** — reserved for the most important H2 on that page.
+
+## SPACING AND LAYOUT
+
+- Full-width sections use **`.section-ptb`** — never custom `py-*` on sections.
+- Content max-width: **`max-w-7xl`** for standard sections; **`max-w-4xl`** for centered text-heavy sections (FAQ, legal, blog).
+- **Mobile padding:** always **`px-6` minimum** on section containers — never less.
+- Cards use **`.charm-card`** — do not invent new card styles with ad-hoc shadows/borders.
+- **Touch targets:** interactive elements (buttons, links, accordion triggers, nav items) **`min-h-[44px]`** minimum.
+
+## CONVERSION FLOW — MARKETING PAGE STRUCTURE
+
+Every marketing page should follow this **section order**:
+
+1. Hero (dark bg, H1, primary CTA, trust badge)
+2. Social proof OR feature differentiator (light bg)
+3. Core product/feature explanation (white or light bg)
+4. Objection handler — pricing, FAQ, or comparison (any bg)
+5. Final CTA section (dark bg, two buttons: primary + secondary)
+6. Footer
+
+- **Never** end a marketing page without a **dark CTA section** above the footer.
+- **Never** put FAQ or pricing as the **last** content section — always follow with a CTA.
+
+## FORM AND APPLICATION RULES
+
+- Standard input pattern: `<label>` with `htmlFor`, matching `id` on the control, `aria-describedby` for hints, `aria-invalid` for errors.
+- Multi-step forms: **progressive disclosure** — **maximum 4 fields per step**.
+- Errors: **`role="alert"`**, inline below the field — **not** only a toast.
+- Submit buttons: loading state (spinner + disabled) while processing.
+- **Never** use placeholder text as a substitute for a label.
+
+## PHOTOGRAPHY AND IMAGERY
+
+- **Hero:** real business owner in context (barbershop, salon, boutique, restaurant) — not abstract tech-only imagery.
+- **Product screenshots:** device mockup or styled card frame — not raw floating screenshots.
+- **Alt text:** descriptive for meaningful images; **`alt=""`** only for decorative images with **`aria-hidden="true"`** on ornaments if needed.
+- **Aspect ratios:** hero photos `aspect-video` or `aspect-[4/3]`; profile photos `aspect-square` with `rounded-full`.
+
+## ACCESSIBILITY — NON-NEGOTIABLE
+
+- Exactly **one H1** per page.
+- Non-native interactive widgets: **`role`**, **`aria-*`**, and **keyboard** behavior.
+- **Color alone** must never be the only way information is conveyed — pair with icon or text.
+- Animation classes (`animate-float`, `animate-rotation`, etc.) live in **`globals.css`** with **`prefers-reduced-motion`** — **do not** add new animations outside `globals.css`.
+- **Never** use **`.reveal`** on **static server components** — it requires client JS to add `.visible` and can leave content invisible.
+
+## CHARM CARDS vs CHARM PAYMENTS — TONE SPLIT
+
+- **Charm Payments:** professional, authoritative, numbers-forward. Specifics ("$16,600 annual savings", "24-hour approval", "99.99% uptime"). Tone: trusted local partner.
+- **Charm Cards:** energetic, lifestyle-forward, identity-focused. Outcomes ("clients tap your chair", "your whole crew", "no app needed"). Tone: modern tool for hustlers.
+- **Never mix tones on one page.** Charm Payments pages should not use **"hustle."** Charm Cards pages should not open with heavy compliance language.
+
+## WHAT TO NEVER DO
+
+- Never create a new CSS class that duplicates an existing design token / utility.
+- Never use `style={{ color: '...' }}` for brand colors — use CSS variables or Tailwind `brand-*` classes.
+- Marketing nav is a **mega-nav** (see `charm-payments.mdc` / `Navbar.tsx`): **Products** and **Solutions** use dropdown panels; **Pricing** and **Contact** are direct links. Do not replace this with a flat-only link list.
+- Never use **more than 2 font weights** on a single card or section (400 body + 700 heading).
+- Never stack two **`btn-accent`** buttons — one accent CTA per section maximum.
+- Never put the **compliance disclaimer inside a hero** — it belongs in the **footer** and below pricing sections only.

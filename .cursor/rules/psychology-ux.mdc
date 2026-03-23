@@ -9,12 +9,10 @@ alwaysApply: true
 # Psychology-First UX — Behavioral Economics & Neuromarketing
 
 ## HICK'S LAW — Navigation
-- Maximum 5 navigation links — no more, no exceptions
-- Current Charm Payments nav (correct order):
-  Solutions · Charm Cards · How It Works · Pricing · Contact
-- No dropdowns — flat nav only
-- Mobile menu mirrors desktop exactly
-- Fewer choices = faster decisions = higher conversion
+- **Top-level** nav stays scannable: **Products** (dropdown) · **Solutions** (dropdown) · **Pricing** · **Contact** — plus **Merchant Login** and **Apply Now**.
+- Grouped destinations live inside **mega-dropdowns** (10 feature pages + hub link; 6 solution pages + hub link), not as 20+ top-level links.
+- `Navbar.tsx` is **`client`** for hover/click/escape/outside-close behavior; mobile uses accordions for the same groups.
+- Fewer *simultaneous* choices at the top bar = faster decisions; depth is organized, not flattened into one long list.
 
 ## VON RESTORFF ISOLATION EFFECT — CTA Color
 - Primary CTA uses brand-accent (#9edd05) ONLY

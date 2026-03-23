@@ -17,7 +17,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         <OfferStrip />
         <Navbar />
       </header>
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <Footer />
       <ScrollReveal />
     </>

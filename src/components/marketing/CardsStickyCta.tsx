@@ -1,13 +1,25 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function CardsStickyCta() {
   const [visible, setVisible] = useState(false)
+  const barRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 300)
+    const onScroll = () => {
+      const show = window.scrollY > 300
+      setVisible(show)
+      const el = barRef.current
+      if (el) {
+        if (!show) {
+          el.setAttribute('inert', '')
+        } else {
+          el.removeAttribute('inert')
+        }
+      }
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -15,6 +27,8 @@ export default function CardsStickyCta() {
 
   return (
     <div
+      ref={barRef}
+      aria-hidden={!visible}
       className={`fixed bottom-0 left-0 right-0 z-50 block border-t border-white/10 bg-brand-dark px-4 py-3 transition-all duration-300 md:hidden ${
         visible ? 'pointer-events-auto translate-y-0 opacity-100' : 'pointer-events-none translate-y-full opacity-0'
       }`}

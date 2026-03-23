@@ -12,12 +12,15 @@ import {
   CreditCard,
   CheckCircle,
   ArrowRight,
+  FileText,
+  MessageSquare,
+  QrCode,
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Payment Processing Solutions',
+  title: 'Payment Processing Solutions — Charm Payments',
   description:
-    'Explore Charm Payments merchant solutions — virtual terminal, recurring billing, ACH processing, e-commerce gateway, and high-risk merchant accounts.',
+    'Charm Payments merchant solutions — virtual terminal, invoicing, text to pay, recurring billing, ACH, e-commerce gateway, and fraud protection. All in one account.',
 }
 
 const solutions = [
@@ -256,6 +259,46 @@ export default function ServicesPage() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-ptb bg-brand-light">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 text-center">
+            <span className="section-label">EVERY FEATURE INCLUDED</span>
+            <h2 className="font-display mt-4 text-3xl font-bold text-brand-dark">One Account. Every Tool.</h2>
+            <p className="text-paragraph mx-auto mt-4 max-w-2xl">
+              Your Charm Payments merchant account includes virtual terminal, invoicing, text to pay, recurring billing, QR codes, and fraud protection — all in one
+              gateway.
+            </p>
+          </div>
+          <div className="mb-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {(
+              [
+                { icon: Monitor, label: 'Virtual Terminal' },
+                { icon: FileText, label: 'Electronic Invoicing' },
+                { icon: MessageSquare, label: 'Text to Pay' },
+                { icon: RefreshCw, label: 'Recurring Billing' },
+                { icon: QrCode, label: 'QR Code Payments' },
+                { icon: Shield, label: 'Fraud Protection' },
+                { icon: Smartphone, label: 'Tap to Pay' },
+                { icon: Globe, label: 'E-Commerce Gateway' },
+              ] as const
+            ).map(({ icon: Icon, label }) => (
+              <div key={label} className="charm-card flex items-center gap-3 bg-white p-4">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-light">
+                  <Icon className="h-5 w-5 text-brand-dark" aria-hidden />
+                </div>
+                <span className="text-sm font-semibold text-brand-dark">{label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link href="/features" className="btn-accent inline-flex min-h-[44px] items-center gap-2">
+              See All Features
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
           </div>
         </div>
       </section>

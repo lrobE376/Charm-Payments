@@ -8,7 +8,9 @@ import Input from '@/components/ui/Input'
 
 const businessTypes = ['Corporation', 'LLC', 'Sole proprietorship', 'Partnership', 'Non-profit', 'Other']
 
-const stepLabels = ['Business basics', 'Ownership & KYC', 'Banking & settlement', 'Review & submit']
+const stepLabels = ['Business basics', 'Ownership & KYC', 'Banking & settlement', 'Review & submit'] as const
+
+const TOTAL_STEPS = 4
 
 export default function ApplyApplicationForm() {
   const router = useRouter()
@@ -64,13 +66,24 @@ export default function ApplyApplicationForm() {
     router.push('/apply/submitted')
   }
 
-  const progress = (step / 4) * 100
+  const progress = (step / TOTAL_STEPS) * 100
+  const stepName = stepLabels[step - 1]
 
   return (
     <div className="w-full max-w-2xl rounded-2xl border border-gray-100 bg-white p-6 shadow-sm md:p-10">
       <h1 className="text-2xl font-bold text-gray-900">Merchant application</h1>
       <p className="mt-2 text-sm text-gray-500">Step {step} of 4 — structured for underwriting; no instant decision logic yet.</p>
-      <div className="mt-4 h-2 overflow-hidden rounded-full bg-brand-light">
+      <div
+        role="progressbar"
+        aria-valuenow={step}
+        aria-valuemin={1}
+        aria-valuemax={TOTAL_STEPS}
+        aria-label={`Application step ${step} of ${TOTAL_STEPS}`}
+        className="mt-4 h-2 overflow-hidden rounded-full bg-brand-light"
+      >
+        <span className="sr-only">
+          Step {step} of {TOTAL_STEPS}: {stepName}
+        </span>
         <div className="h-full bg-brand-accent transition-all duration-200" style={{ width: `${progress}%` }} />
       </div>
       <p className="mt-1 text-center text-xs text-gray-400">{stepLabels[step - 1]}</p>
@@ -81,10 +94,11 @@ export default function ApplyApplicationForm() {
           <Input label="Legal business name" required value={form.business_name} onChange={(e) => update('business_name', e.target.value)} />
           <Input label="DBA (optional)" value={form.dba_name} onChange={(e) => update('dba_name', e.target.value)} />
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium text-gray-700">
+            <label htmlFor="businessType" className="text-sm font-medium text-gray-700">
               Business type <span className="text-red-500">*</span>
             </label>
             <select
+              id="businessType"
               required
               className="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm"
               value={form.business_type}
@@ -120,7 +134,6 @@ export default function ApplyApplicationForm() {
         <div className="mt-8 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-wide text-brand-dark">Ownership &amp; KYC</h2>
           <p className="text-xs text-gray-500">
-            {/* TODO: Beneficial-owner collection for 25%+ equity when required by underwriting */}
             Primary owner details below; additional owners may be requested during review.
           </p>
           <Input label="Owner first name" required value={form.owner_first_name} onChange={(e) => update('owner_first_name', e.target.value)} />
@@ -148,7 +161,6 @@ export default function ApplyApplicationForm() {
         <div className="mt-8 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-wide text-brand-dark">Settlement banking</h2>
           <p className="text-xs text-gray-500">
-            {/* TODO: Micro-deposit or instant verification when bank API is integrated */}
             Account used for deposits must match the legal business or DBA on file.
           </p>
           <Input label="Bank name" required value={form.bank_name} onChange={(e) => update('bank_name', e.target.value)} />

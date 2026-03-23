@@ -36,6 +36,11 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white/50 mb-4">Our Solutions</h3>
             <ul className="space-y-3 text-sm list-none m-0 p-0">
+              <li>
+                <Link href="/features" className="text-white/70 hover:text-brand-accent transition-colors">
+                  All Features
+                </Link>
+              </li>
               <li key="Charm Cards">
                 <Link href="/cards" className="text-white/70 hover:text-brand-accent transition-colors">
                   Charm Cards

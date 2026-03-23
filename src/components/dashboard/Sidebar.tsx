@@ -13,6 +13,7 @@ import {
   Users,
   Building2,
   Ticket,
+  Wallet,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { signOut } from '@/app/(dashboard)/actions'
@@ -24,6 +25,7 @@ const navItems = [
   { label: 'Accounts', href: '/dashboard/accounts', icon: Building2 },
   { label: 'Tickets', href: '/dashboard/tickets', icon: Ticket },
   { label: 'Transactions', href: '/dashboard/transactions', icon: CreditCard },
+  { label: 'Wallet', href: '/dashboard/wallet', icon: Wallet },
   { label: 'Payouts', href: '/dashboard/payouts', icon: ArrowDownToLine },
   { label: 'Disputes', href: '/dashboard/disputes', icon: AlertCircle },
   { label: 'Settings', href: '/dashboard/settings', icon: Settings },

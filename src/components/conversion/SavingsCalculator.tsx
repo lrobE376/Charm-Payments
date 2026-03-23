@@ -59,7 +59,13 @@ export default function SavingsCalculator() {
 
           <div className="mt-8 rounded-2xl border-2 border-sales-green/40 bg-sales-navy px-5 py-6 text-center">
             <p className="text-sm font-medium text-white/80">Estimated annual savings with Charm</p>
-            <p className="font-display mt-2 text-3xl font-bold tabular-nums text-sales-green md:text-4xl">{formatCurrency(annualSavings)}</p>
+            <p
+              className="font-display mt-2 text-3xl font-bold tabular-nums text-sales-green md:text-4xl"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {formatCurrency(annualSavings)}
+            </p>
           </div>
 
           <p className="mt-4 text-center text-xs leading-relaxed text-gray-500">

@@ -163,10 +163,12 @@ export function FaqPageClient() {
                   }`}
                 >
                   <button
+                    id={`faq-trigger-${item.id}`}
                     type="button"
                     onClick={() => toggleItem(item.id)}
                     className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left md:px-6 md:py-5"
                     aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${item.id}`}
                   >
                     <span className="font-display font-bold text-[var(--heading)] md:text-lg">{item.q}</span>
                     <ChevronDown
@@ -176,11 +178,15 @@ export function FaqPageClient() {
                       aria-hidden
                     />
                   </button>
-                  {isOpen && (
-                    <div className="border-t border-[rgba(8,39,32,0.06)] px-5 pb-5 pt-0 md:px-6 md:pb-6">
-                      <p className="pt-4 leading-relaxed text-gray-700">{item.a}</p>
-                    </div>
-                  )}
+                  <div
+                    id={`faq-panel-${item.id}`}
+                    role="region"
+                    aria-labelledby={`faq-trigger-${item.id}`}
+                    hidden={!isOpen}
+                    className="border-t border-[rgba(8,39,32,0.06)] px-5 pb-5 pt-0 md:px-6 md:pb-6"
+                  >
+                    <p className="pt-4 leading-relaxed text-gray-700">{item.a}</p>
+                  </div>
                 </div>
               )
             })}
