@@ -26,14 +26,14 @@ export default function CardsTestimonialsSection() {
   return (
     <section className="section-ptb bg-white">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-3xl text-center reveal">
           <span className="section-label">Trusted in St. Louis</span>
           <h2 className="font-display mt-3 text-3xl font-bold md:text-4xl">Real businesses. Real results.</h2>
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {testimonials.map((t) => (
-            <article key={t.initials} className="charm-card flex flex-col p-8">
+          {testimonials.map((t, i) => (
+            <article key={t.initials} className={`charm-card flex flex-col p-8 reveal delay-${(i + 1) * 100}`}>
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-dark font-display text-sm font-bold text-white">
                 {t.initials}
               </div>

@@ -42,17 +42,17 @@ const solutions = [
   },
   {
     title: 'Recurring Billing',
-    desc: 'Subscriptions, payment plans, and smart retries without bolt-on billing software.',
+    desc: 'Set billing up once. Clients charge automatically — no chasing failed cards, no third-party software eating your margin.',
     icon: RefreshCw,
   },
   {
     title: 'E-Commerce Gateway',
-    desc: 'Hosted checkout, APIs, and 200+ cart integrations powered by NMI.',
+    desc: 'Hosted checkout, direct API, and 200+ cart integrations — your store collects revenue while you run the business.',
     icon: Globe,
   },
   {
     title: 'ACH Processing',
-    desc: 'Bank debits with transparent settlement timelines and full reporting.',
+    desc: 'Accept large invoices by bank transfer — costs less than cards, settles predictably, fully reported.',
     icon: CreditCard,
   },
   {
@@ -62,7 +62,7 @@ const solutions = [
   },
   {
     title: 'Real-Time Reporting',
-    desc: 'Search, export, and reconcile batches the moment they hit your MID.',
+    desc: 'See every transaction, batch, and settlement in real time — no more guessing where your money is between statements.',
     icon: BarChart3,
   },
 ] as const
@@ -144,11 +144,10 @@ function LocalHeroSection() {
           <div className="lg:col-span-5">
             <span className="section-label">ST. LOUIS BUILT</span>
             <h2 id="local-hero-heading" className="font-display mt-3 text-3xl font-bold md:text-4xl gradient-text">
-              The Local Partner Who Has Your Back
+              Your Processor Has a Chatbot. We Answer the Phone.
             </h2>
             <p className="mt-4 leading-relaxed text-gray-600">
-              We&apos;re not a San Francisco startup with a chatbot for support. We&apos;re a St. Louis company — same time zone, same hustle. When your terminal goes
-              down on a Saturday, we pick up.
+              Your current processor routes you through phone trees and automated systems. Charm is a St. Louis company — real people, same time zone. When your terminal goes down on a Saturday night, we pick up.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {(['500+ Merchants Served', '48hr Approval', 'STL-Based Support'] as const).map((label) => (
@@ -158,7 +157,7 @@ function LocalHeroSection() {
               ))}
             </div>
             <Link href="/apply" className="btn-primary mt-8 inline-flex">
-              Apply Today — No Obligation
+              See What You&apos;re Paying — Free
             </Link>
           </div>
 
@@ -200,7 +199,7 @@ export default function HomePage() {
       {/* SECTION 1 — HERO (B2B / sales-led) */}
       <section
         className="relative overflow-hidden pt-10 pb-20 lg:pt-14 lg:pb-28"
-        style={{ background: 'linear-gradient(145deg, #0a192f 0%, #0f2847 52%, #0a192f 100%)' }}
+        style={{ background: 'linear-gradient(145deg, #0E1A12 0%, #182A1C 52%, #0E1A12 100%)' }}
       >
         <div className="shape-blob -right-24 -top-20 h-[420px] w-[420px] bg-sales-green/20 lg:right-0" aria-hidden />
         <div className="shape-blob -bottom-32 -left-20 h-[380px] w-[380px] bg-white/5" aria-hidden />
@@ -216,19 +215,19 @@ export default function HomePage() {
               style={{ animationDelay: '0.05s', animationFillMode: 'forwards' }}
             >
               <span className="h-2 w-2 shrink-0 animate-pulse-ring rounded-full bg-sales-green" aria-hidden />
-              Merchant accounts · NMI Gateway · First Data / Fiserv
+              St. Louis merchant accounts · No contracts · Local support
             </div>
             <h1
               className="font-display animate-fadeinup mt-6 whitespace-pre-line text-4xl font-bold leading-tight text-white opacity-0 md:text-5xl lg:text-[3.15rem]"
               style={{ animationDelay: '0.12s', animationFillMode: 'forwards' }}
             >
-              {`Stop Losing Revenue to Hidden Fees and Slow Support.`}
+              {`Your Processor Is Charging More Than You Know.`}
             </h1>
             <p
               className="mt-6 max-w-xl animate-fadeinup text-lg leading-relaxed text-white/80 opacity-0"
               style={{ animationDelay: '0.22s', animationFillMode: 'forwards' }}
             >
-              We audit your current merchant statement and beat your rate—guaranteed. Local St. Louis support. 24-hour approval. No contracts.
+              Your current processor bundles fees you can&apos;t audit, holds funds you&apos;ve already earned, and routes you to a chatbot when something breaks. We&apos;ll show you exactly what you&apos;re paying — and what changes with Charm.
             </p>
             <div
               className="mt-8 animate-fadeinup opacity-0"
@@ -242,7 +241,7 @@ export default function HomePage() {
             >
               {[
                 'Free statement audit',
-                'Interchange-plus pricing',
+                'See every fee, every card, every time',
                 '24-hour approval',
                 'PCI DSS compliant',
               ].map((label) => (
@@ -346,9 +345,9 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="mx-auto max-w-3xl text-center">
             <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">WHY WE WIN</span>
-            <h2 className="font-display mt-3 text-3xl font-bold text-sales-navy md:text-4xl">Flat-rate apps vs. real processing</h2>
+            <h2 className="font-display mt-3 text-3xl font-bold text-sales-navy md:text-4xl">What Your Processor Doesn&apos;t Want You to Audit</h2>
             <p className="mt-3 text-lg text-[var(--paragraph)]/85">
-              Interchange-plus means you see true cost — not a blended rate that hides margin. That&apos;s how high-volume merchants stop overpaying.
+              You see every fee, every card type, every time — not a blended rate your processor designed to keep you from asking questions.
             </p>
           </div>
 
@@ -361,7 +360,7 @@ export default function HomePage() {
               </div>
               <div className="border-b border-gray-200 bg-sales-green/10 p-4 text-center md:border-b-0">
                 <p className="text-sm font-bold text-sales-navy">Charm Payments</p>
-                <p className="mt-1 text-xs text-sales-navy/80">Interchange-plus · local support</p>
+                <p className="mt-1 text-xs text-sales-navy/80">See every fee · local St. Louis team</p>
               </div>
             </div>
             <div className="divide-y divide-gray-100">
@@ -399,12 +398,12 @@ export default function HomePage() {
       <section id="solutions" className="scroll-mt-24 bg-slate-50 section-ptb">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">ENTERPRISE TOOLS</span>
+            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">WHAT CHANGES</span>
             <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">
-              Enterprise Tools for <span className="text-sales-green">Local Legends</span>
+              Run Every Payment Channel Without <span className="text-sales-green">Juggling Processors</span>
             </h2>
             <p className="mt-4 text-lg text-[var(--paragraph)]/85">
-              One NMI gateway login covers every channel — from retail POS integrations to complex MOTO and e-commerce stacks.
+              One merchant account covers every channel — register, website, phone orders, and recurring billing — with unified reporting and no extra processors to manage.
             </p>
           </div>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -429,7 +428,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-14 flex justify-center">
-            <PrimaryCTA className="justify-center" variant="sales" primary="Apply Now" secondary="Free Rate Audit" />
+            <PrimaryCTA className="justify-center" variant="sales" primary="Get My Free Audit" secondary="Free Rate Audit" />
           </div>
         </div>
       </section>
@@ -442,9 +441,9 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">HOW IT WORKS</span>
             <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">
-              From application to first sale in <span className="text-sales-green">three steps</span>
+              Three Steps to a Processor That <span className="text-sales-green">Works for You</span>
             </h2>
-            <p className="mt-4 text-[var(--paragraph)]/85">No engineering project — we handle underwriting, gateway setup, and go-live testing.</p>
+            <p className="mt-4 text-[var(--paragraph)]/85">No setup project. We handle underwriting, configuration, and go-live — you fill out one application.</p>
           </div>
 
           <div className="relative mt-14">
@@ -499,14 +498,14 @@ export default function HomePage() {
                   Built for the business owners who keep St. Louis running.
                 </h3>
                 <p className="leading-relaxed text-paragraph">
-                  From barbershops to boutiques, Charm Payments gives every St. Louis merchant enterprise-grade payment tools — with local support and no hidden fees.
+                  From barbershops to boutiques, St. Louis merchants use Charm to finally see what they&apos;re paying — and stop their processor from quietly keeping the difference.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="mt-14 flex justify-center reveal">
-            <PrimaryCTA variant="sales" primary="Apply Now" secondary="Free Rate Audit" />
+            <PrimaryCTA variant="sales" primary="Get My Free Audit" secondary="Free Rate Audit" />
           </div>
         </div>
       </section>
@@ -516,30 +515,30 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-2xl text-center">
             <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">MERCHANT REVIEWS</span>
-            <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">Trusted by Growing Businesses</h2>
+            <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">What Merchants Say After Switching</h2>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-3">
             {[
               {
-                quote: '“Charm Payments got us live before our launch weekend. Transparent pricing finally matched what we were promised.”',
+                quote: '"Charm Payments got us live before our launch weekend. Transparent pricing finally matched what we were promised."',
                 name: 'Marcus T.',
                 role: 'Metro Auto Repair',
                 initial: 'M',
               },
               {
-                quote: '“Recurring billing just works. Support picked up on the first ring when we had a gateway question.”',
+                quote: '"Recurring billing just works. Support picked up on the first ring when we had a gateway question."',
                 name: 'Diane R.',
                 role: 'Sunflower Wellness Spa',
                 initial: 'D',
               },
               {
-                quote: '“We process six figures monthly without downtime. The reporting exports clean into our accounting stack.”',
+                quote: '"We process six figures monthly without downtime. The reporting exports clean into our accounting stack."',
                 name: 'James K.',
                 role: 'StreamFlow Software',
                 initial: 'J',
               },
-            ].map((t) => (
-              <div key={t.name} className="charm-card reveal border border-gray-100 p-8">
+            ].map((t, i) => (
+              <div key={t.name} className={`charm-card reveal border border-gray-100 p-8 ${revealDelays[i % revealDelays.length]}`}>
                 <div className="flex gap-1">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-sales-green text-sales-green" aria-hidden />
@@ -563,7 +562,7 @@ export default function HomePage() {
       {/* SECTION — FINAL CTA */}
       <section
         className="relative overflow-hidden section-ptb px-6 text-center"
-        style={{ background: 'linear-gradient(145deg, #0a192f 0%, #0f2847 50%, #0a192f 100%)' }}
+        style={{ background: 'linear-gradient(145deg, #0E1A12 0%, #182A1C 50%, #0E1A12 100%)' }}
       >
         <div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden>
           <div className="absolute bottom-0 left-[20%] top-0 w-px bg-gradient-to-b from-transparent via-white/40 to-transparent" />
@@ -578,10 +577,10 @@ export default function HomePage() {
           </span>
           <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Ready to see what your statement is hiding?</h2>
           <p className="mt-4 text-lg leading-relaxed text-white/75">
-            Apply online or book a free rate audit — we&apos;ll line-item your current processor and show exactly what changes with Charm.
+            Your last statement has fees your processor buried on purpose. We&apos;ll find every one, line them up, and show you exactly what you&apos;d save — no cost, no commitment.
           </p>
           <div className="mt-10 flex flex-wrap justify-center">
-            <PrimaryCTA variant="sales-dark" primary="Stop Overpaying Today" secondary="Free Rate Audit" />
+            <PrimaryCTA variant="sales-dark" primary="Get My Free Rate Audit" secondary="Free Rate Audit" />
           </div>
           <p className="mx-auto mt-10 max-w-xl text-xs leading-relaxed text-white/35">
             Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds

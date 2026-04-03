@@ -15,6 +15,8 @@ const txRows = [
   { name: 'Card Purchase', amt: '-$42.18', time: 'Sun', color: 'text-white/60' },
 ]
 
+const revealDelays = ['delay-100', 'delay-200', 'delay-300'] as const
+
 export default function WalletPage() {
   return (
     <>
@@ -89,7 +91,7 @@ export default function WalletPage() {
                   </div>
                 ))}
               </div>
-              <div className="animate-float-slow absolute -bottom-4 -left-6 rounded-2xl bg-white px-4 py-3 shadow-xl">
+              <div className="absolute -bottom-4 -left-6 rounded-2xl bg-white px-4 py-3 shadow-xl">
                 <p className="text-[10px] uppercase tracking-wide text-gray-400">FDIC Insured</p>
                 <p className="text-sm font-bold text-brand-dark">Up to $250,000</p>
               </div>
@@ -100,11 +102,11 @@ export default function WalletPage() {
 
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="section-label">CHARM BALANCE</p>
-          <h2 className="font-display mt-4 text-center text-3xl font-bold md:text-4xl">
+          <p className="section-label reveal">CHARM BALANCE</p>
+          <h2 className="font-display mt-4 text-center text-3xl font-bold md:text-4xl reveal delay-100">
             <span className="gradient-text block whitespace-pre-line">{`Get Paid Instantly.\nSpend From Your Balance.`}</span>
           </h2>
-          <p className="text-paragraph mx-auto mt-5 max-w-2xl text-center text-lg">
+          <p className="text-paragraph mx-auto mt-5 max-w-2xl text-center text-lg reveal delay-200">
             Charm Payments merchants get an even bigger advantage — your processing revenue deposits instantly into your Charm Wallet balance. No waiting 1-2 days for bank
             transfers. Your money is available the moment a customer pays you.
           </p>
@@ -172,8 +174,8 @@ export default function WalletPage() {
 
       <section id="how-it-works" className="section-ptb scroll-mt-28 bg-brand-light">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="section-label">HOW IT WORKS</p>
-          <h2 className="font-display mt-4 text-center text-3xl font-bold text-brand-dark md:text-4xl">Three steps to your Charm Wallet</h2>
+          <p className="section-label reveal">HOW IT WORKS</p>
+          <h2 className="font-display mt-4 text-center text-3xl font-bold text-brand-dark md:text-4xl reveal delay-100">Three steps to your Charm Wallet</h2>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {[
               {
@@ -191,8 +193,8 @@ export default function WalletPage() {
                 title: 'Use your balance',
                 desc: 'Send money, cash out, and — for merchants — receive Charm Payments payouts instantly to the same balance.',
               },
-            ].map(({ Icon, title, desc }) => (
-              <div key={title} className="charm-card bg-white p-6 text-center md:text-left">
+            ].map(({ Icon, title, desc }, i) => (
+              <div key={title} className={`charm-card bg-white p-6 text-center md:text-left reveal ${revealDelays[i]}`}>
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-light md:mx-0">
                   <Icon className="h-7 w-7 text-brand-dark" aria-hidden />
                 </div>

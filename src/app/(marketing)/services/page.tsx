@@ -125,6 +125,8 @@ const integrations = [
   'Hosted Payment Page',
 ]
 
+const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay-500', 'delay-600'] as const
+
 export default function ServicesPage() {
   return (
     <>
@@ -134,11 +136,11 @@ export default function ServicesPage() {
         style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 100%)' }}
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-          <div className="absolute left-[8%] top-24 h-2 w-2 rounded-full bg-brand-accent/40 animate-float" />
-          <div className="absolute left-[20%] top-40 h-1.5 w-1.5 rounded-full bg-white/25 animate-float-slow" />
-          <div className="absolute right-[12%] top-32 h-2.5 w-2.5 rounded-full bg-brand-accent/30 animate-float" style={{ animationDelay: '0.5s' }} />
-          <div className="absolute bottom-28 left-[25%] h-1.5 w-1.5 rounded-full bg-white/20 animate-float-slow" />
-          <div className="absolute bottom-36 right-[18%] h-2 w-2 rounded-full bg-brand-accent/35 animate-float" style={{ animationDelay: '1s' }} />
+          <div className="absolute left-[8%] top-24 h-2 w-2 rounded-full bg-brand-accent/40" />
+          <div className="absolute left-[20%] top-40 h-1.5 w-1.5 rounded-full bg-white/25" />
+          <div className="absolute right-[12%] top-32 h-2.5 w-2.5 rounded-full bg-brand-accent/30" />
+          <div className="absolute bottom-28 left-[25%] h-1.5 w-1.5 rounded-full bg-white/20" />
+          <div className="absolute bottom-36 right-[18%] h-2 w-2 rounded-full bg-brand-accent/35" />
           <div className="absolute right-[30%] top-16 h-1 w-1 rounded-full bg-white/30" />
         </div>
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:flex lg:items-center lg:gap-16">
@@ -188,7 +190,7 @@ export default function ServicesPage() {
       {/* SECTION 2 — SOLUTIONS GRID */}
       <section id="solutions" className="section-ptb bg-white">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center">
+          <div className="text-center reveal">
             <span className="section-label">OUR SOLUTIONS</span>
             <h2 className="font-display mt-3 text-3xl font-bold md:text-4xl">
               <span className="gradient-text">Every Payment Channel</span>
@@ -199,8 +201,8 @@ export default function ServicesPage() {
           </div>
 
           <div className="mt-14 grid gap-8 md:grid-cols-2">
-            {solutions.map(({ icon: Icon, name, description, features }) => (
-              <article key={name} className="group charm-card bg-brand-card p-8">
+            {solutions.map(({ icon: Icon, name, description, features }, i) => (
+              <article key={name} className={`group charm-card bg-brand-card p-8 reveal ${revealDelays[i % revealDelays.length]}`}>
                 <div className="flex items-start gap-4">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-dark text-white transition-colors duration-300 group-hover:bg-brand-accent group-hover:text-brand-dark md:h-16 md:w-16">
                     <Icon className="h-7 w-7 text-white transition-colors group-hover:text-brand-dark md:h-8 md:w-8" strokeWidth={1.75} />
@@ -265,7 +267,7 @@ export default function ServicesPage() {
 
       <section className="section-ptb bg-brand-light">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-12 text-center">
+          <div className="mb-12 text-center reveal">
             <span className="section-label">EVERY FEATURE INCLUDED</span>
             <h2 className="font-display mt-4 text-3xl font-bold text-brand-dark">One Account. Every Tool.</h2>
             <p className="text-paragraph mx-auto mt-4 max-w-2xl">
@@ -336,10 +338,10 @@ export default function ServicesPage() {
               { stat: '$100B+', label: 'Annual processing volume on NMI infrastructure' },
               { stat: '99.99%', label: 'Gateway uptime SLA' },
               { stat: '200+', label: 'Shopping cart and platform integrations' },
-            ].map(({ stat, label }) => (
+            ].map(({ stat, label }, i) => (
               <div
                 key={stat}
-                className="rounded-2xl border border-white/10 p-6"
+                className={`rounded-2xl border border-white/10 p-6 reveal ${revealDelays[i]}`}
                 style={{ background: 'rgba(255,255,255,0.06)' }}
               >
                 <p className="font-display text-3xl font-bold text-white md:text-4xl">{stat}</p>
@@ -353,8 +355,8 @@ export default function ServicesPage() {
       {/* SECTION 4 — INTEGRATIONS */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-6xl px-6 text-center">
-          <span className="section-label">INTEGRATIONS</span>
-          <h2 className="font-display mt-3 text-2xl font-bold text-[var(--heading)] md:text-3xl">Works With the Tools You Already Use</h2>
+          <span className="section-label reveal">INTEGRATIONS</span>
+          <h2 className="font-display mt-3 text-2xl font-bold text-[var(--heading)] md:text-3xl reveal delay-100">Works With the Tools You Already Use</h2>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
             {integrations.map((name) => (
               <div
@@ -370,7 +372,7 @@ export default function ServicesPage() {
 
       {/* SECTION 5 — FINAL CTA */}
       <section className="bg-brand-light px-6 py-20 text-center">
-        <h2 className="font-display text-2xl font-bold text-[var(--heading)] md:text-3xl">Not Sure Which Solution Is Right for You?</h2>
+        <h2 className="font-display text-2xl font-bold text-[var(--heading)] md:text-3xl reveal">Not Sure Which Solution Is Right for You?</h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
           Our team will map your volume, industry, and checkout flow to the right products — no jargon, no pressure.
         </p>

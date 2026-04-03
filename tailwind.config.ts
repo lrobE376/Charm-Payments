@@ -9,13 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: { dark: '#0c3a30', accent: '#9edd05', light: '#edf1ee', card: '#fffaeb' },
+        brand: { dark: '#0c3a30', accent: '#C9A96E', light: '#edf1ee', card: '#fffaeb', gold: '#C9A96E', kahiki: '#2ABFA0' },
         /** B2B homepage “money & trust” palette */
-        sales: { navy: '#0a192f', green: '#22c55e' },
+        sales: { navy: '#0E1A12', green: '#22c55e' },
       },
       fontFamily: {
         sans: ['Inter Tight', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'system-ui', 'sans-serif'],
+        display: ['DM Serif Display', 'Georgia', 'serif'],
       },
       boxShadow: {
         'brand-sm': '0px 4px 6px 0px rgba(8,39,32,0.06)',

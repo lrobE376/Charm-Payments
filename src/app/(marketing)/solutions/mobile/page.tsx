@@ -3,84 +3,84 @@ import Link from 'next/link'
 import { CheckCircle, ArrowUpRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Retail & Boutique Payment Processing – Charm Payments',
+  title: 'Mobile & On-the-Go Payment Processing – Charm Payments',
   description:
-    'Your retail processor charges the same blended rate on a basic debit card and a premium Amex — and keeps the spread. Charm shows you every fee, every card type, every time, with no hidden markup.',
+    'Square charges you the same flat rate on a debit card as a premium rewards card — even in the field. Charm shows you every fee, every card type, every time, with offline mode and text-to-pay built in.',
 }
 
 const features = [
   {
-    label: 'In-Store POS',
-    heading: 'Works with 200+ POS systems',
-    body: 'NMI connects to the POS you already use. Tap, chip, swipe — every card type, every customer. No rip-and-replace required.',
+    label: 'Mobile Reader',
+    heading: 'EMV and tap-to-pay on any device',
+    body: 'Chip, tap, and swipe from any iOS or Android device. Works on 4G or WiFi. Connects to your NMI merchant account — same settlement, same reporting as your other channels.',
   },
   {
-    label: 'Online + In-Store',
-    heading: 'One gateway for your whole business',
-    body: 'Brick-and-mortar and e-commerce run through the same NMI account. Unified reporting across channels. No reconciling two separate systems at month-end.',
+    label: 'Text to Pay',
+    heading: 'Send a link. Get paid on the road.',
+    body: 'Generate a payment link from your phone and send it by text. Customer pays before you leave the job site. Funds hit your next batch automatically.',
   },
   {
-    label: 'Installment Plans',
-    heading: 'Layaway and installments built in',
-    body: 'Accept partial payments at purchase and automatically charge remaining balances on your schedule — without a third-party app eating into margin.',
+    label: 'Offline Mode',
+    heading: 'Process when signal drops',
+    body: 'Low-connectivity zones are not a problem. Transactions queue locally and sync when you reconnect. No lost sales because a job site has spotty service.',
   },
   {
-    label: 'Fraud Defense',
-    heading: 'Chargeback protection tuned for retail',
-    body: 'iSpyFraud rule sets, AVS matching, CVV verification, and 3D Secure — all configurable to your transaction mix. Dispute tools ready when you need them.',
+    label: 'Real-Time Dashboard',
+    heading: 'See your volume from anywhere',
+    body: 'Check sales, batch status, and settlement from your phone. Know your numbers before you drive to the next job.',
   },
 ]
 
 const whyItems = [
-  { title: 'See every fee, every card, every time', desc: 'Debit costs less than credit — as it should. Every card type listed separately on your statement.' },
-  { title: 'Unified channel reporting', desc: 'In-store, online, and mobile in one dashboard. One reconciliation at month-end.' },
-  { title: '24-hour approval target', desc: 'Complete application in the morning, processing by the next day.' },
-  { title: 'No long-term contracts', desc: 'Month-to-month terms. No penalty if your needs change.' },
+  { title: 'See every fee, every card, every time', desc: 'Debit costs less than credit — even on mobile. No flat 2.6% regardless of card type.' },
+  { title: 'Offline mode', desc: 'Queue transactions in low-connectivity zones and sync automatically.' },
+  { title: 'Text-to-pay links', desc: 'Send a payment link by text. No reader required for every transaction.' },
+  { title: 'No long-term contracts', desc: 'Month-to-month. Built for businesses that move.' },
 ]
 
 const testimonials = [
   {
-    quote: 'Switching from Square saved us real money once we saw the actual interchange breakdown. The difference on premium cards is significant.',
-    name: 'Tara L.',
-    role: 'Boutique Owner, St. Louis',
-    initial: 'T',
+    quote: 'Taking payments at the farmers market used to be a hassle. Now it just works — tap, done, next customer.',
+    name: 'Angela T.',
+    role: 'Farmers Market Vendor',
+    initial: 'A',
   },
   {
-    quote: 'Finally one system for the store and the website. The reporting actually makes sense now.',
-    name: 'Chris B.',
-    role: 'Retail Store Manager',
+    quote: 'I send a text link when I finish a job and get paid before I load my truck. No more chasing checks.',
+    name: 'Brian R.',
+    role: 'HVAC Contractor',
+    initial: 'B',
+  },
+  {
+    quote: 'The offline mode saved me at an outdoor event with bad service. Processed everything and it synced when I got home.',
+    name: 'Carmen S.',
+    role: 'Mobile Pet Groomer',
     initial: 'C',
-  },
-  {
-    quote: 'Approval was fast and support was real. When I had a terminal question they picked up immediately.',
-    name: 'Sandra K.',
-    role: 'Gift Shop Owner',
-    initial: 'S',
   },
 ]
 
-const verticals = ['Clothing Boutiques', 'Shoe Stores', 'Gift & Specialty Shops', 'Home Goods & Décor', 'Bookstores', 'Toy & Hobby Shops', 'Jewelry Retailers', 'Pet Supplies']
+const verticals = ['Food Trucks', 'Farmers Markets', 'Contractors & Trades', 'Mobile Pet Groomers', 'Event Vendors', 'Home Service Pros', 'Pop-Up Retailers', 'Mobile Massage & Wellness', 'Photographers', 'Delivery Businesses']
 
 const faqs = [
   {
-    q: 'Can I use my existing POS hardware?',
-    a: 'In most cases, yes. NMI integrates with 200+ POS systems. We will confirm compatibility during onboarding before you commit to anything.',
+    q: 'What hardware do I need to take mobile payments?',
+    a: 'A smartphone or tablet and a Bluetooth card reader. We will help you source the right reader for your setup during onboarding.',
   },
   {
-    q: 'How does unified reporting work across in-store and online?',
-    a: 'Both channels run through the same NMI merchant account. Every transaction appears in one dashboard regardless of where it originated.',
+    q: 'Does offline mode work for all transaction types?',
+    a: 'Offline mode queues card-present transactions. They are processed and settled when your device reconnects. There is a small risk tolerance window — we set it to match your typical transaction size.',
   },
   {
-    q: 'What happens when a customer disputes a charge?',
-    a: 'You get a clear notification with the evidence window timeline. NMI provides documentation tools and our team walks you through the response process.',
+    q: 'Can I use text-to-pay without a card reader?',
+    a: 'Yes. Payment links work entirely without hardware. You send a link, the customer pays on their phone, and funds settle into your account.',
   },
   {
-    q: 'Do you support Apple Pay and Google Pay?',
-    a: 'Yes. Digital wallets are supported on compatible terminals and online checkout. They reduce friction at the register and tend to have lower chargeback rates.',
+    q: 'Is the rate the same for mobile transactions as in-store?',
+    a: 'Yes. Interchange-plus applies to all card-present transactions regardless of the hardware used. Mobile swiped and tapped transactions get card-present interchange rates.',
   },
 ]
 
-export default function RetailSolutionsPage() {
+export default function MobileSolutionsPage() {
   return (
     <div className="relative">
 
@@ -96,13 +96,13 @@ export default function RetailSolutionsPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white/90 backdrop-blur-sm mb-6">
               <span className="h-2 w-2 shrink-0 rounded-full bg-sales-green animate-pulse" aria-hidden />
-              Retail &amp; Boutiques · Payment Processing
+              Mobile &amp; On-the-Go · Payment Processing
             </div>
             <h1 className="font-display text-4xl font-bold leading-tight text-white md:text-5xl">
-              Your Processor Charges You the Same Rate on Debit and Amex. It Shouldn't.
+              Square Charges You a Flat Rate in the Field. You Shouldn't Have to Accept That.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
-              Every time a customer pays with a basic debit card, your flat-rate processor still charges you the premium rate — and pockets the difference. Charm shows you every fee, every card type, every time, across every channel you sell through.
+              Being mobile shouldn't mean paying more. Square and PayPal charge the same flat rate regardless of card type — and pocket the spread on every debit swipe. Charm shows you every fee, every card type, every time, with a reader, text-to-pay, and offline mode built for how you actually work.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/apply" className="btn-accent">Get My Free Rate Audit</Link>
@@ -111,7 +111,7 @@ export default function RetailSolutionsPage() {
               </Link>
             </div>
             <ul className="mt-8 flex flex-wrap gap-3 list-none p-0">
-              {['See every fee, every card, every time', 'POS + e-commerce unified', '200+ cart integrations', 'No long-term contracts'].map((label) => (
+              {['Mobile card reader', 'Text-to-pay links', 'Offline mode', 'No long-term contracts'].map((label) => (
                 <li key={label} className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/90">
                   <CheckCircle className="h-3.5 w-3.5 shrink-0 text-sales-green" aria-hidden />
                   {label}
@@ -138,9 +138,9 @@ export default function RetailSolutionsPage() {
       <section className="bg-white section-ptb">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-3xl text-center mb-14">
-            <span className="section-label">BUILT FOR RETAIL</span>
-            <h2 className="font-display mt-3 text-3xl font-bold text-brand-dark md:text-4xl">Every Way You Sell — Without Paying More Than You Should</h2>
-            <p className="mt-4 text-lg text-paragraph">Register, website, pop-up — one merchant account covers every channel with unified reporting and no separate processors eating into margin.</p>
+            <span className="section-label">BUILT FOR MOBILE</span>
+            <h2 className="font-display mt-3 text-3xl font-bold text-brand-dark md:text-4xl">Every Problem With Mobile Processing — Solved</h2>
+            <p className="mt-4 text-lg text-paragraph">Bad signal, no reader, client wants a link — one merchant account handles every scenario without juggling multiple apps or paying multiple processors.</p>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {features.map(({ label, heading, body }) => (
@@ -161,10 +161,10 @@ export default function RetailSolutionsPage() {
             <div>
               <span className="section-label">WHY CHARM PAYMENTS</span>
               <h2 className="font-display mt-3 text-3xl font-bold text-brand-dark md:text-4xl">
-                Square works fine — until your volume grows
+                Mobile processors charge flat rates built for their convenience
               </h2>
               <p className="mt-4 leading-relaxed text-paragraph">
-                Flat-rate processors are easy to start on. But every time a customer swipes an Amex Platinum or a premium Visa Rewards card, you pay the same blended rate — while the processor pockets the spread. At real retail volume, that margin gap is significant.
+                Square, PayPal, and Stripe are easy to start on — but they charge the same flat rate on a debit card as they do on a premium rewards card. At volume, that margin gap adds up to real money. With Charm, you see every fee, every card type, every time — debit costs what debit should cost, and your statement proves it.
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {whyItems.map(({ title, desc }) => (
@@ -178,8 +178,8 @@ export default function RetailSolutionsPage() {
             </div>
             <div className="rounded-2xl border border-brand-dark/10 bg-white p-10 shadow-brand-md">
               <p className="text-sm font-bold uppercase tracking-widest text-sales-green mb-2">Free Rate Audit</p>
-              <h3 className="font-display text-2xl font-bold text-brand-dark">See how much you are overpaying</h3>
-              <p className="mt-3 text-sm leading-relaxed text-paragraph">Send us your last merchant statement. We will line-item every cost and show exactly what changes with Charm — before you commit to anything.</p>
+              <h3 className="font-display text-2xl font-bold text-brand-dark">Compare your rate to Charm</h3>
+              <p className="mt-3 text-sm leading-relaxed text-paragraph">Send us your last processor statement. We will line-item the comparison and show exactly what you save at your transaction mix — before you commit to anything.</p>
               <Link href="/quote" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-dark underline-offset-2 hover:underline">
                 Get your free audit <ArrowUpRight className="h-4 w-4" />
               </Link>
@@ -193,7 +193,7 @@ export default function RetailSolutionsPage() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-2xl text-center mb-14">
             <span className="section-label">MERCHANT REVIEWS</span>
-            <h2 className="font-display mt-3 text-3xl font-bold text-brand-dark md:text-4xl">What Retailers Found When They Saw Their Real Costs</h2>
+            <h2 className="font-display mt-3 text-3xl font-bold text-brand-dark md:text-4xl">What Mobile Businesses Found When They Switched</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
@@ -218,7 +218,7 @@ export default function RetailSolutionsPage() {
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center mb-12">
             <span className="section-label">FAQ</span>
-            <h2 className="font-display mt-3 text-3xl font-bold text-brand-dark md:text-4xl">Common questions from retail businesses</h2>
+            <h2 className="font-display mt-3 text-3xl font-bold text-brand-dark md:text-4xl">Common questions from mobile businesses</h2>
           </div>
           <div className="divide-y divide-gray-100">
             {faqs.map(({ q, a }) => (
@@ -235,8 +235,8 @@ export default function RetailSolutionsPage() {
       <section className="relative overflow-hidden section-ptb px-6 text-center" style={{ background: 'linear-gradient(145deg, #0E1A12 0%, #182A1C 50%, #0E1A12 100%)' }}>
         <div className="relative z-10 mx-auto max-w-2xl">
           <span className="inline-block rounded-full border border-sales-green/50 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-sales-green">READY TO SWITCH?</span>
-          <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Find Out What Square Has Been Keeping From Every Sale.</h2>
-          <p className="mt-4 text-lg text-white/75">Your last statement is a blended number designed to be hard to question. We'll break it into every card type, every fee, and show you exactly what changes with Charm — no commitment, no pressure.</p>
+          <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Find Out How Much Your Mobile Processor Has Been Keeping.</h2>
+          <p className="mt-4 text-lg text-white/75">Your last statement is a flat number that hides what every card type actually costs. We'll break it down and show you exactly what changes with Charm — no commitment, no pressure.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/apply" className="btn-accent">Get My Free Audit</Link>
             <Link href="/quote" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">

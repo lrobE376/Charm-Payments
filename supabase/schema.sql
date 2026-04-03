@@ -51,6 +51,28 @@ create table public.merchant_applications (
   created_at timestamptz default now() not null
 );
 
+create table public.quote_requests (
+  id uuid default uuid_generate_v4() primary key,
+  first_name text not null,
+  last_name text not null,
+  email text not null,
+  phone text not null,
+  business_name text not null,
+  current_processor text,
+  monthly_volume text,
+  average_ticket text,
+  order_location text,
+  payment_method text,
+  payment_timing text,
+  takes_moto_orders boolean default false,
+  needs_mobile_payment boolean default false,
+  statement_urls text[],
+  has_statement boolean default false,
+  notes text,
+  status text default 'new' check (status in ('new','analyzing','quoted','converted','lost')),
+  created_at timestamptz default now() not null
+);
+
 alter table public.merchants enable row level security;
 alter table public.transactions enable row level security;
 alter table public.payouts enable row level security;

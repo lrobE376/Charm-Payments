@@ -113,6 +113,8 @@ const addOnRows = [
   { feature: 'Level III Processing', monthly: '$10.00/mo', perTxn: '$0.10/txn', bestFor: 'B2B / government' },
 ] as const
 
+const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay-500', 'delay-600'] as const
+
 export default function FeaturesPage() {
   return (
     <>
@@ -153,7 +155,7 @@ export default function FeaturesPage() {
       {/* SECTION 2 — CORE FEATURES */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <div className="text-center reveal">
             <span className="section-label">CORE FEATURES</span>
             <h2 className="font-display mt-3 whitespace-pre-line text-3xl font-bold md:text-4xl">
               <span className="gradient-text">{`Built for How\nReal Businesses Work`}</span>
@@ -163,8 +165,8 @@ export default function FeaturesPage() {
             </p>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {coreFeatures.map(({ icon: Icon, name, desc, features }) => (
-              <article key={name} className="charm-card bg-brand-card p-8">
+            {coreFeatures.map(({ icon: Icon, name, desc, features }, i) => (
+              <article key={name} className={`charm-card bg-brand-card p-8 reveal ${revealDelays[i % revealDelays.length]}`}>
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-dark text-white">
                   <Icon className="h-7 w-7" strokeWidth={1.75} aria-hidden />
                 </div>
@@ -187,7 +189,7 @@ export default function FeaturesPage() {
       {/* SECTION 3 — ACCEPT ANYWHERE */}
       <section className="section-ptb bg-brand-light">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <div className="text-center reveal">
             <span className="section-label">OMNI-CHANNEL</span>
             <h2 className="font-display mt-3 whitespace-pre-line text-3xl font-bold text-[var(--heading)] md:text-4xl">
               {`Accept Payments\nAnywhere Customers Are`}
@@ -197,8 +199,8 @@ export default function FeaturesPage() {
             </p>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {omniItems.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="charm-card bg-white p-6 text-center">
+            {omniItems.map(({ icon: Icon, title, desc }, i) => (
+              <div key={title} className={`charm-card bg-white p-6 text-center reveal ${revealDelays[i % revealDelays.length]}`}>
                 <Icon className="mx-auto mb-3 h-8 w-8 text-brand-dark" aria-hidden />
                 <h3 className="font-display text-lg font-bold text-[var(--heading)]">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-gray-600">{desc}</p>
@@ -211,7 +213,7 @@ export default function FeaturesPage() {
       {/* SECTION 4 — FRAUD AND SECURITY */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <div className="text-center reveal">
             <span className="section-label">SECURITY &amp; FRAUD PROTECTION</span>
             <h2 className="font-display mt-3 whitespace-pre-line text-3xl font-bold text-[var(--heading)] md:text-4xl">
               {`Bank-Level Security\nOn Every Transaction`}
@@ -268,7 +270,7 @@ export default function FeaturesPage() {
       {/* SECTION 5 — ADD-ON PRODUCTS */}
       <section className="section-ptb bg-brand-light">
         <div className="mx-auto max-w-4xl px-6">
-          <div className="text-center">
+          <div className="text-center reveal">
             <span className="section-label">ADD-ON PRODUCTS</span>
             <h2 className="font-display mt-3 whitespace-pre-line text-3xl font-bold text-[var(--heading)] md:text-4xl">
               {`Expand Your Capabilities\nWhen You Need Them`}
@@ -316,7 +318,7 @@ export default function FeaturesPage() {
       {/* SECTION 6 — INTEGRATIONS */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <div className="text-center reveal">
             <span className="section-label">INTEGRATIONS</span>
             <h2 className="font-display mt-3 whitespace-pre-line text-3xl font-bold text-[var(--heading)] md:text-4xl">
               {`Connects to the Tools\nYou Already Use`}
@@ -326,7 +328,7 @@ export default function FeaturesPage() {
             </p>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-3">
-            <div className="charm-card bg-brand-card p-8">
+            <div className="charm-card bg-brand-card p-8 reveal delay-100">
               <ShoppingCart className="h-8 w-8 text-brand-dark" aria-hidden />
               <h3 className="font-display mt-4 text-xl font-bold text-[var(--heading)]">E-Commerce Platforms</h3>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
@@ -334,7 +336,7 @@ export default function FeaturesPage() {
               </p>
               <p className="mt-4 text-xs font-semibold text-brand-dark">125+ total integrations</p>
             </div>
-            <div className="charm-card bg-brand-card p-8">
+            <div className="charm-card bg-brand-card p-8 reveal delay-200">
               <Code className="h-8 w-8 text-brand-dark" aria-hidden />
               <h3 className="font-display mt-4 text-xl font-bold text-[var(--heading)]">Developer APIs &amp; SDKs</h3>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
@@ -342,7 +344,7 @@ export default function FeaturesPage() {
               </p>
               <p className="mt-4 text-xs font-semibold text-brand-dark">Full API documentation included</p>
             </div>
-            <div className="charm-card bg-brand-card p-8">
+            <div className="charm-card bg-brand-card p-8 reveal delay-300">
               <Building2 className="h-8 w-8 text-brand-dark" aria-hidden />
               <h3 className="font-display mt-4 text-xl font-bold text-[var(--heading)]">Payment Networks</h3>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">

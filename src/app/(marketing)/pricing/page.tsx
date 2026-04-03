@@ -28,6 +28,8 @@ const rows: { feature: string; starter: boolean | string; growth: boolean | stri
   { feature: 'Support', starter: 'Email', growth: 'Priority Phone', enterprise: '24/7 Dedicated' },
 ]
 
+const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400'] as const
+
 function Cell({ v }: { v: boolean | string }) {
   if (typeof v === 'string') return <span className="text-sm text-gray-700">{v}</span>
   return v ? <Check className="w-5 h-5 text-brand-dark mx-auto" aria-label="Included" /> : <Minus className="w-5 h-5 text-gray-300 mx-auto" aria-label="Not included" />
@@ -60,7 +62,7 @@ export default function PricingPage() {
                   priority
                 />
               </div>
-              <div className="absolute -top-4 -right-4 bg-brand-dark rounded-2xl shadow-xl px-4 py-3 animate-float">
+              <div className="absolute -top-4 -right-4 bg-brand-dark rounded-2xl shadow-xl px-4 py-3">
                 <p className="text-[11px] text-brand-accent font-bold uppercase tracking-wide">No Hidden Fees</p>
                 <p className="text-sm font-semibold text-white">Transparent Pricing</p>
               </div>
@@ -96,7 +98,7 @@ export default function PricingPage() {
 
       <section className="py-16 bg-white border-y border-gray-100">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-2xl font-bold text-center text-gray-900">What you pay now vs Charm</h2>
+          <h2 className="text-2xl font-bold text-center text-gray-900 reveal">What you pay now vs Charm</h2>
           <p className="mt-3 text-center text-gray-600 max-w-2xl mx-auto">
             Most merchants discover hidden margin in bundled rates and vague line items. Here&apos;s how we compare on the things that affect your take-home.
           </p>
@@ -137,7 +139,7 @@ export default function PricingPage() {
 
       <section className="py-16 bg-brand-light">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-          <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col">
+          <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col reveal delay-100">
             <h2 className="text-xl font-bold text-gray-900">Starter</h2>
             <p className="text-3xl font-bold text-brand-dark mt-4">
               2.9% + $0.30<span className="text-base font-normal text-gray-500 block mt-1">per card transaction</span>
@@ -157,7 +159,7 @@ export default function PricingPage() {
             <p className="text-xs text-gray-500 mt-3">Interchange and assessment fees from the card brands may still apply.</p>
           </div>
 
-          <div className="bg-white rounded-2xl border-2 border-brand-accent p-8 shadow-lg flex flex-col relative">
+          <div className="bg-white rounded-2xl border-2 border-brand-accent p-8 shadow-lg flex flex-col relative reveal delay-200">
             <span className="absolute top-4 right-4 text-xs font-bold bg-brand-accent text-brand-dark px-2 py-1 rounded-full">Most Popular</span>
             <h2 className="text-xl font-bold text-gray-900">Growth</h2>
             <p className="text-3xl font-bold text-brand-dark mt-4">
@@ -177,7 +179,7 @@ export default function PricingPage() {
             </Button>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col">
+          <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm flex flex-col reveal delay-300">
             <h2 className="text-xl font-bold text-gray-900">Enterprise</h2>
             <p className="text-3xl font-bold text-brand-dark mt-4">
               Custom<span className="text-base font-normal text-gray-500 block mt-1">volume-based pricing</span>
@@ -231,7 +233,7 @@ export default function PricingPage() {
 
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-2xl font-bold text-gray-900 text-center">Compare plans</h2>
+          <h2 className="text-2xl font-bold text-gray-900 text-center reveal">Compare plans</h2>
           <div className="mt-10 overflow-x-auto rounded-2xl border border-gray-200">
             <table className="w-full text-sm min-w-[640px]">
               <thead>
@@ -243,8 +245,8 @@ export default function PricingPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {rows.map((r) => (
-                  <tr key={r.feature}>
+                {rows.map((r, i) => (
+                  <tr key={r.feature} className={`reveal ${revealDelays[i % revealDelays.length]}`}>
                     <td className="px-4 py-3 text-gray-800">{r.feature}</td>
                     <td className="px-4 py-3 text-center">
                       <Cell v={r.starter} />
@@ -268,7 +270,7 @@ export default function PricingPage() {
 
       <section className="py-16 bg-brand-dark text-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-2xl font-bold">No Monthly Fee Statement Analysis</h2>
+          <h2 className="text-2xl font-bold reveal">No Monthly Fee Statement Analysis</h2>
           <p className="text-white/75 mt-4 leading-relaxed">
             Email a recent processing statement to{' '}
             <a href="mailto:merchants@charmpayments.com" className="text-brand-accent font-medium hover:underline">

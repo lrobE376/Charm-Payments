@@ -74,6 +74,8 @@ const includedCards = [
   },
 ] as const
 
+const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay-500', 'delay-600'] as const
+
 export default function CharmCardsPage() {
   return (
     <>
@@ -83,17 +85,11 @@ export default function CharmCardsPage() {
         style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 100%)' }}
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-          <div className="absolute left-[8%] top-24 h-2 w-2 rounded-full bg-brand-accent/40 animate-float" />
-          <div className="absolute left-[20%] top-40 h-1.5 w-1.5 rounded-full bg-white/25 animate-float-slow" />
-          <div
-            className="absolute right-[12%] top-32 h-2.5 w-2.5 rounded-full bg-brand-accent/30 animate-float"
-            style={{ animationDelay: '0.5s' }}
-          />
-          <div className="absolute bottom-28 left-[25%] h-1.5 w-1.5 rounded-full bg-white/20 animate-float-slow" />
-          <div
-            className="absolute bottom-36 right-[18%] h-2 w-2 rounded-full bg-brand-accent/35 animate-float"
-            style={{ animationDelay: '1s' }}
-          />
+          <div className="absolute left-[8%] top-24 h-2 w-2 rounded-full bg-brand-accent/40" />
+          <div className="absolute left-[20%] top-40 h-1.5 w-1.5 rounded-full bg-white/25" />
+          <div className="absolute right-[12%] top-32 h-2.5 w-2.5 rounded-full bg-brand-accent/30" />
+          <div className="absolute bottom-28 left-[25%] h-1.5 w-1.5 rounded-full bg-white/20" />
+          <div className="absolute bottom-36 right-[18%] h-2 w-2 rounded-full bg-brand-accent/35" />
           <div className="absolute right-[30%] top-16 h-1 w-1 rounded-full bg-white/30" />
         </div>
         <div className="relative z-10 mx-auto max-w-4xl lg:flex lg:items-center lg:gap-16">
@@ -139,7 +135,7 @@ export default function CharmCardsPage() {
                   priority
                 />
               </div>
-              <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 animate-float-slow">
+              <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-brand-accent flex items-center justify-center shrink-0">
                   <CheckCircle className="w-5 h-5 text-brand-dark" />
                 </div>
@@ -148,7 +144,7 @@ export default function CharmCardsPage() {
                   <p className="text-sm font-bold text-brand-dark">Card Saved ✓</p>
                 </div>
               </div>
-              <div className="absolute -top-4 -right-4 bg-brand-dark rounded-2xl shadow-xl px-4 py-3 animate-float">
+              <div className="absolute -top-4 -right-4 bg-brand-dark rounded-2xl shadow-xl px-4 py-3">
                 <p className="text-[11px] text-brand-accent font-bold uppercase tracking-wide">NFC Tap</p>
                 <p className="text-sm font-semibold text-white">Share in 1 tap</p>
               </div>
@@ -162,7 +158,7 @@ export default function CharmCardsPage() {
       {/* SECTION 2 — WHAT'S INCLUDED */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-center reveal">
             <span className="section-label">EVERYTHING INCLUDED</span>
             <h2 className="font-display mt-3 text-3xl font-bold md:text-4xl">
               <span className="gradient-text">One Tap. Your Brand. Get Paid.</span>
@@ -192,8 +188,8 @@ export default function CharmCardsPage() {
           </div>
 
           <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {includedCards.map(({ icon: Icon, name, desc, features }) => (
-              <article key={name} className="charm-card bg-brand-card p-8">
+            {includedCards.map(({ icon: Icon, name, desc, features }, i) => (
+              <article key={name} className={`charm-card bg-brand-card p-8 reveal ${revealDelays[i % revealDelays.length]}`}>
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-dark text-white md:h-16 md:w-16">
                   <Icon className="h-7 w-7 md:h-8 md:w-8" strokeWidth={1.75} aria-hidden />
                 </div>
@@ -216,7 +212,7 @@ export default function CharmCardsPage() {
       {/* SECTION 3 — HOW IT WORKS */}
       <section id="how-it-works" className="section-ptb scroll-mt-24 bg-brand-light">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-center reveal">
             <span className="section-label">HOW IT WORKS</span>
             <h2 className="font-display mt-3 text-3xl font-bold md:text-4xl">
               Live in <span className="gradient-text">Minutes</span>
@@ -486,7 +482,7 @@ export default function CharmCardsPage() {
       {/* SECTION 4 — PRICING */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-3xl px-6">
-          <div className="text-center">
+          <div className="text-center reveal">
             <span className="section-label">SIMPLE PRICING</span>
             <h2 className="font-display mt-3 text-3xl font-bold md:text-4xl">
               Transparent Pricing, <span className="gradient-text">No Surprises</span>
@@ -599,8 +595,8 @@ export default function CharmCardsPage() {
           <div className="absolute bottom-0 left-[20%] top-0 w-px bg-gradient-to-b from-transparent via-white/40 to-transparent" />
           <div className="absolute bottom-0 right-[30%] top-0 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent" />
         </div>
-        <div className="absolute right-[15%] top-16 hidden h-20 w-20 rounded-full border border-white/15 animate-rotation lg:block" aria-hidden />
-        <div className="absolute bottom-24 left-[20%] hidden h-3 w-3 animate-float rounded-full bg-brand-accent lg:block" aria-hidden />
+        <div className="absolute right-[15%] top-16 hidden h-20 w-20 rounded-full border border-white/15 lg:block" aria-hidden />
+        <div className="absolute bottom-24 left-[20%] hidden h-3 w-3 rounded-full bg-brand-accent lg:block" aria-hidden />
 
         <div className="relative z-10 mx-auto max-w-3xl">
           <span className="section-label !border-brand-accent/40 !bg-white/10 !text-brand-accent">GET YOUR CARD</span>

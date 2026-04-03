@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx next:*)",
+      "Bash(node -e \":*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000/_next/static/css/app/layout.css?v=1774542829201)",
+      "Bash(curl -s http://localhost:3000/_next/static/css/app/layout.css)",
+      "Bash(curl -v \"http://localhost:3000/_next/static/css/app/layout.css\")",
+      "Bash(find C:/Users/User1/Documents/charm-payments/.next -name *.css)",
+      "Bash(taskkill:*)",
+      "Bash(npx tsc:*)"
+    ]
+  }
+}
