@@ -1,5 +1,5 @@
 // src/app/api/quote/upload/route.ts
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
 
 const ALLOWED_TYPES = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp']
@@ -42,12 +42,15 @@ export async function POST(request: Request) {
     const arrayBuffer = await file.arrayBuffer()
     const buffer = new Uint8Array(arrayBuffer)
 
-    const supabase = await createClient()
+    const supabase = createAdminClient()
     const { error } = await supabase.storage
       .from('statements')
       .upload(storagePath, buffer, { contentType: file.type, upsert: false })
 
-    if (error) return jsonError('Failed to upload file', 500, 'STORAGE_ERROR')
+    if (error) {
+      console.error('Storage upload error:', JSON.stringify(error))
+      return jsonError(error.message, 500, 'UPLOAD_ERROR')
+    }
 
     const { data: publicUrlData } = supabase.storage
       .from('statements')

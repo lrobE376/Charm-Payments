@@ -1,5 +1,5 @@
 // src/app/api/quote/route.ts
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
 
 interface QuoteRequestBody {
@@ -36,6 +36,7 @@ async function pushToPipedrive(body: QuoteRequestBody): Promise<void> {
     }),
   })
   const personData = (await personRes.json()) as { data?: { id: number } }
+  console.log('Pipedrive person:', JSON.stringify(personData))
   const personId = personData.data?.id
 
   const orgRes = await fetch(`${base}/organizations?api_token=${token}`, {
@@ -44,6 +45,7 @@ async function pushToPipedrive(body: QuoteRequestBody): Promise<void> {
     body: JSON.stringify({ name: body.business_name }),
   })
   const orgData = (await orgRes.json()) as { data?: { id: number } }
+  console.log('Pipedrive org:', JSON.stringify(orgData))
   const orgId = orgData.data?.id
 
   const dealRes = await fetch(`${base}/deals?api_token=${token}`, {
@@ -57,6 +59,7 @@ async function pushToPipedrive(body: QuoteRequestBody): Promise<void> {
     }),
   })
   const dealData = (await dealRes.json()) as { data?: { id: number } }
+  console.log('Pipedrive deal:', JSON.stringify(dealData))
   const dealId = dealData.data?.id
 
   if (!dealId) return
@@ -100,7 +103,7 @@ export async function POST(request: Request) {
       return jsonError('Missing required fields', 400, 'VALIDATION_ERROR')
     }
 
-    const supabase = await createClient()
+    const supabase = createAdminClient()
     const { error } = await supabase.from('quote_requests').insert({
       first_name,
       last_name,
@@ -121,12 +124,15 @@ export async function POST(request: Request) {
       status: 'new',
     })
 
-    if (error) return jsonError('Failed to save quote request', 500, 'DB_ERROR')
+    if (error) {
+      console.error('Quote insert error:', JSON.stringify(error))
+      return jsonError(error.message, 500, 'DB_ERROR')
+    }
 
     try {
       await pushToPipedrive(body)
-    } catch {
-      // Pipedrive failure does not block the response
+    } catch (err) {
+      console.error('Pipedrive push failed:', err)
     }
 
     return jsonSuccess({ submitted: true })
