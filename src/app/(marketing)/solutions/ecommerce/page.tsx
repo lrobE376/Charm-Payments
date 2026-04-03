@@ -102,7 +102,7 @@ export default function EcommerceSolutionsPage() {
               Stripe Is Taking More From Every Sale Than Your Blended Rate Shows.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
-              Stripe and PayPal charge the same flat rate whether a customer pays with a basic debit card or a premium Amex — and keep the difference. Charm gives you a dedicated merchant account, shows you every fee every card type every time, and won't pause your business without warning.
+              Stripe and PayPal charge the same flat rate whether a customer pays with a basic debit card or a premium Amex — and keep the difference. Charm gives you a dedicated merchant account, shows you every fee every card type every time, and won&apos;t pause your business without warning.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/apply" className="btn-accent">Get My Free Rate Audit</Link>
@@ -161,7 +161,7 @@ export default function EcommerceSolutionsPage() {
             <div>
               <span className="section-label">WHY CHARM PAYMENTS</span>
               <h2 className="font-display mt-3 text-3xl font-bold text-brand-dark md:text-4xl">
-                Stripe's 2.9% is simple — and expensive at scale
+                Stripe&apos;s 2.9% is simple — and expensive at scale
               </h2>
               <p className="mt-4 leading-relaxed text-paragraph">
                 Stripe and PayPal are easy to integrate but built around a flat rate that does not care whether a customer pays with a basic debit card or a premium Amex rewards card. At e-commerce volume, that blended margin gap is a significant monthly cost — and you are on an aggregated account that can be paused without warning.
@@ -198,7 +198,7 @@ export default function EcommerceSolutionsPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
               <div key={t.name} className="rounded-[20px] border border-gray-100 bg-white p-8 shadow-brand-sm">
-                <p className="italic leading-relaxed text-gray-600 text-sm">"{t.quote}"</p>
+                <p className="italic leading-relaxed text-gray-600 text-sm">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sales-navy font-bold text-white text-sm">{t.initial}</div>
                   <div>
@@ -236,7 +236,7 @@ export default function EcommerceSolutionsPage() {
         <div className="relative z-10 mx-auto max-w-2xl">
           <span className="inline-block rounded-full border border-sales-green/50 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-sales-green">READY TO SWITCH?</span>
           <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Find Out What Stripe Has Been Keeping From Every Sale.</h2>
-          <p className="mt-4 text-lg text-white/75">Your last Stripe statement is a blended number that hides what you actually pay per card type. We'll break it down, line by line, and show you exactly what changes with Charm — no commitment, no pressure.</p>
+          <p className="mt-4 text-lg text-white/75">Your last Stripe statement is a blended number that hides what you actually pay per card type. We&apos;ll break it down, line by line, and show you exactly what changes with Charm — no commitment, no pressure.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/apply" className="btn-accent">Get My Free Audit</Link>
             <Link href="/quote" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">

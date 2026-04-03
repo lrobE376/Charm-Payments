@@ -99,7 +99,7 @@ export default function RetailSolutionsPage() {
               Retail &amp; Boutiques · Payment Processing
             </div>
             <h1 className="font-display text-4xl font-bold leading-tight text-white md:text-5xl">
-              Your Processor Charges You the Same Rate on Debit and Amex. It Shouldn't.
+              Your Processor Charges You the Same Rate on Debit and Amex. It Shouldn&apos;t.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
               Every time a customer pays with a basic debit card, your flat-rate processor still charges you the premium rate — and pockets the difference. Charm shows you every fee, every card type, every time, across every channel you sell through.
@@ -198,7 +198,7 @@ export default function RetailSolutionsPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
               <div key={t.name} className="rounded-[20px] border border-gray-100 bg-white p-8 shadow-brand-sm">
-                <p className="italic leading-relaxed text-gray-600 text-sm">"{t.quote}"</p>
+                <p className="italic leading-relaxed text-gray-600 text-sm">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sales-navy font-bold text-white text-sm">{t.initial}</div>
                   <div>
@@ -236,7 +236,7 @@ export default function RetailSolutionsPage() {
         <div className="relative z-10 mx-auto max-w-2xl">
           <span className="inline-block rounded-full border border-sales-green/50 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-sales-green">READY TO SWITCH?</span>
           <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Find Out What Square Has Been Keeping From Every Sale.</h2>
-          <p className="mt-4 text-lg text-white/75">Your last statement is a blended number designed to be hard to question. We'll break it into every card type, every fee, and show you exactly what changes with Charm — no commitment, no pressure.</p>
+          <p className="mt-4 text-lg text-white/75">Your last statement is a blended number designed to be hard to question. We&apos;ll break it into every card type, every fee, and show you exactly what changes with Charm — no commitment, no pressure.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/apply" className="btn-accent">Get My Free Audit</Link>
             <Link href="/quote" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">

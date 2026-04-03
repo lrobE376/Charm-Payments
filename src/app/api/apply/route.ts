@@ -108,6 +108,7 @@ export async function POST(request: Request) {
         ? account_number.slice(-4)
         : '0000'
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { account_number: _acct, ...rest } = body
     const { error } = await supabase.from('merchant_applications').insert({
       ...rest,

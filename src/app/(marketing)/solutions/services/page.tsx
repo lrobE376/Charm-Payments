@@ -99,10 +99,10 @@ export default function ServicesIndustryPage() {
               Service Businesses · Payment Processing
             </div>
             <h1 className="font-display text-4xl font-bold leading-tight text-white md:text-5xl">
-              You're Using a Retail Processor to Run a Service Business. That's Costing You.
+              You&apos;re Using a Retail Processor to Run a Service Business. That&apos;s Costing You.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
-              Flat-rate fees on every invoice. No ACH option for large clients. Support that's never heard of retainer billing. Your current processor wasn't built for how you work — Charm is. Virtual terminal, recurring billing, ACH, and pay links. One account, one human support line.
+              Flat-rate fees on every invoice. No ACH option for large clients. Support that&apos;s never heard of retainer billing. Your current processor wasn&apos;t built for how you work — Charm is. Virtual terminal, recurring billing, ACH, and pay links. One account, one human support line.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/apply" className="btn-accent">Get My Free Rate Audit</Link>
@@ -198,7 +198,7 @@ export default function ServicesIndustryPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
               <div key={t.name} className="rounded-[20px] border border-gray-100 bg-white p-8 shadow-brand-sm">
-                <p className="italic leading-relaxed text-gray-600 text-sm">"{t.quote}"</p>
+                <p className="italic leading-relaxed text-gray-600 text-sm">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sales-navy font-bold text-white text-sm">{t.initial}</div>
                   <div>
@@ -236,7 +236,7 @@ export default function ServicesIndustryPage() {
         <div className="relative z-10 mx-auto max-w-2xl">
           <span className="inline-block rounded-full border border-sales-green/50 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-sales-green">READY TO SWITCH?</span>
           <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Stop Paying Retail Processor Rates on Service Business Invoices.</h2>
-          <p className="mt-4 text-lg text-white/75">Your last statement reflects a processor that wasn't built for you. We'll audit every line and show you exactly what changes with Charm — no commitment, no pressure.</p>
+          <p className="mt-4 text-lg text-white/75">Your last statement reflects a processor that wasn&apos;t built for you. We&apos;ll audit every line and show you exactly what changes with Charm — no commitment, no pressure.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/apply" className="btn-accent">Get My Free Audit</Link>
             <Link href="/quote" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">

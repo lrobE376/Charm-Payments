@@ -99,10 +99,10 @@ export default function MobileSolutionsPage() {
               Mobile &amp; On-the-Go · Payment Processing
             </div>
             <h1 className="font-display text-4xl font-bold leading-tight text-white md:text-5xl">
-              Square Charges You a Flat Rate in the Field. You Shouldn't Have to Accept That.
+              Square Charges You a Flat Rate in the Field. You Shouldn&apos;t Have to Accept That.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
-              Being mobile shouldn't mean paying more. Square and PayPal charge the same flat rate regardless of card type — and pocket the spread on every debit swipe. Charm shows you every fee, every card type, every time, with a reader, text-to-pay, and offline mode built for how you actually work.
+              Being mobile shouldn&apos;t mean paying more. Square and PayPal charge the same flat rate regardless of card type — and pocket the spread on every debit swipe. Charm shows you every fee, every card type, every time, with a reader, text-to-pay, and offline mode built for how you actually work.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/apply" className="btn-accent">Get My Free Rate Audit</Link>
@@ -198,7 +198,7 @@ export default function MobileSolutionsPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
               <div key={t.name} className="rounded-[20px] border border-gray-100 bg-white p-8 shadow-brand-sm">
-                <p className="italic leading-relaxed text-gray-600 text-sm">"{t.quote}"</p>
+                <p className="italic leading-relaxed text-gray-600 text-sm">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sales-navy font-bold text-white text-sm">{t.initial}</div>
                   <div>
@@ -236,7 +236,7 @@ export default function MobileSolutionsPage() {
         <div className="relative z-10 mx-auto max-w-2xl">
           <span className="inline-block rounded-full border border-sales-green/50 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-sales-green">READY TO SWITCH?</span>
           <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Find Out How Much Your Mobile Processor Has Been Keeping.</h2>
-          <p className="mt-4 text-lg text-white/75">Your last statement is a flat number that hides what every card type actually costs. We'll break it down and show you exactly what changes with Charm — no commitment, no pressure.</p>
+          <p className="mt-4 text-lg text-white/75">Your last statement is a flat number that hides what every card type actually costs. We&apos;ll break it down and show you exactly what changes with Charm — no commitment, no pressure.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/apply" className="btn-accent">Get My Free Audit</Link>
             <Link href="/quote" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">

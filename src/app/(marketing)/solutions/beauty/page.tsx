@@ -179,7 +179,7 @@ export default function BeautySolutionsPage() {
             <div className="rounded-2xl border border-brand-dark/10 bg-white p-10 shadow-brand-md">
               <p className="text-sm font-bold uppercase tracking-widest text-sales-green mb-2">Free Rate Audit</p>
               <h3 className="font-display text-2xl font-bold text-brand-dark">See what your statement is hiding</h3>
-              <p className="mt-3 text-sm leading-relaxed text-paragraph">Send us your last merchant statement. We'll line-item every cost and show exactly what changes with Charm — before you commit to anything.</p>
+              <p className="mt-3 text-sm leading-relaxed text-paragraph">Send us your last merchant statement. We&apos;ll line-item every cost and show exactly what changes with Charm — before you commit to anything.</p>
               <Link href="/quote" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-dark underline-offset-2 hover:underline">
                 Get your free audit <ArrowUpRight className="h-4 w-4" />
               </Link>
@@ -198,7 +198,7 @@ export default function BeautySolutionsPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
               <div key={t.name} className="rounded-[20px] border border-gray-100 bg-white p-8 shadow-brand-sm">
-                <p className="italic leading-relaxed text-gray-600 text-sm">"{t.quote}"</p>
+                <p className="italic leading-relaxed text-gray-600 text-sm">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sales-navy font-bold text-white text-sm">{t.initial}</div>
                   <div>
@@ -239,7 +239,7 @@ export default function BeautySolutionsPage() {
         <div className="relative z-10 mx-auto max-w-2xl">
           <span className="inline-block rounded-full border border-sales-green/50 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-sales-green">READY TO SWITCH?</span>
           <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Find Out What Your Processor Has Been Keeping From You.</h2>
-          <p className="mt-4 text-lg text-white/75">Your last merchant statement is full of fees your processor designed to be invisible. We'll translate every line and show you exactly what changes with Charm — no commitment, no pressure.</p>
+          <p className="mt-4 text-lg text-white/75">Your last merchant statement is full of fees your processor designed to be invisible. We&apos;ll translate every line and show you exactly what changes with Charm — no commitment, no pressure.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/apply" className="btn-accent">Get My Free Audit</Link>
             <Link href="/quote" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">
