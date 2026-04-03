@@ -1,4 +1,4 @@
-import { stripe } from '@/lib/stripe'
+import { getStripe } from '@/lib/stripe'
 import type {
   CharmConnectAccount,
   CharmFinancialAccount,
@@ -27,7 +27,7 @@ export async function createMerchantConnectAccount(
     }
   }
 
-  const account = await stripe.accounts.create({
+  const account = await getStripe().accounts.create({
     type: 'express',
     email,
     business_profile: { name: businessName },
