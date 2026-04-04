@@ -15,11 +15,18 @@ export default async function WalletPage() {
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
-  const { data: merchant } = await supabase.from('merchants').select('id').eq('user_id', user.id).single()
+  const { data: merchant } = await supabase
+    .from('merchants')
+    .select('id, stripe_account_id, financial_account_id')
+    .eq('user_id', user.id)
+    .single()
   if (!merchant) redirect('/apply')
 
-  const balance = await getMerchantBalance('acct_demo', 'fa_demo')
-  const transactions = await getMerchantTransactions('acct_demo', 'fa_demo', 10)
+  const stripeAccountId = (merchant.stripe_account_id as string | null) ?? ''
+  const financialAccountId = (merchant.financial_account_id as string | null) ?? ''
+
+  const balance = await getMerchantBalance(stripeAccountId, financialAccountId)
+  const transactions = await getMerchantTransactions(stripeAccountId, financialAccountId, 10)
 
   return (
     <div className="mx-auto max-w-4xl p-6">

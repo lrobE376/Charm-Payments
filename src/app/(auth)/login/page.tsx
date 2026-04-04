@@ -29,7 +29,14 @@ export default function LoginPage() {
       <p className="text-sm text-gray-500 mt-2">Sign in to your Charm Payments dashboard.</p>
       <form onSubmit={onSubmit} className="mt-8 space-y-5">
         <Input label="Email" name="email" type="email" autoComplete="email" required />
-        <Input label="Password" name="password" type="password" autoComplete="current-password" required />
+        <div>
+          <Input label="Password" name="password" type="password" autoComplete="current-password" required />
+          <div className="flex justify-end mt-1.5">
+            <Link href="/forgot-password" className="text-xs text-brand-dark hover:underline">
+              Forgot password?
+            </Link>
+          </div>
+        </div>
         {error && (
           <p className="text-sm text-red-600" role="alert">
             {error}

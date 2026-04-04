@@ -36,7 +36,6 @@ async function pushToPipedrive(body: QuoteRequestBody): Promise<void> {
     }),
   })
   const personData = (await personRes.json()) as { data?: { id: number } }
-  console.log('Pipedrive person:', JSON.stringify(personData))
   const personId = personData.data?.id
 
   const orgRes = await fetch(`${base}/organizations?api_token=${token}`, {
@@ -45,7 +44,6 @@ async function pushToPipedrive(body: QuoteRequestBody): Promise<void> {
     body: JSON.stringify({ name: body.business_name }),
   })
   const orgData = (await orgRes.json()) as { data?: { id: number } }
-  console.log('Pipedrive org:', JSON.stringify(orgData))
   const orgId = orgData.data?.id
 
   const dealRes = await fetch(`${base}/deals?api_token=${token}`, {
@@ -59,7 +57,6 @@ async function pushToPipedrive(body: QuoteRequestBody): Promise<void> {
     }),
   })
   const dealData = (await dealRes.json()) as { data?: { id: number } }
-  console.log('Pipedrive deal:', JSON.stringify(dealData))
   const dealId = dealData.data?.id
 
   if (!dealId) return
@@ -125,14 +122,14 @@ export async function POST(request: Request) {
     })
 
     if (error) {
-      console.error('Quote insert error:', JSON.stringify(error))
+      console.error(error)
       return jsonError(error.message, 500, 'DB_ERROR')
     }
 
     try {
       await pushToPipedrive(body)
     } catch (err) {
-      console.error('Pipedrive push failed:', err)
+      console.error(err)
     }
 
     return jsonSuccess({ submitted: true })

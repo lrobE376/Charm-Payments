@@ -15,10 +15,10 @@ src/components/        — shared components
 
 ## Design System (globals.css — NEVER recreate)
 --brand-dark: #0c3a30
---brand-accent: #9edd05
+--brand-accent: #C9A96E
 --brand-light: #edf1ee
 --brand-card: #fffaeb
-Fonts: Outfit (headings) · Inter Tight (body)
+Fonts: DM Serif Display (headings) · Inter Tight (body)
 Classes: .charm-card .btn-primary .btn-accent .btn-outline
          .section-label .gradient-text .stats-badge .section-ptb
 
@@ -37,6 +37,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY
 SUPABASE_SERVICE_ROLE_KEY
 PIPEDRIVE_API_TOKEN
 PIPEDRIVE_QUOTE_STAGE_ID=2
+RESEND_API_KEY
+NEXT_PUBLIC_SITE_URL
 
 ## Supabase Tables
 - merchant_applications — application form submissions

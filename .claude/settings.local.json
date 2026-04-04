@@ -11,7 +11,8 @@
       "Bash(curl -v \"http://localhost:3000/_next/static/css/app/layout.css\")",
       "Bash(find C:/Users/User1/Documents/charm-payments/.next -name *.css)",
       "Bash(taskkill:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(git add:*)"
     ]
   }
 }
