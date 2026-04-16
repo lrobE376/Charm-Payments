@@ -3,12 +3,8 @@ import {
   sendEmail,
   leadInternalAlertHtml,
   ticketInternalAlertHtml,
-  merchantApprovalHtml,
   INTERNAL_TO,
 } from '@/lib/email'
-// Note: direct approval/decline emails are sent from the approve/decline API
-// routes (they need the magic link). sendApprovalNotification is kept here only
-// for legacy call sites that don't have a magic link available.
 import type { IntegrationResult } from '@/types/integration'
 import type { Lead } from '@/types/lead'
 import type { Ticket } from '@/types/ticket'
@@ -50,24 +46,5 @@ export async function sendTicketReceivedNotification(ticket: Ticket): Promise<In
     return { success: true, provider: 'email', message: 'Ticket notification sent' }
   } catch {
     return { success: false, provider: 'email', message: 'Ticket notification failed' }
-  }
-}
-
-export async function sendApprovalNotification(
-  merchantId: string,
-  firstName: string,
-  businessName: string,
-  email: string,
-  mid: string,
-): Promise<IntegrationResult> {
-  try {
-    await sendEmail(
-      email,
-      `Your merchant account is approved — ${businessName}`,
-      merchantApprovalHtml(firstName, businessName, mid),
-    )
-    return { success: true, provider: 'email', externalId: merchantId, message: 'Approval email sent' }
-  } catch {
-    return { success: false, provider: 'email', message: 'Approval email failed' }
   }
 }

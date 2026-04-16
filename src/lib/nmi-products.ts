@@ -1,5 +1,6 @@
 // src/lib/nmi-products.ts
-// Shared NMI product data — sourced from official NMI product sheets
+// Static marketing data for gateway product pages (/gateway, /gateway/features, /gateway/hardware)
+// This is NOT the equipment catalog — that was a dashboard feature (removed in Phase 5C).
 
 export interface GatewayFeature {
   id: string
@@ -9,53 +10,29 @@ export interface GatewayFeature {
   badge?: string
 }
 
-export interface HardwareDevice {
-  id: string
-  name: string
-  category: 'countertop' | 'mobile' | 'unattended'
-  tagline: string
-  description: string
-  specs: { label: string; value: string }[]
-  highlights: string[]
-}
-
 export const gatewayFeatures: GatewayFeature[] = [
   {
     id: 'virtual-terminal',
     title: 'Virtual Terminal',
     description:
-      'Accept phone and mail-order payments from any browser. Swipe cards or key in payment details without any special hardware.',
+      'Accept payments from any browser without specialized hardware. Perfect for phone orders, email invoicing, and remote payments.',
     bullets: [
-      'No additional hardware required',
-      'Process phone & mail orders',
-      'Full transaction history & reporting',
-      'Supports all major card types',
-    ],
-  },
-  {
-    id: 'collect-checkout',
-    title: 'Collect Checkout',
-    description:
-      'Let merchants accept payments via custom links or checkout buttons — no coding required. Ideal for smaller catalogs, invoicing, and donations.',
-    bullets: [
-      'PCI compliant — never touch card data',
-      'Zero-code button generator',
-      'Contactless payments via QR code',
-      'Multi-currency support',
-      'Streamlined checkout reduces abandonment',
+      'Manual card entry from any device',
+      'Supports all major card brands',
+      'Built-in transaction history',
+      'Refund and void from the same screen',
     ],
   },
   {
     id: 'collect-js',
-    title: 'Collect.js',
+    title: 'Collect.js / Hosted Checkout',
     description:
-      'Give merchants full control of their checkout experience with one line of code. Payment data is tokenized so no sensitive data touches your servers.',
+      'PCI-compliant hosted payment fields that inject securely into your checkout page — no raw card data ever touches your server.',
     bullets: [
-      'Single line of code integration',
-      'Full brand control over checkout UI',
-      'PCI SAQ-A compliant — zero compliance burden',
-      'Scales from simple forms to complex web apps',
-      'Supports Google Pay & Apple Pay',
+      'Drop-in hosted payment fields',
+      'Collect.js for custom checkout flows',
+      'Single-page checkout support',
+      'iFrame or redirect modes available',
     ],
     badge: 'Developer Favorite',
   },
@@ -63,227 +40,245 @@ export const gatewayFeatures: GatewayFeature[] = [
     id: 'customer-vault',
     title: 'Customer Vault',
     description:
-      'Securely store customer payment details for future use. Tokenization enables repeat transactions without ever recollecting sensitive data.',
+      'Tokenize and securely store customer payment methods for one-click checkout, subscriptions, and MOTO orders.',
     bullets: [
-      'Level 1 PCI compliant since 2004',
-      'Stores credit card & eCheck payment details',
-      'Works with Automatic Card Updater',
-      'Supports subscriptions, memberships & invoicing',
-      'Seamless cross-channel customer experience',
+      'Unlimited stored payment profiles',
+      'PCI-compliant token storage',
+      'Link to subscriptions & invoices',
+      'Customer-initiated payment updates',
     ],
   },
   {
-    id: 'automatic-card-updater',
+    id: 'card-updater',
     title: 'Automatic Card Updater',
     description:
-      'Up to 32% of subscription payments fail due to expired cards. ACU keeps cards on file always current by validating with card networks automatically.',
+      'Automatically refresh expiring or replaced card numbers in your customer vault — reducing failed recurring payments by up to 30%.',
     bullets: [
-      'Processor agnostic — any card, any processor',
-      'No update = no charge',
-      'Increased authorization rates',
-      'Improved customer retention',
-      'Merchant-defined custom schedules',
+      'Works with Visa & Mastercard',
+      'Runs nightly on vault records',
+      'Zero manual intervention needed',
+      'Reduces subscription churn',
     ],
-    badge: 'Subscription Essential',
   },
   {
     id: 'fraud-prevention',
-    title: 'Fraud Prevention',
+    title: 'Fraud Prevention Suite',
     description:
-      'Customizable fraud filters detect suspicious transactions before they are approved. Set rules by threshold, user ban, IP, country, or card number.',
+      'Rules-based and AI-powered fraud screening that evaluates every transaction in real time before authorization.',
     bullets: [
-      'Customizable rule sets — basic to advanced',
-      'AVS, CVV, and duplicate transaction filters',
-      'User ban by IP, card, or country',
-      'Flagged transaction review queue',
-      'Color-coded history reporting',
+      'Velocity rules and IP geolocation',
+      'Device fingerprinting',
+      'Custom allow/block lists',
+      'Detailed fraud scoring per transaction',
     ],
+    badge: 'CB911 Compatible',
   },
   {
-    id: '3ds-service',
-    title: '3DS Service',
+    id: '3ds',
+    title: '3D Secure 2.0',
     description:
-      'Trigger 3-D Secure authentication for faster, safer payment processing. Shifts chargeback liability and reduces fraud on card-not-present transactions.',
+      'Strong customer authentication (SCA) that shifts liability to the issuer while keeping friction minimal for trusted shoppers.',
     bullets: [
-      'Works with Collect.js, Customer Vault ID, or plain text',
-      'Pop-up or inline challenge display',
-      'Supports frictionless flow',
-      'Chargeback liability shift with or without a card challenge',
-      'Built into NMI Gateway.js',
+      'EMV 3DS2 protocol',
+      'Frictionless flow for low-risk transactions',
+      'Challenge flow for high-risk orders',
+      'EU SCA / PSD2 compliant',
     ],
   },
   {
     id: 'webhooks',
-    title: 'Webhooks',
+    title: 'Webhooks & Real-Time Reporting',
     description:
-      'Subscribe to real-time transaction events instead of running repeated pull queries. Get instant HTTP POST notifications for every event that matters.',
+      'Instant event notifications for every transaction state change — settled, refunded, disputed, or voided.',
     bullets: [
-      'Real-time push notifications',
-      'Covers sales, auth, capture, void, and more',
-      'Success, failure, and unknown status alerts',
-      'Set across full merchant client list',
-      'Frees system resources vs. repeated polling',
+      'Configurable event subscriptions',
+      'HMAC-signed payloads',
+      'Retry on failure with exponential back-off',
+      'Full transaction history via Query API',
     ],
-    badge: 'Developer Tool',
   },
   {
     id: 'recurring-billing',
     title: 'Recurring Billing',
     description:
-      'Automate subscription and membership billing. Set any schedule, and let the gateway handle the rest — including card updates when cards expire.',
+      'Built-in subscription engine with flexible billing cycles, dunning management, and proration support.',
     bullets: [
-      'Flexible billing schedules',
-      'Automated retry on decline',
-      'Integrated with Customer Vault',
-      'Detailed reporting per billing cycle',
-      'Works with all major processors',
+      'Daily / weekly / monthly / custom cycles',
+      'Automatic retry on failed payments',
+      'Trial periods and discounts',
+      'Customer self-service portal option',
     ],
   },
   {
-    id: 'quickbooks-syncpay',
+    id: 'quickbooks',
     title: 'QuickBooks SyncPay',
     description:
-      'Let merchants skip double entry. QuickBooks SyncPay handles payments start to finish inside QuickBooks — from processing to accounting entries.',
+      "Sync transactions directly to QuickBooks Online in real time — no manual exports, no reconciliation headaches.",
     bullets: [
-      'Compatible with QuickBooks Pro, Premier & Enterprise',
-      'Pay invoices and generate sales receipts in one step',
-      'Process batch transactions',
-      'Supports card-present swiped transactions',
-      'Saves time managing accounting processes',
+      'QuickBooks Online integration',
+      'Automatic invoice matching',
+      'Real-time sync on settlement',
+      'Supports multiple QB entities',
     ],
   },
   {
     id: 'google-pay',
-    title: 'Google Pay',
+    title: 'Google Pay & Apple Pay',
     description:
-      'Give merchants a faster, simpler checkout. Google Pay integrates with Collect Checkout, Collect.js, and the Direct Post API — set up in under a week.',
+      'Accept digital wallet payments on web and mobile with a single SDK — no additional merchant enrollment required.',
     bullets: [
-      '100M+ Google Pay app downloads worldwide',
-      'Reduces 28% cart abandonment from complex checkouts',
-      'Multiple security layers protect payment data',
-      'Works with Collect.js for full custom UX',
-      'Quick setup — live in under a week',
+      'One-tap checkout on mobile',
+      'Works with Collect.js & hosted forms',
+      'Tokenized card credentials',
+      'Supported on all NMI terminals',
+    ],
+  },
+  {
+    id: 'invoicing',
+    title: 'Electronic Invoicing',
+    description:
+      'Send branded payment requests by email or SMS — customers pay with any card or ACH without creating an account.',
+    bullets: [
+      'Custom branded invoice templates',
+      'Email & SMS delivery',
+      'Automatic reminders for unpaid invoices',
+      'Partial payment support',
     ],
   },
 ]
+
+export interface HardwareDevice {
+  id: string
+  name: string
+  category: 'countertop' | 'mobile' | 'unattended'
+  tagline: string
+  description: string
+  highlights: string[]
+  specs: { label: string; value: string }[]
+}
 
 export const hardwareDevices: HardwareDevice[] = [
   {
     id: 'pax-a920',
-    name: 'PAX A920 Android SmartPOS',
+    name: 'PAX A920 SmartPOS',
     category: 'mobile',
-    tagline: 'The new breed of Android-powered POS',
+    tagline: 'Mobile SmartPOS',
     description:
-      'The A920 is a fully wireless Android SmartPOS accepting EMV contact, contactless, and NFC smartphone payments. Its large 5" touchscreen and all-day battery make it ideal for retail, restaurants, and mobile businesses.',
+      'Android-based all-in-one payment terminal with a 5" touchscreen, built-in receipt printer, and 4G + WiFi connectivity. The go-to device for mobile merchants, food trucks, and service businesses.',
     highlights: [
-      '5" vivid color touchscreen',
-      '4G, 3G, WiFi & Bluetooth',
-      '5250mAh all-day battery',
+      '5" HD multi-touch display',
       'Built-in thermal receipt printer',
-      'Dual cameras with barcode scanning',
+      '4G LTE + WiFi + Bluetooth',
+      'EMV, NFC, and MSR in one device',
+      '5,000 mAh battery — full day operation',
+      'Android 7.1 — full app ecosystem',
     ],
     specs: [
-      { label: 'OS',             value: 'PayDroid (Android 7.1)' },
-      { label: 'Processor',      value: 'Quad core Cortex A7' },
-      { label: 'Display',        value: '5" 720x1280 capacitive touchscreen' },
-      { label: 'Communications', value: 'GSM/CDMA, Bluetooth 4.0, WiFi 802.11 b/g/n' },
-      { label: 'Card Readers',   value: 'EMV Contact, EMV Contactless, Magstripe' },
-      { label: 'Printer',        value: '2" high speed thermal printer' },
-      { label: 'Battery',        value: '5250mAh Lithium Ion' },
-      { label: 'Security',       value: 'PCI PTS 5.x, EMV L1 & L2' },
+      { label: 'Display', value: '5" 1280×720 IPS' },
+      { label: 'Connectivity', value: '4G LTE, WiFi 802.11 b/g/n, Bluetooth 4.0' },
+      { label: 'Printer', value: 'Built-in 2" thermal, 80mm/s' },
+      { label: 'Card Acceptance', value: 'EMV L1/L2, NFC, MSR' },
+      { label: 'OS', value: 'Android 7.1 (PROLIN)' },
+      { label: 'Battery', value: '5,000 mAh Li-ion' },
+      { label: 'Certifications', value: 'PCI PTS 5.X, EMV L1&L2, NMI Certified' },
     ],
   },
   {
-    id: 'lane-3000',
+    id: 'ingenico-lane-3000',
     name: 'Ingenico Lane/3000',
     category: 'countertop',
-    tagline: 'The new standard for high-volume POS',
+    tagline: 'Countertop Terminal',
     description:
-      "The Lane/3000 is NMI's go-to countertop terminal for high-volume retail environments. It replaces the iPP320/350 with a PCI PTS 5.X certification and supports ChipDNA Cloud for fully cloud-based POS deployments.",
+      'A fast, reliable countertop payment terminal with a large customer-facing display. Ideal for retail and restaurant fixed-point checkout with high transaction volumes.',
     highlights: [
-      'Bright full-color 2.8" display',
-      'USB & Ethernet connectivity',
-      'PCI P2PE capable for simplified compliance',
-      'ChipDNA Cloud support — no in-store PC needed',
-      'Replaces iPP320/350 legacy terminals',
+      '3.5" color customer display',
+      'Contactless, EMV chip, and swipe',
+      'Fast transaction processing',
+      'USB, Serial, and Ethernet connectivity',
+      'Compact form factor for tight counters',
+      'PIN entry shield standard',
     ],
     specs: [
-      { label: 'Processor',      value: 'Cortex A5, 64-bit' },
-      { label: 'Display',        value: '2.8" backlit full-colour LCD' },
-      { label: 'Communications', value: 'USB, Ethernet, RS232, Optional WiFi & Bluetooth' },
-      { label: 'Card Readers',   value: 'EMV contact & contactless, Magstripe fallback' },
-      { label: 'Physical',       value: '83 x 180 x 43mm, 254g' },
-      { label: 'Security',       value: 'PCI PTS 5.X, EMV L1 & L2' },
-      { label: 'Power',          value: '5V or 12V via serial interface' },
+      { label: 'Display', value: '3.5" color customer-facing LCD' },
+      { label: 'Connectivity', value: 'USB, Serial, Ethernet' },
+      { label: 'Card Acceptance', value: 'EMV L1/L2, Contactless NFC, MSR' },
+      { label: 'PIN Entry', value: 'Integrated PIN pad with shield' },
+      { label: 'Certifications', value: 'PCI PTS 5.X, EMV L1&L2, NMI Certified' },
     ],
   },
   {
-    id: 'lane-7000',
+    id: 'ingenico-lane-7000',
     name: 'Ingenico Lane/7000',
     category: 'countertop',
-    tagline: 'High-volume multi-lane retail POS',
+    tagline: 'Multi-Lane Terminal',
     description:
-      'The Lane/7000 is designed for multi-lane retail environments with a large 5" screen, signature capture, and full omnichannel reporting. It supports ChipDNA and NMI Customer-Present Cloud for flexible deployment.',
+      'High-performance multi-lane terminal designed for enterprise retail and grocery. Large touchscreen, signature capture, and full connectivity suite for high-throughput environments.',
     highlights: [
-      '5" full-color display',
-      'Signature capture by stylus or finger',
-      'USB & Ethernet with optional WiFi & Bluetooth',
-      'Supports NMI Customer-Present Cloud',
-      'Replaces iSC480 — PCI PTS 5.X certified',
+      '7" HD touchscreen with signature capture',
+      'Magnetic stripe, EMV chip, and NFC',
+      'Full connectivity: USB, Serial, Ethernet, WiFi',
+      'Designed for multi-lane grocery and big-box retail',
+      'Multimedia capable — video and promotions',
+      'ADA compliant form factor',
     ],
     specs: [
-      { label: 'Processor',      value: 'Cortex A5, 64-bit' },
-      { label: 'Display',        value: '5" backlit full-colour LCD' },
-      { label: 'Communications', value: 'USB, Ethernet, RS232, Optional WiFi & Bluetooth' },
-      { label: 'Card Readers',   value: 'EMV contact & contactless, Magstripe fallback' },
-      { label: 'Physical',       value: '180 x 152 x 35mm, 583g' },
-      { label: 'Security',       value: 'PCI PTS 5.X, EMV L1 & L2' },
-      { label: 'Signature',      value: 'Stylus or finger capture' },
+      { label: 'Display', value: '7" 1024×600 capacitive touchscreen' },
+      { label: 'Connectivity', value: 'USB, Serial, Ethernet, WiFi' },
+      { label: 'Card Acceptance', value: 'EMV L1/L2, Contactless NFC, MSR' },
+      { label: 'Signature', value: 'On-screen capture' },
+      { label: 'Certifications', value: 'PCI PTS 5.X, EMV L1&L2, NMI Certified, ADA' },
     ],
   },
 ]
 
-export const solutionVerticals = [
+export interface SolutionVertical {
+  id: string
+  icon: string
+  title: string
+  description: string
+}
+
+export const solutionVerticals: SolutionVertical[] = [
   {
     id: 'retail',
-    icon: '🏪',
-    title: 'Retail',
+    icon: '🛍️',
+    title: 'Retail & Boutiques',
     description:
-      'Seamless POS integration for single locations or full multi-store chains. Unified reporting across all transactions in real time.',
+      'In-store countertop terminals, integrated POS, and e-commerce for omnichannel retail.',
   },
   {
-    id: 'restaurant',
+    id: 'restaurants',
     icon: '🍽️',
-    title: 'Restaurants',
+    title: 'Restaurants & Food Service',
     description:
-      'Pay-at-table, phone orders, online orders, curbside, kiosk, and food truck — all in one gateway.',
+      'Table-side payments, counter service, quick service, food trucks, and delivery integrations.',
   },
   {
     id: 'mobile',
     icon: '📱',
-    title: 'Mobile Businesses',
+    title: 'Mobile & Field Service',
     description:
-      'Accept EMV, contactless, Apple Pay, and Android Pay on any smartphone or tablet. Perfect for home services and field sales.',
+      'Contractors, cleaners, landscapers, and field reps accepting payments on-site with PAX A920.',
   },
   {
     id: 'ecommerce',
-    icon: '🛒',
+    icon: '🌐',
     title: 'E-Commerce',
     description:
-      '125+ shopping cart integrations, Collect.js, and Google Pay support. Launch a fully branded checkout in hours.',
+      'Hosted checkout, Collect.js, shopping cart integrations, and recurring billing for online stores.',
   },
   {
     id: 'unattended',
-    icon: '🅿️',
+    icon: '🔧',
     title: 'Unattended & Self-Service',
     description:
-      'Parking paystations, vending machines, kiosks, EV charging, transit ticketing, and toll booths — fully automated payment acceptance.',
+      'Parking, vending, EV charging, kiosks, and transit — payments that run without a cashier.',
   },
   {
-    id: 'subscription',
+    id: 'subscriptions',
     icon: '🔄',
     title: 'Subscriptions & SaaS',
     description:
-      'Recurring billing, Customer Vault, and Automatic Card Updater work together to eliminate failed payments and reduce churn.',
+      'Flexible billing cycles, automatic card updater, and dunning management for subscription businesses.',
   },
 ]

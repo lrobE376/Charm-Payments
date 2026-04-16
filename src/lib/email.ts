@@ -65,10 +65,6 @@ function link(href: string, label: string): string {
   return `<a href="${href}" style="color:#0c3a30;font-weight:600;">${label}</a>`
 }
 
-function ctaButton(href: string, label: string): string {
-  return `<a href="${href}" style="display:inline-block;margin:8px 0 16px;background:#0c3a30;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;padding:12px 24px;border-radius:8px;">${label}</a>`
-}
-
 // ── templates ─────────────────────────────────────────────────────────────────
 
 /** Sent to the merchant after they submit a quote/rate-audit request. */
@@ -115,7 +111,7 @@ export function quoteInternalAlertHtml(
         </tr>`).join('')}
     </table>
     ${stmtSection}
-    ${ctaButton(`${SITE_URL}/admin/quotes`, 'Review in Admin')}
+    ${p('Review this lead in Salesforce.')}
   `)
 }
 
@@ -144,7 +140,7 @@ export function leadInternalAlertHtml(
           <td style="padding:6px 0;font-size:13px;color:#111827;">${value}</td>
         </tr>`).join('')}
     </table>
-    ${ctaButton(`${SITE_URL}/admin/leads`, 'View in Admin')}
+    ${p('Review this lead in Salesforce.')}
   `)
 }
 
@@ -174,40 +170,30 @@ export function ticketInternalAlertHtml(
     </table>
     <p style="margin:0 0 8px;font-size:13px;font-weight:700;color:#111827;">Message:</p>
     <p style="margin:0 0 16px;font-size:13px;color:#374151;background:#f9fafb;padding:12px;border-radius:8px;border:1px solid #e5e7eb;">${message.replace(/\n/g, '<br />')}</p>
-    ${ctaButton(`${SITE_URL}/admin/tickets`, 'View in Admin')}
+    ${p('Review this ticket in Salesforce.')}
   `)
 }
 
-/** Sent to a merchant when their application is approved.
- *  @param loginLink  Supabase magic-link URL. When provided the CTA logs the
- *                    merchant in directly; otherwise falls back to /login.
+/**
+ * Sent to a merchant when their application is approved via NMI boarding.
+ * Triggered by the NMI approval webhook (Phase 6).
  */
 export function merchantApprovalHtml(
   firstName: string,
   businessName: string,
   mid: string,
-  loginLink?: string,
 ): string {
-  const cta = loginLink
-    ? ctaButton(loginLink, 'Access Your Dashboard')
-    : ctaButton(`${SITE_URL}/login`, 'Log In to Dashboard')
-
-  const loginNote = loginLink
-    ? p(`This link is valid for 24 hours and can only be used once. After logging in, you'll be prompted to set a permanent password.`)
-    : p(`Use the ${link(`${SITE_URL}/forgot-password`, 'forgot password')} link with the email address you applied with to set your password.`)
-
   return layout(`
     <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${firstName},</p>
-    ${p(`Great news — your merchant account for <strong>${businessName}</strong> has been approved.`)}
+    ${p(`Great news — your merchant account for <strong>${businessName}</strong> has been approved and is ready to process payments.`)}
     <table cellpadding="0" cellspacing="0" style="width:100%;margin:16px 0;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:16px;">
       <tr>
         <td style="padding:8px 12px 8px 0;font-size:13px;font-weight:600;color:#166534;">Merchant ID (MID)</td>
         <td style="padding:8px 0;font-size:13px;font-weight:700;color:#166534;font-family:monospace;">${mid}</td>
       </tr>
     </table>
-    ${p(`You can now access your merchant dashboard to view transactions, manage payouts, and configure your account.`)}
-    ${cta}
-    ${loginNote}
+    ${p(`Our team will be in touch shortly with your gateway credentials and onboarding instructions.`)}
+    ${p(`Questions? Email ${link('mailto:merchants@charmpayments.com', 'merchants@charmpayments.com')} or call <a href="tel:+13145550198" style="color:#0c3a30;font-weight:600;">+1 (314) 555-0198</a>.`)}
   `)
 }
 

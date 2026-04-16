@@ -364,12 +364,6 @@ export default function Navbar() {
           </ul>
 
           <div className="hidden items-center gap-4 md:flex">
-            <Link
-              href="/login"
-              className="text-sm font-medium text-[var(--on-surface-variant)] transition-colors hover:text-[var(--on-surface)]"
-            >
-              Merchant Login
-            </Link>
             <Button size="sm" asChild>
               <Link href="/apply">Apply Now</Link>
             </Button>
@@ -503,13 +497,6 @@ export default function Navbar() {
                 className="mt-2 flex flex-col gap-3 pt-4"
                 style={{ borderTop: '1px solid var(--outline-variant)' }}
               >
-                <Link
-                  href="/login"
-                  className="text-sm font-medium text-[var(--on-surface-variant)]"
-                  onClick={closeAllMobile}
-                >
-                  Merchant Login
-                </Link>
                 <Button size="sm" asChild>
                   <Link href="/apply" onClick={closeAllMobile}>
                     Apply Now
