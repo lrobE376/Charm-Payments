@@ -1,44 +1,98 @@
-import { randomUUID } from 'crypto'
+// src/lib/services/ticket-service.ts
+import { createAdminClient } from '@/lib/supabase/admin'
 import type { CreateTicketInput, Ticket, TicketStatus } from '@/types/ticket'
 
-const tickets: Ticket[] = []
+// ── row shape returned by Supabase ────────────────────────────────────────────
 
-function nowIso(): string {
-  return new Date().toISOString()
+type TicketRow = {
+  id: string
+  lead_id: string | null
+  account_id: string | null
+  name: string
+  email: string
+  subject: string
+  message: string
+  priority: string
+  status: string
+  created_at: string
 }
 
-export function createTicket(input: CreateTicketInput): Ticket {
-  const ticket: Ticket = {
-    id: randomUUID(),
-    leadId: input.leadId,
-    accountId: input.accountId,
+function rowToTicket(row: TicketRow): Ticket {
+  return {
+    id: row.id,
+    leadId: row.lead_id ?? undefined,
+    accountId: row.account_id ?? undefined,
+    name: row.name,
+    email: row.email,
+    subject: row.subject,
+    message: row.message,
+    priority: row.priority as Ticket['priority'],
+    status: row.status as Ticket['status'],
+    createdAt: row.created_at,
+  }
+}
+
+// ── public API ────────────────────────────────────────────────────────────────
+
+export async function createTicket(input: CreateTicketInput): Promise<Ticket> {
+  const db = createAdminClient()
+
+  const insert = {
+    lead_id: input.leadId ?? null,
+    account_id: input.accountId ?? null,
     name: input.name,
     email: input.email,
     subject: input.subject,
     message: input.message,
     priority: input.priority,
     status: input.status ?? 'open',
-    createdAt: nowIso(),
   }
-  tickets.push(ticket)
-  return ticket
+
+  const { data, error } = await db
+    .from('tickets')
+    .insert(insert)
+    .select()
+    .single()
+
+  if (error) throw new Error(`Failed to insert ticket: ${error.message}`)
+  return rowToTicket(data as TicketRow)
 }
 
-export function getTickets(): Ticket[] {
-  return [...tickets].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+export async function getTickets(): Promise<Ticket[]> {
+  const db = createAdminClient()
+  const { data, error } = await db
+    .from('tickets')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) throw new Error(`Failed to fetch tickets: ${error.message}`)
+  return (data as TicketRow[]).map(rowToTicket)
 }
 
-export function updateTicketStatus(id: string, status: TicketStatus): Ticket | null {
-  const i = tickets.findIndex((t) => t.id === id)
-  if (i === -1) return null
-  const next = { ...tickets[i], status }
-  tickets[i] = next
-  return next
+export async function updateTicketStatus(id: string, status: TicketStatus): Promise<Ticket | null> {
+  const db = createAdminClient()
+  const { data, error } = await db
+    .from('tickets')
+    .update({ status })
+    .eq('id', id)
+    .select()
+    .single()
+
+  if (error) return null
+  return rowToTicket(data as TicketRow)
 }
 
-export function assignTicket(id: string, assigneeId: string): Ticket | null {
-  // TODO: add assignee field to Ticket type and persist (DB / external tool)
+export async function assignTicket(id: string, assigneeId: string): Promise<Ticket | null> {
+  // assignee_id column can be added to the tickets table when a helpdesk
+  // integration is wired up — for now just return the current ticket row
   void assigneeId
-  const t = tickets.find((x) => x.id === id)
-  return t ?? null
+  const db = createAdminClient()
+  const { data, error } = await db
+    .from('tickets')
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (error) return null
+  return rowToTicket(data as TicketRow)
 }

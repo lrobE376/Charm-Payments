@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     const parsed = parseLeadCreateBody(body)
     if (!parsed.ok) return jsonError(parsed.error, 400, parsed.code)
     const lead = await createLead(parsed.value)
-    await sendLeadReceivedNotification(lead.id)
+    await sendLeadReceivedNotification(lead)
     return jsonSuccess({ lead })
   } catch {
     return jsonError('Unable to process request', 500, 'SERVER_ERROR')

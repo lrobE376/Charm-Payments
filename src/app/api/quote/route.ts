@@ -1,6 +1,7 @@
 // src/app/api/quote/route.ts
 import { createAdminClient } from '@/lib/supabase/admin'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
+import { sendEmail, quoteConfirmationHtml, quoteInternalAlertHtml, INTERNAL_TO } from '@/lib/email'
 
 interface QuoteRequestBody {
   first_name: string
@@ -19,76 +20,6 @@ interface QuoteRequestBody {
   statement_urls?: string[]
   has_statement?: boolean
   notes?: string
-}
-
-async function pushToPipedrive(body: QuoteRequestBody): Promise<void> {
-  const token = process.env.PIPEDRIVE_API_TOKEN
-  const stageId = process.env.PIPEDRIVE_QUOTE_STAGE_ID ?? '2'
-  const base = 'https://api.pipedrive.com/v1'
-
-  const personRes = await fetch(`${base}/persons?api_token=${token}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: `${body.first_name} ${body.last_name}`,
-      email: [{ value: body.email, primary: true }],
-      phone: [{ value: body.phone, primary: true }],
-    }),
-  })
-  const personData = (await personRes.json()) as { data?: { id: number } }
-  const personId = personData.data?.id
-
-  const orgRes = await fetch(`${base}/organizations?api_token=${token}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: body.business_name }),
-  })
-  const orgData = (await orgRes.json()) as { data?: { id: number } }
-  const orgId = orgData.data?.id
-
-  const dealRes = await fetch(`${base}/deals?api_token=${token}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      title: `${body.business_name} — Savings Quote Request`,
-      stage_id: Number(stageId),
-      ...(personId ? { person_id: personId } : {}),
-      ...(orgId ? { org_id: orgId } : {}),
-    }),
-  })
-  const dealData = (await dealRes.json()) as { data?: { id: number } }
-  const dealId = dealData.data?.id
-
-  if (!dealId) return
-
-  const noteLines: string[] = [
-    `Order Location: ${body.order_location ?? 'N/A'}`,
-    `Payment Method: ${body.payment_method ?? 'N/A'}`,
-    `Payment Timing: ${body.payment_timing ?? 'N/A'}`,
-    `Takes MOTO Orders: ${body.takes_moto_orders ? 'Yes' : 'No'}`,
-    `Needs Mobile Payment: ${body.needs_mobile_payment ? 'Yes' : 'No'}`,
-    `Monthly Volume: ${body.monthly_volume ?? 'N/A'}`,
-    `Average Ticket: ${body.average_ticket ?? 'N/A'}`,
-    `Current Processor: ${body.current_processor ?? 'N/A'}`,
-  ]
-
-  if (body.statement_urls && body.statement_urls.length > 0) {
-    noteLines.push('', 'Statement Files:')
-    body.statement_urls.forEach((url) => noteLines.push(`  • ${url}`))
-  }
-
-  if (body.notes) {
-    noteLines.push('', `Notes: ${body.notes}`)
-  }
-
-  await fetch(`${base}/notes?api_token=${token}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      content: noteLines.join('\n'),
-      deal_id: dealId,
-    }),
-  })
 }
 
 export async function POST(request: Request) {
@@ -122,15 +53,31 @@ export async function POST(request: Request) {
     })
 
     if (error) {
-      console.error(error)
-      return jsonError(error.message, 500, 'DB_ERROR')
+      return jsonError('Failed to save quote request', 500, 'DB_ERROR')
     }
 
-    try {
-      await pushToPipedrive(body)
-    } catch (err) {
-      console.error(err)
-    }
+    // Emails are non-blocking — failures do not affect the response
+    await Promise.allSettled([
+      sendEmail(
+        email,
+        `We received your rate audit request — ${business_name}`,
+        quoteConfirmationHtml(first_name, business_name),
+      ),
+      sendEmail(
+        INTERNAL_TO,
+        `New rate audit: ${business_name} (${body.monthly_volume ?? 'volume unknown'})`,
+        quoteInternalAlertHtml(
+          `${first_name} ${last_name}`,
+          business_name,
+          email,
+          phone,
+          body.monthly_volume,
+          body.current_processor,
+          body.has_statement ?? false,
+          body.statement_urls ?? [],
+        ),
+      ),
+    ])
 
     return jsonSuccess({ submitted: true })
   } catch {

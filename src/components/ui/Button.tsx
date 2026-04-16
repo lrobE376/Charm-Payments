@@ -20,7 +20,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={asChild ? undefined : disabled || loading}
         className={cn(
           'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
-          variant === 'primary' && 'bg-brand-dark text-white hover:bg-brand-dark/90 focus-visible:ring-brand-dark',
+          variant === 'primary' && '[background:linear-gradient(135deg,#004421_0%,#1E5C35_100%)] text-white shadow-[0_2px_8px_rgba(0,68,33,0.25)] hover:opacity-90 hover:-translate-y-px focus-visible:ring-[#004421]',
           variant === 'secondary' && 'bg-brand-accent text-brand-dark hover:bg-brand-accent/90 focus-visible:ring-brand-accent',
           variant === 'ghost' && 'bg-transparent border border-brand-dark text-brand-dark hover:bg-brand-dark/5',
           variant === 'danger' && 'bg-red-600 text-white hover:bg-red-700',

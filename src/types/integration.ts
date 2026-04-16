@@ -1,4 +1,4 @@
-export type IntegrationProvider = 'pipedrive' | 'ooma' | 'nmi' | 'email' | 'unknown'
+export type IntegrationProvider = 'ooma' | 'nmi' | 'zapier' | 'email' | 'unknown'
 
 export interface IntegrationResult {
   success: boolean

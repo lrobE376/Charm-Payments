@@ -1,3 +1,4 @@
+// src/components/conversion/PrimaryCTA.tsx
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
@@ -15,6 +16,12 @@ export type PrimaryCTAProps = {
 const base =
   'inline-flex min-h-[52px] items-center justify-center gap-2 rounded-[10px] px-7 py-3.5 text-[15px] font-bold transition-all duration-200'
 
+const primaryBtn =
+  'text-white shadow-md hover:opacity-90 hover:-translate-y-px'
+
+const ghostBtn =
+  'bg-transparent hover:bg-[var(--primary)] hover:text-white'
+
 export default function PrimaryCTA({
   primary = 'Apply Now',
   secondary = 'Get Instant Quote',
@@ -23,17 +30,28 @@ export default function PrimaryCTA({
   className = '',
   variant = 'default',
 }: PrimaryCTAProps) {
+  const primaryStyle = {
+    background: 'linear-gradient(135deg, #004421, #1E5C35)',
+  }
+
+  const ghostStyle = {
+    border: '1px solid var(--primary)',
+    color: 'var(--primary)',
+  }
+
+  const ghostDarkStyle = {
+    border: '1px solid rgba(255,255,255,0.5)',
+    color: 'white',
+  }
+
   if (variant === 'sales') {
     return (
       <div className={`flex flex-wrap items-center gap-3 sm:gap-4 ${className}`}>
-        <Link href={primaryHref} className={`${base} bg-sales-green text-sales-navy shadow-md hover:brightness-110`}>
+        <Link href={primaryHref} className={`${base} ${primaryBtn}`} style={primaryStyle}>
           {primary}
           <ArrowUpRight className="h-5 w-5 shrink-0" aria-hidden />
         </Link>
-        <Link
-          href={secondaryHref}
-          className={`${base} border-2 border-sales-navy bg-transparent text-sales-navy hover:bg-sales-navy hover:text-white`}
-        >
+        <Link href={secondaryHref} className={`${base} ${ghostBtn}`} style={ghostStyle}>
           {secondary}
         </Link>
       </div>
@@ -43,14 +61,11 @@ export default function PrimaryCTA({
   if (variant === 'sales-dark') {
     return (
       <div className={`flex flex-wrap items-center justify-center gap-3 sm:gap-4 ${className}`}>
-        <Link href={primaryHref} className={`${base} bg-sales-green text-sales-navy shadow-lg hover:brightness-110`}>
+        <Link href={primaryHref} className={`${base} ${primaryBtn}`} style={primaryStyle}>
           {primary}
           <ArrowUpRight className="h-5 w-5 shrink-0" aria-hidden />
         </Link>
-        <Link
-          href={secondaryHref}
-          className={`${base} border-2 border-sales-green bg-transparent text-sales-green hover:bg-sales-green/15`}
-        >
+        <Link href={secondaryHref} className={`${base} hover:bg-white/10`} style={ghostDarkStyle}>
           {secondary}
         </Link>
       </div>
@@ -58,16 +73,12 @@ export default function PrimaryCTA({
   }
 
   if (variant === 'sales-dark-audit') {
-    /** Audit CTA is the high-contrast conversion hook (filled green). */
     return (
       <div className={`flex flex-wrap items-center gap-3 sm:gap-4 ${className}`}>
-        <Link
-          href={primaryHref}
-          className={`${base} border-2 border-white/75 bg-transparent text-white hover:bg-white/10`}
-        >
+        <Link href={primaryHref} className={`${base} hover:bg-white/10`} style={ghostDarkStyle}>
           {primary}
         </Link>
-        <Link href={secondaryHref} className={`${base} bg-sales-green text-sales-navy shadow-lg hover:brightness-110`}>
+        <Link href={secondaryHref} className={`${base} ${primaryBtn}`} style={primaryStyle}>
           {secondary}
           <ArrowUpRight className="h-5 w-5 shrink-0" aria-hidden />
         </Link>
@@ -76,9 +87,6 @@ export default function PrimaryCTA({
   }
 
   const isDark = variant === 'on-dark'
-  const outlineClass = isDark
-    ? 'btn-outline !text-white !border-white/45 !shadow-none hover:!bg-white hover:!text-brand-dark hover:!border-white'
-    : 'btn-outline'
 
   return (
     <div className={`flex flex-wrap items-center gap-3 sm:gap-4 ${className}`}>
@@ -86,7 +94,10 @@ export default function PrimaryCTA({
         {primary}
         <ArrowUpRight className="h-5 w-5 shrink-0" aria-hidden />
       </Link>
-      <Link href={secondaryHref} className={`${outlineClass} inline-flex justify-center`}>
+      <Link
+        href={secondaryHref}
+        className={`${isDark ? 'btn-outline !text-white !border-white/45 !shadow-none hover:!bg-white hover:!text-brand-dark hover:!border-white' : 'btn-outline'} inline-flex justify-center`}
+      >
         {secondary}
       </Link>
     </div>

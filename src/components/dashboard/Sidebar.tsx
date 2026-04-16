@@ -10,25 +10,25 @@ import {
   AlertCircle,
   Settings,
   LogOut,
-  Users,
   Building2,
   Ticket,
   Wallet,
+  Monitor,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { signOut } from '@/app/(dashboard)/actions'
 import type { Merchant } from '@/types'
 
 const navItems = [
-  { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
-  { label: 'Leads', href: '/dashboard/leads', icon: Users },
-  { label: 'Accounts', href: '/dashboard/accounts', icon: Building2 },
-  { label: 'Tickets', href: '/dashboard/tickets', icon: Ticket },
-  { label: 'Transactions', href: '/dashboard/transactions', icon: CreditCard },
-  { label: 'Wallet', href: '/dashboard/wallet', icon: Wallet },
-  { label: 'Payouts', href: '/dashboard/payouts', icon: ArrowDownToLine },
-  { label: 'Disputes', href: '/dashboard/disputes', icon: AlertCircle },
-  { label: 'Settings', href: '/dashboard/settings', icon: Settings },
+  { label: 'Overview',     href: '/dashboard',              icon: LayoutDashboard },
+  { label: 'Accounts',     href: '/dashboard/accounts',     icon: Building2       },
+  { label: 'Transactions', href: '/dashboard/transactions', icon: CreditCard      },
+  { label: 'Wallet',       href: '/dashboard/wallet',       icon: Wallet          },
+  { label: 'Payouts',      href: '/dashboard/payouts',      icon: ArrowDownToLine },
+  { label: 'Disputes',     href: '/dashboard/disputes',     icon: AlertCircle     },
+  { label: 'Equipment',    href: '/dashboard/equipment',    icon: Monitor         },
+  { label: 'Tickets',      href: '/dashboard/tickets',      icon: Ticket          },
+  { label: 'Settings',     href: '/dashboard/settings',     icon: Settings        },
 ]
 
 export default function DashboardSidebar({ merchant }: { merchant: Merchant }) {

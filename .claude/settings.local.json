@@ -12,7 +12,13 @@
       "Bash(find C:/Users/User1/Documents/charm-payments/.next -name *.css)",
       "Bash(taskkill:*)",
       "Bash(npx tsc:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(echo \"EXIT:$?\")",
+      "mcp__magic21__21st_magic_component_builder",
+      "mcp__magic21__21st_magic_component_inspiration",
+      "Bash(node -e \"const p=require\\('./package.json'\\); const deps={...p.dependencies,...p.devDependencies}; console.log\\(JSON.stringify\\(Object.keys\\(deps\\).filter\\(k=>k.includes\\('motion'\\)||k.includes\\('framer'\\)||k.includes\\('spring'\\)||k.includes\\('count'\\)\\),null,2\\)\\)\")",
+      "Bash(node -e ':*)",
+      "Bash(pnpm build:*)"
     ]
   }
 }

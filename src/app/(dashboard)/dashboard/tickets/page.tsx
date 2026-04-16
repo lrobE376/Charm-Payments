@@ -6,8 +6,8 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Support Tickets — Charm Payments' }
 
-export default function DashboardTicketsPage() {
-  const tickets = getTickets()
+export default async function DashboardTicketsPage() {
+  const tickets = await getTickets()
 
   return (
     <div className="space-y-10">

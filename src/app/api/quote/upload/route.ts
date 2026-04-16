@@ -48,8 +48,7 @@ export async function POST(request: Request) {
       .upload(storagePath, buffer, { contentType: file.type, upsert: false })
 
     if (error) {
-      console.error('Storage upload error:', JSON.stringify(error))
-      return jsonError(error.message, 500, 'UPLOAD_ERROR')
+      return jsonError('Upload failed', 500, 'UPLOAD_ERROR')
     }
 
     const { data: publicUrlData } = supabase.storage

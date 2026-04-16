@@ -1,69 +1,107 @@
-import { randomUUID } from 'crypto'
-import { syncLeadToPipedrive } from '@/lib/integrations/pipedrive'
+// src/lib/services/lead-service.ts
+import { createAdminClient } from '@/lib/supabase/admin'
 import type { CreateLeadInput, Lead, LeadStatus } from '@/types/lead'
 
-/** In-memory store — replace with DB / CRM sync later. */
-const leads: Lead[] = []
+// ── row shape returned by Supabase ────────────────────────────────────────────
 
-function nowIso(): string {
-  return new Date().toISOString()
+type LeadRow = {
+  id: string
+  name: string
+  business_name: string
+  email: string
+  phone: string
+  monthly_volume: string
+  source: string
+  status: string
+  notes: string
+  created_at: string
 }
 
+function rowToLead(row: LeadRow): Lead {
+  return {
+    id: row.id,
+    name: row.name,
+    businessName: row.business_name,
+    email: row.email,
+    phone: row.phone,
+    monthlyVolume: row.monthly_volume,
+    source: row.source as Lead['source'],
+    status: row.status as Lead['status'],
+    notes: row.notes,
+    createdAt: row.created_at,
+  }
+}
+
+// ── public API ────────────────────────────────────────────────────────────────
+
 export async function createLead(input: CreateLeadInput): Promise<Lead> {
-  const lead: Lead = {
-    id: randomUUID(),
-    name: input.name,
-    businessName: input.businessName,
-    email: input.email,
-    phone: input.phone,
-    monthlyVolume: input.monthlyVolume,
-    source: input.source,
-    status: input.status ?? 'new',
-    notes: input.notes ?? '',
-    createdAt: nowIso(),
-  }
+  const db = createAdminClient()
 
-  try {
-    const sync = await syncLeadToPipedrive(lead)
-    if (sync.success) {
-      lead.pipedrivePersonId = sync.personId
-      lead.pipedriveOrgId = sync.orgId
-      lead.pipedriveDealId = sync.dealId
-      lead.pipedriveSyncedAt = new Date().toISOString()
-    }
-    // TODO: if sync fails, queue for retry (dead-letter / Supabase)
-    // TODO: replace in-memory store with Supabase
-  } catch {
-    // TODO: queue for retry — do not block lead creation
-  }
+  const { data, error } = await db
+    .from('leads')
+    .insert({
+      name: input.name,
+      business_name: input.businessName,
+      email: input.email,
+      phone: input.phone,
+      monthly_volume: input.monthlyVolume,
+      source: input.source,
+      status: input.status ?? 'new',
+      notes: input.notes ?? '',
+    })
+    .select()
+    .single()
 
-  leads.push(lead)
-  return lead
+  if (error) throw new Error(`Failed to insert lead: ${error.message}`)
+
+  return rowToLead(data as LeadRow)
 }
 
 export async function getLeads(): Promise<Lead[]> {
-  return [...leads].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+  const db = createAdminClient()
+  const { data, error } = await db
+    .from('leads')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) throw new Error(`Failed to fetch leads: ${error.message}`)
+  return (data as LeadRow[]).map(rowToLead)
 }
 
 export async function updateLeadStatus(id: string, status: LeadStatus): Promise<Lead | null> {
-  const i = leads.findIndex((l) => l.id === id)
-  if (i === -1) return null
-  const next = { ...leads[i], status }
-  leads[i] = next
-  return next
+  const db = createAdminClient()
+  const { data, error } = await db
+    .from('leads')
+    .update({ status })
+    .eq('id', id)
+    .select()
+    .single()
+
+  if (error) return null
+  return rowToLead(data as LeadRow)
 }
 
 export async function attachLeadNote(id: string, note: string): Promise<Lead | null> {
-  const i = leads.findIndex((l) => l.id === id)
-  if (i === -1) return null
-  const appended = leads[i].notes ? `${leads[i].notes}\n${note}` : note
-  const next = { ...leads[i], notes: appended }
-  leads[i] = next
+  const db = createAdminClient()
 
-  if (next.pipedriveDealId) {
-    const { addNoteToDeal } = await import('@/lib/integrations/pipedrive')
-    await addNoteToDeal(next.pipedriveDealId, note)
-  }
+  const { data: existing, error: fetchErr } = await db
+    .from('leads')
+    .select('notes')
+    .eq('id', id)
+    .single()
 
-  return next
+  if (fetchErr || !existing) return null
+
+  const appended = existing.notes ? `${existing.notes}\n${note}` : note
+
+  const { data, error } = await db
+    .from('leads')
+    .update({ notes: appended })
+    .eq('id', id)
+    .select()
+    .single()
+
+  if (error) return null
+
+  return rowToLead(data as LeadRow)
 }

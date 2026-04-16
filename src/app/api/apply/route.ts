@@ -76,19 +76,34 @@ function applicationReceivedHtml(firstName: string, businessName: string): strin
 </html>`
 }
 
+// Raw bank account and routing numbers are NOT accepted.
+// The client derives last-4 values before sending; raw values never leave the browser.
 interface ApplicationBody {
+  // Required business fields
   business_name: string
   ein: string
   owner_email: string
   owner_first_name: string
   owner_last_name: string
+  // Optional personal / KYC fields
   owner_phone?: string
-  account_number?: string
-  industry?: string
+  owner_dob?: string
+  address?: string
+  zip?: string
+  // Safe bank metadata — NO raw account or routing numbers
+  bank_name?: string
+  account_last4?: string   // exactly 4 digits, derived client-side
+  routing_last4?: string   // exactly 4 digits, derived client-side
+  account_type?: 'checking' | 'savings'
+  // Underwriting metadata
   business_type?: string
-  location_count?: string | number
+  industry?: string
   monthly_volume?: string
   average_ticket?: string
+  current_terminal?: string
+  website?: string
+  dba_name?: string
+  location_count?: string | number
   existing_processor?: string
   device_preference?: string
   existing_pos_software?: string
@@ -100,93 +115,112 @@ interface ApplicationBody {
   city?: string
   state?: string
   notes?: string
-  [key: string]: unknown
 }
 
-async function pushToPipedrive(body: ApplicationBody): Promise<void> {
-  const token = process.env.PIPEDRIVE_API_TOKEN
-  const base = 'https://api.pipedrive.com/v1'
-
-  const personRes = await fetch(`${base}/persons?api_token=${token}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: `${body.owner_first_name} ${body.owner_last_name}`,
-      email: [{ value: body.owner_email, primary: true }],
-      ...(body.owner_phone ? { phone: [{ value: body.owner_phone, primary: true }] } : {}),
-    }),
-  })
-  const personData = (await personRes.json()) as { data?: { id: number } }
-  const personId = personData.data?.id
-
-  const orgRes = await fetch(`${base}/organizations?api_token=${token}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: body.business_name }),
-  })
-  const orgData = (await orgRes.json()) as { data?: { id: number } }
-  const orgId = orgData.data?.id
-
-  const dealRes = await fetch(`${base}/deals?api_token=${token}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      title: `${body.business_name} — Merchant Application`,
-      stage_id: 7,
-      ...(personId ? { person_id: personId } : {}),
-      ...(orgId ? { org_id: orgId } : {}),
-    }),
-  })
-  const dealData = (await dealRes.json()) as { data?: { id: number } }
-  const dealId = dealData.data?.id
-
-  if (!dealId) return
-
-  const note = [
-    '== MERCHANT APPLICATION ==',
-    `Industry: ${body.industry ?? 'N/A'}`,
-    `Business type: ${body.business_type ?? 'N/A'}`,
-    `Locations: ${body.location_count ?? 'N/A'}`,
-    `Monthly volume: ${body.monthly_volume ?? 'N/A'}`,
-    `Avg ticket: $${body.average_ticket ?? 'N/A'}`,
-    `Current processor: ${body.existing_processor ?? 'None'}`,
-    `Device needed: ${body.device_preference ?? 'N/A'}`,
-    `Has existing POS: ${body.existing_pos_software ?? 'No'}`,
-    `Has customer database: ${body.has_customer_database ?? 'No'} (${body.customer_count ?? '0'} customers)`,
-    `Needs recurring billing: ${body.needs_recurring_billing ?? 'No'}`,
-    `Needs online payments: ${body.needs_online_payments ?? 'No'}`,
-    `Needs invoicing: ${body.needs_invoicing ?? 'No'}`,
-    `Address: ${body.city ?? 'N/A'}, ${body.state ?? 'N/A'}`,
-    `Notes: ${body.notes ?? ''}`,
-  ].join('\n')
-
-  await fetch(`${base}/notes?api_token=${token}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content: note, deal_id: dealId }),
-  })
-}
+const LAST4_RE = /^\d{4}$/
 
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as ApplicationBody
-    const { business_name, ein, owner_email, owner_first_name, owner_last_name, account_number } = body
+
+    // ── Required field validation ────────────────────────────────────────────
+    const {
+      business_name,
+      ein,
+      owner_email,
+      owner_first_name,
+      owner_last_name,
+      owner_phone,
+      owner_dob,
+      address,
+      zip,
+      bank_name,
+      account_last4,
+      routing_last4,
+      account_type,
+      business_type,
+      industry,
+      monthly_volume,
+      average_ticket,
+      current_terminal,
+      website,
+      dba_name,
+      location_count,
+      existing_processor,
+      device_preference,
+      existing_pos_software,
+      has_customer_database,
+      customer_count,
+      needs_recurring_billing,
+      needs_online_payments,
+      needs_invoicing,
+      city,
+      state,
+      notes,
+    } = body
 
     if (!business_name || !ein || !owner_email || !owner_first_name || !owner_last_name) {
       return jsonError('Missing required fields', 400, 'VALIDATION_ERROR')
     }
 
-    const supabase = await createClient()
-    const account_last4 =
-      typeof account_number === 'string' && account_number.length >= 4
-        ? account_number.slice(-4)
-        : '0000'
+    // ── Reject raw sensitive fields ──────────────────────────────────────────
+    // If a client sends account_number or routing_number the request is malformed —
+    // raw values must never reach this server.
+    const raw = body as unknown as Record<string, unknown>
+    if (raw['account_number'] !== undefined || raw['routing_number'] !== undefined) {
+      return jsonError(
+        'Raw bank account data is not accepted. Submit account_last4 only.',
+        400,
+        'RAW_BANK_DATA_REJECTED',
+      )
+    }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { account_number: _acct, ...rest } = body
+    // ── Validate last-4 format ───────────────────────────────────────────────
+    if (account_last4 !== undefined && !LAST4_RE.test(account_last4)) {
+      return jsonError('account_last4 must be exactly 4 digits', 400, 'VALIDATION_ERROR')
+    }
+    if (routing_last4 !== undefined && !LAST4_RE.test(routing_last4)) {
+      return jsonError('routing_last4 must be exactly 4 digits', 400, 'VALIDATION_ERROR')
+    }
+    if (account_type !== undefined && account_type !== 'checking' && account_type !== 'savings') {
+      return jsonError('account_type must be checking or savings', 400, 'VALIDATION_ERROR')
+    }
+
+    const supabase = await createClient()
+
     const { error } = await supabase.from('merchant_applications').insert({
-      ...rest,
-      account_last4,
+      business_name,
+      ein,
+      owner_email,
+      owner_first_name,
+      owner_last_name,
+      owner_phone: owner_phone ?? null,
+      owner_dob: owner_dob ?? null,
+      address: address ?? null,
+      zip: zip ?? null,
+      bank_name: bank_name ?? null,
+      account_last4: account_last4 ?? null,
+      routing_last4: routing_last4 ?? null,
+      account_type: account_type ?? null,
+      business_type: business_type ?? null,
+      industry: industry ?? null,
+      monthly_volume: monthly_volume ?? null,
+      average_ticket: average_ticket ?? null,
+      current_terminal: current_terminal ?? null,
+      website: website ?? null,
+      dba_name: dba_name ?? null,
+      location_count: location_count ?? null,
+      existing_processor: existing_processor ?? null,
+      device_preference: device_preference ?? null,
+      existing_pos_software: existing_pos_software ?? null,
+      has_customer_database: has_customer_database ?? null,
+      customer_count: customer_count ?? null,
+      needs_recurring_billing: needs_recurring_billing ?? null,
+      needs_online_payments: needs_online_payments ?? null,
+      needs_invoicing: needs_invoicing ?? null,
+      city: city ?? null,
+      state: state ?? null,
+      notes: notes ?? null,
       status: 'submitted',
     })
 
@@ -197,12 +231,6 @@ export async function POST(request: Request) {
       'We received your application — Charm Payments',
       applicationReceivedHtml(owner_first_name, business_name),
     )
-
-    try {
-      await pushToPipedrive(body)
-    } catch {
-      // Pipedrive failure does not block the response
-    }
 
     return jsonSuccess({ submitted: true })
   } catch {

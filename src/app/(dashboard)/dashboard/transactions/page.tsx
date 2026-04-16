@@ -13,7 +13,7 @@ export default async function TransactionsPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
   const { data: merchant } = await supabase.from('merchants').select('id').eq('user_id', user.id).single()
-  if (!merchant) redirect('/apply')
+  if (!merchant) redirect('/apply/pending')
   const { data: transactions } = await supabase
     .from('transactions')
     .select('*')

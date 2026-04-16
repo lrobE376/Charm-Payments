@@ -11,7 +11,7 @@ export default async function SettingsPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
   const { data: merchant } = await supabase.from('merchants').select('*').eq('user_id', user.id).single()
-  if (!merchant) redirect('/apply')
+  if (!merchant) redirect('/apply/pending')
   const m = merchant as {
     business_name: string
     dba_name: string | null

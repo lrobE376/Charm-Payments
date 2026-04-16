@@ -12,7 +12,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
   const { data: merchant } = await supabase.from('merchants').select('*').eq('user_id', user.id).single()
-  if (!merchant) redirect('/apply')
+  if (!merchant) redirect('/apply/pending')
   const m = merchant as Merchant
   return (
     <div className="min-h-screen bg-gray-50 flex">

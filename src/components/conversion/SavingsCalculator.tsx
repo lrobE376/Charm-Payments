@@ -21,17 +21,17 @@ export default function SavingsCalculator() {
   const annualSavings = useMemo(() => estimateAnnualSavings(monthly), [monthly])
 
   return (
-    <section className="scroll-mt-24 border-y border-sales-navy/10 bg-gradient-to-b from-white to-slate-50 section-ptb" id="savings-calculator">
+    <section data-section className="scroll-mt-24 section-ptb" id="savings-calculator" style={{ background: 'var(--surface-container-low)' }}>
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">RATE REALITY CHECK</span>
-          <h2 className="font-display mt-3 text-3xl font-bold text-sales-navy md:text-4xl">See what interchange-plus could mean for you</h2>
-          <p className="mt-3 text-lg text-[var(--paragraph)]/85">
+          <span data-animate="fade-up" className="section-label">RATE REALITY CHECK</span>
+          <h2 data-animate="fade-up" data-delay="80" className="mt-3 text-3xl font-bold md:text-4xl" style={{ color: 'var(--on-surface)' }}>See what interchange-plus could mean for you</h2>
+          <p data-animate="fade-up" data-delay="160" className="mt-3 text-lg text-[var(--paragraph)]/85">
             Slide your volume — we&apos;ll show an illustrative savings range based on typical flat-rate competitor pricing.
           </p>
         </div>
 
-        <div className="charm-card mt-10 border border-sales-navy/10 bg-white p-6 shadow-brand-md md:p-8">
+        <div data-animate="scale-up" data-delay="240" className="charm-card mt-10 p-6 md:p-8" style={{ background: 'var(--surface-container-lowest)', outline: '1px solid rgba(28,28,21,0.12)' }}>
           <label htmlFor="volume-slider" className="block text-sm font-semibold text-sales-navy">
             Monthly processing volume
           </label>
@@ -57,7 +57,7 @@ export default function SavingsCalculator() {
             <span>{formatCurrency(MAX)}</span>
           </div>
 
-          <div className="mt-8 rounded-2xl border-2 border-sales-green/40 bg-sales-navy px-5 py-6 text-center">
+          <div className="mt-8 rounded-2xl px-5 py-6 text-center" style={{ background: 'linear-gradient(135deg, #004421, #1E5C35)' }}>
             <p className="text-sm font-medium text-white/80">Estimated annual savings with Charm</p>
             <p
               className="font-display mt-2 text-3xl font-bold tabular-nums text-sales-green md:text-4xl"

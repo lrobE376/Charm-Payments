@@ -15,7 +15,7 @@ export default async function DashboardPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
   const { data: merchant } = await supabase.from('merchants').select('id').eq('user_id', user.id).single()
-  if (!merchant) redirect('/apply')
+  if (!merchant) redirect('/apply/pending')
   const [{ data: transactions }, { data: payouts }, { data: disputes }] = await Promise.all([
     supabase.from('transactions').select('*').eq('merchant_id', merchant.id).order('created_at', { ascending: false }).limit(10),
     supabase.from('payouts').select('*').eq('merchant_id', merchant.id).order('created_at', { ascending: false }).limit(5),

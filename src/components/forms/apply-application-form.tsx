@@ -12,6 +12,15 @@ const stepLabels = ['Business basics', 'Ownership & KYC', 'Banking & settlement'
 
 const TOTAL_STEPS = 4
 
+// Derives the last 4 digits from a raw numeric string.
+// Returns null if input is empty; returns '0000' if fewer than 4 digits are entered.
+// This function exists so raw values never appear in the submit payload.
+function last4(raw: string): string | null {
+  const digits = raw.replace(/\D/g, '')
+  if (!digits) return null
+  return digits.slice(-4).padStart(4, '0')
+}
+
 export default function ApplyApplicationForm() {
   const router = useRouter()
   const [step, setStep] = useState(1)
@@ -35,8 +44,12 @@ export default function ApplyApplicationForm() {
     state: '',
     zip: '',
     bank_name: '',
-    routing_number: '',
-    account_number: '',
+    account_type: 'checking' as 'checking' | 'savings',
+    // Raw sensitive fields — NEVER included in the API payload.
+    // They live here only to drive UX validation and last4 derivation.
+    _routing_number_raw: '',
+    _account_number_raw: '',
+    current_terminal: '',
     agree_merchant: false,
     agree_fees: false,
   })
@@ -49,21 +62,51 @@ export default function ApplyApplicationForm() {
     if (!form.agree_merchant || !form.agree_fees) return
     setSubmitError(null)
     setSubmitting(true)
-    const { agree_merchant, agree_fees, ...payload } = form
-    void agree_merchant
-    void agree_fees
-    const res = await fetch('/api/apply', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
-    setSubmitting(false)
-    const j = (await res.json().catch(() => ({}))) as { success?: boolean; error?: string }
-    if (!res.ok || j.success === false) {
-      setSubmitError(j.error || 'Something went wrong. Please try again.')
-      return
+
+    // Build the safe payload. Raw bank values are intentionally excluded.
+    // Only derived last4 values and non-sensitive metadata are sent.
+    const payload = {
+      business_name:    form.business_name,
+      dba_name:         form.dba_name || undefined,
+      business_type:    form.business_type || undefined,
+      ein:              form.ein,
+      website:          form.website || undefined,
+      monthly_volume:   form.monthly_volume,
+      average_ticket:   form.average_ticket,
+      owner_first_name: form.owner_first_name,
+      owner_last_name:  form.owner_last_name,
+      owner_email:      form.owner_email,
+      owner_phone:      form.owner_phone || undefined,
+      owner_dob:        form.owner_dob || undefined,
+      address:          form.address || undefined,
+      city:             form.city || undefined,
+      state:            form.state || undefined,
+      zip:              form.zip || undefined,
+      current_terminal: form.current_terminal || undefined,
+      // Safe bank metadata — raw numbers derived to last4 client-side
+      bank_name:        form.bank_name || undefined,
+      account_type:     form.account_type,
+      account_last4:    last4(form._account_number_raw) ?? undefined,
+      routing_last4:    last4(form._routing_number_raw) ?? undefined,
     }
-    router.push('/apply/submitted')
+
+    try {
+      const res = await fetch('/api/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const j = (await res.json().catch(() => ({}))) as { success?: boolean; error?: string }
+      if (!res.ok || j.success === false) {
+        setSubmitError(j.error || 'Something went wrong. Please try again.')
+        return
+      }
+      router.push('/apply/submitted')
+    } catch {
+      setSubmitError('Network error. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const progress = (step / TOTAL_STEPS) * 100
@@ -127,6 +170,13 @@ export default function ApplyApplicationForm() {
             onChange={(e) => update('monthly_volume', e.target.value)}
           />
           <Input label="Average ticket size" required value={form.average_ticket} onChange={(e) => update('average_ticket', e.target.value)} />
+          <Input
+            label="Current payment terminal (if any)"
+            placeholder="e.g. Verifone VX520, Square, Clover, None"
+            hint="We'll let you know if your existing hardware is compatible"
+            value={form.current_terminal}
+            onChange={(e) => update('current_terminal', e.target.value)}
+          />
         </div>
       )}
 
@@ -162,17 +212,45 @@ export default function ApplyApplicationForm() {
           <h2 className="text-sm font-bold uppercase tracking-wide text-brand-dark">Settlement banking</h2>
           <p className="text-xs text-gray-500">
             Account used for deposits must match the legal business or DBA on file.
+            Only the last four digits of each number are stored — raw values never leave your browser.
           </p>
-          <Input label="Bank name" required value={form.bank_name} onChange={(e) => update('bank_name', e.target.value)} />
-          <Input label="Routing number" required value={form.routing_number} onChange={(e) => update('routing_number', e.target.value)} />
+          <Input
+            label="Bank name"
+            required
+            value={form.bank_name}
+            onChange={(e) => update('bank_name', e.target.value)}
+          />
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="accountType" className="text-sm font-medium text-gray-700">
+              Account type <span className="text-red-500">*</span>
+            </label>
+            <select
+              id="accountType"
+              required
+              className="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm"
+              value={form.account_type}
+              onChange={(e) => update('account_type', e.target.value as 'checking' | 'savings')}
+            >
+              <option value="checking">Checking</option>
+              <option value="savings">Savings</option>
+            </select>
+          </div>
+          <Input
+            label="Routing number"
+            required
+            autoComplete="off"
+            hint="Used for verification only. Only the last 4 digits are stored."
+            value={form._routing_number_raw}
+            onChange={(e) => update('_routing_number_raw', e.target.value)}
+          />
           <Input
             label="Account number"
             type="password"
             autoComplete="new-password"
             required
-            hint="Transmitted over TLS. Only the last four digits are stored in our systems."
-            value={form.account_number}
-            onChange={(e) => update('account_number', e.target.value)}
+            hint="Only the last 4 digits are stored. Raw value is never sent to our servers."
+            value={form._account_number_raw}
+            onChange={(e) => update('_account_number_raw', e.target.value)}
           />
         </div>
       )}
@@ -193,7 +271,10 @@ export default function ApplyApplicationForm() {
             <p>
               Volume: {form.monthly_volume} · Avg ticket: {form.average_ticket}
             </p>
-            <p>Bank: {form.bank_name}</p>
+            <p>
+              Bank: {form.bank_name} &middot; {form.account_type} &middot; acct ending{' '}
+              {last4(form._account_number_raw) ?? '—'}
+            </p>
           </div>
           <label className="flex cursor-pointer items-start gap-3 text-sm text-gray-700">
             <input
@@ -241,7 +322,7 @@ export default function ApplyApplicationForm() {
                   !form.city ||
                   !form.state ||
                   !form.zip)) ||
-              (step === 3 && (!form.bank_name || !form.routing_number || !form.account_number))
+              (step === 3 && (!form.bank_name || !form._routing_number_raw || !form._account_number_raw))
             }
           >
             Next Step

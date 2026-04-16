@@ -23,13 +23,9 @@ export interface Lead {
   status: LeadStatus
   notes: string
   createdAt: string
-  pipedrivePersonId?: string
-  pipedriveOrgId?: string
-  pipedriveDealId?: string
-  pipedriveSyncedAt?: string
 }
 
-export type CreateLeadInput = Omit<Lead, 'id' | 'createdAt' | 'status' | 'pipedrivePersonId' | 'pipedriveOrgId' | 'pipedriveDealId' | 'pipedriveSyncedAt'> & {
+export type CreateLeadInput = Omit<Lead, 'id' | 'createdAt' | 'status'> & {
   status?: LeadStatus
   notes?: string
 }

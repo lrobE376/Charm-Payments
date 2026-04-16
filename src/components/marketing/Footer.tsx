@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <Image src="/images/white-logo.png" alt="Charm Payments" width={220} height={66} />
+            <Image src="/images/logo.png" alt="Charm Payments" width={220} height={66} className="h-12 w-auto object-contain" />
             <p className="mt-4 text-sm text-white/70 leading-relaxed">
               Enterprise payment processing for businesses of all sizes — powered by NMI Gateway and First Data/Fiserv acquiring.
             </p>
@@ -50,6 +50,19 @@ export default function Footer() {
                 <li key={s}>
                   <Link href="/services" className="text-white/70 hover:text-brand-accent transition-colors">
                     {s}
+                  </Link>
+                </li>
+              ))}
+              {(
+                [
+                  ['Gateway Overview', '/gateway'],
+                  ['Gateway Features', '/gateway/features'],
+                  ['Payment Hardware', '/gateway/hardware'],
+                ] as const
+              ).map(([l, h]) => (
+                <li key={h}>
+                  <Link href={h} className="text-white/70 hover:text-brand-accent transition-colors">
+                    {l}
                   </Link>
                 </li>
               ))}

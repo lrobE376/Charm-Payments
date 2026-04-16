@@ -97,7 +97,7 @@ export async function POST(req: Request) {
       notes,
     })
 
-    await sendLeadReceivedNotification(lead.id)
+    await sendLeadReceivedNotification(lead)
 
     // Confirmation to the submitter
     await sendResendEmail(

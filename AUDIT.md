@@ -1,475 +1,836 @@
-# Charm Payments — Full Codebase Audit
-> Generated: 2026-04-03 | Auditor: Claude Code (Sonnet 4.6)
+# Charm Payments — Full Infrastructure Audit
+**Date:** 2026-04-15  
+**Auditor:** Claude Code (claude-sonnet-4-6)  
+**Status:** READ-ONLY — no files modified
 
 ---
 
-## 1. File Tree (Complete)
+## Table of Contents
+1. [Codebase Structure](#1-codebase-structure)
+2. [Database Schema (Supabase)](#2-database-schema-supabase)
+3. [Recent Git History](#3-recent-git-history)
+4. [API Route Inventory](#4-api-route-inventory)
+5. [Component Inventory](#5-component-inventory)
+6. [Pipedrive Removal Audit](#6-pipedrive-removal-audit)
+7. [Infrastructure Map (Mermaid)](#7-infrastructure-map)
+8. [Recommendations](#8-recommendations)
 
-**Structure Summary:**
-- **Configuration Files:** `package.json`, `tsconfig.json`, `tailwind.config.ts`, `next.config.mjs`, `postcss.config.mjs`
-- **App Routes:** Marketing layout with 40+ pages, Auth layout (apply, login), Dashboard layout with 8 sub-pages, API routes (11+ endpoints)
-- **Components:** 40+ React components organized by feature (marketing, dashboard, forms, conversion, UI, support)
-- **Services & Libraries:** Supabase, Stripe, NMI, Pipedrive integrations; validation, utilities, types
-- **Styling:** `globals.css` with design tokens, animations, component utilities; Tailwind CSS with custom theme
+---
 
-**Key Directories:**
+## 1. Codebase Structure
+
+### 1.1 Directory Tree
+
 ```
 src/
-  app/
-    (marketing)/          # Public pages
-    (auth)/               # Merchant application & login
-    (dashboard)/          # Protected merchant dashboard
-    api/                  # Backend routes
-  components/
-    marketing/            # Navbar, Footer, testimonials
-    dashboard/            # Sidebar, header, forms
-    forms/                # Apply form, quote form
-    conversion/           # CTA components, savings calculator
-    ui/                   # Button, Input, Badge, StatCard
-    support/              # Support ticket form
-    contact/              # Contact page client
-    faq/                  # FAQ page client
-  lib/
-    services/             # Account, lead, ticket, stripe services
-    integrations/         # Pipedrive, NMI, Ooma, notifications
-    supabase/             # Server/admin/client clients
-    validators/           # Lead & ticket payload validation
-  types/                  # TypeScript interfaces
-  hooks/                  # Custom React hooks
+├── app/
+│   ├── (admin)/                        # Admin portal
+│   │   └── admin/
+│   │       ├── applications/           # Review list + detail
+│   │       ├── leads/                  # Lead CRM view
+│   │       ├── merchants/              # Approved merchant list
+│   │       ├── tickets/                # Support tickets
+│   │       ├── admins/                 # Admin user management
+│   │       └── layout.tsx              # Admin shell (AdminSidebar)
+│   ├── (auth)/
+│   │   ├── apply/
+│   │   │   └── pending/                # Post-apply holding page
+│   │   ├── login/
+│   │   ├── forgot-password/
+│   │   └── auth/callback/              # Supabase OAuth callback
+│   ├── (dashboard)/
+│   │   ├── dashboard/
+│   │   │   ├── page.tsx                # Overview / KPIs
+│   │   │   ├── accounts/               # Bank account management
+│   │   │   ├── transactions/           # Transaction history
+│   │   │   ├── wallet/                 # Stripe Treasury wallet
+│   │   │   ├── payouts/                # Settlement records
+│   │   │   ├── disputes/               # Chargeback tracking
+│   │   │   ├── equipment/              # NMI hardware catalog
+│   │   │   ├── tickets/                # Support tickets
+│   │   │   └── settings/               # Merchant profile settings
+│   │   └── layout.tsx                  # Auth guard + Sidebar + Header
+│   ├── (marketing)/
+│   │   ├── page.tsx                    # Homepage
+│   │   ├── about/
+│   │   ├── pricing/
+│   │   ├── contact/
+│   │   ├── faq/
+│   │   ├── privacy/
+│   │   ├── terms/
+│   │   ├── unsubscribe/
+│   │   ├── charm-cards/                # Branded card product
+│   │   ├── gateway/                    # Gateway product page
+│   │   ├── cards/                      # Card solutions
+│   │   ├── wallet/                     # Wallet product
+│   │   ├── features/                   # 9 feature sub-pages
+│   │   │   ├── virtual-terminal/
+│   │   │   ├── tap-to-pay/
+│   │   │   ├── card-present/
+│   │   │   ├── invoicing/
+│   │   │   ├── text-to-pay/
+│   │   │   ├── recurring-billing/
+│   │   │   ├── ach/
+│   │   │   ├── ecommerce/
+│   │   │   └── qr-codes/
+│   │   └── solutions/                  # 7 vertical sub-pages
+│   │       ├── mobile/
+│   │       ├── ecommerce/
+│   │       ├── restaurants/
+│   │       ├── retail/
+│   │       ├── services/
+│   │       ├── beauty/
+│   │       └── high-risk/
+│   └── api/
+│       ├── apply/                      # Merchant application
+│       ├── quote/                      # Rate audit form
+│       │   └── upload/                 # Statement file upload
+│       ├── contact/                    # Contact form
+│       ├── leads/                      # Lead CRUD
+│       ├── tickets/                    # Ticket CRUD
+│       ├── auth/
+│       │   ├── callback/               # Supabase auth redirect
+│       │   └── forgot-password/
+│       ├── admin/
+│       │   └── applications/
+│       │       ├── route.ts            # List with filters
+│       │       └── [id]/
+│       │           ├── route.ts        # Single application
+│       │           ├── approve/
+│       │           ├── decline/
+│       │           └── review/
+│       ├── integrations/
+│       │   ├── pipedrive/              # Manual/test sync — REMOVE
+│       │   ├── ooma/                   # Call logging
+│       │   └── nmi/                    # NMI webhook
+│       ├── wallet/
+│       │   ├── balance/
+│       │   ├── transactions/
+│       │   ├── transfer/
+│       │   └── onboard/
+│       ├── webhooks/
+│       │   └── nmi/                    # NMI payment webhook
+│       └── dashboard/
+│           └── equipment/
+│               └── order/             # Equipment purchase/lease
+├── components/
+│   ├── admin/
+│   │   ├── AdminSidebar.tsx
+│   │   └── ApplicationReviewForm.tsx
+│   ├── dashboard/
+│   │   ├── Sidebar.tsx
+│   │   ├── Header.tsx
+│   │   ├── MobileNav.tsx
+│   │   ├── DashboardPageHeader.tsx
+│   │   ├── leads-dashboard-client.tsx  # Orphaned — references pipedrive_deal_id; source page deleted
+│   │   ├── EquipmentCatalogClient.tsx
+│   │   └── wallet-transfer-form.tsx
+│   ├── marketing/
+│   │   ├── Navbar.tsx
+│   │   ├── Footer.tsx
+│   │   └── (various section components)
+│   ├── conversion/
+│   │   ├── PrimaryCTA.tsx
+│   │   ├── ProofSection.tsx
+│   │   ├── SavingsCalculator.tsx
+│   │   ├── SocialProofStrip.tsx
+│   │   └── StatsBar.tsx
+│   ├── forms/
+│   │   ├── apply-application-form.tsx
+│   │   └── quote-form.tsx
+│   └── ui/
+│       ├── Button.tsx
+│       ├── Input.tsx
+│       ├── StatCard.tsx
+│       ├── Badge.tsx
+│       ├── ScrollReveal.tsx
+│       ├── FadeIn.tsx
+│       ├── FloatingCard.tsx
+│       └── HeroVisual.tsx
+├── lib/
+│   ├── supabase/
+│   │   ├── client.ts                   # Browser Supabase client
+│   │   ├── server.ts                   # Server-side Supabase client
+│   │   └── admin.ts                    # Service-role admin client
+│   ├── integrations/
+│   │   ├── pipedrive.ts                # ENTIRE FILE TO REMOVE
+│   │   ├── ooma.ts                     # VoIP call logging
+│   │   ├── nmi.ts                      # NMI gateway client
+│   │   └── notifications.ts            # Resend notification helpers
+│   ├── services/
+│   │   ├── lead-service.ts             # Lead CRUD + Pipedrive sync
+│   │   ├── ticket-service.ts           # Support ticket CRUD
+│   │   └── stripe-service.ts           # Stripe Treasury ops
+│   ├── auth/
+│   │   └── require-admin.ts            # Admin route guard
+│   ├── validators/
+│   │   ├── lead-payload.ts             # Zod schema for leads
+│   │   └── ticket-payload.ts           # Zod schema for tickets
+│   ├── utils.ts
+│   ├── api-response.ts
+│   ├── email.ts                        # Resend email templates
+│   ├── stripe.ts                       # Stripe singleton
+│   └── nmi-products.ts                 # Static NMI product data
+├── hooks/
+│   └── useScrollReveal.ts
+└── types/
+    ├── lead.ts                         # Lead type with Pipedrive fields
+    ├── integration.ts                  # IntegrationProvider union type
+    └── (others)
+```
+
+### 1.2 Environment Variables Referenced in Code
+
+| Variable | Files | Purpose |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | lib/supabase/client.ts, server.ts, admin.ts | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | lib/supabase/client.ts, server.ts | Supabase public anon key |
+| `SUPABASE_SERVICE_ROLE_KEY` | lib/supabase/admin.ts | Service-role key (admin ops only) |
+| `NEXT_PUBLIC_SITE_URL` | api/apply, api/contact, lib/email.ts, api/admin/approve | Site URL for email links |
+| `RESEND_API_KEY` | api/apply, api/contact, lib/email.ts | Transactional email (critical) |
+| `PIPEDRIVE_API_TOKEN` | lib/integrations/pipedrive.ts, api/apply, api/quote | **TO REMOVE** |
+| `PIPEDRIVE_DOMAIN` | lib/integrations/pipedrive.ts | **TO REMOVE** |
+| `PIPEDRIVE_QUOTE_STAGE_ID` | api/quote/route.ts | **TO REMOVE** |
+| `OOMA_ACCOUNT_ID` | lib/integrations/ooma.ts | VoIP call link generation |
+| `OOMA_EXTENSION` | lib/integrations/ooma.ts | VoIP extension |
+| `STRIPE_SECRET_KEY` | lib/stripe.ts, lib/services/stripe-service.ts | Stripe server SDK |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe client components | Stripe public key |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook handler | Webhook signature verification |
+| `NMI_SECURITY_KEY` | lib/integrations/nmi.ts | NMI gateway authentication |
+| `NMI_PUBLIC_KEY` | lib/integrations/nmi.ts | NMI gateway public key |
+| `NEXT_PUBLIC_NMI_TOKENIZATION_KEY` | NMI client-side tokenization | NMI JS library key |
+
+**Defined in .env.example but NOT yet wired in code:**
+- `NMI_SECURITY_KEY` / `NMI_PUBLIC_KEY` / `NEXT_PUBLIC_NMI_TOKENIZATION_KEY` — NMI boarding API not yet fully implemented
+
+### 1.3 External Service Integrations
+
+| Service | Integration File | Routes | Status |
+|---|---|---|---|
+| **Supabase** | lib/supabase/* | All API routes | Active |
+| **Resend** | lib/email.ts, lib/integrations/notifications.ts | apply, quote, contact, admin approve/decline, forgot-password | Active |
+| **Pipedrive** | lib/integrations/pipedrive.ts | apply, quote, integrations/pipedrive, integrations/ooma | Active — **TO REMOVE** |
+| **Ooma** | lib/integrations/ooma.ts | integrations/ooma | Active (remove Pipedrive call from this file only) |
+| **Stripe** | lib/stripe.ts, lib/services/stripe-service.ts | api/wallet/* | Active |
+| **NMI** | lib/integrations/nmi.ts, lib/nmi-products.ts | api/integrations/nmi, api/webhooks/nmi | Partially wired (webhook stub + product data; boarding API not yet implemented) |
+
+### 1.4 Stale / Unused Files
+
+| File | Issue |
+|---|---|
+| `src/app/api/integrations/pipedrive/route.ts` | Manual test endpoint — no UI consumer, no auth guard, removing CRM |
+| `src/app/api/integrations/ooma/route.ts` | Sole purpose was Pipedrive call logging; keep Ooma dial logic, remove Pipedrive call |
+| `src/lib/integrations/pipedrive.ts` | Entire file removed in cleanup |
+| `src/lib/services/account-service.ts` | Already deleted in git — confirm no lingering imports |
+| `src/app/(dashboard)/dashboard/leads/page.tsx` | Already deleted in git — confirm sidebar nav updated |
+| `src/components/dashboard/leads-dashboard-client.tsx` | Source page deleted; contains Pipedrive-linked fields |
+| `sendApprovalNotification()` in notifications.ts | Superseded — approve route now sends directly via email.ts |
+
+---
+
+## 2. Database Schema (Supabase)
+
+### 2.1 Tables
+
+#### `merchant_applications`
+**Purpose:** Stores all incoming merchant onboarding applications before admin review.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID PK | |
+| `status` | text | `pending \| under_review \| approved \| declined` |
+| `application_token` | UUID | Opaque token for email status links (migration 004) |
+| `first_name`, `last_name`, `email`, `phone` | text | Contact info |
+| `business_name`, `business_type`, `monthly_volume` | text | Business info |
+| `current_terminal` | text | Added migration 002 |
+| `bank_name`, `account_type`, `routing_last4`, `account_last4` | text | Added migration 005 — safe last-4 only |
+| `reviewed_by` | UUID FK → admin_profiles.id | Added migration 003 |
+| `reviewed_at`, `decision_notes` | timestamptz, text | Added migration 003 |
+| `created_at` | timestamptz | |
+
+**RLS:** Service-role only (no public access)
+
+---
+
+#### `merchants`
+**Purpose:** Approved, live merchant accounts.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID PK | |
+| `user_id` | UUID FK → auth.users.id | Added migration 004 |
+| `mid` | text | Merchant ID from NMI |
+| `business_name`, `email`, `status` | text | |
+| `created_at` | timestamptz | |
+
+**RLS:** Merchants read their own record via `user_id`
+
+---
+
+#### `leads`
+**Purpose:** Marketing/sales leads from contact form, quote form, and campaign sources.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID PK | |
+| `name`, `business_name`, `email`, `phone`, `monthly_volume` | text | |
+| `source` | text | `contact \| quote \| referral \| campaign` |
+| `status` | text | `new \| contacted \| qualified \| proposal \| won \| lost \| converted` |
+| `notes` | text | |
+| `pipedrive_person_id` | bigint | **TO REMOVE** |
+| `pipedrive_org_id` | bigint | **TO REMOVE** |
+| `pipedrive_deal_id` | bigint | **TO REMOVE** |
+| `pipedrive_synced_at` | timestamptz | **TO REMOVE** |
+| `created_at` | timestamptz | |
+
+**RLS:** Service-role only
+
+---
+
+#### `tickets`
+**Purpose:** Merchant support tickets from dashboard or contact form.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID PK | |
+| `lead_id` | UUID FK → leads.id | Nullable |
+| `account_id` | UUID | Nullable — links to merchant |
+| `name`, `email`, `subject`, `message` | text | |
+| `priority` | text | `low \| normal \| high \| urgent` |
+| `status` | text | `open \| in_progress \| resolved \| closed` |
+| `created_at` | timestamptz | |
+
+**RLS:** Service-role only
+
+---
+
+#### `equipment_catalog`
+**Purpose:** NMI hardware terminal catalog for purchase/lease.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID PK | |
+| `name`, `category`, `description`, `image_url` | text | |
+| `purchase_price`, `lease_price_monthly` | numeric | |
+| `compatible_business_types` | text[] | |
+| `in_stock`, `featured` | boolean | |
+
+**Pre-seeded:** Dejavoo Z11/Z8/Z6, Ingenico Move 5000, Verifone VX520, BBPOS Chipper 2X  
+**RLS:** Public read
+
+---
+
+#### `equipment_orders`
+**Purpose:** Merchant equipment purchase/lease orders.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID PK | |
+| `merchant_id` | UUID FK → merchants.id | |
+| `equipment_id` | UUID FK → equipment_catalog.id | |
+| `order_type` | text | `purchase \| lease` |
+| `quantity`, `monthly_rate`, `purchase_price` | int, numeric | |
+| `status` | text | `pending \| processing \| shipped \| delivered` |
+| `shipping_address`, `notes` | text | |
+
+**RLS:** Merchants read/insert own orders
+
+---
+
+#### `admin_profiles`
+**Purpose:** Admin user registry for `requireAdmin()` guard.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID FK → auth.users.id | |
+| `email`, `full_name` | text | |
+| `created_at` | timestamptz | |
+
+**RLS:** Service-role only
+
+---
+
+#### `admin_notes`
+**Purpose:** Internal notes attached to merchant applications.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID PK | |
+| `application_id` | UUID FK → merchant_applications.id | |
+| `admin_id` | UUID | |
+| `body` | text | |
+| `created_at` | timestamptz | |
+
+**RLS:** Service-role only
+
+---
+
+#### `application_status_history`
+**Purpose:** Immutable audit log of every status change on an application.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID PK | |
+| `application_id` | UUID FK | |
+| `status` | text | |
+| `changed_by` | UUID | |
+| `notes` | text | |
+| `created_at` | timestamptz | |
+
+**RLS:** Service-role only
+
+---
+
+#### `quote_requests`
+**Purpose:** Rate audit / savings analysis submissions.
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | UUID PK | |
+| `name`, `business_name`, `email`, `phone` | text | |
+| `monthly_volume`, `current_processor` | text | |
+| `statement_url` | text | S3 upload URL |
+| `created_at` | timestamptz | |
+
+**RLS:** Service-role only
+
+---
+
+#### `transactions`, `payouts`, `disputes`
+Standard payment records — merchant-scoped RLS (own records only). Columns follow standard payment processing schema (id, merchant_id, amount, status, created_at, etc.).
+
+---
+
+### 2.2 Migration History
+
+| Migration | What It Does |
+|---|---|
+| `20260407000000_leads_tickets.sql` | Creates `leads` (with Pipedrive columns) and `tickets` tables |
+| `20260407000001_hardware.sql` | Creates `equipment_catalog` and `equipment_orders`; seeds 6 devices |
+| `20260407000002_current_terminal.sql` | Adds `current_terminal` to `merchant_applications` |
+| `20260407000003_admin_roles.sql` | Creates `admin_profiles`, `admin_notes`; adds reviewed_by/at/notes to applications |
+| `20260407000004_approval_system.sql` | Adds `application_token`; creates `application_status_history`; adds `merchants.user_id` |
+| `20260407000005_bank_fields.sql` | Adds `bank_name`, `account_type`, `routing_last4`, `account_last4` to applications |
+
+### 2.3 Orphaned Columns (Pipedrive — schema change required)
+
+```sql
+-- New migration: supabase/migrations/20260415000000_remove_pipedrive.sql
+ALTER TABLE leads
+  DROP COLUMN IF EXISTS pipedrive_person_id,
+  DROP COLUMN IF EXISTS pipedrive_org_id,
+  DROP COLUMN IF EXISTS pipedrive_deal_id,
+  DROP COLUMN IF EXISTS pipedrive_synced_at;
+```
+
+> Run this migration LAST — only after all application code referencing these columns is removed.
+
+---
+
+## 3. Recent Git History
+
+```
+fb74140  fix: P1+P2 audit fixes — password reset, email confirmations, dashboard accounts, wallet credentials, about page, loading states
+e7ae297  fix: lazy Stripe initialization to prevent build crash when STRIPE_SECRET_KEY is unset
+34ad91e  fix: escape JSX entities in solution pages, suppress unused var in apply route — unblocks Vercel build
+d678e6e  fix: correct Supabase project, statements bucket, quote_requests table, RLS policies all live
+72d16de  feat: 3-step quote form, statement upload, Pipedrive integration
+9ea1c4d  feat: Stripe Treasury, wallet dashboard, 34 static pages, full infrastructure
+52ccd6c  feat: full architecture, Pipedrive, Ooma integration
+3e61ad8  feat: update logo references to official Charm Payments brand files
+7ed827b  feat: official Charm Payments logo — all references updated
+6df8c16  feat: build out FAQ, Services, and Contact pages
+1074deb  Update next.config.mjs
+e3423ba  fix: clean next.config.mjs
+aa308b2  fix: force new Vercel build trigger
+d0b8699  fix: restore next.config.mjs — clean build confirmed
+5269547  fix: force Vercel cache bust — remove all legacy static files
+15d3529  fix: force Vercel cache bust — remove all legacy static files
+6eb8ec8  fix: remove legacy HTML/assets from repo root
+4d6d0bf  feat: elevate visual design — animations, marquee ticker, gradient sections, glassmorphism stats
+7039354  feat: convert to Next.js 14 — marketing site, merchant dashboard, auth flows, Supabase schema, NMI structure
+a13ae31  fix: standardize nav/footer, rebuild pricing, add cursor rules
+2c387e9  QA fixes — blog removed, nav cleaned
+357c798  Charm Payments rebrand — initial site
+```
+
+**Development Phases:**
+- `357c798–2c387e9` — Rebrand from legacy "Finto" identity
+- `7039354–4d6d0bf` — Full Next.js 14 migration, visual design elevation
+- `52ccd6c–9ea1c4d` — Pipedrive/Ooma integration, Stripe Treasury, 34 marketing pages
+- `72d16de–d678e6e` — Quote form + statement upload, Supabase/RLS production fixes
+- `34ad91e–fb74140` — Build unblocking (JSX entities, Stripe lazy init), P1/P2 audit fixes
+
+**Half-finished features detected:**
+- `api/integrations/nmi/route.ts` — webhook stub exists; NMI boarding API not yet implemented
+- `api/wallet/onboard/route.ts` — Stripe Treasury onboarding exists but not fully surfaced in dashboard UI
+- `assignTicket()` in ticket-service.ts — placeholder function body, no helpdesk integration
+
+---
+
+## 4. API Route Inventory
+
+### 4.1 Public Routes
+
+| Route | Method | Purpose | Services Called | Returns |
+|---|---|---|---|---|
+| `/api/apply` | POST | Submit merchant application | Supabase (insert), Resend (email), **Pipedrive** (Person + Org + Deal + Note) | `{ submitted: true }` |
+| `/api/quote` | POST | Submit rate audit request | Supabase (insert), Resend (dual email), **Pipedrive** (Person + Org + Deal + Note) | `{ submitted: true }` |
+| `/api/quote/upload` | POST | Upload merchant statement | Supabase Storage (statements bucket) | `{ url: string }` |
+| `/api/contact` | POST | Contact form submission | lead-service, notifications.ts, Resend | `{ leadId: string }` |
+| `/api/leads` | GET/POST | Lead CRUD | Supabase, **Pipedrive** (via lead-service on POST) | `{ lead }` / `{ leads[] }` |
+| `/api/tickets` | GET/POST | Ticket CRUD | Supabase | `{ ticket }` / `{ tickets[] }` |
+| `/api/auth/callback` | GET | Supabase OAuth/magic-link handler | Supabase auth | Redirect to dashboard |
+| `/api/auth/forgot-password` | POST | Password reset request | Supabase resetPasswordForEmail, Resend | `{ sent: true }` |
+
+### 4.2 Admin Routes (requireAdmin guard)
+
+| Route | Method | Purpose | Services | Returns |
+|---|---|---|---|---|
+| `/api/admin/applications` | GET | List applications with filters | Supabase | `{ applications[], total, limit, offset }` |
+| `/api/admin/applications/[id]` | GET | Single application detail | Supabase | `{ application }` |
+| `/api/admin/applications/[id]/approve` | POST | Approve → create auth user → magic link → email | Supabase (auth.admin + DB), Resend | `{ merchant, loginLink? }` |
+| `/api/admin/applications/[id]/decline` | POST | Decline + email merchant | Supabase, Resend | `{ application }` |
+| `/api/admin/applications/[id]/review` | POST | Add review note | Supabase | `{ application }` |
+
+### 4.3 Integration Routes
+
+| Route | Method | Purpose | Services | Issues |
+|---|---|---|---|---|
+| `/api/integrations/pipedrive` | POST | Manual/test Pipedrive sync | Pipedrive | **No auth guard — security risk. Remove entirely.** |
+| `/api/integrations/ooma` | POST | Log call from dashboard | Ooma + **Pipedrive** (logCallActivity) | Remove Pipedrive call; keep Ooma dial logic |
+| `/api/integrations/nmi` | POST/GET | NMI event receiver | NMI | Stub — needs implementation |
+| `/api/webhooks/nmi` | POST | NMI payment webhook | NMI, Supabase | Stub — no signature verification |
+
+### 4.4 Wallet Routes (Stripe Treasury)
+
+| Route | Method | Purpose | Services |
+|---|---|---|---|
+| `/api/wallet/balance` | POST | Get wallet balance | Stripe Treasury |
+| `/api/wallet/transactions` | POST | List wallet transactions | Stripe Treasury |
+| `/api/wallet/transfer` | POST | Initiate payout/transfer | Stripe Treasury |
+| `/api/wallet/onboard` | POST | Onboard merchant to Treasury | Stripe Connect |
+
+### 4.5 Dashboard Routes
+
+| Route | Method | Purpose | Services |
+|---|---|---|---|
+| `/api/dashboard/equipment/order` | POST | Create equipment order | Supabase (equipment_orders) |
+
+---
+
+## 5. Component Inventory
+
+### 5.1 Dashboard Components
+
+| Component | File | Used By | Notes |
+|---|---|---|---|
+| `Sidebar` | dashboard/Sidebar.tsx | dashboard/layout.tsx | Full nav; shows merchant.mid |
+| `Header` | dashboard/Header.tsx | dashboard/layout.tsx | Top bar, user info |
+| `MobileNav` | dashboard/MobileNav.tsx | dashboard/layout.tsx | Bottom nav on mobile |
+| `DashboardPageHeader` | dashboard/DashboardPageHeader.tsx | All dashboard pages | Consistent page titles |
+| `LeadsDashboardClient` | dashboard/leads-dashboard-client.tsx | Source page DELETED | **Orphaned** — references `pipedrive_deal_id`, links to CRM |
+| `EquipmentCatalogClient` | dashboard/EquipmentCatalogClient.tsx | dashboard/equipment/ | Client-side catalog browse/order |
+| `WalletTransferForm` | dashboard/wallet-transfer-form.tsx | dashboard/wallet/ | Stripe Treasury transfer UI |
+
+### 5.2 Admin Components
+
+| Component | File | Used By |
+|---|---|---|
+| `AdminSidebar` | admin/AdminSidebar.tsx | admin/layout.tsx |
+| `ApplicationReviewForm` | admin/ApplicationReviewForm.tsx | admin/applications/[id] |
+
+### 5.3 Marketing / Conversion Components
+
+| Component | File |
+|---|---|
+| `Navbar` | marketing/Navbar.tsx |
+| `Footer` | marketing/Footer.tsx |
+| `PrimaryCTA` | conversion/PrimaryCTA.tsx |
+| `ProofSection` | conversion/ProofSection.tsx |
+| `SavingsCalculator` | conversion/SavingsCalculator.tsx |
+| `SocialProofStrip` | conversion/SocialProofStrip.tsx |
+| `StatsBar` | conversion/StatsBar.tsx |
+
+### 5.4 Form Components
+
+| Component | File | Used By |
+|---|---|---|
+| `ApplyApplicationForm` | forms/apply-application-form.tsx | (auth)/apply/ |
+| `QuoteForm` | forms/quote-form.tsx | (marketing)/gateway/ or homepage |
+
+### 5.5 UI Primitives
+
+| Component | Notes |
+|---|---|
+| `Button` | Brand-styled, variant prop |
+| `Input` | Tailwind form input |
+| `StatCard` | KPI cards in dashboard |
+| `Badge` | Status badges |
+| `ScrollReveal` | Intersection observer animation — CLAUDE.md forbids `.reveal` on static pages; audit usage |
+| `FadeIn` | Simple fade animation |
+| `FloatingCard` | Hero visual floating card |
+| `HeroVisual` | Hero section visual element |
+
+**Orphaned components:**
+- `components/dashboard/leads-dashboard-client.tsx` — source page (`dashboard/leads/page.tsx`) deleted; this is unreferenced and contains Pipedrive-linked fields
+
+---
+
+## 6. Pipedrive Removal Audit
+
+### 6.1 All Pipedrive References (13 Files / 65+ Lines)
+
+| # | File | Lines | Reference Type |
+|---|---|---|---|
+| 1 | `src/lib/integrations/pipedrive.ts` | ALL | **Core integration — entire file to delete** |
+| 2 | `src/app/api/apply/route.ts` | ~124 | `pushToPipedrive()` call + import |
+| 3 | `src/app/api/quote/route.ts` | ~28 | `pushToPipedrive()` call + import |
+| 4 | `src/app/api/integrations/pipedrive/route.ts` | ALL | **Entire route to delete** |
+| 5 | `src/app/api/integrations/ooma/route.ts` | ~27–28 | `logCallActivity()` import + call — remove PD call only, keep Ooma |
+| 6 | `src/lib/services/lead-service.ts` | 3, 18–21, 37–40, 77–80, 85–88, 128, 147–149 | Import + `syncLeadToPipedrive()` + `addNoteToDeal()` calls |
+| 7 | `src/components/dashboard/leads-dashboard-client.tsx` | 12, 17, 85, 96 | `pipedriveDealId` display + CRM link |
+| 8 | `src/types/lead.ts` | 26–29, 32 | `pipedrive_*` field type definitions |
+| 9 | `src/types/integration.ts` | 1 | `'pipedrive'` in `IntegrationProvider` union type |
+| 10 | `supabase/migrations/20260407000000_leads_tickets.sql` | 16–19 | Column definitions in `CREATE TABLE leads` |
+| 11 | `.env.example` | PIPEDRIVE_* lines | Env var documentation |
+| 12 | `.cursor/rules/charm-payments.mdc` | 131, 187, 194 | Dev rules documentation |
+| 13 | `CLAUDE.md` | PIPEDRIVE_* lines | Project context documentation |
+
+### 6.2 Pipedrive Env Vars to Remove
+
+```
+PIPEDRIVE_API_TOKEN
+PIPEDRIVE_DOMAIN
+PIPEDRIVE_QUOTE_STAGE_ID
+```
+
+### 6.3 npm Dependencies
+
+**None** — the integration uses raw `fetch()` against the Pipedrive REST API. No package to uninstall.
+
+### 6.4 Database Columns to Drop (via migration — run LAST)
+
+```sql
+-- supabase/migrations/20260415000000_remove_pipedrive.sql
+ALTER TABLE leads
+  DROP COLUMN IF EXISTS pipedrive_person_id,
+  DROP COLUMN IF EXISTS pipedrive_org_id,
+  DROP COLUMN IF EXISTS pipedrive_deal_id,
+  DROP COLUMN IF EXISTS pipedrive_synced_at;
 ```
 
 ---
 
-## 2. Pages Inventory (with Status)
+## 7. Infrastructure Map
 
-### Marketing Pages (Public)
+```mermaid
+graph TB
+    subgraph Internet["Internet (Public)"]
+        Browser["Merchant / Visitor Browser"]
+        Admin["Admin Browser"]
+    end
 
-| Route | File | Metadata | Component Type | Status |
-|-------|------|----------|----------------|--------|
-| `/` | `(marketing)/page.tsx` | ✅ Yes | Server | ✅ GOOD |
-| `/pricing` | `(marketing)/pricing/page.tsx` | ✅ Yes | Server | ✅ GOOD |
-| `/contact` | `(marketing)/contact/page.tsx` | ✅ Yes | Server → Client | ✅ GOOD |
-| `/services` | `(marketing)/services/page.tsx` | ✅ Yes | Server | ✅ GOOD |
-| `/features` | `(marketing)/features/page.tsx` | ✅ Yes | Server | ✅ GOOD |
-| `/faq` | `(marketing)/faq/page.tsx` | ✅ Yes | Server → Client | ✅ GOOD |
-| `/quote` | `(marketing)/quote/page.tsx` | ✅ Yes | Server | ✅ GOOD |
-| `/privacy` | `(marketing)/privacy/page.tsx` | ✅ Yes | Server | ✅ GOOD |
-| `/terms` | `(marketing)/terms/page.tsx` | ✅ Yes | Server | ✅ GOOD |
-| `/cards` | `(marketing)/cards/page.tsx` | ✅ Yes | Server | ✅ GOOD |
-| `/charm-cards` | `(marketing)/charm-cards/page.tsx` | ✅ Yes (re-export) | Server | ✅ GOOD |
-| `/wallet` | `(marketing)/wallet/page.tsx` | ✅ Yes | Server | ✅ GOOD |
+    subgraph Vercel["Vercel — charmpayments.com (Next.js 14)"]
+        direction TB
+        Marketing["(marketing) — 34 public pages"]
+        Auth["(auth) — Apply / Login / Pending"]
+        Dashboard["(dashboard) — Merchant Portal"]
+        AdminPortal["(admin) — Admin Portal"]
 
-### Solution Pages
+        subgraph API["API Routes"]
+            ApiApply["/api/apply"]
+            ApiQuote["/api/quote + /upload"]
+            ApiContact["/api/contact"]
+            ApiLeads["/api/leads"]
+            ApiTickets["/api/tickets"]
+            ApiAdmin["/api/admin/applications/*"]
+            ApiAuth["/api/auth/*"]
+            ApiWallet["/api/wallet/*"]
+            ApiEquip["/api/dashboard/equipment/order"]
+            ApiNMI["/api/integrations/nmi + /api/webhooks/nmi"]
+            ApiPipedrive["/api/integrations/pipedrive REMOVE"]
+            ApiOoma["/api/integrations/ooma"]
+        end
+    end
 
-| Route | File | Status |
-|-------|------|--------|
-| `/solutions/restaurants` | `(marketing)/solutions/restaurants/page.tsx` | ✅ GOOD |
-| `/solutions/retail` | `(marketing)/solutions/retail/page.tsx` | ✅ GOOD |
-| `/solutions/beauty` | `(marketing)/solutions/beauty/page.tsx` | ✅ GOOD |
-| `/solutions/ecommerce` | `(marketing)/solutions/ecommerce/page.tsx` | ✅ GOOD |
-| `/solutions/services` | `(marketing)/solutions/services/page.tsx` | ✅ GOOD |
-| `/solutions/high-risk` | `(marketing)/solutions/high-risk/page.tsx` | ✅ GOOD |
-| `/solutions/mobile` | `(marketing)/solutions/mobile/page.tsx` | ✅ GOOD |
+    subgraph Supabase["Supabase (PostgreSQL + Auth + Storage)"]
+        DB[("Database\nmerchant_applications · merchants\nleads · tickets · quote_requests\ntransactions · payouts · disputes\nequipment_catalog · equipment_orders\nadmin_profiles · admin_notes\napplication_status_history")]
+        SupaAuth["Auth (magic links, sessions)"]
+        Storage["Storage (statements bucket)"]
+    end
 
-### Feature Pages
+    subgraph Resend["Resend (Email)"]
+        ResendAPI["Transactional Email\napplication received · quote confirmation\napproval / decline · password reset\nlead + ticket alerts"]
+    end
 
-| Route | Status |
-|-------|--------|
-| `/features/virtual-terminal` | ✅ GOOD |
-| `/features/tap-to-pay` | ✅ GOOD |
-| `/features/card-present` | ✅ GOOD |
-| `/features/ecommerce` | ✅ GOOD |
-| `/features/ach` | ✅ GOOD |
-| `/features/invoicing` | ✅ GOOD |
-| `/features/text-to-pay` | ✅ GOOD |
-| `/features/recurring-billing` | ✅ GOOD |
-| `/features/qr-codes` | ✅ GOOD |
-| `/features/fraud-protection` | ✅ GOOD |
+    subgraph Stripe["Stripe"]
+        StripeConnect["Stripe Connect\n(payment processing)"]
+        StripeTreasury["Stripe Treasury\n(merchant wallets)"]
+    end
 
-### Auth Pages
+    subgraph NMI["NMI / First Data (Fiserv)"]
+        NMIGateway["Payment Gateway\n(virtual terminal, recurring billing)"]
+        NMIBoarding["Merchant Boarding API\nNOT YET IMPLEMENTED"]
+        NMIWebhook["NMI Webhooks\nNO SIGNATURE VERIFY YET"]
+    end
 
-| Route | File | Component Type | Status |
-|-------|------|----------------|--------|
-| `/apply` | `(auth)/apply/page.tsx` | Client Form | ✅ GOOD |
-| `/apply/submitted` | `(auth)/apply/submitted/page.tsx` | Server | ✅ GOOD |
-| `/login` | `(auth)/login/page.tsx` | Client Form | ✅ GOOD |
-| `/auth/forgot-password` | — | — | ❌ MISSING |
+    subgraph Pipedrive["Pipedrive CRM — REMOVING"]
+        PD["Person · Organization · Deal · Note · Activity"]
+    end
 
-### Dashboard Pages
+    subgraph Ooma["Ooma VoIP"]
+        OomaPhone["Call Link Generation\nActivity Logging"]
+    end
 
-| Route | File | Component Type | Status |
-|-------|------|----------------|--------|
-| `/dashboard` | `(dashboard)/dashboard/page.tsx` | Server | ✅ GOOD |
-| `/dashboard/transactions` | `(dashboard)/dashboard/transactions/page.tsx` | Server | ✅ GOOD |
-| `/dashboard/payouts` | `(dashboard)/dashboard/payouts/page.tsx` | Server | ✅ GOOD |
-| `/dashboard/disputes` | `(dashboard)/dashboard/disputes/page.tsx` | Server | ✅ GOOD |
-| `/dashboard/wallet` | `(dashboard)/dashboard/wallet/page.tsx` | Server | ⚠️ NEEDS WORK — hardcoded demo creds |
-| `/dashboard/accounts` | `(dashboard)/dashboard/accounts/page.tsx` | Server | ⚠️ NEEDS WORK — hardcoded demo data |
-| `/dashboard/settings` | `(dashboard)/dashboard/settings/page.tsx` | Server | ✅ GOOD |
-| `/dashboard/tickets` | `(dashboard)/dashboard/tickets/page.tsx` | Server | ✅ GOOD |
-| `/dashboard/leads` | `(dashboard)/dashboard/leads/page.tsx` | Server → Client | ✅ GOOD |
-| `/dashboard/merchants` | — | — | ❌ MISSING |
+    Browser --> Marketing
+    Browser --> Auth
+    Browser --> Dashboard
+    Admin --> AdminPortal
 
-### Root & Global
+    ApiApply --> DB
+    ApiApply --> ResendAPI
+    ApiApply --> PD
 
-| File | Status |
-|------|--------|
-| `src/app/layout.tsx` | ✅ GOOD |
-| `src/app/not-found.tsx` | ✅ GOOD |
-| `src/middleware.ts` | ⚠️ NEEDS WORK — silent fail if env vars missing |
+    ApiQuote --> DB
+    ApiQuote --> Storage
+    ApiQuote --> ResendAPI
+    ApiQuote --> PD
 
----
+    ApiContact --> DB
+    ApiContact --> ResendAPI
 
-## 3. Components Inventory (with Status)
+    ApiLeads --> DB
+    ApiLeads --> PD
 
-### Marketing Components
+    ApiTickets --> DB
 
-| Component | File | Type | Status |
-|-----------|------|------|--------|
-| `Navbar` | `marketing/Navbar.tsx` | Client | ✅ GOOD |
-| `Footer` | `marketing/Footer.tsx` | Server | ✅ GOOD |
-| `PrimaryCTA` | `conversion/PrimaryCTA.tsx` | Server | ✅ GOOD |
-| `ProofSection` | `conversion/ProofSection.tsx` | Server | ✅ GOOD |
-| `SavingsCalculator` | `conversion/SavingsCalculator.tsx` | Client | ✅ GOOD |
-| `SocialProofStrip` | `conversion/SocialProofStrip.tsx` | Server | ✅ GOOD |
-| `OfferStrip` | `conversion/OfferStrip.tsx` | Server | ✅ GOOD |
-| `TrustBar` | `conversion/TrustBar.tsx` | Server | ✅ GOOD |
-| `CardsNfcDemo` | `marketing/CardsNfcDemo.tsx` | Client | ✅ GOOD |
-| `CardsStickyCta` | `marketing/CardsStickyCta.tsx` | Server | ✅ GOOD |
-| `CardsWhatsIncludedSection` | `marketing/cards-whats-included-section.tsx` | Server | ✅ GOOD |
-| `CardsTestimonialsSection` | `marketing/cards-testimonials-section.tsx` | Server | ✅ GOOD |
-| `CardsFaqSection` | `marketing/cards-faq-section.tsx` | Server | ✅ GOOD |
+    ApiAdmin --> DB
+    ApiAdmin --> SupaAuth
+    ApiAdmin --> ResendAPI
 
-### Dashboard Components
+    ApiAuth --> SupaAuth
 
-| Component | File | Type | Status |
-|-----------|------|------|--------|
-| `DashboardSidebar` | `dashboard/Sidebar.tsx` | Client | ✅ GOOD |
-| `DashboardHeader` | `dashboard/Header.tsx` | Server | ✅ GOOD |
-| `DashboardMobileNav` | `dashboard/DashboardMobileNav.tsx` | Client | ✅ GOOD |
-| `DashboardPageHeader` | `dashboard/DashboardPageHeader.tsx` | Server | ✅ GOOD |
-| `LeadsDashboardClient` | `dashboard/leads-dashboard-client.tsx` | Client | ✅ GOOD |
-| `WalletTransferForm` | `dashboard/WalletTransferForm.tsx` | Client | ✅ GOOD |
+    ApiWallet --> StripeTreasury
+    ApiWallet --> StripeConnect
 
-### Form Components
+    ApiEquip --> DB
 
-| Component | File | Type | Status |
-|-----------|------|------|--------|
-| `ApplyApplicationForm` | `forms/apply-application-form.tsx` | Client (4-step) | ✅ GOOD |
-| `QuoteForm` | `forms/quote-form.tsx` | Client | ✅ GOOD |
-| `SupportTicketForm` | `support/support-ticket-form.tsx` | Client | ✅ GOOD |
-| `ContactPageClient` | `contact/contact-page-client.tsx` | Client | ✅ GOOD |
-| `FaqPageClient` | `faq/faq-page-client.tsx` | Client | ✅ GOOD |
+    ApiNMI --> NMIGateway
 
-### UI Components
+    ApiPipedrive --> PD
+    ApiOoma --> OomaPhone
+    ApiOoma --> PD
 
-| Component | File | TypeScript Props | Status |
-|-----------|------|-----------------|--------|
-| `Button` | `ui/Button.tsx` | ✅ Yes | ✅ GOOD |
-| `Input` | `ui/Input.tsx` | ✅ Yes | ✅ GOOD |
-| `Badge` | `ui/Badge.tsx` | ✅ Yes | ✅ GOOD |
-| `StatCard` | `ui/StatCard.tsx` | ✅ Yes | ✅ GOOD |
-| `ScrollReveal` | `ScrollReveal.tsx` | ✅ Yes | ✅ GOOD |
+    Dashboard --> ApiWallet
+    Dashboard --> ApiEquip
+    Dashboard --> ApiTickets
 
-### Hooks
-
-| Hook | File | Status |
-|------|------|--------|
-| `useScrollReveal` | `hooks/useScrollReveal.ts` | ✅ GOOD |
+    style Pipedrive fill:#ff9999,stroke:#cc0000,color:#000
+    style ApiPipedrive fill:#ff9999,stroke:#cc0000,color:#000
+    style NMIBoarding fill:#ffe0a0,stroke:#cc8800,color:#000
+    style NMIWebhook fill:#ffe0a0,stroke:#cc8800,color:#000
+```
 
 ---
 
-## 4. API Routes Inventory (with Status)
+## 8. Recommendations
 
-| Endpoint | Method | What It Does | Input Validation | Error Handling | DB Table | Status |
-|----------|--------|--------------|-----------------|----------------|----------|--------|
-| `/api/apply` | POST | Merchant application submission | ✅ Yes | ✅ Yes | `merchant_applications` | ⚠️ PCI risk (see Bugs) |
-| `/api/contact` | POST | Contact form / lead capture | ✅ Yes | ✅ Yes | `leads` | ⚠️ No email confirmation wired |
-| `/api/quote` | POST | Quote/savings request + Pipedrive | ✅ Yes | ✅ Yes | `quote_requests` | 🐛 console.log in production |
-| `/api/quote/upload` | POST | Statement file upload to Supabase Storage | ✅ Yes | ✅ Yes | Storage bucket | ✅ GOOD |
-| `/api/leads` | GET/POST | Lead CRUD | ✅ POST | ✅ Yes | `leads` | ✅ GOOD |
-| `/api/tickets` | GET/POST | Support ticket CRUD | ✅ POST | ✅ Yes | `tickets` | ✅ GOOD |
-| `/api/auth/callback` | GET | Supabase OAuth callback | N/A | N/A | N/A | ✅ GOOD |
-| `/api/integrations/nmi` | POST | NMI gateway webhook/integration | Partial | ✅ Yes | N/A | ⚠️ STUB |
-| `/api/integrations/pipedrive` | POST | Pipedrive webhook/integration | Partial | ✅ Yes | N/A | ⚠️ STUB |
-| `/api/integrations/ooma` | POST | Ooma VoIP integration | Partial | ✅ Yes | N/A | ⚠️ STUB |
-| `/api/wallet/balance` | GET | Stripe Treasury balance | N/A | ✅ Yes | N/A | ✅ GOOD |
-| `/api/wallet/transactions` | GET | Stripe Treasury transaction list | N/A | ✅ Yes | N/A | ✅ GOOD |
-| `/api/wallet/transfer` | POST | Stripe Treasury transfer | ✅ Yes | ✅ Yes | N/A | ✅ GOOD |
-| `/api/wallet/onboard` | POST | Stripe Connect onboarding | ✅ Yes | ✅ Yes | N/A | ✅ GOOD |
-| `/api/webhooks/nmi` | POST | NMI webhook receiver (sig verify) | ✅ Sig verify | ✅ Yes | N/A | ✅ GOOD |
+### 8.1 Pipedrive Removal — Dependency-Ordered Checklist
 
-**Missing API Routes:**
-- ❌ `/api/webhook` (generic) — referenced in some audit requirements
-- ❌ `/api/auth/forgot-password` — no password reset endpoint
+Execute in this exact order to avoid runtime errors between deploys:
 
----
+**Step 1 — Remove unauthenticated API route (immediate security fix)**
+- [ ] Delete `src/app/api/integrations/pipedrive/route.ts`
 
-## 5. Missing Pages (Priority Ordered)
+**Step 2 — Remove Pipedrive from integration call sites**
+- [ ] `src/app/api/apply/route.ts` — remove `pushToPipedrive` call + import
+- [ ] `src/app/api/quote/route.ts` — remove `pushToPipedrive` call + import
+- [ ] `src/app/api/integrations/ooma/route.ts` — remove `logCallActivity` Pipedrive call; keep Ooma dial logic
 
-| Route | Priority | Reason |
-|-------|----------|--------|
-| `/auth/forgot-password` | **P1** | Users cannot reset passwords — hard block on retention |
-| `/dashboard/merchants` | **P1** | Admin merchants view expected but missing |
-| `/unsubscribe` | **P2** | CAN-SPAM compliance for email campaigns |
-| `/status` | **P2** | Uptime/incident transparency for merchants |
-| `/about` | **P2** | Expected page; improves trust and SEO |
-| `/blog` or `/resources` | **P3** | Content strategy; SEO value |
-| `/affiliates` | **P3** | Referral program page |
-| `/changelog` | **P3** | Product updates transparency |
-| `/signup` | N/A | Intentionally merged with `/apply` — acceptable |
+**Step 3 — Strip lead-service**
+- [ ] `src/lib/services/lead-service.ts` — remove `syncLeadToPipedrive` + `addNoteToDeal` calls and import
 
----
+**Step 4 — Delete integration library**
+- [ ] Delete `src/lib/integrations/pipedrive.ts`
 
-## 6. Design System Status
+**Step 5 — Clean up types**
+- [ ] `src/types/lead.ts` — remove all `pipedrive_*` fields
+- [ ] `src/types/integration.ts` — remove `'pipedrive'` from `IntegrationProvider` union
 
-### CSS Design Tokens (`src/app/globals.css`)
+**Step 6 — Delete orphaned component**
+- [ ] Delete `src/components/dashboard/leads-dashboard-client.tsx`
 
-| Token | Expected | Status |
-|-------|----------|--------|
-| `--brand-dark` | `#0c3a30` | ✅ GOOD |
-| `--brand-accent` | `#9edd05` (CLAUDE.md) / `#C9A96E` (actual) | ⚠️ MISMATCH — CLAUDE.md out of date |
-| `--brand-light` | `#edf1ee` | ✅ GOOD |
-| `--brand-card` | `#fffaeb` | ✅ GOOD |
-| `--paragraph` | `#072720` | ✅ GOOD |
-| `--heading` | `#082720` | ✅ GOOD |
+**Step 7 — Update documentation/config**
+- [ ] Remove `PIPEDRIVE_*` vars from `.env.example`
+- [ ] Remove Pipedrive references from `CLAUDE.md`
+- [ ] Remove Pipedrive references from `.cursor/rules/charm-payments.mdc`
+- [ ] Remove `PIPEDRIVE_*` from Vercel environment variables
 
-### Fonts
+**Step 8 — Database migration (LAST)**
+- [ ] Write and run `supabase/migrations/20260415000000_remove_pipedrive.sql`
+- [ ] Drop 4 Pipedrive columns from `leads`
 
-| Font | Status |
-|------|--------|
-| `Inter Tight` (body) | ✅ Imported |
-| `DM Serif Display` (headings, replaces Outfit) | ✅ Imported |
-| `Outfit` | ⚠️ Listed in CLAUDE.md but not used — doc out of date |
+### 8.2 Security Issues (Fix Before Next Deploy)
 
-### Component Classes
+| Issue | File | Severity | Fix |
+|---|---|---|---|
+| `/api/integrations/pipedrive` has no auth guard | api/integrations/pipedrive/route.ts | **HIGH** | Delete the route (Step 1 above) |
+| NMI webhook has no signature verification | api/webhooks/nmi/route.ts | **HIGH** | Add `NMI_WEBHOOK_SECRET` + HMAC verification before processing |
+| Stripe webhook verification status unclear | api/wallet/* handlers | **HIGH** | Confirm `stripe.webhooks.constructEvent()` is used |
 
-| Class | Status |
-|-------|--------|
-| `.charm-card` | ✅ GOOD |
-| `.btn-primary` | ✅ GOOD |
-| `.btn-accent` | ✅ GOOD |
-| `.btn-outline` | ✅ GOOD |
-| `.section-label` | ✅ GOOD |
-| `.gradient-text` | ✅ GOOD |
-| `.accent-underline` | ✅ GOOD |
-| `.stats-badge` | ✅ GOOD |
-| `.section-ptb` | ✅ GOOD |
+### 8.3 Abandoned / Consolidation Candidates
 
-### Animation Classes
+| Item | Action |
+|---|---|
+| `leads-dashboard-client.tsx` | Delete (source page deleted, Pipedrive-linked) |
+| `api/integrations/pipedrive/route.ts` | Delete (no auth, no consumer) |
+| `assignTicket()` in ticket-service.ts | Remove stub or wire to real helpdesk |
+| `sendApprovalNotification()` in notifications.ts | Verify if dead code; delete if approve route handles email directly |
+| `account-service.ts` | Already deleted in git — confirm no lingering imports exist |
+| `ScrollReveal` component | Audit import sites — CLAUDE.md forbids `.reveal` on static pages |
 
-| Class | Status |
-|-------|--------|
-| `.animate-float` | ✅ GOOD |
-| `.animate-float-slow` | ✅ GOOD |
-| `.animate-rotation` | ✅ GOOD |
-| `.animate-fadeinup` | ✅ GOOD |
-| `.animate-marquee` | ✅ GOOD |
-| `.animate-pulse-ring` | ✅ GOOD |
-| `.animate-charm-nfc-pulse` | ✅ GOOD |
-| `.reveal` | ✅ GOOD |
-| `.reveal-left` / `.reveal-right` | ✅ GOOD |
-| `.delay-100` through `.delay-600` | ✅ GOOD |
-| `prefers-reduced-motion` respected | ✅ GOOD |
+### 8.4 Upcoming Integrations — Recommended File Placement
 
-### Tailwind Config
+#### Zapier Webhook (replacing Pipedrive as CRM relay)
 
-| Setting | Status |
-|---------|--------|
-| `colors.brand.*` extended | ✅ GOOD |
-| `colors.sales.*` (navy + green) | ✅ GOOD |
-| `fontFamily.sans` + `fontFamily.display` | ✅ GOOD |
-| `boxShadow.brand-*` | ✅ GOOD |
+| Artifact | Path | Notes |
+|---|---|---|
+| Integration library | `src/lib/integrations/zapier.ts` | `triggerZap(event, payload)` — raw fetch to Zapier webhook URL |
+| Env vars | `ZAPIER_LEAD_WEBHOOK_URL`, `ZAPIER_APP_WEBHOOK_URL` | One per Zap, or a single URL with event discriminator |
+| Replace in apply | `src/app/api/apply/route.ts` | Swap `pushToPipedrive()` → `triggerZap('application', data)` |
+| Replace in quote | `src/app/api/quote/route.ts` | Swap `pushToPipedrive()` → `triggerZap('quote', data)` |
+| Replace in lead-service | `src/lib/services/lead-service.ts` | Swap `syncLeadToPipedrive()` → `triggerZap('lead', data)` |
+| Pattern | — | Keep fire-and-forget (non-blocking); mirror existing Pipedrive pattern |
 
-**Design System Overall: ✅ EXCELLENT** — Comprehensive and consistent. CLAUDE.md documentation is slightly out of date (accent color changed, font changed).
+#### NMI Merchant Boarding API
+
+| Artifact | Path | Notes |
+|---|---|---|
+| Boarding function | `src/lib/integrations/nmi.ts` | Add `submitMerchantBoard(application)` to existing file |
+| Trigger point | `src/app/api/admin/applications/[id]/approve/route.ts` | After merchant record created, call NMI boarding API to obtain MID |
+| MID storage | `merchants.mid` | Column already exists — populate from NMI boarding response |
+| New env vars | `NMI_BOARDING_URL`, `NMI_PARTNER_ID`, `NMI_BOARDING_API_KEY` | Verify exact names in NMI First Data docs |
+
+#### NMI Approval Webhook (NMI → Charm when boarding approved)
+
+| Artifact | Path | Notes |
+|---|---|---|
+| Webhook handler | `src/app/api/webhooks/nmi/route.ts` | Exists as stub — implement signature verification + status update |
+| Signature helper | `src/lib/integrations/nmi.ts` | Add `verifyNmiSignature(req, secret)` |
+| On approval event | `src/app/api/webhooks/nmi/route.ts` | Update `merchants.status` → `approved`; store MID; send welcome email |
+| New env var | `NMI_WEBHOOK_SECRET` | Add to `.env.example` and Vercel |
 
 ---
 
-## 7. Navbar & Footer Status
+## Appendix: Summary Counts
 
-### Navbar (`src/components/marketing/Navbar.tsx`)
-
-| Section | Links | Status |
-|---------|-------|--------|
-| Products → Accept | Virtual Terminal, Tap to Pay, Card Present, E-Commerce, ACH | ✅ All valid |
-| Products → Manage | Invoicing, Text to Pay, Recurring Billing, QR Codes, Fraud Protection | ✅ All valid |
-| Solutions | Retail, Restaurants, Beauty, Services, E-Commerce, High Risk | ✅ All valid |
-| Pricing | `/pricing` | ✅ Valid |
-| Contact | `/contact` | ✅ Valid |
-| Merchant Login | `/login` | ✅ Valid |
-| Apply CTA | `/apply` | ✅ Valid |
-
-**Contact Info in Header:**
-- Phone: `+1 (314) 555-0198` ✅
-- Email: `merchants@charmpayments.com` ✅
-
-**Accessibility:**
-- `aria-expanded`, `aria-haspopup` ✅
-- Keyboard escape to close ✅
-- Click-outside to close ✅
-- Mobile collapsible menus ✅
-
-**Navbar Status: ✅ EXCELLENT**
-
-### Footer (`src/components/marketing/Footer.tsx`)
-
-| Section | Links | Status |
-|---------|-------|--------|
-| Quick Links | Terms, Privacy, Pricing, Get a Quote, FAQ, Contact | ✅ All valid |
-| Solutions | All Features `/features`, Charm Cards `/cards`, Services `/services` | ✅ All valid |
-| Contact | `merchants@charmpayments.com`, `+1 (314) 555-0198` | ✅ GOOD |
-| Partners | NMI Gateway, First Data | ✅ GOOD |
-| Disclaimer | "Payment facilitator, not a bank" legal copy | ✅ GOOD |
-
-**Missing from Footer:**
-- ⚠️ No link to `/solutions/*` individual pages
-- ⚠️ No `/about` page linked (page also missing)
-- ⚠️ No social media links (intentional?)
-
-**Footer Status: ✅ GOOD**
-
----
-
-## 8. Bugs & Issues Found
-
-### P1 — Critical (Breaks Functionality)
-
-🐛 **[P1] Missing Password Reset Flow**
-- **Location:** No `/auth/forgot-password` page or `/api/auth/forgot-password` endpoint
-- **Impact:** Merchants cannot recover locked accounts
-- **Fix:** Implement forgot-password page + Supabase `resetPasswordForEmail()` + email delivery
-
-🐛 **[P1] PCI Compliance Risk — Account Number Handling**
-- **Location:** `/api/apply/route.ts` ~line 99–109
-- **Issue:** Full bank account number accepted from client form. Only `account_last4` is stored, but the full number transits the server and may appear in request logs, error reports, or Vercel function logs.
-- **Fix:** Never accept full account numbers server-side if not required. If required for ACH, use a tokenization service. Add request sanitization to scrub sensitive fields from logs.
-
-🐛 **[P1] console.log() in Production API**
-- **Location:** `/api/quote/route.ts` lines 39, 48, 62, 128, 135
-- **Issue:** Debug logs output sensitive lead data (email, phone, volume) to Vercel function logs
-- **Fix:** Remove all `console.log()` calls; replace with structured logging if needed
-
-### P2 — Important (Incomplete Features)
-
-⚠️ **[P2] Dashboard Accounts Page Uses Hardcoded Demo Data**
-- **Location:** `/app/(dashboard)/dashboard/accounts/page.tsx`
-- **Issue:** `getMerchantAccounts()` returns static demo data instead of querying Supabase `merchants` table
-- **Fix:** Wire to Supabase; implement real MID + account lookup
-
-⚠️ **[P2] Wallet Dashboard Uses Hardcoded Demo Stripe Credentials**
-- **Location:** `/app/(dashboard)/dashboard/wallet/page.tsx` ~lines 21–22
-- **Issue:** `'acct_demo'` and `'fa_demo'` are hardcoded instead of the merchant's real Stripe Connect account ID
-- **Fix:** Resolve merchant Stripe account ID from session/database context
-
-⚠️ **[P2] No Email Confirmation Service**
-- **Location:** `/api/contact/route.ts` ~line 45 — has `// TODO: wire to email service`
-- **Issue:** Contact form submitters and applicants receive no confirmation email
-- **Fix:** Integrate Resend or SendGrid; send confirmation on contact, apply, and quote submissions
-
-⚠️ **[P2] Quote Status Workflow Missing**
-- **Location:** `/api/quote/route.ts` ~line 124
-- **Issue:** All quote requests permanently marked `'new'`; no admin UI or status transitions
-- **Fix:** Build admin quote management view; add status enum (new → contacted → quoted → won/lost)
-
-⚠️ **[P2] Integration Routes Are Stubs**
-- **Location:** `/api/integrations/nmi/route.ts`, `/api/integrations/pipedrive/route.ts`, `/api/integrations/ooma/route.ts`
-- **Issue:** These routes exist but appear to be placeholder implementations
-- **Fix:** Implement or remove; document intent
-
-### P3 — Polish & Optimization
-
-⚠️ **[P3] No Rate Limiting on API Endpoints**
-- **Location:** All `/api/*` routes
-- **Fix:** Add Vercel middleware or `next-rate-limit`; prioritize `/api/apply` and `/api/quote`
-
-⚠️ **[P3] Middleware Silent-Fails on Missing Env Vars**
-- **Location:** `src/middleware.ts` lines 4–14
-- **Fix:** In production, throw or log loudly if `NEXT_PUBLIC_SUPABASE_URL` or `NEXT_PUBLIC_SUPABASE_ANON_KEY` are absent
-
-⚠️ **[P3] Pipedrive Calls Are Synchronous and Blocking**
-- **Location:** `/api/apply/route.ts`, `/api/quote/route.ts`
-- **Issue:** Pipedrive API failures silently fail; slow responses block user
-- **Fix:** Move to background job or Vercel Cron; add retry with exponential backoff
-
-⚠️ **[P3] CLAUDE.md Documentation Out of Date**
-- **Issue:** `--brand-accent` listed as `#9edd05` but actual value in globals.css is `#C9A96E`; font listed as `Outfit` but actual is `DM Serif Display`
-- **Fix:** Update CLAUDE.md to reflect current design tokens and fonts
-
----
-
-## 9. Performance Flags
-
-| Flag | Location | Severity | Fix |
-|------|----------|----------|-----|
-| Recharts bundle (~100KB) | `SavingsCalculator.tsx` | ⚠️ Medium | Evaluate if SVG alternative sufficient |
-| No ISR/revalidation in dashboard | `(dashboard)/**` | ⚠️ Medium | Add `revalidatePath()` after mutations |
-| Multiple unoptimized Supabase queries | Dashboard page | ⚠️ Medium | Parallelize with `Promise.all`; add caching |
-| Pipedrive blocking form submissions | `/api/apply`, `/api/quote` | ⚠️ Medium | Move to background queue |
-| `'use client'` on form-only components | Apply, Quote, Contact forms | ✅ Acceptable | Already client forms; no change needed |
-| `<img>` vs `next/image` | Various marketing pages | ⚠️ Low | Audit all `<img>` tags; replace with `<Image>` |
-| No `loading.tsx` files | Any route | ⚠️ Low | Add Suspense-based loading states |
-| No `error.tsx` files | Any route | ⚠️ Low | Add error boundaries per route segment |
-
----
-
-## 10. Priority Fix List
-
-### P1 — Do First (Breaks Revenue Flow or Compliance)
-
-| # | Issue | File(s) | Effort |
-|---|-------|---------|--------|
-| 1 | Implement password reset flow | Create `/auth/forgot-password/page.tsx` + `/api/auth/forgot-password/route.ts` | High |
-| 2 | Fix PCI account number risk | `/api/apply/route.ts` | Medium |
-| 3 | Remove console.log from API | `/api/quote/route.ts` | Low |
-| 4 | Verify login auth implementation | `(auth)/login/actions.ts` | Low |
-
-### P2 — Do Next (Incomplete Features)
-
-| # | Issue | File(s) | Effort |
-|---|-------|---------|--------|
-| 5 | Wire dashboard accounts to real DB | `/dashboard/accounts/page.tsx` | Medium |
-| 6 | Fix wallet hardcoded demo credentials | `/dashboard/wallet/page.tsx` | Low |
-| 7 | Integrate email confirmation service | `/api/contact/route.ts`, `/api/apply/route.ts` | High |
-| 8 | Build quote status management UI | New admin UI + quote status API | High |
-| 9 | Create `/about` page | Create `(marketing)/about/page.tsx` | Medium |
-| 10 | Implement or delete integration stubs | `/api/integrations/*` | Medium |
-
-### P3 — Do Later (Polish & Optimization)
-
-| # | Issue | File(s) | Effort |
-|---|-------|---------|--------|
-| 11 | Add rate limiting middleware | `src/middleware.ts` | Medium |
-| 12 | Move Pipedrive to background jobs | `/api/apply`, `/api/quote` | High |
-| 13 | Add `loading.tsx` / `error.tsx` to routes | All route segments | Medium |
-| 14 | Audit and replace raw `<img>` tags | Marketing pages | Low |
-| 15 | Update CLAUDE.md documentation | `CLAUDE.md` | Low |
-| 16 | Add social media links to footer | `Footer.tsx` | Low |
-| 17 | Add `/status` page | New page | Low |
-| 18 | Add ISR revalidation to dashboard | Dashboard pages | Medium |
-
----
-
-## Summary
-
-**Overall Status: ⚠️ NEEDS WORK**
-
-**Strengths:**
-- ✅ Excellent, consistent design system (tokens, animations, components)
-- ✅ Comprehensive marketing site — all major routes exist
-- ✅ Solid dashboard structure with 9 sub-pages
-- ✅ TypeScript throughout with proper type coverage
-- ✅ Input validation on all form-facing API routes
-- ✅ Supabase integration correctly uses server/client pattern
-- ✅ Responsive navigation with mega-menu and mobile support
-- ✅ Compliance disclaimer present on all payment pages
-
-**Critical Gaps:**
-- ❌ Password reset missing — users are locked out permanently if they forget credentials (P1)
-- ❌ Account number PCI compliance risk in apply API (P1)
-- 🐛 console.log() leaking lead data in production (P1)
-- ⚠️ Dashboard accounts page on demo data (P2)
-- ⚠️ Wallet page on demo Stripe credentials (P2)
-- ⚠️ No email confirmation service wired (P2)
-- ⚠️ Quote workflow has no status tracking (P2)
-
-**Code Quality: ⭐⭐⭐⭐ (4/5)** — Well-structured, consistent patterns, good TypeScript coverage. Missing production-critical features and has compliance concerns that must be addressed before launch.
+| Category | Count |
+|---|---|
+| Pipedrive files to modify | 10 |
+| Pipedrive files to delete | 2 |
+| Pipedrive DB columns to drop | 4 |
+| Pipedrive env vars to remove | 3 |
+| Security issues requiring immediate attention | 3 |
+| New integrations to build | 3 (Zapier, NMI Boarding, NMI Webhook) |
+| New env vars to add | ~5 |

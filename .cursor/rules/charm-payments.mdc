@@ -1,34 +1,42 @@
 ---
 description: Charm Payments master rule — identity, compliance, integrations, build, Cursor workflow (visual rules live in ui-ux-design-principles.mdc)
 globs:
-  - "**/*.html"
-  - "**/assets/css/*.css"
-  - "**/assets/scss/*.scss"
-  - "**/assets/js/script.js"
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.css"
 alwaysApply: true
 ---
 
-# See ui-ux-design-principles.mdc for all visual, layout, and accessibility rules.
-
 # Charm Payments — Master Cursor Rule
 
-You are working on Charm Payments — a merchant payment processing platform (Next.js 14 App Router on Vercel; legacy Finto HTML assets may still exist under `public/assets`).
+You are working on Charm Payments — a merchant payment processing platform (Next.js 14 App Router on Vercel).
 
 ## IDENTITY
 - Product: Charm Payments — merchant payment processing (not a bank, not a consumer wallet)
-- Users: Small and mid-size business owners
-- Stack: Next.js 14 (App Router) + TypeScript + Tailwind + Supabase; legacy reference: Finto HTML + Bootstrap + Remixicon + scrollCue under `public/assets`
+- Users: Small and mid-size business owners applying for merchant accounts
+- Stack: Next.js 14 (App Router) + TypeScript + Tailwind + Supabase
 - Gateway: NMI with First Data/Fiserv acquiring
-- Brand: Primary #0c3a30 (dark green) · Accent #9edd05 (lime green) — use tokens via CSS variables / Tailwind `brand-*` per ui-ux-design-principles.mdc
+- CRM: Salesforce (via Zapier webhooks)
+- Brand: Primary #0c3a30 (dark green) · Accent #C9A96E (gold)
 - Email: merchants@charmpayments.com
 - Phone: +1 (314) 555-0198
 - Copyright: © Charm Payments — A Charm Holdings LLC Company
 
-## NEVER DO THIS (Finto / legacy HTML only)
-- Never rename or remove Finto CSS class names in legacy `public/assets` templates
-- Never hardcode absolute URLs in HTML files — all asset paths are relative
-- Never use hello@finto.com or +001 (808) 5550148 or HiBootstrap
-- Never use "Finto - Fintech, Banking, & Finance HTML Template" as a page title
+## CURRENT ARCHITECTURE (post Phase 5 cleanup)
+The app is a marketing + lead acquisition surface. There is no merchant portal and no admin portal.
+All merchant management and CRM operations happen in Salesforce.
+
+```
+charmpayments.com
+  ├── Marketing pages (static, 34+ routes)
+  ├── /apply (public merchant application form)
+  ├── /api/apply (saves to Supabase → Zapier → Salesforce)
+  ├── /api/quote (rate audit form → Zapier → Salesforce)
+  ├── /api/contact (contact form → lead)
+  ├── /api/leads (inbound lead capture)
+  ├── /api/tickets (inbound support tickets)
+  └── /api/webhooks/nmi (NMI approval webhook — HMAC verified)
+```
 
 ## CURSOR PROMPT RULES
 - When editing code, put the **file path at the top** of the request when it helps scope the change.
@@ -41,14 +49,13 @@ You are working on Charm Payments — a merchant payment processing platform (Ne
 
 ## PRODUCTS (reference naming)
 - **Charm Payments** — core merchant processing, gateway, underwriting
-- **Charm Cards** — digital + physical NFC business cards (separate marketing tone; see ui-ux-design-principles.mdc)
-- **Suites** — bundled/positioning language when applicable
+- **Charm Cards** — digital + physical NFC business cards
 - **Wallet** — Apple / Google Wallet passes where relevant
 
 ## CONTEXT (team & ops)
 - Primary operator context: **Lee Robertson**, St. Louis–area operations
-- Support and merchant-facing email list centers on **merchants@charmpayments.com**
-- Local positioning: **St. Louis** trusted partner; phone and address copy stay consistent with IDENTITY above unless the user supplies updates
+- Support and merchant-facing email: **merchants@charmpayments.com**
+- Local positioning: **St. Louis** trusted partner
 
 ## COPY RULES (compliance-adjacent)
 - 8th grade reading level max
@@ -59,145 +66,27 @@ You are working on Charm Payments — a merchant payment processing platform (Ne
 ## SEO
 - Title: "[Page Name] — Charm Payments"
 - Meta description: 150-160 chars, merchant search intent
-- Heading hierarchy and one H1 per page: follow ui-ux-design-principles.mdc
-
-## FEATURE SUBPAGES (`/features/*` except `/features`)
-All **10** product feature routes under `src/app/(marketing)/features/<slug>/` are **full marketing pages** (hero → how it works → use cases → FAQ with `<details>` → dark CTA + compliance disclaimer). They are **Server Components** only — no `'use client'` on `page.tsx`.
+- One H1 per page
 
 ## NAVBAR (marketing) — `src/components/marketing/Navbar.tsx`
 - **`'use client'`** — dropdown hover/click state, Escape, and click-outside to close.
-- **Mega-nav (never flatten to a simple 5-link bar):**
-  - **Products** — dropdown: **Accept Payments** (5 links) + **Manage & Grow** (5 links); footer **See all features →** `/features`. Each item has its own **`/features/<slug>`** page.
-  - **Solutions** — dropdown: 6 industry **`/solutions/<slug>`** pages; footer **All solutions →** `/services`.
-  - **Pricing** → `/pricing`, **Contact** → `/contact` (direct links).
-  - **Merchant Login** → `/login`, **Apply Now** (primary CTA, existing button pattern).
-- **Desktop:** panels open on **hover** and **click**; **mobile:** same groups as **accordion** sections in the slide-down panel.
+- **Desktop nav:** Products mega-menu · Solutions mega-menu · Gateway menu · Pricing · Contact · Apply Now (CTA)
+- **No "Merchant Login" link** — merchant portal removed in Phase 5.
+- Mobile: same groups as accordion sections in the slide-down panel.
 
 ## PRODUCTION BUILD — EXPECTED OUTPUT
 
 npm run build must complete with zero errors.
+All marketing pages must remain ○ static.
+API routes must remain ƒ dynamic.
 
-STATIC PAGES (○) — 34 routes:
-/
-/_not-found
-/apply
-/apply/submitted
-/cards
-/charm-cards
-/charm-cards/apply
-/charm-cards/login
-/contact
-/faq
-/features
-/features/ach
-/features/card-present
-/features/ecommerce
-/features/fraud-protection
-/features/invoicing
-/features/qr-codes
-/features/recurring-billing
-/features/tap-to-pay
-/features/text-to-pay
-/features/virtual-terminal
-/login
-/pricing
-/privacy
-/quote
-/services
-/solutions/beauty
-/solutions/ecommerce
-/solutions/high-risk
-/solutions/restaurants
-/solutions/retail
-/solutions/services
-/terms
-/wallet
+## OOMA INTEGRATION
+- All Ooma formatting goes through `src/lib/integrations/ooma.ts`
+- Env vars: `OOMA_EXTENSION`, `OOMA_ACCOUNT_ID`
+- Never expose integration tokens to the client
 
-DYNAMIC ROUTES (ƒ):
-/dashboard
-/dashboard/accounts
-/dashboard/disputes
-/dashboard/leads
-/dashboard/payouts
-/dashboard/settings
-/dashboard/tickets
-/dashboard/transactions
-/dashboard/wallet
-/api/apply
-/api/auth/callback
-/api/contact
-/api/integrations/nmi
-/api/integrations/ooma
-/api/integrations/pipedrive
-/api/leads
-/api/tickets
-/api/wallet/balance
-/api/wallet/transactions
-/api/wallet/transfer
-/api/wallet/onboard
-/api/webhooks/nmi
-Middleware
-
-## STRIPE TREASURY (Charm Wallet / merchant balance)
-- **Integration:** Stripe Connect + Treasury (Financial Accounts, inbound/outbound transfers).
-- **Service:** `src/lib/services/stripe-service.ts` — Connect onboarding, balance, transactions, outbound transfer, NMI settlement credit hook.
-- **Client:** `src/lib/stripe.ts` — server-only Stripe SDK; **never** import in client components.
-- **Types:** `src/types/stripe.ts`
-- **Status:** Sandbox — live Treasury API calls are **commented** until Treasury access is approved on the platform account. **Demo stubs** return realistic data when `STRIPE_SECRET_KEY` is unset or Treasury is not wired.
-- **Live switch:** Remove `TODO` blocks and uncomment Stripe Treasury calls in `stripe-service.ts` when approved.
-- **Rules:**
-  - `STRIPE_SECRET_KEY` **never** exposed to the client; **never** use `NEXT_PUBLIC_` on secret keys.
-  - All Stripe calls **server-side only** (API routes, server actions, `stripe-service.ts`).
-  - `WalletTransferForm` requires **explicit confirmation** (checkbox) before transfer; never auto-submit.
-  - FDIC / sponsor-bank copy on wallet UI where balances are shown (`/wallet` marketing, `/dashboard/wallet`).
-  - Use `formatCurrency` from `src/lib/utils` for displayed dollar amounts; Stripe amounts in API remain in **cents** where applicable.
-
-RULES:
-- Build must complete zero errors.
-- Static generation step shows **59/59** (Next.js internal batch) — it increases when
-  static routes are added; do not treat this N as the ○ route count (use the table above).
-- All marketing pages must remain ○ static.
-- All dashboard and API routes must remain ƒ dynamic.
-- Dashboard routes MUST be dynamic (ƒ) — they require
-  live session data. Never attempt to make them static.
-- API routes MUST be dynamic (ƒ) — they handle POST
-  requests. Never attempt to make them static.
-- All marketing pages MUST be static (○) — no session
-  required, no 'use client' on page.tsx files.
-- "Generating static pages (N/N)" in build output is
-  Next.js internal batch count — do NOT equate N to
-  the number of ○ routes. Use the route table instead.
-- If a marketing page.tsx becomes dynamic unexpectedly,
-  find and remove any hook, cookie, or session call
-  that forced it dynamic.
-- The correct assertion for CI is: marketing static routes
-  show ○ in the build table. Not a specific N count for
-  “Generating static pages”.
-
-## OOMA + PIPEDRIVE INTEGRATION
-
-Auto-sync flow:
-Lead created → syncLeadToPipedrive() → Person + Org + Deal
-Phone clicked → formatDialLink() → Ooma dial
-Call logged → POST /api/integrations/ooma → logCallActivity()
-Note added → addNoteToDeal() → Pipedrive deal
-
-Environment variables required:
-PIPEDRIVE_API_TOKEN — Pipedrive personal API token
-PIPEDRIVE_DOMAIN — e.g. yourcompany.pipedrive.com
-OOMA_EXTENSION — Ooma Office extension number
-OOMA_ACCOUNT_ID — Ooma account ID for web dial links
-
-Rules:
-- Never expose PIPEDRIVE_API_TOKEN to the client
-- Never use NEXT_PUBLIC_ prefix on integration tokens
-- All Pipedrive calls go through src/lib/integrations/pipedrive.ts
-- All Ooma formatting goes through src/lib/integrations/ooma.ts
-- If API token is missing, log server-side only — never expose
-  the missing token error to the client response
-- Leads dashboard uses a client child component (leads-dashboard-client.tsx)
-  for call log onClick; page.tsx remains a Server Component for data load
-
-### CHARM DASHBOARD — TONE AND UI RULES
-
-Dashboard pages are utility-first. No marketing copy, no section labels, no hero sections, no gradient-text. Typography is gray-900 headings, gray-500 subtext, white on dark sidebar. Data is the hero — tables, stat cards, and charts get maximum breathing room. CTAs in the dashboard are functional (Export, Retry, Dispute) never promotional. The compliance disclaimer does not appear in dashboard views.
+## ZAPIER INTEGRATION (Phase 6)
+- All Zapier webhook calls go through `src/lib/integrations/zapier.ts`
+- Env var: `ZAPIER_SALESFORCE_WEBHOOK`
+- Fire-and-forget pattern: never block primary response on Zapier failure
+- Never expose the webhook URL to the client

@@ -30,7 +30,7 @@ export default async function DisputesPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
   const { data: merchant } = await supabase.from('merchants').select('id').eq('user_id', user.id).single()
-  if (!merchant) redirect('/apply')
+  if (!merchant) redirect('/apply/pending')
   const { data: raw } = await supabase
     .from('disputes')
     .select('*, transactions(transaction_id)')

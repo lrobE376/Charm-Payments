@@ -1,3 +1,4 @@
+// src/app/(marketing)/page.tsx
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -10,15 +11,16 @@ import {
   Globe,
   CheckCircle,
   Star,
-  X,
   Check,
+  X,
 } from 'lucide-react'
 import PrimaryCTA from '@/components/conversion/PrimaryCTA'
-import ProofSection from '@/components/conversion/ProofSection'
-import SavingsCalculator from '@/components/conversion/SavingsCalculator'
 import SocialProofStrip from '@/components/conversion/SocialProofStrip'
+import StatsBar from '@/components/conversion/StatsBar'
+import HeroVisual from '@/components/ui/HeroVisual'
+import FadeIn from '@/components/ui/FadeIn'
 
-const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400'] as const
+// ─── Data ────────────────────────────────────────────────────────────────────
 
 const marqueeItems = [
   'Visa',
@@ -68,32 +70,18 @@ const solutions = [
 ] as const
 
 const comparisonRows = [
-  {
-    label: 'Pricing model',
-    other: 'Flat-rate (bundled & opaque)',
-    charm: 'Interchange-plus (transparent)',
-  },
-  {
-    label: 'Statement clarity',
-    other: 'Hard to audit — fees buried',
-    charm: 'Line-item audit — we show every cost',
-  },
-  {
-    label: 'Support',
-    other: 'Phone trees / chatbots',
-    charm: 'Direct human line — local St. Louis team',
-  },
-  {
-    label: 'Onboarding',
-    other: 'Weeks of back-and-forth',
-    charm: '24-hour approval target on complete apps',
-  },
-  {
-    label: 'Contracts',
-    other: 'Long-term lock-ins common',
-    charm: 'No long-term contracts — earn it monthly',
-  },
+  { label: 'Pricing model',     other: 'Flat-rate (bundled & opaque)',       charm: 'Interchange-plus (transparent)'           },
+  { label: 'Statement clarity', other: 'Hard to audit — fees buried',         charm: 'Line-item audit — we show every cost'     },
+  { label: 'Support',           other: 'Phone trees / chatbots',              charm: 'Direct human line — local St. Louis team' },
+  { label: 'Onboarding',        other: 'Weeks of back-and-forth',             charm: '24-hour approval target on complete apps' },
+  { label: 'Contracts',         other: 'Long-term lock-ins common',           charm: 'No long-term contracts — earn it monthly' },
 ] as const
+
+// ─── Grain texture (adds tactile depth without images) ───────────────────────
+const grainSvg =
+  "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")"
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
 
 function MarqueeStrip() {
   return (
@@ -101,9 +89,14 @@ function MarqueeStrip() {
       {marqueeItems.map((item) => (
         <span
           key={item}
-          className="flex items-center gap-2 whitespace-nowrap px-6 text-sm font-semibold text-sales-navy"
+          className="flex items-center gap-2 whitespace-nowrap px-6"
+          style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', fontWeight: 600, color: 'var(--on-surface-variant)' }}
         >
-          <span className="h-2 w-2 shrink-0 animate-pulse-ring rounded-full bg-sales-green" aria-hidden />
+          <span
+            className="h-2 w-2 shrink-0 animate-pulse-ring rounded-full"
+            style={{ background: 'var(--gold)' }}
+            aria-hidden
+          />
           {item}
         </span>
       ))}
@@ -111,280 +104,307 @@ function MarqueeStrip() {
   )
 }
 
-const localHeroPhotos = [
-  {
-    src: '/images/local/pexelsketutsubiyanto4353613.jpg',
-    alt: 'Barber at work serving a client',
-    tall: true,
-  },
-  {
-    src: '/images/local/pexelsmartproduction7667447.jpg',
-    alt: 'Retail shop owner with smartphone at checkout',
-    tall: false,
-  },
-  {
-    src: '/images/local/pexelspaveldanilyuk6612717.jpg',
-    alt: 'Salon professional with client',
-    tall: false,
-  },
-  {
-    src: '/images/local/pexelsrdne7697434.jpg',
-    alt: 'Boutique small business interior',
-    tall: false,
-  },
-] as const
-
-function LocalHeroSection() {
-  const [tall, ...rest] = localHeroPhotos
-
-  return (
-    <section className="bg-brand-light section-ptb" aria-labelledby="local-hero-heading">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12 lg:items-center">
-          <div className="lg:col-span-5">
-            <span className="section-label">ST. LOUIS BUILT</span>
-            <h2 id="local-hero-heading" className="font-display mt-3 text-3xl font-bold md:text-4xl gradient-text">
-              Your Processor Has a Chatbot. We Answer the Phone.
-            </h2>
-            <p className="mt-4 leading-relaxed text-gray-600">
-              Your current processor routes you through phone trees and automated systems. Charm is a St. Louis company — real people, same time zone. When your terminal goes down on a Saturday night, we pick up.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {(['500+ Merchants Served', '48hr Approval', 'STL-Based Support'] as const).map((label) => (
-                <span key={label} className="rounded-full bg-brand-dark px-4 py-2 text-sm font-bold text-white">
-                  {label}
-                </span>
-              ))}
-            </div>
-            <Link href="/apply" className="btn-primary mt-8 inline-flex">
-              See What You&apos;re Paying — Free
-            </Link>
-          </div>
-
-          <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 grid-rows-3 gap-3">
-              <div className="relative col-start-1 row-span-3 row-start-1 min-h-0">
-                <Image
-                  src={tall.src}
-                  alt={tall.alt}
-                  width={560}
-                  height={700}
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="h-full w-full rounded-2xl object-cover aspect-[4/5]"
-                />
-              </div>
-              {rest.map((photo) => (
-                <div key={photo.src} className="relative col-start-2 min-h-0">
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    width={400}
-                    height={400}
-                    sizes="(min-width: 1024px) 28vw, 50vw"
-                    className="h-full w-full rounded-2xl object-cover aspect-square"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
   return (
     <div className="relative">
-      {/* SECTION 1 — HERO (B2B / sales-led) */}
+
+      {/* ── SECTION 1 — HERO ─────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden pt-10 pb-20 lg:pt-14 lg:pb-28"
         style={{ background: 'linear-gradient(145deg, #0E1A12 0%, #182A1C 52%, #0E1A12 100%)' }}
       >
-        <div className="shape-blob -right-24 -top-20 h-[420px] w-[420px] bg-sales-green/20 lg:right-0" aria-hidden />
+        {/* Atmospheric orbs */}
+        <div
+          className="shape-blob -right-24 -top-20 h-[420px] w-[420px] lg:right-0"
+          style={{ background: 'var(--primary-container)' }}
+          aria-hidden
+        />
         <div className="shape-blob -bottom-32 -left-20 h-[380px] w-[380px] bg-white/5" aria-hidden />
 
+        {/* Grain texture — adds soul without images */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ backgroundImage: grainSvg, opacity: 0.035 }}
+          aria-hidden
+        />
+
+        {/* Orbital decorators */}
         <div className="absolute right-[42%] top-24 hidden h-16 w-16 animate-rotation rounded-full border-2 border-white/10 lg:block" aria-hidden />
-        <div className="absolute right-[48%] top-40 hidden h-3 w-3 animate-float rounded-full bg-sales-green lg:block" aria-hidden />
+        <div
+          className="absolute right-[48%] top-40 hidden h-3 w-3 animate-float rounded-full lg:block"
+          style={{ background: 'var(--gold)' }}
+          aria-hidden
+        />
         <div className="absolute bottom-32 left-[40%] hidden h-4 w-4 animate-float-slow rounded-full bg-white/20 lg:block" aria-hidden />
 
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:flex lg:items-center lg:gap-16">
+
+          {/* Left — copy */}
           <div className="lg:w-1/2">
-            <div
-              className="inline-flex animate-fadeinup items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white/90 opacity-0 backdrop-blur-sm"
-              style={{ animationDelay: '0.05s', animationFillMode: 'forwards' }}
-            >
-              <span className="h-2 w-2 shrink-0 animate-pulse-ring rounded-full bg-sales-green" aria-hidden />
-              St. Louis merchant accounts · No contracts · Local support
-            </div>
-            <h1
-              className="font-display animate-fadeinup mt-6 whitespace-pre-line text-4xl font-bold leading-tight text-white opacity-0 md:text-5xl lg:text-[3.15rem]"
-              style={{ animationDelay: '0.12s', animationFillMode: 'forwards' }}
-            >
-              {`Your Processor Is Charging More Than You Know.`}
-            </h1>
-            <p
-              className="mt-6 max-w-xl animate-fadeinup text-lg leading-relaxed text-white/80 opacity-0"
-              style={{ animationDelay: '0.22s', animationFillMode: 'forwards' }}
-            >
-              Your current processor bundles fees you can&apos;t audit, holds funds you&apos;ve already earned, and routes you to a chatbot when something breaks. We&apos;ll show you exactly what you&apos;re paying — and what changes with Charm.
-            </p>
-            <div
-              className="mt-8 animate-fadeinup opacity-0"
-              style={{ animationDelay: '0.32s', animationFillMode: 'forwards' }}
-            >
-              <PrimaryCTA variant="sales-dark-audit" primary="Apply Now" secondary="Free Rate Audit" />
-            </div>
-            <ul
-              className="mt-10 flex animate-fadeinup flex-wrap gap-3 p-0 opacity-0 [list-style:none]"
-              style={{ animationDelay: '0.42s', animationFillMode: 'forwards' }}
-            >
-              {[
-                'Free statement audit',
-                'See every fee, every card, every time',
-                '24-hour approval',
-                'PCI DSS compliant',
-              ].map((label) => (
-                <li
-                  key={label}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/95"
-                >
-                  <CheckCircle className="h-3.5 w-3.5 shrink-0 text-sales-green" aria-hidden />
-                  {label}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mt-12 hidden justify-center lg:mt-0 lg:flex lg:w-1/2">
-            <div className="relative w-full max-w-[500px]">
-              <div className="animate-float relative overflow-hidden rounded-[24px] border border-white/10 shadow-2xl shadow-black/40">
-                <Image
-                  src="/images/sumup-uALOu8Rdv9M-unsplash.jpg"
-                  alt="Business owner accepting payment at her boutique"
-                  width={600}
-                  height={680}
-                  className="h-[540px] w-full object-cover object-center"
-                  priority
+            {/* Eyebrow badge */}
+            <FadeIn delay={0.05}>
+              <div
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 backdrop-blur-sm"
+              >
+                <span
+                  className="h-2 w-2 shrink-0 animate-pulse-ring rounded-full"
+                  style={{ background: 'var(--gold)' }}
+                  aria-hidden
                 />
-                <div className="pointer-events-none absolute inset-0 bg-sales-navy/20" aria-hidden />
+                <span className="label-sm text-white/90">
+                  St. Louis merchant accounts · No contracts · Local support
+                </span>
               </div>
-              <div className="animate-float-slow absolute -bottom-5 -left-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-white px-4 py-3 shadow-xl">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sales-green">
-                  <CheckCircle className="h-5 w-5 text-sales-navy" />
+            </FadeIn>
+
+            {/* Display headline */}
+            <FadeIn delay={0.12}>
+              <h1 className="display-lg mt-6 text-white">
+                Your Processor Is Charging More Than You Know.
+              </h1>
+            </FadeIn>
+
+            <FadeIn delay={0.22}>
+              <p className="title-md mt-6 max-w-xl text-white/80">
+                Your current processor bundles fees you can&apos;t audit, holds funds you&apos;ve already earned,
+                and routes you to a chatbot when something breaks. We&apos;ll show you exactly what you&apos;re
+                paying — and what changes with Charm.
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.32}>
+              <div className="mt-8">
+                <div className="flex flex-wrap items-center gap-4">
+                  <Link
+                    href="/apply"
+                    className="inline-flex min-h-[52px] items-center gap-2 rounded-[10px] px-8 py-3.5 text-[15px] font-bold text-white shadow-lg transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
+                    style={{ background: 'linear-gradient(135deg, #004421, #1E5C35)' }}
+                  >
+                    Apply Now
+                    <ArrowUpRight className="h-5 w-5 shrink-0" aria-hidden />
+                  </Link>
+                  <Link
+                    href="/quote"
+                    className="text-sm font-semibold text-white/75 underline-offset-4 transition-colors hover:text-white hover:underline"
+                  >
+                    Free Rate Audit →
+                  </Link>
                 </div>
-                <div>
-                  <p className="text-[11px] font-medium uppercase tracking-wide text-gray-400">Payment Received</p>
-                  <p className="text-sm font-bold text-sales-navy">$142.00 ✓</p>
-                </div>
               </div>
-              <div className="animate-float absolute -right-4 -top-4 rounded-2xl border border-sales-green/40 bg-sales-navy px-4 py-3 shadow-xl">
-                <p className="text-[11px] font-bold uppercase tracking-wide text-sales-green">Charm Payments</p>
-                <p className="text-sm font-semibold text-white">Processing Active</p>
-              </div>
-            </div>
+            </FadeIn>
+
+            <FadeIn delay={0.42}>
+              <ul className="mt-10 flex flex-wrap gap-3 p-0 [list-style:none]">
+                {[
+                  'Free statement audit',
+                  'See every fee, every card, every time',
+                  '24-hour approval',
+                  'PCI DSS compliant',
+                ].map((label) => (
+                  <li
+                    key={label}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5"
+                  >
+                    <CheckCircle
+                      className="h-3.5 w-3.5 shrink-0"
+                      style={{ color: 'var(--gold)' }}
+                      aria-hidden
+                    />
+                    <span className="label-sm text-white/95">{label}</span>
+                  </li>
+                ))}
+              </ul>
+            </FadeIn>
           </div>
+
+          {/* Right — HeroVisual: mouse-tilt 3D panel + bleeding cards (client) */}
+          <div className="mt-12 hidden justify-center lg:mt-0 lg:flex lg:w-1/2">
+            <HeroVisual />
+          </div>
+
         </div>
       </section>
 
-      <SocialProofStrip />
-
-      {/* SECTION 2 — MARQUEE */}
-      <section className="overflow-hidden border-y border-gray-100/80 bg-slate-50/80" aria-hidden>
-        <div className="marquee-wrapper py-4">
-          <MarqueeStrip />
-          <MarqueeStrip />
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          <div className="h-[200px] overflow-hidden rounded-[20px] border border-gray-200/80 shadow-md">
-            <Image
-              src="/images/pexels-rdne-7697434.jpg"
-              alt="Barber shop owner using Charm Payments"
-              width={400}
-              height={300}
-              className="h-full w-full object-cover object-top"
-            />
-          </div>
-          <div className="h-[200px] overflow-hidden rounded-[20px] border border-gray-200/80 shadow-md">
-            <Image
-              src="/images/pexels-amina-filkins-5414041.jpg"
-              alt="Florist small business owner"
-              width={400}
-              height={300}
-              className="h-full w-full object-cover object-top"
-            />
-          </div>
-          <div className="h-[200px] overflow-hidden rounded-[20px] border border-gray-200/80 shadow-md">
-            <Image
-              src="/images/pexels-ketut-subiyanto-4353613.jpg"
-              alt="Café owner managing her business"
-              width={400}
-              height={300}
-              className="h-full w-full object-cover object-top"
-            />
-          </div>
-          <div className="h-[200px] overflow-hidden rounded-[20px] border border-gray-200/80 shadow-md">
-            <Image
-              src="/images/pexels-mart-production-7667447.jpg"
-              alt="Small business owner with smartphone"
-              width={400}
-              height={300}
-              className="h-full w-full object-cover object-top"
-            />
-          </div>
-        </div>
+      {/* ── CREDIBILITY BAND — SocialProof + Stats merged ───────────────── */}
+      <div style={{ background: 'var(--surface-container-low)' }}>
+        <SocialProofStrip />
+        <StatsBar />
       </div>
 
-      <SavingsCalculator />
+      {/* ── MARQUEE ──────────────────────────────────────────────────────── */}
+      <section
+        className="overflow-hidden py-4"
+        style={{ background: 'var(--surface-container-low)' }}
+        aria-hidden
+      >
+        <div className="marquee-wrapper">
+          <MarqueeStrip />
+          <MarqueeStrip />
+        </div>
+      </section>
 
-      {/* WHY WE WIN — COMPARISON */}
-      <section className="scroll-mt-24 bg-white section-ptb" id="compare">
+      {/* ── SECTION 4 — COMPARISON ───────────────────────────────────────── */}
+      <section
+        id="compare"
+        className="scroll-mt-24 section-ptb"
+        style={{ background: 'var(--surface-container-low)' }}
+      >
         <div className="mx-auto max-w-5xl px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">WHY WE WIN</span>
-            <h2 className="font-display mt-3 text-3xl font-bold text-sales-navy md:text-4xl">What Your Processor Doesn&apos;t Want You to Audit</h2>
-            <p className="mt-3 text-lg text-[var(--paragraph)]/85">
-              You see every fee, every card type, every time — not a blended rate your processor designed to keep you from asking questions.
-            </p>
+            <FadeIn><span className="section-label">WHY WE WIN</span></FadeIn>
+            <FadeIn delay={0.08}>
+              <h2 className="headline-md mt-3" style={{ color: 'var(--on-surface)' }}>
+                What Your Processor Doesn&apos;t Want You to Audit
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.16}>
+              <p className="mt-3 body-md" style={{ color: 'var(--on-surface-variant)' }}>
+                You see every fee, every card type, every time — not a blended rate your processor
+                designed to keep you from asking questions.
+              </p>
+            </FadeIn>
           </div>
 
-          <div className="mt-12 overflow-hidden rounded-2xl border border-gray-200 shadow-brand-sm">
-            <div className="grid grid-cols-1 md:grid-cols-3">
-              <div className="hidden bg-gray-100/90 p-4 text-xs font-bold uppercase tracking-wider text-gray-500 md:block md:border-r md:border-gray-200" />
-              <div className="border-b border-gray-200 bg-red-50/80 p-4 text-center md:border-b-0 md:border-r">
-                <p className="text-sm font-bold text-gray-800">The Other Guys</p>
-                <p className="mt-1 text-xs text-gray-600">Typical flat-rate & bundled stacks</p>
+          {/* Comparison table */}
+          <FadeIn delay={0.24}>
+            <div
+              className="mt-12 overflow-hidden"
+              style={{
+                borderRadius: '0.875rem',
+                outline: '1px solid rgba(28,28,21,0.15)',
+                boxShadow: '0px 4px 24px rgba(28,28,21,0.06), 0px 16px 48px rgba(28,28,21,0.08)',
+              }}
+            >
+              {/* Column headers */}
+              <div className="grid grid-cols-[2fr_1.5fr_1.5fr]">
+                <div className="px-6 py-5" style={{ background: 'var(--surface-variant)' }}>
+                  <p
+                    className="text-xs font-bold uppercase tracking-widest"
+                    style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface-variant)' }}
+                  >
+                    Feature
+                  </p>
+                </div>
+                <div
+                  className="px-6 py-5 text-center"
+                  style={{ background: 'rgba(220,38,38,0.07)' }}
+                >
+                  <X className="mx-auto mb-1.5 h-5 w-5 text-red-400" aria-hidden />
+                  <p
+                    className="text-sm font-bold"
+                    style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)' }}
+                  >
+                    The Other Guys
+                  </p>
+                  <p className="mt-0.5 label-sm" style={{ color: 'var(--on-surface-variant)' }}>
+                    Flat-rate &amp; bundled
+                  </p>
+                </div>
+                <div
+                  className="px-6 py-5 text-center"
+                  style={{ background: 'var(--secondary-container)' }}
+                >
+                  <Check
+                    className="mx-auto mb-1.5 h-5 w-5"
+                    style={{ color: 'var(--secondary)' }}
+                    aria-hidden
+                  />
+                  <p
+                    className="text-sm font-bold"
+                    style={{ fontFamily: 'var(--font-display)', color: 'var(--primary)' }}
+                  >
+                    Charm Payments
+                  </p>
+                  <p className="mt-0.5 label-sm" style={{ color: 'var(--primary)', opacity: 0.7 }}>
+                    Transparent · local team
+                  </p>
+                </div>
               </div>
-              <div className="border-b border-gray-200 bg-sales-green/10 p-4 text-center md:border-b-0">
-                <p className="text-sm font-bold text-sales-navy">Charm Payments</p>
-                <p className="mt-1 text-xs text-sales-navy/80">See every fee · local St. Louis team</p>
-              </div>
-            </div>
-            <div className="divide-y divide-gray-100">
-              {comparisonRows.map((row) => (
-                <div key={row.label} className="grid grid-cols-1 items-stretch md:grid-cols-3">
-                  <div className="border-b border-gray-100 bg-gray-50/80 p-4 text-sm font-semibold text-sales-navy md:border-b-0 md:border-r md:border-gray-200">
-                    {row.label}
+
+              {/* Data rows */}
+              {comparisonRows.map((row, idx) => (
+                <div
+                  key={row.label}
+                  className="group grid grid-cols-[2fr_1.5fr_1.5fr] items-stretch"
+                  style={{ borderTop: '1px solid rgba(28,28,21,0.08)' }}
+                >
+                  <div
+                    className="flex items-center px-6 py-4 transition-colors duration-150 group-hover:brightness-95"
+                    style={{
+                      background: idx % 2 === 0 ? 'var(--surface-variant)' : 'var(--surface-container-low)',
+                    }}
+                  >
+                    <p className="text-sm font-semibold" style={{ color: 'var(--on-surface)' }}>
+                      {row.label}
+                    </p>
                   </div>
-                  <div className="flex gap-2 border-b border-gray-100 p-4 text-sm text-gray-600 md:border-b-0 md:border-r">
-                    <X className="mt-0.5 h-4 w-4 shrink-0 text-red-500" aria-hidden />
-                    <span>{row.other}</span>
+                  <div
+                    className="flex items-start gap-3 px-6 py-4"
+                    style={{
+                      background: idx % 2 === 0 ? 'rgba(220,38,38,0.04)' : 'rgba(220,38,38,0.07)',
+                    }}
+                  >
+                    <X className="mt-0.5 h-5 w-5 shrink-0 text-red-400" aria-hidden />
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--on-surface-variant)' }}>
+                      {row.other}
+                    </p>
                   </div>
-                  <div className="flex gap-2 bg-sales-green/5 p-4 text-sm font-medium text-sales-navy">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-sales-green" aria-hidden />
-                    <span>{row.charm}</span>
+                  <div
+                    className="flex items-start gap-3 px-6 py-4"
+                    style={{ background: 'var(--secondary-container)' }}
+                  >
+                    <Check
+                      className="mt-0.5 h-5 w-5 shrink-0"
+                      style={{ color: 'var(--secondary)' }}
+                      aria-hidden
+                    />
+                    <p className="text-sm font-medium leading-relaxed" style={{ color: 'var(--primary)' }}>
+                      {row.charm}
+                    </p>
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
 
-          <p className="mt-8 text-center text-sm text-gray-500">
+              {/* Footer CTA row */}
+              <div
+                className="grid grid-cols-[2fr_1.5fr_1.5fr]"
+                style={{ borderTop: '1px solid rgba(28,28,21,0.08)' }}
+              >
+                <div style={{ background: 'var(--surface-variant)' }} className="px-6 py-4" />
+                <div
+                  className="flex items-center justify-center px-6 py-4"
+                  style={{ background: 'rgba(220,38,38,0.04)' }}
+                >
+                  <p className="label-sm" style={{ color: 'var(--on-surface-variant)' }}>
+                    Status quo
+                  </p>
+                </div>
+                <div
+                  className="flex items-center justify-center px-6 py-4"
+                  style={{ background: 'var(--secondary-container)' }}
+                >
+                  <Link
+                    href="/apply"
+                    className="inline-flex items-center gap-1.5 rounded-md px-5 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
+                    style={{ background: 'linear-gradient(135deg, #004421, #1E5C35)' }}
+                  >
+                    Switch to Charm
+                    <ArrowUpRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+
+          <p className="mt-8 text-center body-md" style={{ color: 'var(--on-surface-variant)' }}>
             Competitors named illustratively — compare your actual statement side-by-side in a{' '}
-            <Link href="/quote" className="font-semibold text-sales-navy underline-offset-2 hover:underline">
+            <Link
+              href="/quote"
+              className="font-semibold underline-offset-2 hover:underline"
+              style={{ color: 'var(--primary)' }}
+            >
               free rate audit
             </Link>
             .
@@ -392,62 +412,99 @@ export default function HomePage() {
         </div>
       </section>
 
-      <LocalHeroSection />
-
-      {/* SECTION — SOLUTIONS */}
-      <section id="solutions" className="scroll-mt-24 bg-slate-50 section-ptb">
+      {/* ── SECTION 5 — SOLUTIONS ────────────────────────────────────────── */}
+      <section
+        id="solutions"
+        className="scroll-mt-24 section-ptb"
+        style={{ background: 'var(--surface)' }}
+      >
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">WHAT CHANGES</span>
-            <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">
-              Run Every Payment Channel Without <span className="text-sales-green">Juggling Processors</span>
-            </h2>
-            <p className="mt-4 text-lg text-[var(--paragraph)]/85">
-              One merchant account covers every channel — register, website, phone orders, and recurring billing — with unified reporting and no extra processors to manage.
-            </p>
+            <FadeIn><span className="section-label">WHAT CHANGES</span></FadeIn>
+            <FadeIn delay={0.08}>
+              <h2 className="headline-md mt-2" style={{ color: 'var(--on-surface)' }}>
+                Run Every Payment Channel Without{' '}
+                <span className="gradient-text">Juggling Processors</span>
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.16}>
+              <p className="mt-4 body-md" style={{ color: 'var(--on-surface-variant)' }}>
+                One merchant account covers every channel — register, website, phone orders, and recurring
+                billing — with unified reporting and no extra processors to manage.
+              </p>
+            </FadeIn>
           </div>
+
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {solutions.map(({ title, desc, icon: Icon }, i) => (
-              <div
-                key={title}
-                className={`group relative rounded-[20px] border border-gray-200/90 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sales-green/45 hover:shadow-sales-glow-lg reveal ${revealDelays[i % 4]}`}
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sales-navy transition-all duration-300 group-hover:bg-sales-green group-hover:shadow-md">
-                  <Icon className="h-6 w-6 text-white transition-colors duration-300 group-hover:text-sales-navy" aria-hidden />
-                </div>
-                <h3 className="mt-5 text-xl font-bold text-sales-navy">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--paragraph)]/80">{desc}</p>
-                <Link
-                  href="/services"
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-sales-navy opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+            {solutions.map(({ title, desc, icon: Icon }, idx) => (
+              <FadeIn key={title} delay={idx * 0.08}>
+                <div
+                  className="group charm-card h-full p-8 transition-all duration-[250ms] hover:-translate-y-1 hover:shadow-md"
                 >
-                  See All Payment Solutions
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </div>
+                  <div
+                    className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group-hover:shadow-md"
+                    style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%)' }}
+                  >
+                    <Icon className="h-6 w-6 text-white" aria-hidden />
+                  </div>
+                  <h3
+                    className="mt-5 text-xl font-semibold"
+                    style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)' }}
+                  >
+                    {title}
+                  </h3>
+                  <p className="mt-3 body-md" style={{ color: 'var(--on-surface-variant)' }}>
+                    {desc}
+                  </p>
+                  <Link
+                    href="/services"
+                    className="mt-4 inline-flex items-center gap-1 text-sm font-bold opacity-60 transition-opacity duration-200 group-hover:opacity-100"
+                    style={{ color: 'var(--primary)' }}
+                  >
+                    See All Payment Solutions
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </FadeIn>
             ))}
           </div>
+
           <div className="mt-14 flex justify-center">
             <PrimaryCTA className="justify-center" variant="sales" primary="Get My Free Audit" secondary="Free Rate Audit" />
           </div>
         </div>
       </section>
 
-      <ProofSection />
-
-      {/* SECTION — HOW IT WORKS */}
-      <section id="how-it-works" className="scroll-mt-24 bg-white section-ptb">
+      {/* ── SECTION 6 — HOW IT WORKS ─────────────────────────────────────── */}
+      <section
+        id="how-it-works"
+        className="scroll-mt-24 section-ptb"
+        style={{ background: 'var(--surface-container-lowest)' }}
+      >
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">HOW IT WORKS</span>
-            <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">
-              Three Steps to a Processor That <span className="text-sales-green">Works for You</span>
-            </h2>
-            <p className="mt-4 text-[var(--paragraph)]/85">No setup project. We handle underwriting, configuration, and go-live — you fill out one application.</p>
+            <FadeIn><span className="section-label">HOW IT WORKS</span></FadeIn>
+            <FadeIn delay={0.08}>
+              <h2 className="headline-md mt-2" style={{ color: 'var(--on-surface)' }}>
+                Three Steps to a Processor That{' '}
+                <span className="gradient-text">Works for You</span>
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.16}>
+              <p className="mt-4 body-md" style={{ color: 'var(--on-surface-variant)' }}>
+                No setup project. We handle underwriting, configuration, and go-live — you fill out one
+                application.
+              </p>
+            </FadeIn>
           </div>
 
           <div className="relative mt-14">
-            <div className="absolute left-[10%] right-[10%] top-12 hidden h-0.5 bg-sales-navy/10 lg:block" aria-hidden />
+            {/* Connector line */}
+            <div
+              className="absolute left-[10%] right-[10%] top-12 hidden h-px lg:block"
+              style={{ background: 'var(--outline-variant)' }}
+              aria-hidden
+            />
             <ol className="relative z-10 grid list-none gap-10 p-0 md:grid-cols-3 md:gap-8">
               {[
                 {
@@ -463,131 +520,256 @@ export default function HomePage() {
                 {
                   n: '03',
                   t: 'Start accepting payments',
-                  d: 'Gateway keys, fraud rules, and cart connections go live — you\'re ready to run real transactions.',
+                  d: "Gateway keys, fraud rules, and cart connections go live — you're ready to run real transactions.",
                 },
               ].map(({ n, t, d }, idx) => (
-                <li key={n} className={`text-center reveal ${revealDelays[idx % 4]}`}>
-                  <div
-                    className={`mx-auto flex h-20 w-20 items-center justify-center rounded-2xl text-2xl font-black shadow-brand-md ${
-                      idx === 2 ? 'bg-sales-green text-sales-navy' : 'bg-sales-navy text-white'
-                    }`}
-                  >
-                    {n}
-                  </div>
-                  <h3 className="mt-6 text-lg font-bold text-sales-navy">{t}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--paragraph)]/75">{d}</p>
-                </li>
+                <FadeIn key={n} delay={idx * 0.16}>
+                  <li className="text-center">
+                    <div
+                      className="mx-auto flex h-20 w-20 items-center justify-center rounded-[0.75rem] text-2xl font-black"
+                      style={
+                        idx === 2
+                          ? {
+                              background: 'var(--gold)',
+                              color: 'var(--primary)',
+                              boxShadow: '0px 4px 20px rgba(28,28,21,0.04), 0px 12px 40px rgba(28,28,21,0.06)',
+                            }
+                          : {
+                              background: 'var(--primary)',
+                              color: 'var(--on-primary)',
+                              boxShadow: '0px 4px 20px rgba(28,28,21,0.04), 0px 12px 40px rgba(28,28,21,0.06)',
+                            }
+                      }
+                    >
+                      {n}
+                    </div>
+                    <h3
+                      className="mt-6 text-lg font-semibold"
+                      style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)' }}
+                    >
+                      {t}
+                    </h3>
+                    <p className="mt-2 body-md" style={{ color: 'var(--on-surface-variant)' }}>
+                      {d}
+                    </p>
+                  </li>
+                </FadeIn>
               ))}
             </ol>
           </div>
 
           <div className="mx-auto mt-16 max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="grid items-center gap-8 md:grid-cols-2">
-              <div className="overflow-hidden rounded-[24px] border border-gray-200 shadow-xl">
-                <Image
-                  src="/images/pexels-rdne-7697211.jpg"
-                  alt="Barber checking his Charm Payments dashboard between clients"
-                  width={700}
-                  height={500}
-                  className="h-[400px] w-full object-cover object-top"
-                />
-              </div>
-              <div>
-                <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">ST. LOUIS BUILT</span>
-                <h3 className="font-display mb-3 mt-4 text-2xl font-bold text-sales-navy">
-                  Built for the business owners who keep St. Louis running.
-                </h3>
-                <p className="leading-relaxed text-paragraph">
-                  From barbershops to boutiques, St. Louis merchants use Charm to finally see what they&apos;re paying — and stop their processor from quietly keeping the difference.
-                </p>
-              </div>
+              <FadeIn>
+                <div
+                  className="overflow-hidden"
+                  style={{
+                    borderRadius: '0.75rem',
+                    boxShadow: '0px 8px 32px rgba(28,28,21,0.05), 0px 24px 64px rgba(28,28,21,0.08)',
+                  }}
+                >
+                  <Image
+                    src="/images/pexels-rdne-7697211.jpg"
+                    alt="Barber checking his Charm Payments dashboard between clients"
+                    width={700}
+                    height={500}
+                    className="h-[400px] w-full object-cover object-top"
+                  />
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.12}>
+                <div>
+                  <span className="section-label">ST. LOUIS BUILT</span>
+                  <h3 className="headline-md mb-3 mt-4" style={{ color: 'var(--on-surface)' }}>
+                    Built for the business owners who keep St. Louis running.
+                  </h3>
+                  <p className="body-md" style={{ color: 'var(--on-surface-variant)' }}>
+                    From barbershops to boutiques, St. Louis merchants use Charm to finally see what
+                    they&apos;re paying — and stop their processor from quietly keeping the difference.
+                  </p>
+                </div>
+              </FadeIn>
             </div>
           </div>
 
-          <div className="mt-14 flex justify-center reveal">
+          <div className="mt-14 flex justify-center">
             <PrimaryCTA variant="sales" primary="Get My Free Audit" secondary="Free Rate Audit" />
           </div>
         </div>
       </section>
 
-      {/* SECTION — TESTIMONIALS */}
-      <section className="bg-slate-50 section-ptb">
+      {/* ── SECTION 7 — TESTIMONIALS ─────────────────────────────────────── */}
+      <section
+        className="section-ptb"
+        style={{ background: 'var(--surface-container-low)' }}
+      >
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="section-label !border-sales-green/40 !bg-sales-green/10 !text-sales-navy">MERCHANT REVIEWS</span>
-            <h2 className="font-display mt-2 text-3xl font-bold text-sales-navy md:text-4xl">What Merchants Say After Switching</h2>
+            <FadeIn><span className="section-label">MERCHANT REVIEWS</span></FadeIn>
+            <FadeIn delay={0.08}>
+              <h2 className="headline-md mt-2" style={{ color: 'var(--on-surface)' }}>
+                What Merchants Say After Switching
+              </h2>
+            </FadeIn>
           </div>
+
           <div className="mt-14 grid gap-8 md:grid-cols-3">
             {[
               {
                 quote: '"Charm Payments got us live before our launch weekend. Transparent pricing finally matched what we were promised."',
-                name: 'Marcus T.',
-                role: 'Metro Auto Repair',
+                name:  'Marcus T.',
+                role:  'Metro Auto Repair',
                 initial: 'M',
+                delay: 0,
               },
               {
                 quote: '"Recurring billing just works. Support picked up on the first ring when we had a gateway question."',
-                name: 'Diane R.',
-                role: 'Sunflower Wellness Spa',
+                name:  'Diane R.',
+                role:  'Sunflower Wellness Spa',
                 initial: 'D',
+                delay: 0.16,
               },
               {
                 quote: '"We process six figures monthly without downtime. The reporting exports clean into our accounting stack."',
-                name: 'James K.',
-                role: 'StreamFlow Software',
+                name:  'James K.',
+                role:  'StreamFlow Software',
                 initial: 'J',
+                delay: 0.32,
               },
-            ].map((t, i) => (
-              <div key={t.name} className={`charm-card reveal border border-gray-100 p-8 ${revealDelays[i % revealDelays.length]}`}>
-                <div className="flex gap-1">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-sales-green text-sales-green" aria-hidden />
-                  ))}
-                </div>
-                <p className="mt-4 italic leading-relaxed text-gray-600">{t.quote}</p>
-                <div className="mt-6 flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-sales-navy font-bold text-white">{t.initial}</div>
-                  <div>
-                    <p className="font-bold text-[var(--heading)]">{t.name}</p>
-                    <p className="text-xs text-gray-500">{t.role}</p>
+            ].map((t) => (
+              <FadeIn key={t.name} delay={t.delay}>
+                <div className="charm-card relative h-full overflow-hidden p-8 pb-10">
+                  {/* Decorative large quote mark */}
+                  <span
+                    className="pointer-events-none absolute -top-3 -left-1 select-none text-[7rem] leading-none"
+                    style={{ color: 'var(--gold)', opacity: 0.12, fontFamily: 'Georgia, serif' }}
+                    aria-hidden
+                  >
+                    &ldquo;
+                  </span>
+
+                  {/* Gold stars */}
+                  <div className="relative flex gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-4 w-4"
+                        style={{ fill: 'var(--gold)', color: 'var(--gold)' }}
+                        aria-hidden
+                      />
+                    ))}
                   </div>
+
+                  <p className="relative mt-4 leading-relaxed body-md" style={{ color: 'var(--on-surface-variant)' }}>
+                    {t.quote}
+                  </p>
+
+                  <div className="relative mt-6 flex items-center gap-3">
+                    <div
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-bold text-white"
+                      style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%)' }}
+                    >
+                      {t.initial}
+                    </div>
+                    <div>
+                      <p
+                        className="font-semibold"
+                        style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)' }}
+                      >
+                        {t.name}
+                      </p>
+                      <p className="label-sm" style={{ color: 'var(--on-surface-variant)' }}>
+                        {t.role}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Bottom gold accent */}
+                  <div
+                    className="absolute bottom-0 left-8 right-8 h-px"
+                    style={{ background: 'linear-gradient(90deg, transparent, var(--gold), transparent)' }}
+                    aria-hidden
+                  />
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
-          <p className="mt-10 text-center text-xs text-gray-400">Testimonials are illustrative. Individual merchant results may vary.</p>
+
+          <p
+            className="mt-10 text-center label-sm"
+            style={{ color: 'var(--on-surface-variant)', opacity: 0.55 }}
+          >
+            Testimonials are illustrative. Individual merchant results may vary.
+          </p>
         </div>
       </section>
 
-      {/* SECTION — FINAL CTA */}
+      {/* ── SECTION 8 — FINAL CTA ────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden section-ptb px-6 text-center"
         style={{ background: 'linear-gradient(145deg, #0E1A12 0%, #182A1C 50%, #0E1A12 100%)' }}
       >
+        {/* Grain */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ backgroundImage: grainSvg, opacity: 0.035 }}
+          aria-hidden
+        />
+
+        {/* Vertical light streaks */}
         <div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden>
           <div className="absolute bottom-0 left-[20%] top-0 w-px bg-gradient-to-b from-transparent via-white/40 to-transparent" />
           <div className="absolute bottom-0 right-[30%] top-0 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent" />
         </div>
-        <div className="absolute right-[15%] top-16 hidden h-20 w-20 animate-rotation rounded-full border border-white/15 lg:block" aria-hidden />
-        <div className="absolute bottom-24 left-[20%] hidden h-3 w-3 animate-float rounded-full bg-sales-green lg:block" aria-hidden />
+
+        {/* Orbital decorators */}
+        <div
+          className="absolute right-[15%] top-16 hidden h-20 w-20 animate-rotation rounded-full border border-white/15 lg:block"
+          aria-hidden
+        />
+        <div
+          className="absolute bottom-24 left-[20%] hidden h-3 w-3 animate-float rounded-full lg:block"
+          style={{ background: 'var(--gold)' }}
+          aria-hidden
+        />
 
         <div className="relative z-10 mx-auto max-w-3xl">
-          <span className="inline-block rounded-full border border-sales-green/50 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-sales-green">
-            STOP OVERPAYING TODAY
-          </span>
-          <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">Ready to see what your statement is hiding?</h2>
-          <p className="mt-4 text-lg leading-relaxed text-white/75">
-            Your last statement has fees your processor buried on purpose. We&apos;ll find every one, line them up, and show you exactly what you&apos;d save — no cost, no commitment.
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center">
-            <PrimaryCTA variant="sales-dark" primary="Get My Free Rate Audit" secondary="Free Rate Audit" />
-          </div>
-          <p className="mx-auto mt-10 max-w-xl text-xs leading-relaxed text-white/35">
-            Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds
-            are subject to the terms of the Merchant Agreement.
+          <FadeIn>
+            <span
+              className="label-sm inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5"
+              style={{ color: 'var(--gold)' }}
+            >
+              STOP OVERPAYING TODAY
+            </span>
+          </FadeIn>
+
+          <FadeIn delay={0.08}>
+            <h2 className="headline-md mt-4 text-white">
+              Ready to see what your statement is hiding?
+            </h2>
+          </FadeIn>
+
+          <FadeIn delay={0.16}>
+            <p className="title-md mt-4 text-white/75">
+              Your last statement has fees your processor buried on purpose. We&apos;ll find every one,
+              line them up, and show you exactly what you&apos;d save — no cost, no commitment.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.28}>
+            <div className="mt-10 flex flex-wrap justify-center">
+              <PrimaryCTA variant="sales-dark" primary="Get My Free Rate Audit" secondary="Free Rate Audit" />
+            </div>
+          </FadeIn>
+
+          <p className="mx-auto mt-10 max-w-xl label-sm text-white/35">
+            Charm Payments is a payment facilitator, not a bank. Payment processing services are
+            provided through our licensed acquiring bank partner. Merchant funds are subject to the
+            terms of the Merchant Agreement.
           </p>
         </div>
       </section>
+
     </div>
   )
 }
