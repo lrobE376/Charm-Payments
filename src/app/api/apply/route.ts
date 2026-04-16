@@ -1,6 +1,7 @@
 // src/app/api/apply/route.ts
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
+import { triggerZap } from '@/lib/integrations/zapier'
 
 async function sendResendEmail(to: string, subject: string, html: string): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY
@@ -119,6 +120,16 @@ interface ApplicationBody {
 
 const LAST4_RE = /^\d{4}$/
 
+/** Coerce form boolean|string values to a real boolean for PostgreSQL. */
+function coerceBool(val: boolean | string | undefined | null): boolean | null {
+  if (val === undefined || val === null) return null
+  if (typeof val === 'boolean') return val
+  const s = String(val).toLowerCase().trim()
+  if (s === 'true' || s === 'yes' || s === '1') return true
+  if (s === 'false' || s === 'no' || s === '0') return false
+  return null
+}
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as ApplicationBody
@@ -186,45 +197,109 @@ export async function POST(request: Request) {
       return jsonError('account_type must be checking or savings', 400, 'VALIDATION_ERROR')
     }
 
-    const supabase = await createClient()
+    const supabase = createAdminClient()
 
+    // TODO PCI: routing_number is currently stored raw because the schema has it as NOT NULL.
+    // Migration to drop routing_number and make routing_last4 NOT NULL is pending.
+    // Until that migration runs, we insert 'NOT_STORED' as a sentinel so the constraint
+    // is satisfied without persisting the real value. The actual last-4 is in routing_last4.
     const { error } = await supabase.from('merchant_applications').insert({
+      // ── NOT NULL ────────────────────────────────────────────────────────────
       business_name,
+      business_type:           business_type ?? '',
       ein,
-      owner_email,
+      monthly_volume:          monthly_volume ?? '',
+      average_ticket:          average_ticket ?? '',
       owner_first_name,
       owner_last_name,
-      owner_phone: owner_phone ?? null,
-      owner_dob: owner_dob ?? null,
-      address: address ?? null,
-      zip: zip ?? null,
-      bank_name: bank_name ?? null,
-      account_last4: account_last4 ?? null,
-      routing_last4: routing_last4 ?? null,
-      account_type: account_type ?? null,
-      business_type: business_type ?? null,
-      industry: industry ?? null,
-      monthly_volume: monthly_volume ?? null,
-      average_ticket: average_ticket ?? null,
-      current_terminal: current_terminal ?? null,
-      website: website ?? null,
-      dba_name: dba_name ?? null,
-      location_count: location_count ?? null,
-      existing_processor: existing_processor ?? null,
-      device_preference: device_preference ?? null,
-      existing_pos_software: existing_pos_software ?? null,
-      has_customer_database: has_customer_database ?? null,
-      customer_count: customer_count ?? null,
-      needs_recurring_billing: needs_recurring_billing ?? null,
-      needs_online_payments: needs_online_payments ?? null,
-      needs_invoicing: needs_invoicing ?? null,
-      city: city ?? null,
-      state: state ?? null,
-      notes: notes ?? null,
-      status: 'submitted',
+      owner_email,
+      owner_phone:             owner_phone ?? '',
+      owner_dob:               owner_dob ?? '',
+      address:                 address ?? '',
+      city:                    city ?? '',
+      state:                   state ?? '',
+      zip:                     zip ?? '',
+      bank_name:               bank_name ?? '',
+      routing_number:          'NOT_STORED',
+      account_last4:           account_last4 ?? '',
+      status:                  'submitted',
+      // ── NULLABLE ────────────────────────────────────────────────────────────
+      dba_name:                dba_name ?? null,
+      website:                 website ?? null,
+      industry:                industry ?? null,
+      has_existing_pos:        null,
+      existing_pos_software:   existing_pos_software ?? null,
+      has_existing_processor:  null,
+      existing_processor:      existing_processor ?? null,
+      has_customer_database:   coerceBool(has_customer_database),
+      customer_count:          customer_count ?? null,
+      needs_recurring_billing: coerceBool(needs_recurring_billing),
+      needs_online_payments:   coerceBool(needs_online_payments),
+      needs_invoicing:         coerceBool(needs_invoicing),
+      device_preference:       device_preference ?? null,
+      location_count:          location_count ?? null,
+      notes:                   notes ?? null,
+      current_terminal:        current_terminal ?? null,
+      account_type:            account_type ?? null,
+      routing_last4:           routing_last4 ?? null,
     })
 
-    if (error) return jsonError('Failed to submit application', 500, 'DB_ERROR')
+    if (error) {
+      console.error('[apply] Supabase insert failed:', {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint,
+      })
+      return jsonError('Failed to submit application', 500, 'DB_ERROR')
+    }
+
+    // Fire-and-forget — do not await, must not block response.
+    // Full underwriting detail is routed here so Salesforce has everything
+    // even though Supabase only stores the minimal record above.
+    triggerZap('application', {
+      // Identity
+      firstName:              owner_first_name,
+      lastName:               owner_last_name,
+      email:                  owner_email,
+      phone:                  owner_phone,
+      dob:                    owner_dob,
+      // Business
+      businessName:           business_name,
+      dbaName:                dba_name,
+      businessType:           business_type,
+      ein:                    ein,
+      website:                website,
+      industry:               industry,
+      // Address
+      address:                address,
+      city:                   city,
+      state:                  state,
+      zip:                    zip,
+      // Processing profile
+      monthlyVolume:          monthly_volume,
+      averageTicket:          average_ticket,
+      currentTerminal:        current_terminal,
+      existingProcessor:      existing_processor,
+      devicePreference:       device_preference,
+      existingPosSoftware:    existing_pos_software,
+      locationCount:          location_count,
+      // Customer profile
+      hasCustomerDatabase:    has_customer_database,
+      customerCount:          customer_count,
+      needsRecurringBilling:  needs_recurring_billing,
+      needsOnlinePayments:    needs_online_payments,
+      needsInvoicing:         needs_invoicing,
+      // Bank metadata (last4 only — never raw numbers)
+      bankName:               bank_name,
+      accountType:            account_type,
+      accountLast4:           account_last4,
+      routingLast4:           routing_last4,
+      // Notes
+      notes:                  notes,
+    }).catch(() => {
+      // Already logged inside triggerZap
+    })
 
     await sendResendEmail(
       owner_email,

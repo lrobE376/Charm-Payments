@@ -2,6 +2,7 @@
 import { createAdminClient } from '@/lib/supabase/admin'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
 import { sendEmail, quoteConfirmationHtml, quoteInternalAlertHtml, INTERNAL_TO } from '@/lib/email'
+import { triggerZap } from '@/lib/integrations/zapier'
 
 interface QuoteRequestBody {
   first_name: string
@@ -55,6 +56,19 @@ export async function POST(request: Request) {
     if (error) {
       return jsonError('Failed to save quote request', 500, 'DB_ERROR')
     }
+
+    // Fire-and-forget — do not await, must not block response
+    triggerZap('quote', {
+      name: `${first_name} ${last_name}`,
+      businessName: business_name,
+      email,
+      phone,
+      monthlyVolume: body.monthly_volume,
+      currentProcessor: body.current_processor,
+      statementUrl: body.statement_urls?.[0],
+    }).catch(() => {
+      // Already logged inside triggerZap
+    })
 
     // Emails are non-blocking — failures do not affect the response
     await Promise.allSettled([

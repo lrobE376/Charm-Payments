@@ -834,3 +834,215 @@ Execute in this exact order to avoid runtime errors between deploys:
 | Security issues requiring immediate attention | 3 |
 | New integrations to build | 3 (Zapier, NMI Boarding, NMI Webhook) |
 | New env vars to add | ~5 |
+
+---
+
+## Phase 5 Complete — Post-Cleanup Audit
+
+**Date completed:** 2026-04-15  
+**Commits:**
+- `5A` — `security: remove unauthed pipedrive route, strip logs, fix PCI exposure, add NMI webhook verification`
+- `5B` — `chore: remove pipedrive integration entirely`
+- `5C` — `chore: remove merchant dashboard, admin portal, auth, and Stripe Treasury`
+
+---
+
+### What Was Removed
+
+#### Phase 5A — Security Fixes
+| Item | Action |
+|---|---|
+| `src/app/api/integrations/pipedrive/route.ts` | Deleted — unauthenticated CRM test endpoint |
+| `console.log()` calls in `useScrollReveal.ts` | Removed — 2 DOM info leaks |
+| `api/webhooks/nmi/route.ts` | Rewritten — added HMAC-SHA256 `x-nmi-signature` verification; removed stub Stripe call |
+
+#### Phase 5B — Pipedrive Removal (13 files)
+| Item | Action |
+|---|---|
+| `src/lib/integrations/pipedrive.ts` | Deleted — entire CRM integration library |
+| `src/app/api/apply/route.ts` | `pushToPipedrive()` function + call removed |
+| `src/app/api/quote/route.ts` | `pushToPipedrive()` function + call removed |
+| `src/app/api/integrations/ooma/route.ts` | Removed `logCallActivity` Pipedrive call; Ooma dial logic kept |
+| `src/lib/services/lead-service.ts` | Removed `syncLeadToPipedrive`, `addNoteToDeal`, all `pipedrive_*` column refs |
+| `src/components/dashboard/leads-dashboard-client.tsx` | Deleted — orphaned (source page already deleted), referenced `pipedrive_deal_id` |
+| `src/types/lead.ts` | Removed 4 `pipedrive_*` fields from `Lead` interface |
+| `src/types/integration.ts` | Removed `'pipedrive'` from `IntegrationProvider`; added `'zapier'` |
+| `.env.example` | Removed `PIPEDRIVE_API_TOKEN`, `PIPEDRIVE_DOMAIN`, `PIPEDRIVE_QUOTE_STAGE_ID`, Stripe vars |
+| `CLAUDE.md` | Updated: no portal, CRM = Salesforce/Zapier, env vars updated |
+| `.cursor/rules/charm-payments.mdc` | Updated: reflects post-cleanup architecture |
+
+#### Phase 5C — Dashboard, Admin Portal, Auth, and Stripe (40+ files)
+| Category | Deleted |
+|---|---|
+| Merchant dashboard | `src/app/(dashboard)/` — all pages (overview, transactions, wallet, payouts, disputes, equipment, tickets, settings, accounts) + layout |
+| Admin portal | `src/app/(admin)/` — all pages (applications list/detail, leads, merchants, tickets, admins) + layout |
+| Auth UI | `src/app/(auth)/login/`, `forgot-password/`, `apply/pending/` |
+| Auth callback | `src/app/auth/` (Supabase confirm callback) |
+| API: admin | `src/app/api/admin/` — applications list, detail, approve, decline, review |
+| API: auth | `src/app/api/auth/` — callback + forgot-password |
+| API: wallet | `src/app/api/wallet/` — balance, transactions, transfer, onboard |
+| API: dashboard | `src/app/api/dashboard/` — equipment order |
+| Dashboard components | `src/components/dashboard/` — Sidebar, Header, MobileNav, DashboardPageHeader, EquipmentCatalogClient, wallet-transfer-form |
+| Admin components | `src/components/admin/` — AdminSidebar, ApplicationReviewForm |
+| Stripe | `src/lib/stripe.ts`, `src/lib/services/stripe-service.ts`, `src/types/stripe.ts` |
+| Auth middleware | `src/middleware.ts`, `src/lib/auth/` |
+| npm packages | `stripe`, `@stripe/stripe-js` (removed from package.json) |
+| Email links fixed | `src/lib/email.ts` — removed `/admin/*` + `/login` + `/forgot-password` CTAs; "Review in Salesforce" replacement |
+| Notifications fixed | `src/lib/integrations/notifications.ts` — removed dead `sendApprovalNotification()` + `merchantApprovalHtml` import |
+| Navbar fixed | `src/components/marketing/Navbar.tsx` — removed "Merchant Login" link |
+| Restored | `src/lib/nmi-products.ts` — kept (gateway marketing pages import from it) |
+
+#### Phase 5D — Schema Migrations (written, not yet executed)
+| File | Purpose |
+|---|---|
+| `supabase/migrations/20260415000000_remove_pipedrive.sql` | Drops 4 `pipedrive_*` columns from `leads` |
+| `supabase/migrations/20260415000001_cleanup_schema.sql` | Drops 8 tables; drops admin/portal columns from `merchants` + `merchant_applications` |
+
+---
+
+### Current Architecture (Post Phase 5)
+
+```
+charmpayments.com
+  ├── (marketing)/ — 34 static marketing pages
+  ├── (auth)/apply/ — public merchant application form
+  ├── /api/apply — save application to Supabase + Resend email
+  ├── /api/quote — save rate audit to Supabase + Resend email
+  ├── /api/quote/upload — statement file upload to Supabase Storage
+  ├── /api/contact — contact form → lead
+  ├── /api/leads — lead CRUD (service-role)
+  ├── /api/tickets — ticket CRUD (service-role)
+  ├── /api/integrations/ooma — Ooma call link generation
+  └── /api/webhooks/nmi — NMI payment webhook (HMAC verified)
+```
+
+**Build output:** 51 routes — all marketing pages static (○), all API routes dynamic (ƒ)
+
+---
+
+### Updated Infrastructure Map
+
+```mermaid
+graph TB
+    subgraph Internet["Internet (Public)"]
+        Browser["Merchant / Visitor Browser"]
+    end
+
+    subgraph Vercel["Vercel — charmpayments.com (Next.js 14)"]
+        direction TB
+        Marketing["(marketing) — 34 static pages"]
+        Apply["(auth)/apply — Application Form"]
+
+        subgraph API["API Routes"]
+            ApiApply["/api/apply"]
+            ApiQuote["/api/quote + /upload"]
+            ApiContact["/api/contact"]
+            ApiLeads["/api/leads"]
+            ApiTickets["/api/tickets"]
+            ApiOoma["/api/integrations/ooma"]
+            ApiNMI["/api/webhooks/nmi (HMAC verified)"]
+        end
+    end
+
+    subgraph Supabase["Supabase (PostgreSQL + Storage)"]
+        DB[("Database\nmerchant_applications · merchants\nleads · tickets · quote_requests")]
+        Storage["Storage (statements bucket)"]
+    end
+
+    subgraph Resend["Resend (Email)"]
+        ResendAPI["Transactional Email\napplication received · quote confirmation\nmerchant approval/decline\nlead + ticket alerts"]
+    end
+
+    subgraph NMI["NMI / First Data (Fiserv)"]
+        NMIGateway["Payment Gateway"]
+        NMIBoarding["Merchant Boarding API\n(Phase 6 — not yet wired)"]
+    end
+
+    subgraph Ooma["Ooma VoIP"]
+        OomaPhone["Call Link Generation"]
+    end
+
+    subgraph Salesforce["Salesforce CRM"]
+        SF["All merchant/lead management\n(via Zapier — Phase 6)"]
+    end
+
+    Browser --> Marketing
+    Browser --> Apply
+
+    Apply --> ApiApply
+    ApiApply --> DB
+    ApiApply --> ResendAPI
+
+    ApiQuote --> DB
+    ApiQuote --> Storage
+    ApiQuote --> ResendAPI
+
+    ApiContact --> DB
+    ApiContact --> ResendAPI
+
+    ApiLeads --> DB
+    ApiTickets --> DB
+
+    ApiOoma --> OomaPhone
+
+    ApiNMI --> NMIGateway
+    ApiNMI --> DB
+    ApiNMI --> ResendAPI
+
+    style Salesforce fill:#d4edda,stroke:#28a745,color:#000
+    style NMIBoarding fill:#ffe0a0,stroke:#cc8800,color:#000
+```
+
+---
+
+### Vercel Environment Variables to Remove
+
+Log into the Vercel dashboard and delete these variables from **all environments** (Production, Preview, Development):
+
+| Variable | Reason |
+|---|---|
+| `PIPEDRIVE_API_TOKEN` | Pipedrive removed in Phase 5B |
+| `PIPEDRIVE_DOMAIN` | Pipedrive removed in Phase 5B |
+| `PIPEDRIVE_QUOTE_STAGE_ID` | Pipedrive removed in Phase 5B |
+| `STRIPE_SECRET_KEY` | Stripe removed in Phase 5C |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe removed in Phase 5C |
+| `STRIPE_WEBHOOK_SECRET` | Stripe removed in Phase 5C |
+
+**Variables to keep:**
+
+| Variable | Used By |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | All Supabase clients |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Browser Supabase client |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server-side admin operations |
+| `RESEND_API_KEY` | Email via `src/lib/email.ts` |
+| `NEXT_PUBLIC_SITE_URL` | Email template links |
+| `OOMA_ACCOUNT_ID` | Ooma call link generation |
+| `OOMA_EXTENSION` | Ooma call link generation |
+| `NMI_WEBHOOK_SECRET` | HMAC signature verification on `/api/webhooks/nmi` |
+| `NMI_SECURITY_KEY` | NMI gateway (boarding — Phase 6) |
+| `NMI_PUBLIC_KEY` | NMI gateway (boarding — Phase 6) |
+| `NEXT_PUBLIC_NMI_TOKENIZATION_KEY` | NMI client tokenization (Phase 6) |
+
+**To add for Phase 6:**
+
+| Variable | Value |
+|---|---|
+| `ZAPIER_SALESFORCE_WEBHOOK` | `https://hooks.zapier.com/hooks/catch/27240665/ujus70m/` |
+
+---
+
+### Pending: Schema Migration Execution
+
+The two migration files are written but **not yet run** against the live Supabase project:
+
+```bash
+# Option A — Supabase CLI
+supabase db push
+
+# Option B — direct psql
+psql $DATABASE_URL -f supabase/migrations/20260415000000_remove_pipedrive.sql
+psql $DATABASE_URL -f supabase/migrations/20260415000001_cleanup_schema.sql
+```
+
+Run `20260415000000` first, then `20260415000001`. Both use `IF EXISTS` / `DROP COLUMN IF EXISTS` so they are safe to re-run.

@@ -2,6 +2,7 @@
 import { createLead } from '@/lib/services/lead-service'
 import { sendLeadReceivedNotification } from '@/lib/integrations/notifications'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
+import { triggerZap } from '@/lib/integrations/zapier'
 
 type ContactBody = {
   name?: string
@@ -95,6 +96,19 @@ export async function POST(req: Request) {
       monthlyVolume: volume,
       source: 'contact',
       notes,
+    })
+
+    // Fire-and-forget — do not await, must not block response
+    triggerZap('contact', {
+      name,
+      email,
+      phone: phone || undefined,
+      subject: `Contact form inquiry — ${business}`,
+      message: message || notes,
+      businessName: business,
+      monthlyVolume: volume,
+    }).catch(() => {
+      // Already logged inside triggerZap
     })
 
     await sendLeadReceivedNotification(lead)

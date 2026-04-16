@@ -6,14 +6,45 @@
 // ── Payload interfaces ────────────────────────────────────────────────────────
 
 export interface ApplicationEventPayload {
-  businessName: string
+  // Identity
+  firstName: string
+  lastName: string
   email: string
   phone?: string
-  monthlyVolume?: string
+  dob?: string
+  // Business
+  businessName: string
+  dbaName?: string
   businessType?: string
+  ein?: string
+  website?: string
+  industry?: string
+  // Address
+  address?: string
+  city?: string
+  state?: string
+  zip?: string
+  // Processing profile
+  monthlyVolume?: string
+  averageTicket?: string
   currentTerminal?: string
+  existingProcessor?: string
+  devicePreference?: string
+  existingPosSoftware?: string
+  locationCount?: string | number
+  // Customer profile
+  hasCustomerDatabase?: boolean | string
+  customerCount?: string | number
+  needsRecurringBilling?: boolean | string
+  needsOnlinePayments?: boolean | string
+  needsInvoicing?: boolean | string
+  // Bank metadata (last4 only — never raw numbers)
   bankName?: string
   accountType?: string
+  accountLast4?: string
+  routingLast4?: string
+  // Notes
+  notes?: string
 }
 
 export interface QuoteEventPayload {
