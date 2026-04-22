@@ -13,7 +13,7 @@ interface Sparkle {
   size: number;
 }
 
-const CHARM_COLORS = ["#C9A96E", "#E8C99A", "#004421", "#1E5C35"];
+const DEFAULT_COLORS = ["#C9A96E", "#E8C99A", "#004421", "#1E5C35"];
 
 function generateSparkle(color: string): Sparkle {
   return {
@@ -47,29 +47,29 @@ export function SparklesText({
   children,
   className,
   sparkleCount = 8,
+  colors = DEFAULT_COLORS,
 }: {
   children: ReactNode;
   className?: string;
   sparkleCount?: number;
+  colors?: string[];
 }) {
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
 
   useEffect(() => {
     setSparkles(
       Array.from({ length: sparkleCount }, () =>
-        generateSparkle(
-          CHARM_COLORS[Math.floor(Math.random() * CHARM_COLORS.length)],
-        ),
+        generateSparkle(colors[Math.floor(Math.random() * colors.length)]),
       ),
     );
 
     const interval = setInterval(() => {
-      const color = CHARM_COLORS[Math.floor(Math.random() * CHARM_COLORS.length)];
+      const color = colors[Math.floor(Math.random() * colors.length)];
       setSparkles((prev) => [...prev.slice(1), generateSparkle(color)]);
     }, 500);
 
     return () => clearInterval(interval);
-  }, [sparkleCount]);
+  }, [sparkleCount, colors]);
 
   return (
     <span className={cn("relative inline-block", className)}>

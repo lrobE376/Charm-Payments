@@ -28,11 +28,11 @@ const config: Config = {
         gradient: {
           to: { 'background-position': '200% center' },
         },
-        marquee: {
+        'magicui-marquee': {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(calc(-100% - var(--gap)))' },
         },
-        'marquee-vertical': {
+        'magicui-marquee-vertical': {
           from: { transform: 'translateY(0)' },
           to: { transform: 'translateY(calc(-100% - var(--gap)))' },
         },
@@ -43,8 +43,8 @@ const config: Config = {
       },
       animation: {
         gradient: 'gradient 8s linear infinite',
-        marquee: 'marquee var(--duration) linear infinite',
-        'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+        'magicui-marquee': 'magicui-marquee var(--duration) linear infinite',
+        'magicui-marquee-vertical': 'magicui-marquee-vertical var(--duration) linear infinite',
         sparkle: 'sparkle 2s ease-in-out infinite',
       },
     },

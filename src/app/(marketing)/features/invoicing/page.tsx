@@ -4,23 +4,21 @@ import Link from 'next/link'
 import {
   ArrowRight,
   BarChart2,
-  Bell,
   Briefcase,
   Building2,
-  Calculator,
   CheckCircle,
   DollarSign,
-  Download,
   FileText,
   Gift,
-  Globe,
   Monitor,
   Phone,
-  RefreshCw,
   Send,
   Store,
   Users,
 } from 'lucide-react'
+import { SparklesText } from '@/components/magicui/sparkles-text'
+import { BorderBeam } from '@/components/magicui/border-beam'
+import { BentoGrid, BentoCard } from '@/components/magicui/bento-grid'
 import WaitlistForm from './WaitlistForm'
 
 export const metadata: Metadata = {
@@ -59,7 +57,9 @@ export default function InvoicingPage() {
         <div className="relative z-10 mx-auto max-w-4xl">
           <span className="section-label !border-white/20 !bg-white/10 !text-brand-accent">CHARM INVOICING</span>
           <h1 className="font-display mt-4 text-4xl font-bold text-white md:text-5xl lg:text-[3rem]">
-            Professional invoicing. Zero software fees. Get paid faster.
+            <SparklesText colors={['#C9A96E', '#E8C99A', '#fff9']} sparkleCount={6}>
+              Professional invoicing. Zero software fees. Get paid faster.
+            </SparklesText>
           </h1>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-white/75">
             Send beautiful branded invoices, accept payments in one click, and get paid directly into your Charm Payments account. Free for every Charm merchant — no
@@ -71,9 +71,12 @@ export default function InvoicingPage() {
             <span className="stats-badge !border-white/15 !bg-white/10 !text-white">Payment in seconds</span>
           </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link href="#waitlist" className="btn-accent inline-flex min-h-[44px] items-center justify-center">
-              Coming Soon — Join the Waitlist
-            </Link>
+            <div className="relative inline-flex overflow-hidden rounded-[0.375rem]">
+              <BorderBeam colorFrom="#C9A96E" colorTo="#1E5C35" contentBackground="#C9A96E" duration={8} />
+              <Link href="#waitlist" className="btn-accent relative z-10 inline-flex min-h-[44px] items-center justify-center">
+                Coming Soon — Join the Waitlist
+              </Link>
+            </div>
             <Link
               href="/contact"
               className="inline-flex min-h-[44px] items-center gap-1 text-sm font-medium text-white/80 transition-colors hover:text-white"
@@ -155,7 +158,7 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 3: Who It's For ──────────────────────────────── */}
+      {/* ── Section 3: Who It's For — BentoGrid ─────────────────── */}
       <section className="section-ptb bg-brand-light">
         <div className="mx-auto max-w-7xl px-6">
           <p className="section-label">WHO IT&apos;S FOR</p>
@@ -163,38 +166,52 @@ export default function InvoicingPage() {
           <p className="text-paragraph mt-3 max-w-2xl text-base leading-relaxed">
             If you send invoices, Charm Invoicing fits. Here&apos;s who uses it best.
           </p>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                Icon: Briefcase,
-                title: 'Consultants & Freelancers',
-                desc: "Send professional invoices for project work, retainers, or hourly billing. Track what's paid, what's pending, and what's overdue without chasing clients.",
-              },
-              {
-                Icon: Building2,
-                title: 'Service Businesses',
-                desc: 'Landscapers, cleaners, contractors, trainers, designers. If you bill for your time or services, Charm Invoicing replaces clunky software and paper invoices.',
-              },
-              {
-                Icon: Users,
-                title: 'Nonprofits & Churches',
-                desc: 'Invoice sponsors, grant payments, and service fees. Free processing discounts for verified 501(c)(3) organizations. Donation pages available too.',
-              },
-              {
-                Icon: Store,
-                title: 'B2B Merchants',
-                desc: 'Wholesalers, agencies, and businesses serving other businesses. Send detailed invoices, offer net-30 terms, accept ACH for low-fee processing.',
-              },
-            ].map(({ Icon, title, desc }) => (
-              <div key={title} className="charm-card bg-white p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-light">
-                  <Icon className="h-6 w-6 text-brand-dark" aria-hidden />
-                </div>
-                <h3 className="font-display mt-4 text-lg font-bold text-brand-dark">{title}</h3>
-                <p className="text-paragraph mt-2 text-sm leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
+          <BentoGrid className="mt-12 auto-rows-[18rem] grid-cols-1 sm:grid-cols-3">
+            <BentoCard
+              className="sm:col-span-2"
+              name="Consultants & Freelancers"
+              description="Send professional invoices for project work, retainers, or hourly billing. Track what's paid, what's pending, and what's overdue without chasing clients."
+              Icon={Briefcase}
+              href="/apply"
+              cta="Get started"
+              background={
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#fdf3e0] to-[#fdf9ed]" />
+              }
+            />
+            <BentoCard
+              className="sm:col-span-1"
+              name="Service Businesses"
+              description="Landscapers, cleaners, contractors, trainers, designers. Bill for your time or services — no clunky software, no paper invoices."
+              Icon={Building2}
+              href="/apply"
+              cta="Get started"
+              background={
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#e8f0ea] to-[#fdf9ed]" />
+              }
+            />
+            <BentoCard
+              className="sm:col-span-1"
+              name="Nonprofits & Churches"
+              description="Invoice sponsors, grant payments, and service fees. Free processing discounts for verified 501(c)(3) organizations."
+              Icon={Users}
+              href="/apply"
+              cta="Get started"
+              background={
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#d4f0e8] to-[#fdf9ed]" />
+              }
+            />
+            <BentoCard
+              className="sm:col-span-2"
+              name="B2B Merchants"
+              description="Wholesalers, agencies, and businesses serving other businesses. Send detailed invoices, offer net-30 terms, accept ACH for low-fee processing."
+              Icon={Store}
+              href="/apply"
+              cta="Get started"
+              background={
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#e8ede8] to-[#fdf9ed]" />
+              }
+            />
+          </BentoGrid>
         </div>
       </section>
 
@@ -295,7 +312,7 @@ export default function InvoicingPage() {
       >
         <div className="mx-auto max-w-3xl">
           <p className="section-label !border-white/20 !bg-white/10 !text-brand-accent">COMING SOON</p>
-          <h2 className="font-display mt-4 text-3xl font-bold md:text-4xl">Ready to invoice like a pro?</h2>
+          <h2 className="font-display gradient-text mt-4 text-3xl font-bold md:text-4xl">Ready to invoice like a pro?</h2>
           <p className="mt-4 text-lg text-white/80">
             Join the waitlist. We&apos;ll let you know when Charm Invoicing opens to your account.
           </p>
