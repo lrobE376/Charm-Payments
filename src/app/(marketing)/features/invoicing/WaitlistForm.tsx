@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { CheckCircle } from 'lucide-react'
 import { BorderBeam } from '@/components/magicui/border-beam'
 
-export default function WaitlistForm() {
+export default function WaitlistForm({ cta = 'Join the Waitlist' }: { cta?: string }) {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
@@ -40,7 +40,7 @@ export default function WaitlistForm() {
           type="submit"
           className="btn-accent relative z-10 inline-flex min-h-[44px] items-center justify-center"
         >
-          Join the Waitlist
+          {cta}
         </button>
       </div>
     </form>
