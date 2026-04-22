@@ -42,7 +42,7 @@ const productsAccept: { href: string; name: string; desc: string; Icon: LucideIc
 ]
 
 const productsManage: { href: string; name: string; desc: string; Icon: LucideIcon }[] = [
-  { href: '/features/invoicing',         name: 'Electronic Invoicing', desc: 'Send invoices, get paid instantly', Icon: FileText     },
+  { href: '/features/invoicing',         name: 'Invoicing',            desc: 'Send invoices, get paid instantly', Icon: FileText     },
   { href: '/features/text-to-pay',       name: 'Text to Pay',          desc: 'Payment requests via SMS',          Icon: MessageSquare},
   { href: '/features/recurring-billing', name: 'Recurring Billing',    desc: 'Subscriptions and auto-payments',   Icon: RefreshCw    },
   { href: '/features/qr-codes',          name: 'QR Code Payments',     desc: 'Contactless QR payment links',      Icon: QrCode       },
