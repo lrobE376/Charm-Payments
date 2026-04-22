@@ -12,6 +12,8 @@ interface MarqueeProps {
   vertical?: boolean;
   /** Number of duplicated sets — increase for very few items */
   repeat?: number;
+  /** Color of the fade-out edges — must match the section background */
+  fadeColor?: string;
 }
 
 export function Marquee({
@@ -21,6 +23,7 @@ export function Marquee({
   children,
   vertical = false,
   repeat = 4,
+  fadeColor = "#fdf9ed",
 }: MarqueeProps) {
   return (
     <div
@@ -31,11 +34,11 @@ export function Marquee({
       )}
       style={{
         maskImage: vertical
-          ? "linear-gradient(to bottom, transparent, #fff 10%, #fff 90%, transparent)"
-          : "linear-gradient(to right, transparent, #fff 8%, #fff 92%, transparent)",
+          ? `linear-gradient(to bottom, transparent, #fff 10%, #fff 90%, transparent)`
+          : `linear-gradient(to right, transparent, #fff 8%, #fff 92%, transparent)`,
         WebkitMaskImage: vertical
-          ? "linear-gradient(to bottom, transparent, #fff 10%, #fff 90%, transparent)"
-          : "linear-gradient(to right, transparent, #fdf9ed 8%, #fdf9ed 92%, transparent)",
+          ? `linear-gradient(to bottom, transparent, ${fadeColor} 10%, ${fadeColor} 90%, transparent)`
+          : `linear-gradient(to right, transparent, ${fadeColor} 8%, ${fadeColor} 92%, transparent)`,
       }}
     >
       {Array.from({ length: repeat }).map((_, i) => (

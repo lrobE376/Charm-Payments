@@ -2,20 +2,25 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
+  AlertCircle,
   ArrowRight,
-  BellOff,
+  Award,
   Building2,
+  Calendar,
+  CheckCircle,
+  Clock,
   CreditCard,
-  DollarSign,
   FileText,
-  Globe,
-  RefreshCw,
+  HelpCircle,
+  Settings,
   Shield,
   Smile,
+  TrendingUp,
   Zap,
 } from 'lucide-react'
 import { SparklesText } from '@/components/magicui/sparkles-text'
 import { BorderBeam } from '@/components/magicui/border-beam'
+import { Marquee } from '@/components/magicui/marquee'
 import WaitlistForm from './WaitlistForm'
 
 export const metadata: Metadata = {
@@ -43,20 +48,42 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   )
 }
 
+function TrustItem({
+  Icon,
+  name,
+  subtitle,
+}: {
+  Icon: React.ComponentType<{ className?: string }>
+  name: string
+  subtitle: string
+}) {
+  return (
+    <div className="mx-3 flex min-w-[180px] flex-col rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white px-6 py-5">
+      <Icon className="h-8 w-8 text-[#1E5C35]" aria-hidden />
+      <p className="mt-3 text-sm font-semibold text-brand-dark">{name}</p>
+      <p className="text-xs text-[#3d3d2e]">{subtitle}</p>
+    </div>
+  )
+}
+
 const painCards = [
   {
+    Icon: Clock,
     title: 'The 30-day silence',
     body: 'Invoice sent Friday. Work was great. By week two you\'re drafting a third "just checking in" email, wondering if you\'re being annoying. By week four you\'re calculating how much you need this relationship. You get paid eventually. You\'re depleted.',
   },
   {
+    Icon: HelpCircle,
     title: '"I thought I paid that"',
     body: "The client is certain they sent it. You check your bank. Nothing. You spend an hour tracing email threads, finding proof, feeling like the villain in your own story — because you asked to be paid for work you already did.",
   },
   {
+    Icon: Calendar,
     title: 'The weekend spreadsheet',
     body: "Sunday night. Open the invoice tracker. Update the days-outstanding column. Flag the ones past 30. Flag the ones past 60. Wonder if sending another reminder makes you look desperate. Close the laptop. Don't relax.",
   },
   {
+    Icon: AlertCircle,
     title: 'The PayPal shame',
     body: "Asking a client for $12,000 via Venmo feels wrong. But you don't have a real payment processor, so you email a PDF and hope. Half the time they mail a check. You drive to the bank. This is not why you went independent.",
   },
@@ -64,7 +91,7 @@ const painCards = [
 
 const turnBlocks = [
   {
-    Icon: BellOff,
+    Icon: CheckCircle,
     title: 'You stop being the collector',
     body: "Charm sends the reminders on a schedule you set. Day 7, day 14, day 30 — automatically. You never have to write another 'just following up' email. The relationship stays intact. The invoice gets paid.",
   },
@@ -92,44 +119,32 @@ const steps = [
     body: 'They get an email with a secure payment link. Card, ACH, or bank transfer — no account required. Most clients pay within 24 hours.',
   },
   {
-    Icon: DollarSign,
+    Icon: TrendingUp,
     title: 'You get paid',
     body: 'Funds hit your Charm Payments account the next business day. No holds, no surprises, no waiting.',
   },
   {
-    Icon: RefreshCw,
+    Icon: Settings,
     title: 'Charm handles the rest',
     body: "Automatic reminders on your schedule. Late fee triggers if you've set them. A full audit trail of every invoice, every payment, every status — without you lifting a finger.",
   },
 ]
 
 const compareRows = [
-  { feature: 'Monthly software fee',        current: '$15 – $60 / month',       charm: '$0' },
-  { feature: 'Per-invoice fee',             current: 'Up to $1 / invoice',       charm: '$0' },
-  { feature: 'Payment processing cut',      current: '2.9% – 3.5% + fees',       charm: 'Your standard Charm rate' },
-  { feature: 'Automatic payment reminders', current: 'You do it manually',        charm: 'Included' },
-  { feature: 'Client self-pay portal',      current: 'Paid tier only',            charm: 'Included' },
-  { feature: 'Branded PDF invoices',        current: 'Paid tier only',            charm: 'Included' },
-  { feature: 'Recurring invoice automation',current: 'Paid tier only',            charm: 'Included' },
-  { feature: 'ACH / bank transfer support', current: 'Paid tier only',            charm: 'Included' },
+  { feature: 'Monthly software fee',         current: '$15 – $60 / month',  charm: '$0' },
+  { feature: 'Per-invoice fee',              current: 'Up to $1 / invoice', charm: '$0' },
+  { feature: 'Payment processing cut',       current: '2.9% – 3.5% + fees', charm: 'Your standard Charm rate' },
+  { feature: 'Automatic payment reminders',  current: 'You do it manually',  charm: 'Included' },
+  { feature: 'Client self-pay portal',       current: 'Paid tier only',      charm: 'Included' },
+  { feature: 'Branded PDF invoices',         current: 'Paid tier only',      charm: 'Included' },
+  { feature: 'Recurring invoice automation', current: 'Paid tier only',      charm: 'Included' },
+  { feature: 'ACH / bank transfer support',  current: 'Paid tier only',      charm: 'Included' },
 ]
 
-const trustBlocks = [
-  {
-    Icon: Globe,
-    title: 'NMI Gateway',
-    body: 'Charm Invoicing runs on NMI — the payment gateway processing billions annually. Enterprise infrastructure, the same system used by major banks and ISOs, priced for independent professionals.',
-  },
-  {
-    Icon: Building2,
-    title: 'First Data / Fiserv Acquiring',
-    body: "Every payment clears through First Data / Fiserv, one of the world's largest acquiring networks. 40+ years of payment infrastructure behind every invoice you send.",
-  },
-  {
-    Icon: Shield,
-    title: 'Charm Holdings LLC',
-    body: "Charm is a registered ISO/Agent of First Data Merchant Services. Licensed, compliant, and carrying the acquiring relationships required to move real money — not a fintech app running on someone else's rails.",
-  },
+const trustItems = [
+  { Icon: Shield,    name: 'NMI Gateway',        subtitle: 'Processing $3B+ annually' },
+  { Icon: Building2, name: 'First Data / Fiserv', subtitle: '40+ years of acquiring'  },
+  { Icon: Award,     name: 'Charm Holdings LLC',  subtitle: 'Registered ISO/Agent'    },
 ]
 
 export default function InvoicingPage() {
@@ -171,18 +186,25 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 2: Pain ──────────────────────────────────────── */}
-      <section className="section-ptb bg-white">
+      {/* ── Section 2: Pain — dark gradient, white cards with icons ─ */}
+      <section
+        className="section-ptb"
+        style={{ background: 'linear-gradient(to bottom, #0a1f14, #0f2819)' }}
+      >
         <div className="mx-auto max-w-7xl px-6">
-          <p className="section-label">IF THIS SOUNDS FAMILIAR</p>
-          <h2 className="font-display mt-4 text-3xl font-bold text-brand-dark md:text-4xl">You know the feeling.</h2>
-          <p className="text-paragraph mt-3 max-w-2xl text-base leading-relaxed">
+          <p className="section-label !border-white/20 !bg-white/10 !text-brand-accent">IF THIS SOUNDS FAMILIAR</p>
+          <h2 className="font-display mt-4 text-3xl font-bold text-white md:text-4xl">You know the feeling.</h2>
+          <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70">
             The project&apos;s done. The invoice is sent. The client goes quiet. Now what?
           </p>
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {painCards.map(({ title, body }) => (
-              <div key={title} className="rounded-2xl border border-gray-200 bg-white p-7">
-                <h3 className="font-display text-lg font-bold text-brand-dark">{title}</h3>
+            {painCards.map(({ Icon, title, body }) => (
+              <div
+                key={title}
+                className="rounded-2xl bg-white p-7 shadow-[0_8px_32px_rgba(0,0,0,0.28)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.38)]"
+              >
+                <Icon className="h-6 w-6 text-[#1E5C35]/60" aria-hidden />
+                <h3 className="font-display mt-3 text-lg font-bold text-brand-dark">{title}</h3>
                 <p className="text-paragraph mt-3 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
@@ -190,35 +212,43 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 3: The Turn ──────────────────────────────────── */}
-      <section className="section-ptb bg-[#fdf9ed]">
-        <div className="mx-auto max-w-7xl px-6">
+      {/* ── Section 3: The Turn — cream with radial glow, grid, gold icons */}
+      <section
+        className="section-ptb bg-[#fdf9ed]"
+        style={{ backgroundImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,169,110,0.10) 0%, transparent 70%)' }}
+      >
+        <div className="mx-auto max-w-5xl px-6">
           <p className="section-label">IMAGINE INSTEAD</p>
-          <h2 className="font-display mt-4 text-3xl font-bold text-brand-dark md:text-4xl">Invoices that pay themselves.</h2>
-          <p className="text-paragraph mt-3 max-w-2xl text-base leading-relaxed">You send one invoice. Charm does the rest.</p>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <h2 className="font-display mt-4 text-4xl font-bold text-brand-dark md:text-5xl">
+            Invoices that pay themselves.
+          </h2>
+          <p className="text-paragraph mt-4 text-lg leading-relaxed">You send one invoice. Charm does the rest.</p>
+          <div className="mt-14 grid gap-12 sm:grid-cols-3">
             {turnBlocks.map(({ Icon, title, body }) => (
-              <div key={title} className="rounded-2xl bg-white p-8 shadow-[var(--shadow-sm)]">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-light">
-                  <Icon className="h-6 w-6 text-brand-dark" aria-hidden />
-                </div>
-                <h3 className="font-display text-xl font-bold text-brand-dark">{title}</h3>
-                <p className="text-paragraph mt-3 text-sm leading-relaxed">{body}</p>
+              <div key={title} className="flex flex-col items-center text-center">
+                <Icon className="h-8 w-8 text-brand-accent" aria-hidden />
+                <h3 className="font-display mt-4 text-2xl font-bold text-brand-dark">{title}</h3>
+                <p className="text-paragraph mt-2 text-base leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Section 4: How It Works ──────────────────────────────── */}
+      {/* ── Section 4: How It Works — pure white, large numbered steps ─ */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
           <p className="section-label">HOW IT WORKS</p>
-          <h2 className="font-display mt-4 max-w-3xl text-3xl font-bold text-brand-dark md:text-4xl">From finished work to paid. Four clicks.</h2>
+          <h2 className="font-display mt-4 max-w-3xl text-3xl font-bold text-brand-dark md:text-4xl">
+            From finished work to paid. Four clicks.
+          </h2>
           <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(({ Icon, title, body }, i) => (
               <div key={title}>
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-light">
+                <p className="font-display select-none text-8xl font-bold leading-none text-brand-accent/20">
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <div className="mb-4 mt-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-light">
                   <Icon className="h-7 w-7 text-brand-dark" aria-hidden />
                 </div>
                 <p className="label-sm text-brand-accent">Step {i + 1}</p>
@@ -230,8 +260,8 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 5: The Real Math ─────────────────────────────── */}
-      <section className="section-ptb bg-brand-light">
+      {/* ── Section 5: The Real Math — cream tint, dense table ──────── */}
+      <section className="section-ptb bg-[#fdf9ed]">
         <div className="mx-auto max-w-5xl px-6">
           <p className="section-label">THE REAL COST OF WHAT YOU&apos;RE USING NOW</p>
           <h2 className="font-display mt-4 text-3xl font-bold text-brand-dark md:text-4xl">
@@ -268,29 +298,26 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 6: Why This Works ────────────────────────────── */}
-      <section className="section-ptb bg-white">
+      {/* ── Section 6: Why This Works — dark forest, white text, Marquee */}
+      <section className="section-ptb bg-[#004421]">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="section-label">BUILT ON REAL INFRASTRUCTURE</p>
-          <h2 className="font-display mt-4 max-w-3xl text-3xl font-bold text-brand-dark md:text-4xl">Not a toy. Not a tech demo.</h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {trustBlocks.map(({ Icon, title, body }) => (
-              <div key={title} className="flex items-start gap-5 rounded-2xl bg-brand-light p-6">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white">
-                  <Icon className="h-6 w-6 text-brand-dark" aria-hidden />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-brand-dark">{title}</h3>
-                  <p className="text-paragraph mt-1 text-sm leading-relaxed">{body}</p>
-                </div>
-              </div>
+          <p className="section-label !border-white/20 !bg-white/10 !text-brand-accent">BUILT ON REAL INFRASTRUCTURE</p>
+          <h2 className="font-display mt-4 max-w-3xl text-3xl font-bold text-white md:text-4xl">Not a toy. Not a tech demo.</h2>
+          <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70">
+            Charm Invoicing runs on the same infrastructure used by major payment processors worldwide.
+          </p>
+        </div>
+        <div className="mt-12">
+          <Marquee pauseOnHover className="[--duration:30s]" repeat={4} fadeColor="#004421">
+            {trustItems.map(({ Icon, name, subtitle }) => (
+              <TrustItem key={name} Icon={Icon} name={name} subtitle={subtitle} />
             ))}
-          </div>
+          </Marquee>
         </div>
       </section>
 
-      {/* ── Section 7: FAQ ───────────────────────────────────────── */}
-      <section className="section-ptb bg-brand-light">
+      {/* ── Section 7: FAQ — white, understated ─────────────────────*/}
+      <section className="section-ptb bg-white">
         <div className="mx-auto max-w-3xl px-6">
           <p className="section-label">YOU PROBABLY HAVE QUESTIONS</p>
           <h2 className="font-display mt-4 text-3xl font-bold text-brand-dark md:text-4xl">Fair enough. Here are the real answers.</h2>
@@ -331,7 +358,7 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 8: Final CTA ─────────────────────────────────── */}
+      {/* ── Section 8: Final CTA — dark gradient ────────────────────*/}
       <section
         id="waitlist"
         className="section-ptb px-6 text-center text-white"
