@@ -24,6 +24,29 @@ const config: Config = {
         'sales-glow': '0 0 0 1px rgba(34, 197, 94, 0.2), 0 12px 40px -8px rgba(34, 197, 94, 0.25)',
         'sales-glow-lg': '0 0 0 1px rgba(34, 197, 94, 0.15), 0 20px 50px -12px rgba(34, 197, 94, 0.2)',
       },
+      keyframes: {
+        gradient: {
+          to: { 'background-position': '200% center' },
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap)))' },
+        },
+        'marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - var(--gap)))' },
+        },
+        sparkle: {
+          '0%, 100%': { opacity: '0', transform: 'scale(0) rotate(0deg)' },
+          '50%': { opacity: '1', transform: 'scale(1) rotate(90deg)' },
+        },
+      },
+      animation: {
+        gradient: 'gradient 8s linear infinite',
+        marquee: 'marquee var(--duration) linear infinite',
+        'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+        sparkle: 'sparkle 2s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
