@@ -11,6 +11,7 @@ export type HeadlineLine = {
   text: string
   italic?: boolean
   italicTarget?: string
+  size?: 'normal' | 'lg'
 }
 
 export type MagHeroVariant = 'home' | 'solutions-restaurants' | 'defense' | 'feature'
@@ -27,22 +28,22 @@ export type MagHeroProps = {
 
 const BLOB: Record<MagHeroVariant, { color: string; pos: { top: string; left: string }; size: number }> = {
   home: {
-    color: 'radial-gradient(closest-side, rgba(30,92,53,0.09) 0%, rgba(189,153,82,0.045) 45%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(30,92,53,0.12) 0%, rgba(189,153,82,0.06) 45%, transparent 75%)',
     pos: { top: '-180px', left: 'calc(100% - 360px)' },
     size: 720,
   },
   'solutions-restaurants': {
-    color: 'radial-gradient(closest-side, rgba(189,153,82,0.12) 0%, rgba(30,92,53,0.03) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(189,153,82,0.16) 0%, rgba(30,92,53,0.04) 50%, transparent 75%)',
     pos: { top: '-200px', left: '-280px' },
     size: 760,
   },
   defense: {
-    color: 'radial-gradient(closest-side, rgba(42,191,160,0.075) 0%, rgba(30,92,53,0.075) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(42,191,160,0.10) 0%, rgba(30,92,53,0.10) 50%, transparent 75%)',
     pos: { top: 'calc(100% - 320px)', left: 'calc(100% - 480px)' },
     size: 800,
   },
   feature: {
-    color: 'radial-gradient(closest-side, rgba(245,242,234,0.49) 0%, rgba(189,153,82,0.045) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(245,242,234,0.65) 0%, rgba(189,153,82,0.06) 50%, transparent 75%)',
     pos: { top: '-240px', left: 'calc(100% - 460px)' },
     size: 760,
   },
@@ -234,17 +235,24 @@ export function MagHero({
                 letterSpacing: '-0.02em',
               }}
             >
-              {headlineLines.map((line, i) => (
-                <div
-                  key={i}
-                  ref={(el) => {
-                    lineRefs.current[i] = el
-                  }}
-                  style={{ display: 'block' }}
-                >
-                  {renderHeadlineLine(line, line.italicTarget ? { current: italRefs.current[i] ?? null } as React.RefObject<HTMLSpanElement | null> : null)}
-                </div>
-              ))}
+              {headlineLines.map((line, i) => {
+                const lineStyle: React.CSSProperties = { display: 'block' }
+                if (line.size === 'lg') {
+                  lineStyle.fontSize = 'clamp(44px, 6vw, 72px)'
+                  lineStyle.lineHeight = 0.96
+                }
+                return (
+                  <div
+                    key={i}
+                    ref={(el) => {
+                      lineRefs.current[i] = el
+                    }}
+                    style={lineStyle}
+                  >
+                    {renderHeadlineLine(line, line.italicTarget ? { current: italRefs.current[i] ?? null } as React.RefObject<HTMLSpanElement | null> : null)}
+                  </div>
+                )
+              })}
             </h1>
 
             <p
