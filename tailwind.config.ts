@@ -24,6 +24,11 @@ const config: Config = {
           ink: 'var(--atelier-ink)',
           inkSoft: 'var(--atelier-ink-soft)',
         },
+        // Apple canvas tokens — magazine prototype system
+        'apple-canvas': '#FBFBFD',
+        'apple-canvas-warm': '#F8F5F0',
+        'forest-band': '#0F3520',
+        'apple-ink': '#1D1D1F',
       },
       fontFamily: {
         sans: ['Inter Tight', 'system-ui', 'sans-serif'],
@@ -39,6 +44,7 @@ const config: Config = {
         atelierMd: '8px',
         atelierLg: '12px',
         atelierPill: '9999px',
+        pill: '980px',
       },
       spacing: {
         tiny: '0.25rem',
