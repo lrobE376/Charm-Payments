@@ -72,21 +72,32 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
   return (
     <section
       ref={sectionRef}
-      className="bg-white border-t border-[rgba(0,0,0,0.06)]"
+      className="bg-apple-canvas"
       style={{ padding: '96px 32px' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
-        <div ref={headerRef} style={{ marginBottom: 56 }}>
-          <div className="font-atelierMono text-xs uppercase tracking-label text-atelier-gold">
-            {eyebrow}
-          </div>
+        <div ref={headerRef} style={{ marginBottom: 64 }}>
+          {(() => {
+            const isSection = eyebrow.trim().startsWith('§')
+            const eyebrowClass = isSection
+              ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
+              : 'font-stripeSans'
+            const eyebrowStyle: React.CSSProperties = isSection
+              ? {}
+              : { fontSize: 12, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(0,0,0,0.5)' }
+            return (
+              <div className={eyebrowClass} style={eyebrowStyle}>
+                {eyebrow}
+              </div>
+            )
+          })()}
           <h2
-            className="font-atelierSerif text-atelier-ink"
+            className="font-atelierSerif text-apple-ink"
             style={{
               marginTop: 16,
               fontSize: 'clamp(32px, 3.6vw, 44px)',
               lineHeight: 1.05,
-              fontWeight: 400,
+              fontWeight: 500,
               letterSpacing: '-0.02em',
               maxWidth: 720,
             }}
@@ -112,7 +123,7 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
                 itemRefs.current[i] = el
               }}
               style={{
-                background: isFirstRow ? '#FFFFFF' : '#FAFAFA',
+                background: isFirstRow ? '#FFFFFF' : '#F5F4F1',
                 border: '0.5px solid rgba(0,0,0,0.08)',
                 padding: '24px 20px',
                 borderRadius: 6,

@@ -51,7 +51,7 @@ export function MagEditorialBreak({ text }: MagEditorialBreakProps) {
   return (
     <section
       ref={sectionRef}
-      className="bg-white border-t border-[rgba(0,0,0,0.06)]"
+      className="bg-apple-canvas"
       style={{ padding: '88px 32px' }}
     >
       <div className="mx-auto" style={{ maxWidth: 720 }}>
@@ -61,8 +61,8 @@ export function MagEditorialBreak({ text }: MagEditorialBreakProps) {
           style={{
             fontSize: 'clamp(24px, 2.6vw, 30px)',
             lineHeight: 1.3,
-            fontWeight: 400,
-            color: '#0A0A0A',
+            fontWeight: 500,
+            color: '#1D1D1F',
             margin: 0,
             letterSpacing: '-0.01em',
           }}

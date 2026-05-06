@@ -76,21 +76,32 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
   return (
     <section
       ref={sectionRef}
-      className="border-t border-[rgba(0,0,0,0.06)]"
-      style={{ padding: '96px 32px', background: '#FAFAFA' }}
+      className="bg-apple-canvas"
+      style={{ padding: '100px 32px' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
-        <div ref={headerRef} style={{ marginBottom: 56 }}>
-          <div className="font-atelierMono text-xs uppercase tracking-label text-atelier-gold">
-            {eyebrow}
-          </div>
+        <div ref={headerRef} style={{ marginBottom: 64 }}>
+          {(() => {
+            const isSection = eyebrow.trim().startsWith('§')
+            const eyebrowClass = isSection
+              ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
+              : 'font-stripeSans'
+            const eyebrowStyle: React.CSSProperties = isSection
+              ? {}
+              : { fontSize: 12, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(0,0,0,0.5)' }
+            return (
+              <div className={eyebrowClass} style={eyebrowStyle}>
+                {eyebrow}
+              </div>
+            )
+          })()}
           <h2
-            className="font-atelierSerif text-atelier-ink"
+            className="font-atelierSerif text-apple-ink"
             style={{
               marginTop: 16,
               fontSize: 'clamp(32px, 3.6vw, 44px)',
               lineHeight: 1.05,
-              fontWeight: 400,
+              fontWeight: 500,
               letterSpacing: '-0.02em',
               maxWidth: 720,
             }}
@@ -103,32 +114,41 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
           className="grid gap-6"
           style={{ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}
         >
-          {/* Theirs — neutral border */}
+          {/* Theirs — neutral border, transparent canvas bg */}
           <div
             ref={theirsRef}
-            className="bg-white"
-            style={{ padding: '32px 28px', border: '0.5px solid rgba(0,0,0,0.12)' }}
+            className="bg-apple-canvas"
+            style={{ padding: '36px 32px', border: '0.5px solid rgba(0,0,0,0.10)', borderRadius: 16 }}
           >
-            <div className="font-atelierMono text-[10px] uppercase tracking-label text-atelier-ink-soft">
+            <div
+              className="font-stripeSans"
+              style={{
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: '0.04em',
+                color: 'rgba(0,0,0,0.5)',
+              }}
+            >
               {theirs.label}
             </div>
             <h3
-              className="font-atelierSerif text-atelier-ink"
+              className="font-atelierSerif text-apple-ink"
               style={{
-                marginTop: 6,
-                fontSize: 22,
+                marginTop: 8,
+                fontSize: 24,
                 lineHeight: 1.2,
-                fontWeight: 400,
+                fontWeight: 500,
+                letterSpacing: '-0.015em',
               }}
             >
               {theirs.title}
             </h3>
-            <ul className="space-y-2.5" style={{ marginTop: 22 }}>
+            <ul className="space-y-2.5" style={{ marginTop: 24 }}>
               {theirs.items.map((item) => (
                 <li
                   key={item}
                   className={cn('flex items-start gap-2.5 font-stripeSans')}
-                  style={{ fontSize: 14, lineHeight: 1.5, color: 'rgba(26,26,26,0.7)' }}
+                  style={{ fontSize: 14, lineHeight: 1.5, color: 'rgba(0,0,0,0.7)' }}
                 >
                   <span
                     aria-hidden
@@ -152,32 +172,41 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
             </ul>
           </div>
 
-          {/* Ours — forest border */}
+          {/* Ours — forest border, transparent canvas bg */}
           <div
             ref={oursRef}
-            className="bg-white"
-            style={{ padding: '32px 28px', border: '1px solid var(--atelier-forest)' }}
+            className="bg-apple-canvas"
+            style={{ padding: '36px 32px', border: '1.5px solid #1E5C35', borderRadius: 16 }}
           >
-            <div className="font-atelierMono text-[10px] uppercase tracking-label text-atelier-forest">
+            <div
+              className="font-stripeSans"
+              style={{
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: '0.04em',
+                color: '#1E5C35',
+              }}
+            >
               {ours.label}
             </div>
             <h3
-              className="font-atelierSerif text-atelier-ink"
+              className="font-atelierSerif text-apple-ink"
               style={{
-                marginTop: 6,
-                fontSize: 22,
+                marginTop: 8,
+                fontSize: 24,
                 lineHeight: 1.2,
-                fontWeight: 400,
+                fontWeight: 500,
+                letterSpacing: '-0.015em',
               }}
             >
               {ours.title}
             </h3>
-            <ul className="space-y-2.5" style={{ marginTop: 22 }}>
+            <ul className="space-y-2.5" style={{ marginTop: 24 }}>
               {ours.items.map((item) => (
                 <li
                   key={item}
                   className={cn('flex items-start gap-2.5 font-stripeSans')}
-                  style={{ fontSize: 14, lineHeight: 1.5, color: 'rgba(26,26,26,0.85)' }}
+                  style={{ fontSize: 14, lineHeight: 1.5, color: 'rgba(0,0,0,0.85)' }}
                 >
                   <span
                     aria-hidden

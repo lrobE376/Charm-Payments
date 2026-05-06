@@ -108,30 +108,27 @@ export function MagPullQuote({
   return (
     <section
       ref={sectionRef}
-      className="bg-white border-t border-[rgba(0,0,0,0.06)]"
-      style={{ padding: '96px 32px' }}
+      className="bg-apple-canvas"
+      style={{ padding: '100px 32px' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
-        <div
-          className="grid gap-9"
-          style={{ gridTemplateColumns: '80px minmax(0, 1fr) 220px' }}
-        >
-          <div
-            ref={eyebrowRef}
-            className="font-atelierMono text-xs uppercase tracking-label text-atelier-gold"
-            style={{ paddingTop: 6 }}
-          >
-            {eyebrow}
-          </div>
+        {/* eyebrow column removed in Apple version — quote is the focal element */}
+        <div ref={eyebrowRef} className="sr-only">
+          {eyebrow}
+        </div>
 
+        <div
+          className="grid gap-12"
+          style={{ gridTemplateColumns: 'minmax(0, 1fr) 220px' }}
+        >
           <blockquote
             ref={quoteRef}
-            className="font-atelierSerif text-atelier-ink"
+            className="font-atelierSerif text-apple-ink"
             style={{
-              fontSize: 'clamp(24px, 2.6vw, 32px)',
+              fontSize: 'clamp(24px, 2.8vw, 30px)',
               lineHeight: 1.25,
-              fontWeight: 400,
-              letterSpacing: '-0.01em',
+              fontWeight: 500,
+              letterSpacing: '-0.015em',
               margin: 0,
             }}
           >
@@ -143,12 +140,18 @@ export function MagPullQuote({
             className="font-stripeSans"
             style={{ paddingTop: 6, fontSize: 13, lineHeight: 1.5 }}
           >
-            <div className="font-medium text-atelier-ink">{citeName}</div>
-            <div className="text-atelier-ink-soft">{citeRole}</div>
-            <div className="text-atelier-ink-soft">{citeLocation}</div>
+            <div className="font-medium text-apple-ink">{citeName}</div>
+            <div style={{ color: 'rgba(0,0,0,0.6)' }}>{citeRole}</div>
+            <div style={{ color: 'rgba(0,0,0,0.6)' }}>{citeLocation}</div>
             <div
-              className="font-atelierMono text-[10px] uppercase tracking-label text-atelier-gold"
-              style={{ marginTop: 8 }}
+              className="font-stripeSans"
+              style={{
+                marginTop: 12,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: '0.04em',
+                color: 'rgba(0,0,0,0.45)',
+              }}
             >
               {verifiedDate}
             </div>

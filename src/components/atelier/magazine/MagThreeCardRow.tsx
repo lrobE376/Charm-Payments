@@ -72,21 +72,32 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
   return (
     <section
       ref={sectionRef}
-      className="border-t border-[rgba(0,0,0,0.06)]"
-      style={{ padding: '96px 32px', background: '#FAFAFA' }}
+      className="bg-apple-canvas"
+      style={{ padding: '90px 32px' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
-        <div ref={headerRef} style={{ marginBottom: 56 }}>
-          <div className="font-atelierMono text-xs uppercase tracking-label text-atelier-gold">
-            {eyebrow}
-          </div>
+        <div ref={headerRef} style={{ marginBottom: 64 }}>
+          {(() => {
+            const isSection = eyebrow.trim().startsWith('§')
+            const eyebrowClass = isSection
+              ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
+              : 'font-stripeSans'
+            const eyebrowStyle: React.CSSProperties = isSection
+              ? {}
+              : { fontSize: 12, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(0,0,0,0.5)' }
+            return (
+              <div className={eyebrowClass} style={eyebrowStyle}>
+                {eyebrow}
+              </div>
+            )
+          })()}
           <h2
-            className="font-atelierSerif text-atelier-ink"
+            className="font-atelierSerif text-apple-ink"
             style={{
               marginTop: 16,
               fontSize: 'clamp(32px, 3.6vw, 44px)',
               lineHeight: 1.05,
-              fontWeight: 400,
+              fontWeight: 500,
               letterSpacing: '-0.02em',
               maxWidth: 720,
             }}
@@ -97,7 +108,7 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
 
         <div
           className="grid"
-          style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 18 }}
+          style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 32 }}
         >
           {cards.map((card, i) => (
             <article
@@ -105,30 +116,37 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
               ref={(el) => {
                 cardRefs.current[i] = el
               }}
-              className={cn(
-                'bg-white',
-                '[border-width:0.5px] border-black/10',
-              )}
-              style={{ padding: '28px 24px' }}
+              className={cn('bg-transparent')}
             >
               <div
-                className="font-atelierMono text-[10px] uppercase tracking-label text-atelier-gold"
-                style={{ marginBottom: 18 }}
+                className="font-stripeSans"
+                style={{
+                  fontSize: 11,
+                  fontWeight: 500,
+                  letterSpacing: '0.04em',
+                  color: 'rgba(0,0,0,0.45)',
+                  marginBottom: 18,
+                }}
               >
                 {card.figLabel}
               </div>
               <h3
-                className="font-atelierSerif text-atelier-ink leading-[1.15]"
-                style={{ fontSize: 19, fontWeight: 400, marginBottom: 10 }}
+                className="font-atelierSerif text-apple-ink leading-[1.15]"
+                style={{
+                  fontSize: 22,
+                  fontWeight: 500,
+                  letterSpacing: '-0.005em',
+                  marginBottom: 12,
+                }}
               >
                 {card.title}
               </h3>
               <p
-                className="font-stripeSans max-w-[260px]"
+                className="font-stripeSans max-w-[280px]"
                 style={{
-                  fontSize: 13,
+                  fontSize: 15,
                   lineHeight: 1.55,
-                  color: 'rgba(26,26,26,0.6)',
+                  color: 'rgba(0,0,0,0.7)',
                 }}
               >
                 {card.description}

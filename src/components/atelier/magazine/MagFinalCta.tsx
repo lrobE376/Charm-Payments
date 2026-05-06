@@ -20,16 +20,16 @@ export type MagFinalCtaProps = {
 
 const FINAL_BLOB: Record<MagHeroVariant, { color: string }> = {
   home: {
-    color: 'radial-gradient(closest-side, rgba(30,92,53,0.09) 0%, rgba(189,153,82,0.05) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(30,92,53,0.12) 0%, rgba(189,153,82,0.06) 50%, transparent 75%)',
   },
   'solutions-restaurants': {
-    color: 'radial-gradient(closest-side, rgba(189,153,82,0.105) 0%, rgba(30,92,53,0.035) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(189,153,82,0.12) 0%, rgba(30,92,53,0.04) 50%, transparent 75%)',
   },
   defense: {
-    color: 'radial-gradient(closest-side, rgba(42,191,160,0.09) 0%, rgba(30,92,53,0.055) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(42,191,160,0.12) 0%, rgba(30,92,53,0.06) 50%, transparent 75%)',
   },
   feature: {
-    color: 'radial-gradient(closest-side, rgba(245,242,234,0.49) 0%, rgba(189,153,82,0.035) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(245,242,234,0.55) 0%, rgba(189,153,82,0.04) 50%, transparent 75%)',
   },
 }
 
@@ -151,8 +151,8 @@ export function MagFinalCta({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-white border-t border-[rgba(0,0,0,0.06)]"
-      style={{ padding: '120px 32px' }}
+      className="relative overflow-hidden bg-apple-canvas-warm"
+      style={{ padding: '100px 32px 140px' }}
     >
       {/* Bottom gradient blob */}
       <div
@@ -170,21 +170,34 @@ export function MagFinalCta({
       />
 
       <div className="relative mx-auto text-center" style={{ maxWidth: 760 }}>
-        <div
-          ref={eyebrowRef}
-          className="font-atelierMono text-xs uppercase tracking-label text-atelier-gold"
-          style={{ marginBottom: 24 }}
-        >
-          {eyebrow}
-        </div>
+        {(() => {
+          const isSection = eyebrow.trim().startsWith('§')
+          const eyebrowClass = isSection
+            ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
+            : 'font-stripeSans'
+          const eyebrowStyle: React.CSSProperties = isSection
+            ? { marginBottom: 24 }
+            : {
+                marginBottom: 24,
+                fontSize: 12,
+                fontWeight: 500,
+                letterSpacing: '0.06em',
+                color: 'rgba(0,0,0,0.5)',
+              }
+          return (
+            <div ref={eyebrowRef} className={eyebrowClass} style={eyebrowStyle}>
+              {eyebrow}
+            </div>
+          )
+        })()}
 
         <h2
-          className="font-atelierSerif text-atelier-ink"
+          className="font-atelierSerif text-apple-ink"
           style={{
-            fontSize: 'clamp(36px, 4.4vw, 52px)',
-            lineHeight: 1.05,
-            fontWeight: 400,
-            letterSpacing: '-0.02em',
+            fontSize: 'clamp(36px, 4.6vw, 50px)',
+            lineHeight: 1,
+            fontWeight: 500,
+            letterSpacing: '-0.03em',
           }}
         >
           {headlineLines.map((line, i) => (
@@ -207,12 +220,13 @@ export function MagFinalCta({
 
         <p
           ref={subtitleRef}
-          className="font-stripeSans text-atelier-ink-soft mx-auto"
+          className="font-stripeSans mx-auto"
           style={{
-            marginTop: 24,
+            marginTop: 28,
             fontSize: 17,
             lineHeight: 1.6,
             maxWidth: 600,
+            color: 'rgba(0,0,0,0.72)',
           }}
         >
           {subtitle}
@@ -221,15 +235,15 @@ export function MagFinalCta({
         <div
           ref={ctasRef}
           className="flex flex-wrap gap-3 justify-center"
-          style={{ marginTop: 36 }}
+          style={{ marginTop: 40 }}
         >
           <Link
             href={primaryCta.href}
             className={cn(
               'inline-flex items-center gap-1.5',
-              'bg-atelier-forest text-atelier-cream',
+              'bg-atelier-forest text-white',
               'font-stripeSans text-sm font-medium',
-              'px-4 py-2.5 rounded-atelierXs',
+              'px-6 py-3 rounded-pill',
               'hover:opacity-90 transition-opacity',
               'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
             )}
@@ -241,9 +255,9 @@ export function MagFinalCta({
             <Link
               href={secondaryCta.href}
               className={cn(
-                'inline-flex items-center px-4 py-2.5 text-sm font-medium font-stripeSans',
-                'border border-atelier-ink/25 text-atelier-ink rounded-atelierXs',
-                'hover:border-atelier-ink/50 transition-colors',
+                'inline-flex items-center px-[22px] py-[11px] text-sm font-medium font-stripeSans',
+                'border border-black/[0.18] text-apple-ink rounded-pill',
+                'hover:border-black/40 transition-colors',
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
               )}
             >

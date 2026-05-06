@@ -192,8 +192,8 @@ export function MagHero({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-white"
-      style={{ padding: '80px 32px 96px' }}
+      className="relative overflow-hidden bg-apple-canvas"
+      style={{ padding: '100px 32px' }}
     >
       {/* Page-specific gradient blob */}
       <div
@@ -218,28 +218,42 @@ export function MagHero({
         >
           {/* Copy column */}
           <div>
-            <div
-              ref={eyebrowRef}
-              className="font-atelierMono text-xs uppercase tracking-label text-atelier-gold"
-              style={{ marginBottom: 24 }}
-            >
-              {eyebrow}
-            </div>
+            {(() => {
+              const isSection = eyebrow.trim().startsWith('§')
+              const eyebrowClass = isSection
+                ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
+                : 'font-stripeSans'
+              const eyebrowStyle: React.CSSProperties = isSection
+                ? { marginBottom: 24 }
+                : {
+                    marginBottom: 24,
+                    fontSize: 12,
+                    fontWeight: 500,
+                    letterSpacing: '0.06em',
+                    color: 'rgba(0,0,0,0.5)',
+                  }
+              return (
+                <div ref={eyebrowRef} className={eyebrowClass} style={eyebrowStyle}>
+                  {eyebrow}
+                </div>
+              )
+            })()}
 
             <h1
-              className="font-atelierSerif text-atelier-ink"
+              className="font-atelierSerif text-apple-ink"
               style={{
-                fontSize: 'clamp(38px, 5vw, 60px)',
+                fontSize: 'clamp(34px, 4vw, 48px)',
                 lineHeight: 1,
-                fontWeight: 400,
-                letterSpacing: '-0.02em',
+                fontWeight: 500,
+                letterSpacing: '-0.025em',
               }}
             >
               {headlineLines.map((line, i) => {
                 const lineStyle: React.CSSProperties = { display: 'block' }
                 if (line.size === 'lg') {
-                  lineStyle.fontSize = 'clamp(44px, 6vw, 72px)'
+                  lineStyle.fontSize = 'clamp(40px, 5.4vw, 64px)'
                   lineStyle.lineHeight = 0.96
+                  lineStyle.letterSpacing = '-0.03em'
                 }
                 return (
                   <div
@@ -257,12 +271,13 @@ export function MagHero({
 
             <p
               ref={subtitleRef}
-              className="font-stripeSans text-atelier-ink-soft"
+              className="font-stripeSans"
               style={{
                 marginTop: 24,
                 fontSize: 17,
                 lineHeight: 1.6,
-                maxWidth: 560,
+                maxWidth: 480,
+                color: 'rgba(0,0,0,0.72)',
               }}
             >
               {subtitle}
@@ -277,9 +292,9 @@ export function MagHero({
                 href={primaryCta.href}
                 className={cn(
                   'inline-flex items-center gap-1.5',
-                  'bg-atelier-forest text-atelier-cream',
+                  'bg-atelier-forest text-white',
                   'font-stripeSans text-sm font-medium',
-                  'px-4 py-2.5 rounded-atelierXs',
+                  'px-6 py-3 rounded-pill',
                   'hover:opacity-90 transition-opacity',
                   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
                 )}
@@ -291,9 +306,9 @@ export function MagHero({
                 <Link
                   href={secondaryCta.href}
                   className={cn(
-                    'inline-flex items-center px-4 py-2.5 text-sm font-medium font-stripeSans',
-                    'border border-atelier-ink/25 text-atelier-ink rounded-atelierXs',
-                    'hover:border-atelier-ink/50 transition-colors',
+                    'inline-flex items-center px-[22px] py-[11px] text-sm font-medium font-stripeSans',
+                    'border border-black/[0.18] text-apple-ink rounded-pill',
+                    'hover:border-black/40 transition-colors',
                     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
                   )}
                 >
