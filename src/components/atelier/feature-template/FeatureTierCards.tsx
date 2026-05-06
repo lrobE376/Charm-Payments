@@ -6,7 +6,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import { Container } from '@/components/atelier/Container'
-import { EyebrowTag } from '@/components/atelier/EyebrowTag'
 import { cn } from '@/lib/utils'
 import { prefersReducedMotion } from '@/lib/motion'
 
@@ -87,14 +86,27 @@ export function FeatureTierCards({ eyebrow, title, tiers }: FeatureTierCardsProp
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-atelier-paper py-12 md:py-16 px-lg">
+    <section ref={sectionRef} className="bg-apple-canvas" style={{ padding: '90px 32px' }}>
       <Container>
         <div className="mb-2xl">
-          <EyebrowTag section="§02" label={eyebrow} />
+          {(() => {
+            const isSection = eyebrow.trim().startsWith('§')
+            const eyebrowClass = isSection
+              ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
+              : 'font-stripeSans'
+            const eyebrowStyle: React.CSSProperties = isSection
+              ? {}
+              : { fontSize: 12, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(0,0,0,0.5)' }
+            return (
+              <div className={eyebrowClass} style={eyebrowStyle}>
+                {eyebrow}
+              </div>
+            )
+          })()}
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',
-              'leading-tight tracking-[-0.025em] text-atelier-ink',
+              'leading-tight tracking-[-0.025em] text-apple-ink',
               'max-w-3xl',
             )}
           >

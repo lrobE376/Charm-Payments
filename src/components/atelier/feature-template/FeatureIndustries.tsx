@@ -1,6 +1,5 @@
 // src/components/atelier/feature-template/FeatureIndustries.tsx
 import { Container } from '@/components/atelier/Container'
-import { EyebrowTag } from '@/components/atelier/EyebrowTag'
 import { cn } from '@/lib/utils'
 
 export type IndustryItem = {
@@ -25,7 +24,7 @@ function renderTitle(title: string) {
   while ((match = regex.exec(title)) !== null) {
     if (match.index > lastIndex) parts.push(title.slice(lastIndex, match.index))
     parts.push(
-      <em key={key++} className="italic text-atelier-gold">
+      <em key={key++} className="italic text-atelier-forest">
         {match[1]}
       </em>,
     )
@@ -37,14 +36,27 @@ function renderTitle(title: string) {
 
 export function FeatureIndustries({ eyebrow, title, items }: FeatureIndustriesProps) {
   return (
-    <section className="bg-atelier-forest-deep text-atelier-cream py-12 md:py-16 px-lg">
+    <section className="bg-apple-canvas" style={{ padding: '90px 32px' }}>
       <Container>
         <div className="mb-2xl">
-          <EyebrowTag section="§03" label={eyebrow} variant="gold" />
+          {(() => {
+            const isSection = eyebrow.trim().startsWith('§')
+            const eyebrowClass = isSection
+              ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
+              : 'font-stripeSans'
+            const eyebrowStyle: React.CSSProperties = isSection
+              ? {}
+              : { fontSize: 12, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(0,0,0,0.5)' }
+            return (
+              <div className={eyebrowClass} style={eyebrowStyle}>
+                {eyebrow}
+              </div>
+            )
+          })()}
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',
-              'leading-tight tracking-[-0.025em] text-atelier-cream',
+              'leading-tight tracking-[-0.025em] text-apple-ink',
               'max-w-3xl',
             )}
           >
@@ -56,18 +68,27 @@ export function FeatureIndustries({ eyebrow, title, items }: FeatureIndustriesPr
           {items.map((item) => (
             <div
               key={item.title}
-              className={cn(
-                'bg-white/[0.04] p-base rounded-atelierSm',
-                '[border-width:0.5px] border-atelier-gold/[0.18]',
-              )}
+              className="bg-white p-base rounded-atelierSm"
+              style={{ border: '0.5px solid rgba(0,0,0,0.08)' }}
             >
-              <div className="font-atelierMono text-[10px] uppercase tracking-label text-atelier-gold">
+              <div
+                className="font-stripeSans"
+                style={{
+                  fontSize: 11,
+                  fontWeight: 500,
+                  letterSpacing: '0.04em',
+                  color: 'rgba(0,0,0,0.45)',
+                }}
+              >
                 {item.figLabel}
               </div>
-              <h3 className="mt-xs font-atelierSerif text-base font-medium text-atelier-cream leading-tight">
+              <h3 className="mt-xs font-atelierSerif text-base font-medium text-apple-ink leading-tight">
                 {item.title}
               </h3>
-              <p className="mt-xs font-atelierSans text-xs text-atelier-cream/70 leading-relaxed">
+              <p
+                className="mt-xs font-stripeSans text-xs leading-relaxed"
+                style={{ color: 'rgba(0,0,0,0.65)' }}
+              >
                 {item.description}
               </p>
             </div>

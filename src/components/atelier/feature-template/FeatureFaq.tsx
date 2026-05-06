@@ -1,6 +1,5 @@
 // src/components/atelier/feature-template/FeatureFaq.tsx
 import { Container } from '@/components/atelier/Container'
-import { EyebrowTag } from '@/components/atelier/EyebrowTag'
 import { cn } from '@/lib/utils'
 
 export type FaqItem = { q: string; a: string }
@@ -12,15 +11,26 @@ export type FeatureFaqProps = {
 }
 
 export function FeatureFaq({ eyebrow, title, items }: FeatureFaqProps) {
+  const eyebrowText = eyebrow ?? 'Questions'
+  const isSection = eyebrowText.trim().startsWith('§')
+  const eyebrowClass = isSection
+    ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
+    : 'font-stripeSans'
+  const eyebrowStyle: React.CSSProperties = isSection
+    ? {}
+    : { fontSize: 12, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(0,0,0,0.5)' }
+
   return (
-    <section className="bg-atelier-paper py-12 md:py-16 px-lg">
+    <section className="bg-apple-canvas" style={{ padding: '90px 32px' }}>
       <Container>
         <div className="max-w-3xl">
-          <EyebrowTag section="§04" label={eyebrow ?? 'QUESTIONS'} />
+          <div className={eyebrowClass} style={eyebrowStyle}>
+            {eyebrowText}
+          </div>
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',
-              'leading-tight tracking-[-0.025em] text-atelier-ink',
+              'leading-tight tracking-[-0.025em] text-apple-ink',
             )}
           >
             {title}
@@ -32,15 +42,15 @@ export function FeatureFaq({ eyebrow, title, items }: FeatureFaqProps) {
                 key={item.q}
                 className={cn(
                   'group',
-                  '[border-bottom-width:0.5px] border-black/15',
-                  i === 0 && '[border-top-width:0.5px] border-black/15',
+                  '[border-bottom-width:0.5px] border-black/10',
+                  i === 0 && '[border-top-width:0.5px] border-black/10',
                 )}
               >
                 <summary
                   className={cn(
                     'flex items-center justify-between gap-base',
                     'cursor-pointer list-none py-base',
-                    'font-atelierSerif text-base font-medium text-atelier-ink',
+                    'font-atelierSerif text-base font-medium text-apple-ink',
                     '[&::-webkit-details-marker]:hidden',
                     'hover:text-atelier-forest transition-colors',
                   )}
@@ -60,8 +70,9 @@ export function FeatureFaq({ eyebrow, title, items }: FeatureFaqProps) {
                 <p
                   className={cn(
                     'pb-base pr-2xl',
-                    'font-atelierSans text-sm text-atelier-ink-soft leading-relaxed',
+                    'font-stripeSans text-sm leading-relaxed',
                   )}
+                  style={{ color: 'rgba(0,0,0,0.65)' }}
                 >
                   {item.a}
                 </p>
