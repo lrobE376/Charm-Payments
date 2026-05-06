@@ -75,7 +75,7 @@ export function FooterAtelier() {
           <div>
             <Link href="/" aria-label="Charm Payments — home" className="inline-block">
               <Image
-                src="/images/logo.png"
+                src="/images/white-logo.png"
                 alt="Charm Payments"
                 width={320}
                 height={120}
