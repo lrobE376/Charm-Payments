@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { cn } from '@/lib/utils'
@@ -12,6 +13,8 @@ export type MagThreeCard = {
   figLabel: string
   title: string
   description: string
+  image?: string
+  imageAlt?: string
 }
 
 export type MagThreeCardRowProps = {
@@ -118,6 +121,9 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
               }}
               className={cn('bg-transparent')}
             >
+              {/* Image slot — 280×180 (16:10), placeholder when no src */}
+              <CardImageSlot src={card.image} alt={card.imageAlt} />
+
               <div
                 className="font-stripeSans"
                 style={{
@@ -156,5 +162,81 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
         </div>
       </div>
     </section>
+  )
+}
+
+function CardImageSlot({ src, alt }: { src?: string; alt?: string }) {
+  if (src) {
+    return (
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          aspectRatio: '16 / 10',
+          marginBottom: 20,
+          borderRadius: 12,
+          overflow: 'hidden',
+          border: '0.5px solid rgba(0,0,0,0.08)',
+        }}
+      >
+        <Image src={src} alt={alt ?? ''} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
+      </div>
+    )
+  }
+
+  return (
+    <div
+      aria-hidden
+      style={{
+        position: 'relative',
+        width: '100%',
+        aspectRatio: '16 / 10',
+        marginBottom: 20,
+        borderRadius: 12,
+        background: '#FBFBFD',
+        border: '0.5px dashed rgba(0,0,0,0.15)',
+        overflow: 'hidden',
+      }}
+    >
+      <svg
+        className="absolute inset-0 m-auto"
+        width="180"
+        height="180"
+        viewBox="0 0 180 180"
+        fill="none"
+        style={{ inset: 0 }}
+      >
+        <circle cx="90" cy="90" r="80" stroke="rgba(0,0,0,0.06)" strokeWidth="0.5" fill="none" />
+        <circle cx="90" cy="90" r="56" stroke="rgba(0,0,0,0.08)" strokeWidth="0.5" fill="none" />
+        <circle cx="90" cy="90" r="30" stroke="rgba(0,0,0,0.10)" strokeWidth="0.5" fill="none" />
+        <circle cx="90" cy="90" r="2" fill="rgba(0,0,0,0.25)" />
+      </svg>
+      <div
+        className="absolute font-atelierMono"
+        style={{
+          left: 12,
+          bottom: 10,
+          fontSize: 9,
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+          color: 'rgba(0,0,0,0.35)',
+        }}
+      >
+        Image · 280 × 180
+      </div>
+      <div
+        className="absolute font-atelierMono"
+        style={{
+          right: 12,
+          top: 10,
+          fontSize: 9,
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+          color: 'rgba(0,0,0,0.35)',
+        }}
+      >
+        ↗
+      </div>
+    </div>
   )
 }

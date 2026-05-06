@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { prefersReducedMotion } from '@/lib/motion'
@@ -17,9 +18,18 @@ export type MagForestBandProps = {
   headline: string
   subtitle: string
   stats: MagForestBandStat[]
+  backgroundImage?: string
+  backgroundImageAlt?: string
 }
 
-export function MagForestBand({ eyebrow, headline, subtitle, stats }: MagForestBandProps) {
+export function MagForestBand({
+  eyebrow,
+  headline,
+  subtitle,
+  stats,
+  backgroundImage,
+  backgroundImageAlt,
+}: MagForestBandProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const goldLayerRef = useRef<HTMLDivElement>(null)
   const tealLayerRef = useRef<HTMLDivElement>(null)
@@ -113,6 +123,54 @@ export function MagForestBand({ eyebrow, headline, subtitle, stats }: MagForestB
       className="relative overflow-hidden bg-forest-band text-apple-canvas"
       style={{ padding: '100px 32px' }}
     >
+      {/* Background image slot — sits behind glow layers */}
+      {backgroundImage ? (
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <Image
+            src={backgroundImage}
+            alt={backgroundImageAlt ?? ''}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            style={{ opacity: 0.25, mixBlendMode: 'multiply' }}
+          />
+        </div>
+      ) : (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{ opacity: 0.08 }}
+        >
+          {/* Empty placeholder — subtle concentric circles in white/gold */}
+          <svg
+            className="absolute inset-0 m-auto"
+            width="640"
+            height="640"
+            viewBox="0 0 640 640"
+            fill="none"
+            style={{ inset: 0 }}
+          >
+            <circle cx="320" cy="320" r="300" stroke="rgba(255,255,255,0.4)" strokeWidth="1" fill="none" />
+            <circle cx="320" cy="320" r="220" stroke="rgba(189,153,82,0.5)" strokeWidth="1" fill="none" />
+            <circle cx="320" cy="320" r="140" stroke="rgba(255,255,255,0.4)" strokeWidth="1" fill="none" />
+            <circle cx="320" cy="320" r="60" stroke="rgba(189,153,82,0.5)" strokeWidth="1" fill="none" />
+          </svg>
+          <div
+            className="absolute font-atelierMono"
+            style={{
+              right: 24,
+              bottom: 16,
+              fontSize: 10,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.3)',
+            }}
+          >
+            Background image slot · full-bleed
+          </div>
+        </div>
+      )}
+
       {/* Parallax glow layers */}
       <div
         ref={goldLayerRef}
