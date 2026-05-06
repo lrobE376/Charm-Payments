@@ -65,7 +65,7 @@ function StatItem({ stat, enabled, isLast }: { stat: Stat; enabled: boolean; isL
       {/* Gold counter — display-lg scale from globals.css */}
       <p
         className="display-lg tabular-nums"
-        style={{ color: 'var(--gold)', lineHeight: 1 }}
+        style={{ color: 'var(--atelier-gold)', lineHeight: 1 }}
         aria-label={`${stat.prefix ?? ''}${count}${stat.suffix} ${stat.label}`}
       >
         {stat.prefix ?? ''}{count.toLocaleString()}{stat.suffix}

@@ -144,10 +144,10 @@ export default function Navbar() {
       {/* Utility bar */}
       <div className="hidden bg-[var(--primary)] py-2 text-sm text-white md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-end gap-6 px-6">
-          <a href="tel:+13145550198" className="transition-colors hover:text-[var(--gold)]">
+          <a href="tel:+13145550198" className="transition-colors hover:text-[var(--atelier-gold)]">
             +1 (314) 555-0198
           </a>
-          <a href="mailto:merchants@charmpayments.com" className="transition-colors hover:text-[var(--gold)]">
+          <a href="mailto:merchants@charmpayments.com" className="transition-colors hover:text-[var(--atelier-gold)]">
             merchants@charmpayments.com
           </a>
         </div>

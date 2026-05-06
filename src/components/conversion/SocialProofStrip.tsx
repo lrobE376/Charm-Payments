@@ -23,14 +23,14 @@ export default function SocialProofStrip() {
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold"
             style={{ background: 'var(--secondary-container)', color: 'var(--primary)', outline: '1px solid var(--outline-variant)' }}
           >
-            <BadgeCheck className="h-4 w-4 shrink-0" style={{ color: 'var(--gold)' }} aria-hidden />
+            <BadgeCheck className="h-4 w-4 shrink-0" style={{ color: 'var(--atelier-gold)' }} aria-hidden />
             Official NMI Certified Partner
           </span>
           <span
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold"
             style={{ background: 'var(--surface-container-lowest)', color: 'var(--on-surface)', outline: '1px solid var(--outline-variant)' }}
           >
-            <MapPin className="h-4 w-4 shrink-0" style={{ color: 'var(--gold)' }} aria-hidden />
+            <MapPin className="h-4 w-4 shrink-0" style={{ color: 'var(--atelier-gold)' }} aria-hidden />
             St. Louis Based Support
           </span>
         </div>

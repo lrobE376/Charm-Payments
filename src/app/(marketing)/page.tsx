@@ -94,7 +94,7 @@ function MarqueeStrip() {
         >
           <span
             className="h-2 w-2 shrink-0 animate-pulse-ring rounded-full"
-            style={{ background: 'var(--gold)' }}
+            style={{ background: 'var(--atelier-gold)' }}
             aria-hidden
           />
           {item}
@@ -118,7 +118,7 @@ export default function HomePage() {
         {/* Atmospheric orbs */}
         <div
           className="shape-blob -right-24 -top-20 h-[420px] w-[420px] lg:right-0"
-          style={{ background: 'var(--primary-container)' }}
+          style={{ background: 'var(--atelier-forest)' }}
           aria-hidden
         />
         <div className="shape-blob -bottom-32 -left-20 h-[380px] w-[380px] bg-white/5" aria-hidden />
@@ -134,7 +134,7 @@ export default function HomePage() {
         <div className="absolute right-[42%] top-24 hidden h-16 w-16 animate-rotation rounded-full border-2 border-white/10 lg:block" aria-hidden />
         <div
           className="absolute right-[48%] top-40 hidden h-3 w-3 animate-float rounded-full lg:block"
-          style={{ background: 'var(--gold)' }}
+          style={{ background: 'var(--atelier-gold)' }}
           aria-hidden
         />
         <div className="absolute bottom-32 left-[40%] hidden h-4 w-4 animate-float-slow rounded-full bg-white/20 lg:block" aria-hidden />
@@ -150,7 +150,7 @@ export default function HomePage() {
               >
                 <span
                   className="h-2 w-2 shrink-0 animate-pulse-ring rounded-full"
-                  style={{ background: 'var(--gold)' }}
+                  style={{ background: 'var(--atelier-gold)' }}
                   aria-hidden
                 />
                 <span className="label-sm text-white/90">
@@ -209,7 +209,7 @@ export default function HomePage() {
                   >
                     <CheckCircle
                       className="h-3.5 w-3.5 shrink-0"
-                      style={{ color: 'var(--gold)' }}
+                      style={{ color: 'var(--atelier-gold)' }}
                       aria-hidden
                     />
                     <span className="label-sm text-white/95">{label}</span>
@@ -443,7 +443,7 @@ export default function HomePage() {
                 >
                   <div
                     className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group-hover:shadow-md"
-                    style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%)' }}
+                    style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--atelier-forest) 100%)' }}
                   >
                     <Icon className="h-6 w-6 text-white" aria-hidden />
                   </div>
@@ -530,7 +530,7 @@ export default function HomePage() {
                       style={
                         idx === 2
                           ? {
-                              background: 'var(--gold)',
+                              background: 'var(--atelier-gold)',
                               color: 'var(--primary)',
                               boxShadow: '0px 4px 20px rgba(28,28,21,0.04), 0px 12px 40px rgba(28,28,21,0.06)',
                             }
@@ -642,7 +642,7 @@ export default function HomePage() {
                   {/* Decorative large quote mark */}
                   <span
                     className="pointer-events-none absolute -top-3 -left-1 select-none text-[7rem] leading-none"
-                    style={{ color: 'var(--gold)', opacity: 0.12, fontFamily: 'Georgia, serif' }}
+                    style={{ color: 'var(--atelier-gold)', opacity: 0.12, fontFamily: 'Georgia, serif' }}
                     aria-hidden
                   >
                     &ldquo;
@@ -654,7 +654,7 @@ export default function HomePage() {
                       <Star
                         key={i}
                         className="h-4 w-4"
-                        style={{ fill: 'var(--gold)', color: 'var(--gold)' }}
+                        style={{ fill: 'var(--atelier-gold)', color: 'var(--atelier-gold)' }}
                         aria-hidden
                       />
                     ))}
@@ -667,7 +667,7 @@ export default function HomePage() {
                   <div className="relative mt-6 flex items-center gap-3">
                     <div
                       className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-bold text-white"
-                      style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%)' }}
+                      style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--atelier-forest) 100%)' }}
                     >
                       {t.initial}
                     </div>
@@ -687,7 +687,7 @@ export default function HomePage() {
                   {/* Bottom gold accent */}
                   <div
                     className="absolute bottom-0 left-8 right-8 h-px"
-                    style={{ background: 'linear-gradient(90deg, transparent, var(--gold), transparent)' }}
+                    style={{ background: 'linear-gradient(90deg, transparent, var(--atelier-gold), transparent)' }}
                     aria-hidden
                   />
                 </div>
@@ -729,7 +729,7 @@ export default function HomePage() {
         />
         <div
           className="absolute bottom-24 left-[20%] hidden h-3 w-3 animate-float rounded-full lg:block"
-          style={{ background: 'var(--gold)' }}
+          style={{ background: 'var(--atelier-gold)' }}
           aria-hidden
         />
 
@@ -737,7 +737,7 @@ export default function HomePage() {
           <FadeIn>
             <span
               className="label-sm inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5"
-              style={{ color: 'var(--gold)' }}
+              style={{ color: 'var(--atelier-gold)' }}
             >
               STOP OVERPAYING TODAY
             </span>

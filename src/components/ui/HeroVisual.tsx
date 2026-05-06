@@ -85,11 +85,11 @@ export default function HeroVisual() {
           duration={3}
           className="absolute -right-6 -top-5 rounded-[0.75rem] px-4 py-3"
           style={{
-            background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%)',
+            background: 'linear-gradient(135deg, var(--primary) 0%, var(--atelier-forest) 100%)',
             boxShadow: '0px 4px 20px rgba(28,28,21,0.04), 0px 16px 48px rgba(28,28,21,0.10)',
           }}
         >
-          <p className="label-sm" style={{ color: 'var(--gold)' }}>Charm Payments</p>
+          <p className="label-sm" style={{ color: 'var(--atelier-gold)' }}>Charm Payments</p>
           <p className="text-sm font-semibold text-white">Processing Active</p>
         </FloatingCard>
 
@@ -108,7 +108,7 @@ export default function HeroVisual() {
           </p>
           <p
             className="text-lg font-bold"
-            style={{ fontFamily: 'var(--font-display)', color: 'var(--gold)' }}
+            style={{ fontFamily: 'var(--font-display)', color: 'var(--atelier-gold)' }}
           >
             $847
           </p>
