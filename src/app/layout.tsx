@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Manrope, Fraunces, JetBrains_Mono } from 'next/font/google'
+import { Manrope, Fraunces, JetBrains_Mono, Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'sonner'
 
@@ -21,6 +21,12 @@ const atelierJetBrains = JetBrains_Mono({
   display: 'swap',
 })
 
+const stripeInter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: { default: 'Charm Payments — Payment Processing Built for Business', template: '%s — Charm Payments' },
   description:
@@ -30,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${atelierManrope.variable} ${atelierFraunces.variable} ${atelierJetBrains.variable}`}>
+    <html lang="en" className={`${atelierManrope.variable} ${atelierFraunces.variable} ${atelierJetBrains.variable} ${stripeInter.variable}`}>
       <body>
         <a
           href="#main-content"

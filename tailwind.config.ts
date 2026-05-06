@@ -31,6 +31,7 @@ const config: Config = {
         atelierSans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         atelierSerif: ['var(--font-serif)', 'Georgia', 'serif'],
         atelierMono: ['var(--font-mono)', 'monospace'],
+        stripeSans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         atelierXs: '2px',
