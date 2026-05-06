@@ -126,7 +126,7 @@ export default function CharmDefensePage() {
         ],
       }}
       forestBand={{
-        eyebrow: 'Nine gates, included',
+        eyebrow: 'Defense, included',
         headline: "Disputes are inevitable. Losing them {isn't.}",
         subtitle:
           'Charm Defense intercepts disputes, builds evidence, and responds on your behalf. Most resolve before they post.',
