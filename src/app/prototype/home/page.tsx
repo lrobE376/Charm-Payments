@@ -21,7 +21,7 @@ export default function PrototypeHomePage() {
         eyebrow: '§ 01 — A new specification',
         headlineLines: [
           { text: 'Stop overpaying' },
-          { text: "for what's already yours.", italicTarget: "already yours." },
+          { text: "for what's already yours.", italicTarget: "already yours.", size: 'lg' },
         ],
         subtitle:
           'Lower rates. Same-day approval. Real human support — in St. Louis, in plain English, on the phone when you need it. For independent merchants who deserve better than the big processors.',
@@ -29,6 +29,9 @@ export default function PrototypeHomePage() {
         secondaryCta: { label: 'Get a free quote', href: '/quote' },
         visualVariant: 'home',
         visualSlot: <HeroVisual variant="home" caption="FIG. 01 — A NEW STANDARD" />,
+      }}
+      editorialBreak={{
+        text: 'Most processors hide the math. Charm Payments puts it {on the table.}',
       }}
       threeCards={{
         eyebrow: '§ 02 — What you actually get',

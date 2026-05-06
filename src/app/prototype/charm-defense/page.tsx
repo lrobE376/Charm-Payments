@@ -21,7 +21,7 @@ export default function PrototypeCharmDefensePage() {
         eyebrow: '§ Charm Defense',
         headlineLines: [
           { text: 'Disputes are inevitable.' },
-          { text: "Losing them {isn't.}", italicTarget: "isn't." },
+          { text: "Losing them {isn't.}", italicTarget: "isn't.", size: 'lg' },
         ],
         subtitle:
           'Charm Defense is a 9-gate fraud and chargeback prevention system, built into every Charm Payments account. We intercept disputes, build evidence, and respond on your behalf — most resolve before they post.',
@@ -29,6 +29,9 @@ export default function PrototypeCharmDefensePage() {
         secondaryCta: { label: 'Apply now', href: '/apply' },
         visualVariant: 'defense',
         visualSlot: <HeroVisual variant="defense" caption="FIG. 01 — THE NINE GATES" />,
+      }}
+      editorialBreak={{
+        text: 'Most processors wait for disputes. Charm Defense stops them {before they start.}',
       }}
       threeCards={{
         eyebrow: '§ 02 — How Charm Defense protects you',

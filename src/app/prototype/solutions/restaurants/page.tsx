@@ -22,7 +22,7 @@ export default function PrototypeRestaurantsPage() {
         headlineLines: [
           { text: 'Tighter margins.' },
           { text: 'Tougher choices.' },
-          { text: '{A friendlier processor.}', italic: true, italicTarget: 'A friendlier processor.' },
+          { text: '{A friendlier processor.}', italic: true, italicTarget: 'A friendlier processor.', size: 'lg' },
         ],
         subtitle:
           'Independent restaurants run on small percentages. Charm Payments runs interchange-plus pricing, no monthly fees, and same-day deposits — built for places where every basis point counts.',
@@ -32,6 +32,9 @@ export default function PrototypeRestaurantsPage() {
         visualSlot: (
           <HeroVisual variant="solutions-restaurants" caption="FIG. 01 — A SAMPLE STATEMENT" />
         ),
+      }}
+      editorialBreak={{
+        text: 'Most processors charge by the swipe. Charm Payments charges {by the truth.}',
       }}
       threeCards={{
         eyebrow: '§ 02 — What restaurants tell us',
