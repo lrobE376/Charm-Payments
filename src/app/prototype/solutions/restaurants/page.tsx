@@ -18,7 +18,7 @@ export default function PrototypeRestaurantsPage() {
         filed: 'Filed 05.06.2026',
       }}
       hero={{
-        eyebrow: '§ Restaurants & food service',
+        eyebrow: 'Restaurants & food service.',
         headlineLines: [
           { text: 'Tighter margins.' },
           { text: 'Tougher choices.' },
@@ -37,7 +37,7 @@ export default function PrototypeRestaurantsPage() {
         text: 'Most processors charge by the swipe. Charm Payments charges {by the truth.}',
       }}
       threeCards={{
-        eyebrow: '§ 02 — What restaurants tell us',
+        eyebrow: 'What restaurants tell us.',
         headline: "The hidden fees you can't {read on a statement.}",
         cards: [
           {
@@ -60,6 +60,17 @@ export default function PrototypeRestaurantsPage() {
           },
         ],
       }}
+      forestBand={{
+        eyebrow: 'Built for the floor',
+        headline: 'Same-day funding. Tableside terminals. {Real human support.}',
+        subtitle:
+          'We process for restaurants in St. Louis, Chicago, and Detroit. We know what 6am produce day looks like.',
+        stats: [
+          { num: '2.31%', label: 'Average effective rate' },
+          { num: 'Same day', label: 'Funding on every batch' },
+          { num: 'St. Louis', label: 'Where the phone rings' },
+        ],
+      }}
       pullQuote={{
         eyebrow: '§ 03',
         text: '"We were paying Toast 3.49% plus the swipe fee. Charm came in at {2.31% all-in.} That\'s {$8,400 a year} back in our pocket — at a place doing $58k a month."',
@@ -69,7 +80,7 @@ export default function PrototypeRestaurantsPage() {
         verifiedDate: 'Verified · 02.2026',
       }}
       comparison={{
-        eyebrow: '§ 04 — Restaurant processing, compared',
+        eyebrow: 'Restaurant processing, compared.',
         headline: 'Two ways to handle Saturday night. {One that respects the floor.}',
         theirs: {
           label: 'Specimen A — Toast / Square / generic processors',
@@ -95,7 +106,7 @@ export default function PrototypeRestaurantsPage() {
         },
       }}
       finalCta={{
-        eyebrow: '§ 05 — Begin',
+        eyebrow: 'Begin.',
         headlineLines: [
           { text: 'Send us your last statement.' },
           {

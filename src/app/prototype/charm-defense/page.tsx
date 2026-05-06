@@ -18,7 +18,7 @@ export default function PrototypeCharmDefensePage() {
         filed: 'Filed 05.06.2026',
       }}
       hero={{
-        eyebrow: '§ Charm Defense',
+        eyebrow: 'Charm Defense.',
         headlineLines: [
           { text: 'Disputes are inevitable.' },
           { text: "Losing them {isn't.}", italicTarget: "isn't.", size: 'lg' },
@@ -34,7 +34,7 @@ export default function PrototypeCharmDefensePage() {
         text: 'Most processors wait for disputes. Charm Defense stops them {before they start.}',
       }}
       threeCards={{
-        eyebrow: '§ 02 — How Charm Defense protects you',
+        eyebrow: 'How Charm Defense protects you.',
         headline: 'Three layers between your business and {a chargeback.}',
         cards: [
           {
@@ -58,7 +58,7 @@ export default function PrototypeCharmDefensePage() {
         ],
       }}
       featureList={{
-        eyebrow: '§ 03 — The nine gates',
+        eyebrow: 'The nine gates.',
         headline: 'Every defense, automatic. {Every gate, included.}',
         columns: 3,
         items: [
@@ -118,6 +118,17 @@ export default function PrototypeCharmDefensePage() {
           },
         ],
       }}
+      forestBand={{
+        eyebrow: 'Nine gates, included',
+        headline: "Disputes are inevitable. Losing them {isn't.}",
+        subtitle:
+          'Charm Defense intercepts disputes, builds evidence, and responds on your behalf. Most resolve before they post.',
+        stats: [
+          { num: '78%', label: 'Average win rate' },
+          { num: 'Auto', label: 'Evidence assembly' },
+          { num: '0', label: 'Action required from you' },
+        ],
+      }}
       pullQuote={{
         eyebrow: '§ 04',
         text: '"We were losing {18% of disputes} we got. Charm Defense brought it to {78% won.} On a card-not-present business, that\'s the difference between profit and breaking even."',
@@ -127,7 +138,7 @@ export default function PrototypeCharmDefensePage() {
         verifiedDate: 'Verified · 01.2026',
       }}
       comparison={{
-        eyebrow: '§ 05 — With Defense, vs. without',
+        eyebrow: 'With Defense, vs. without.',
         headline: 'Two paths through a chargeback. {Only one ends with your money.}',
         theirs: {
           label: 'Specimen A — Standard processors',
@@ -153,7 +164,7 @@ export default function PrototypeCharmDefensePage() {
         },
       }}
       finalCta={{
-        eyebrow: '§ 06 — Begin',
+        eyebrow: 'Begin.',
         headlineLines: [
           { text: 'Disputes find every business.' },
           {

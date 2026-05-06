@@ -18,7 +18,7 @@ export default function PrototypeHomePage() {
         filed: 'Filed 05.06.2026',
       }}
       hero={{
-        eyebrow: '§ 01 — A new specification',
+        eyebrow: 'A new specification.',
         headlineLines: [
           { text: 'Stop overpaying' },
           { text: "for what's already yours.", italicTarget: "already yours.", size: 'lg' },
@@ -34,7 +34,7 @@ export default function PrototypeHomePage() {
         text: 'Most processors hide the math. Charm Payments puts it {on the table.}',
       }}
       threeCards={{
-        eyebrow: '§ 02 — What you actually get',
+        eyebrow: 'What you actually get.',
         headline: 'Three things that change {on day one.}',
         cards: [
           {
@@ -57,6 +57,17 @@ export default function PrototypeHomePage() {
           },
         ],
       }}
+      forestBand={{
+        eyebrow: 'The promise',
+        headline: 'We answer the phone. We honor the rate. We {show our math.}',
+        subtitle:
+          'Built in St. Louis for independent merchants. No call centers. No hidden tiers. No surprise statement fees.',
+        stats: [
+          { num: '48hr', label: 'From application to processing' },
+          { num: '$0', label: 'Monthly fees, ever' },
+          { num: '1', label: 'Phone number, real human' },
+        ],
+      }}
       pullQuote={{
         eyebrow: '§ 03',
         text: '"Switched from Square last quarter. Charm cut my effective rate by {0.4 points} — and I have a phone number that actually picks up."',
@@ -66,7 +77,7 @@ export default function PrototypeHomePage() {
         verifiedDate: 'Verified · 03.2026',
       }}
       comparison={{
-        eyebrow: '§ 04 — A comparison',
+        eyebrow: 'A comparison.',
         headline: 'Two ways to process. {One that respects you.}',
         theirs: {
           label: 'Specimen A — The other guys',
@@ -92,7 +103,7 @@ export default function PrototypeHomePage() {
         },
       }}
       finalCta={{
-        eyebrow: '§ 05 — Begin',
+        eyebrow: 'Begin.',
         headlineLines: [
           { text: 'The audit is free.' },
           { text: "The savings aren't.", italicTarget: "The savings aren't." },
