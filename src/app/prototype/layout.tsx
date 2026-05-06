@@ -15,10 +15,11 @@ export default function PrototypeLayout({ children }: { children: React.ReactNod
       <main id="main-content">{children}</main>
       <footer
         role="contentinfo"
-        className="font-stripeSans"
+        className="font-stripeSans bg-apple-canvas-warm"
         style={{
-          padding: '24px 32px',
+          padding: '32px 32px',
           fontSize: 12,
+          fontWeight: 500,
           color: 'rgba(0,0,0,0.45)',
           letterSpacing: '0.04em',
           borderTop: '0.5px solid rgba(0,0,0,0.06)',
