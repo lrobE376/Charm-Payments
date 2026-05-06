@@ -38,13 +38,13 @@ export default function CardsStickyCta() {
     >
       <div className="mx-auto flex w-full max-w-lg flex-row items-stretch">
         <Link
-          href="/charm-cards/login"
+          href="/cards"
           className="btn-outline inline-flex min-h-[48px] flex-1 items-center justify-center border-white/30 !text-white hover:!border-white hover:!bg-white hover:!text-brand-dark"
         >
-          Log In
+          Learn More
         </Link>
         <Link
-          href="/charm-cards/apply"
+          href="/cards"
           className="btn-accent ml-3 inline-flex min-h-[48px] flex-1 items-center justify-center"
         >
           Get Your Card →

@@ -48,8 +48,8 @@ function applicationReceivedHtml(firstName: string, businessName: string): strin
               and will contact you by email or phone.
             </p>
             <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6;">
-              While you wait, feel free to explore our
-              <a href="${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://charmpayments.com'}/pricing" style="color:#0c3a30;">pricing plans</a>
+              While you wait, feel free to get a
+              <a href="${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://charmpayments.com'}/quote" style="color:#0c3a30;">free rate audit</a>
               or review our
               <a href="${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://charmpayments.com'}/faq" style="color:#0c3a30;">FAQ</a>.
             </p>

@@ -53,10 +53,10 @@ export default function VirtualTerminalPage() {
               Apply for Your Merchant Account
             </Link>
             <Link
-              href="/pricing"
+              href="/quote"
               className="btn-outline inline-flex min-h-[44px] items-center justify-center !border-white/45 !text-white !shadow-none hover:!border-white hover:!bg-white hover:!text-brand-dark"
             >
-              See Pricing
+              Get a Quote
             </Link>
           </div>
         </div>

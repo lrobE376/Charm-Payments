@@ -143,10 +143,10 @@ export default function FeaturesPage() {
               Apply for Your Merchant Account
             </Link>
             <Link
-              href="/pricing"
+              href="/quote"
               className="btn-outline inline-flex min-h-[44px] items-center justify-center !border-white/45 !text-white !shadow-none hover:!border-white hover:!bg-white hover:!text-brand-dark"
             >
-              See Pricing
+              Get a Quote
             </Link>
           </div>
         </div>
@@ -375,10 +375,10 @@ export default function FeaturesPage() {
               Apply for Your Merchant Account
             </Link>
             <Link
-              href="/pricing"
+              href="/quote"
               className="btn-outline inline-flex min-h-[44px] items-center justify-center !border-white/45 !text-white !shadow-none hover:!border-white hover:!bg-white hover:!text-brand-dark"
             >
-              See Pricing Plans
+              Get a Quote
             </Link>
           </div>
           <p className="mx-auto mt-10 max-w-2xl text-xs leading-relaxed text-white/50">
