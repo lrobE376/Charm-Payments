@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 type NavItem = {
@@ -76,12 +77,18 @@ export function HeaderAtelier() {
             href="/"
             className={cn(
               'flex items-center shrink-0',
-              'font-atelierSerif font-medium text-base text-atelier-ink leading-none',
               'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-atelier-gold',
             )}
             aria-label="Charm Payments — home"
           >
-            Charm Payments<span className="text-atelier-gold">.</span>
+            <Image
+              src="/images/logo.png"
+              alt="Charm Payments"
+              width={320}
+              height={120}
+              priority
+              className="h-12 w-auto"
+            />
           </Link>
 
           <nav

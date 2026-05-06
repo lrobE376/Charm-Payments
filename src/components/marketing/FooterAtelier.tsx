@@ -1,5 +1,6 @@
 // src/components/marketing/FooterAtelier.tsx
 import Link from 'next/link'
+import Image from 'next/image'
 import { Container } from '@/components/atelier/Container'
 import { cn } from '@/lib/utils'
 
@@ -72,9 +73,15 @@ export function FooterAtelier() {
           )}
         >
           <div>
-            <div className="font-atelierSerif font-medium text-base text-atelier-cream">
-              Charm Payments<span className="text-atelier-gold">.</span>
-            </div>
+            <Link href="/" aria-label="Charm Payments — home" className="inline-block">
+              <Image
+                src="/images/logo.png"
+                alt="Charm Payments"
+                width={320}
+                height={120}
+                className="h-9 w-auto"
+              />
+            </Link>
             <p className="text-xs text-atelier-cream/65 mt-2 leading-relaxed max-w-sm">
               Enterprise payment processing for businesses of all sizes — built
               and supported in St. Louis.
