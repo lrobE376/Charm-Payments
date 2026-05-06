@@ -7,6 +7,8 @@ import { MagFeatureList, type MagFeatureListProps } from './MagFeatureList'
 import { MagPullQuote, type MagPullQuoteProps } from './MagPullQuote'
 import { MagComparison, type MagComparisonProps } from './MagComparison'
 import { MagFinalCta, type MagFinalCtaProps } from './MagFinalCta'
+import { MagForestBand, type MagForestBandProps } from './MagForestBand'
+import { MagGradientBreak } from './MagGradientBreak'
 
 export type MagPageProps = {
   meta: MagMetaStripProps
@@ -15,6 +17,7 @@ export type MagPageProps = {
   editorialBreak?: MagEditorialBreakProps
   featureList?: MagFeatureListProps
   pullQuote: MagPullQuoteProps
+  forestBand?: MagForestBandProps
   comparison: MagComparisonProps
   finalCta: MagFinalCtaProps
 }
@@ -26,6 +29,7 @@ export function MagPage({
   editorialBreak,
   featureList,
   pullQuote,
+  forestBand,
   comparison,
   finalCta,
 }: MagPageProps) {
@@ -37,7 +41,15 @@ export function MagPage({
       {editorialBreak ? <MagEditorialBreak {...editorialBreak} /> : null}
       {featureList ? <MagFeatureList {...featureList} /> : null}
       <MagPullQuote {...pullQuote} />
+      {forestBand ? (
+        <>
+          <MagGradientBreak variant="light-to-forest" />
+          <MagForestBand {...forestBand} />
+          <MagGradientBreak variant="forest-to-light" />
+        </>
+      ) : null}
       <MagComparison {...comparison} />
+      <MagGradientBreak variant="light-to-warm" />
       <MagFinalCta {...finalCta} />
     </>
   )
