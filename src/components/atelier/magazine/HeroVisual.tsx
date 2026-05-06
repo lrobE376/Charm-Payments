@@ -81,7 +81,8 @@ export function HeroVisual({ variant, caption, src, alt }: HeroVisualProps) {
   )
 }
 
-function Placeholder({ tint }: { tint: { from: string; to: string; ring: string } }) {
+function Placeholder({ tint: _tint }: { tint: { from: string; to: string; ring: string } }) {
+  // Pattern is neutral across variants. The variant tint travels through the FIG label only.
   return (
     <div
       className="relative overflow-hidden"
@@ -90,7 +91,7 @@ function Placeholder({ tint }: { tint: { from: string; to: string; ring: string 
         height: 360,
         borderRadius: 8,
         border: `0.5px dashed rgba(0,0,0,0.18)`,
-        background: `linear-gradient(135deg, ${tint.from} 0%, ${tint.to} 100%), #FAFAF7`,
+        background: '#FFFFFF',
       }}
       aria-hidden
     >
@@ -103,10 +104,10 @@ function Placeholder({ tint }: { tint: { from: string; to: string; ring: string 
         fill="none"
         style={{ inset: 0 }}
       >
-        <circle cx="110" cy="110" r="100" stroke={tint.ring} strokeWidth="0.5" fill="none" />
-        <circle cx="110" cy="110" r="68" stroke={tint.ring} strokeWidth="0.5" fill="none" />
-        <circle cx="110" cy="110" r="36" stroke={tint.ring} strokeWidth="0.5" fill="none" />
-        <circle cx="110" cy="110" r="2" fill={tint.ring} />
+        <circle cx="110" cy="110" r="100" stroke="rgba(0,0,0,0.06)" strokeWidth="0.5" fill="none" />
+        <circle cx="110" cy="110" r="68" stroke="rgba(0,0,0,0.08)" strokeWidth="0.5" fill="none" />
+        <circle cx="110" cy="110" r="36" stroke="rgba(0,0,0,0.10)" strokeWidth="0.5" fill="none" />
+        <circle cx="110" cy="110" r="2" fill="rgba(0,0,0,0.25)" />
       </svg>
 
       {/* Crosshair lines */}
@@ -117,8 +118,7 @@ function Placeholder({ tint }: { tint: { from: string; to: string; ring: string 
           top: 14,
           bottom: 14,
           width: '0.5px',
-          background: tint.ring,
-          opacity: 0.5,
+          background: 'rgba(0,0,0,0.06)',
         }}
       />
       <span
@@ -128,8 +128,7 @@ function Placeholder({ tint }: { tint: { from: string; to: string; ring: string 
           left: 14,
           right: 14,
           height: '0.5px',
-          background: tint.ring,
-          opacity: 0.5,
+          background: 'rgba(0,0,0,0.06)',
         }}
       />
 

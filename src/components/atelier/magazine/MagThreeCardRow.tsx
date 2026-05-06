@@ -72,7 +72,7 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
   return (
     <section
       ref={sectionRef}
-      style={{ padding: '96px 32px', background: 'rgba(0,0,0,0.02)' }}
+      style={{ padding: '96px 32px', background: '#FAFAFA' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
         <div ref={headerRef} style={{ marginBottom: 56 }}>

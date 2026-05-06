@@ -20,16 +20,16 @@ export type MagFinalCtaProps = {
 
 const FINAL_BLOB: Record<MagHeroVariant, { color: string }> = {
   home: {
-    color: 'radial-gradient(closest-side, rgba(30,92,53,0.10) 0%, rgba(189,153,82,0.05) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(30,92,53,0.075) 0%, rgba(189,153,82,0.04) 50%, transparent 75%)',
   },
   'solutions-restaurants': {
-    color: 'radial-gradient(closest-side, rgba(189,153,82,0.12) 0%, rgba(30,92,53,0.04) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(189,153,82,0.09) 0%, rgba(30,92,53,0.03) 50%, transparent 75%)',
   },
   defense: {
-    color: 'radial-gradient(closest-side, rgba(42,191,160,0.10) 0%, rgba(30,92,53,0.06) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(42,191,160,0.075) 0%, rgba(30,92,53,0.045) 50%, transparent 75%)',
   },
   feature: {
-    color: 'radial-gradient(closest-side, rgba(245,242,234,0.55) 0%, rgba(189,153,82,0.04) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(245,242,234,0.42) 0%, rgba(189,153,82,0.03) 50%, transparent 75%)',
   },
 }
 
