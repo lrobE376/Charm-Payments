@@ -17,10 +17,15 @@ export type MagFeatureListProps = {
   eyebrow: string
   headline: string
   items: MagFeatureListItem[]
-  columns?: 2 | 3
+  columns?: 2 | 3 | 6
 }
 
 export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFeatureListProps) {
+  // 6-up mode: items.length === 6 OR columns === 6 — visually 3-col grid with 2 rows + compact treatment
+  const isSixUp = columns === 6 || items.length === 6
+  const visualCols = isSixUp ? 3 : columns
+  const cardPadding = isSixUp ? '20px 18px' : '24px 20px'
+  const firstRowCount = isSixUp ? 3 : visualCols
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLElement | null)[]>([])
@@ -109,13 +114,13 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
         <div
           className="grid"
           style={{
-            gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+            gridTemplateColumns: `repeat(${visualCols}, minmax(0, 1fr))`,
             gap: 18,
           }}
         >
           {items.map((item, i) => {
             // First row uses pure white; subsequent rows use near-white for visual hierarchy
-            const isFirstRow = i < columns
+            const isFirstRow = i < firstRowCount
             return (
             <article
               key={item.title}
@@ -125,7 +130,7 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
               style={{
                 background: isFirstRow ? '#FFFFFF' : '#F5F4F1',
                 border: '0.5px solid rgba(0,0,0,0.08)',
-                padding: '24px 20px',
+                padding: cardPadding,
                 borderRadius: 6,
               }}
             >

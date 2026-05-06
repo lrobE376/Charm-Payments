@@ -16,6 +16,7 @@ export type MagFinalCtaProps = {
   primaryCta: { label: string; href: string }
   secondaryCta?: { label: string; href: string }
   gradientVariant: MagHeroVariant
+  disclaimer?: string
 }
 
 const FINAL_BLOB: Record<MagHeroVariant, { color: string }> = {
@@ -65,6 +66,7 @@ export function MagFinalCta({
   primaryCta,
   secondaryCta,
   gradientVariant,
+  disclaimer,
 }: MagFinalCtaProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
@@ -265,6 +267,21 @@ export function MagFinalCta({
             </Link>
           ) : null}
         </div>
+
+        {disclaimer ? (
+          <p
+            className="font-stripeSans mx-auto"
+            style={{
+              marginTop: 40,
+              fontSize: 12,
+              lineHeight: 1.6,
+              maxWidth: 640,
+              color: 'rgba(0,0,0,0.5)',
+            }}
+          >
+            {disclaimer}
+          </p>
+        ) : null}
       </div>
     </section>
   )
