@@ -2,6 +2,7 @@
 import { MagMetaStrip, type MagMetaStripProps } from './MagMetaStrip'
 import { MagHero, type MagHeroProps } from './MagHero'
 import { MagThreeCardRow, type MagThreeCardRowProps } from './MagThreeCardRow'
+import { MagEditorialBreak, type MagEditorialBreakProps } from './MagEditorialBreak'
 import { MagFeatureList, type MagFeatureListProps } from './MagFeatureList'
 import { MagPullQuote, type MagPullQuoteProps } from './MagPullQuote'
 import { MagComparison, type MagComparisonProps } from './MagComparison'
@@ -11,6 +12,7 @@ export type MagPageProps = {
   meta: MagMetaStripProps
   hero: MagHeroProps
   threeCards: MagThreeCardRowProps
+  editorialBreak?: MagEditorialBreakProps
   featureList?: MagFeatureListProps
   pullQuote: MagPullQuoteProps
   comparison: MagComparisonProps
@@ -21,6 +23,7 @@ export function MagPage({
   meta,
   hero,
   threeCards,
+  editorialBreak,
   featureList,
   pullQuote,
   comparison,
@@ -31,6 +34,7 @@ export function MagPage({
       <MagMetaStrip {...meta} />
       <MagHero {...hero} />
       <MagThreeCardRow {...threeCards} />
+      {editorialBreak ? <MagEditorialBreak {...editorialBreak} /> : null}
       {featureList ? <MagFeatureList {...featureList} /> : null}
       <MagPullQuote {...pullQuote} />
       <MagComparison {...comparison} />
