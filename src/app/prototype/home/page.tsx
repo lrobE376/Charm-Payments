@@ -42,18 +42,21 @@ export default function PrototypeHomePage() {
             title: 'Lower effective rate',
             description:
               'Interchange-plus pricing means you pay the wholesale rate plus a small, transparent margin. No hidden tiers.',
+            image: undefined,
           },
           {
             figLabel: 'Fig. 02.B',
             title: 'Same-day funding',
             description:
               'Money in your account the same day, not three business days later. Cash flow that respects your business cycle.',
+            image: undefined,
           },
           {
             figLabel: 'Fig. 02.C',
             title: 'A real human',
             description:
               'Call our number and a person picks up — in St. Louis, who knows your account. No tier-one queue, no offshore script.',
+            image: undefined,
           },
         ],
       }}

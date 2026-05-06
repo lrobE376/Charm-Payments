@@ -42,18 +42,21 @@ export default function PrototypeCharmDefensePage() {
             title: 'Pre-transaction',
             description:
               'Risk scoring, address verification, CVV checking, and velocity monitoring — every transaction screened before it settles.',
+            image: undefined,
           },
           {
             figLabel: 'Fig. 02.B',
             title: 'Mid-transaction',
             description:
               "Dispute intercept and pre-arbitration network alerts catch potential chargebacks before they're filed.",
+            image: undefined,
           },
           {
             figLabel: 'Fig. 02.C',
             title: 'Post-transaction',
             description:
               'Evidence assembly, response drafting, and representment on your behalf — most disputes resolved without action from you.',
+            image: undefined,
           },
         ],
       }}

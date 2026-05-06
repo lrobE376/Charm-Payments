@@ -45,18 +45,21 @@ export default function PrototypeRestaurantsPage() {
             title: 'Tip-adjustment fees',
             description:
               "Most processors charge again when servers add tips after the close. We don't.",
+            image: undefined,
           },
           {
             figLabel: 'Fig. 02.B',
             title: 'Next-day funding',
             description:
               'Cash flow matters at 6am when produce shows up. Same-day batch on every account.',
+            image: undefined,
           },
           {
             figLabel: 'Fig. 02.C',
             title: 'Card-present pricing',
             description:
               'Dipped, swiped, tapped — same low rate. No keyed-in surcharges for tableside payments.',
+            image: undefined,
           },
         ],
       }}
