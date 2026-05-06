@@ -13,7 +13,7 @@ export const FEATURES: Record<string, FeatureData> = {
         'Accept ACH bank transfers and eChecks with Charm Payments. Lower processing costs for high-ticket transactions. $25 setup, $5/mo, $0.50 per transaction.',
     },
     hero: {
-      breadcrumb: 'PRODUCTS · ACCEPT · ACH & ECHECK',
+      breadcrumb: 'Products · Accept · ACH & eCheck',
       title: 'Accept bank transfers at a fraction of the cost.',
       subtitle:
         'ACH and eCheck processing lets you collect payments directly from customer bank accounts — at dramatically lower rates than credit cards. Perfect for high-ticket transactions, B2B invoicing, and recurring payments.',
@@ -23,7 +23,7 @@ export const FEATURES: Record<string, FeatureData> = {
     },
     bodyVariant: 'how-it-works',
     howItWorks: {
-      eyebrow: 'HOW IT WORKS',
+      eyebrow: 'How it works',
       title: 'Direct bank payments for {any transaction.}',
       steps: [
         {
@@ -45,7 +45,7 @@ export const FEATURES: Record<string, FeatureData> = {
             'Payment clears and deposits to your merchant bank account. You receive notification when the transfer completes.',
         },
       ],
-      checklistEyebrow: "WHAT'S INCLUDED",
+      checklistEyebrow: "What's included",
       checklist: [
         {
           title: 'Lower cost than card processing',
@@ -66,7 +66,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     industries: {
-      eyebrow: 'WHO USES ACH',
+      eyebrow: 'Who uses ACH',
       title: 'Save thousands on {high-value payments.}',
       items: [
         {
@@ -96,7 +96,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     faq: {
-      eyebrow: 'COMMON QUESTIONS',
+      eyebrow: 'Common questions',
       title: 'ACH & eCheck FAQ.',
       items: [
         {
@@ -126,7 +126,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     finalCta: {
-      eyebrow: 'ADD ACH PROCESSING',
+      eyebrow: 'Add ACH processing',
       title: 'Stop paying card fees on {high-ticket sales.}',
       subtitle:
         'Add ACH processing to your Charm Payments account. $25 setup. $5/mo. $0.50 per transaction.',
@@ -143,7 +143,7 @@ export const FEATURES: Record<string, FeatureData> = {
         'Professional payment terminals with built-in WiFi and 4G cellular backup. Never lose a sale when your WiFi goes down. PAX A920 Pro and more. $8/mo per device.',
     },
     hero: {
-      breadcrumb: 'PRODUCTS · ACCEPT · CARD PRESENT',
+      breadcrumb: 'Products · Accept · Card present',
       title: 'Never lose a sale when WiFi goes down.',
       subtitle:
         'Charm Payments terminals run on WiFi with automatic 4G cellular backup built in. When your internet drops, your terminal keeps processing — your customers never know the difference.',
@@ -154,7 +154,7 @@ export const FEATURES: Record<string, FeatureData> = {
     },
     bodyVariant: 'tier-cards',
     tierCards: {
-      eyebrow: 'HARDWARE',
+      eyebrow: 'Hardware',
       title: 'The right terminal for {every business.}',
       tiers: [
         {
@@ -207,7 +207,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     industries: {
-      eyebrow: 'BUILT FOR YOUR INDUSTRY',
+      eyebrow: 'Built for your industry',
       title: 'Works in every {St. Louis business type.}',
       items: [
         {
@@ -237,7 +237,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     faq: {
-      eyebrow: 'COMMON QUESTIONS',
+      eyebrow: 'Common questions',
       title: 'Card Present Terminal FAQ.',
       items: [
         {
@@ -267,7 +267,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     finalCta: {
-      eyebrow: 'GET YOUR TERMINAL',
+      eyebrow: 'Get your terminal',
       title: 'Professional terminals with {cellular backup.}',
       subtitle:
         'Never lose a sale to a WiFi outage again. Apply today and have your terminal configured within 48 hours of approval.',
@@ -284,7 +284,7 @@ export const FEATURES: Record<string, FeatureData> = {
         'Connect your online store to Charm Payments. 125+ shopping cart integrations, Collect.js, and hosted checkout. Accept payments online in minutes.',
     },
     hero: {
-      breadcrumb: 'PRODUCTS · ACCEPT · E-COMMERCE',
+      breadcrumb: 'Products · Accept · E-commerce',
       title: 'Accept online payments with one line of code.',
       subtitle:
         'Connect your online store to Charm Payments using Collect.js — a single script tag that adds secure card acceptance to any website. Or use our 125+ pre-built shopping cart integrations.',
@@ -299,7 +299,7 @@ export const FEATURES: Record<string, FeatureData> = {
     },
     bodyVariant: 'tier-cards',
     tierCards: {
-      eyebrow: 'INTEGRATION OPTIONS',
+      eyebrow: 'Integration options',
       title: 'Three ways to connect your {online store.}',
       tiers: [
         {
@@ -344,7 +344,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     industries: {
-      eyebrow: 'BUILT FOR ONLINE SELLERS',
+      eyebrow: 'Built for online sellers',
       title: 'Every type of {online business.}',
       items: [
         {
@@ -374,7 +374,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     faq: {
-      eyebrow: 'COMMON QUESTIONS',
+      eyebrow: 'Common questions',
       title: 'E-Commerce Gateway FAQ.',
       items: [
         {
@@ -404,7 +404,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     finalCta: {
-      eyebrow: 'START SELLING ONLINE',
+      eyebrow: 'Start selling online',
       title: 'Connect your store. Start {collecting payments.}',
       subtitle:
         '125+ integrations. One line of code. Apply today and your gateway is active within 48 hours.',
@@ -421,7 +421,7 @@ export const FEATURES: Record<string, FeatureData> = {
         'AI-powered fraud screening on every transaction. Basic fraud screening included free. Kount Advanced available. Protect your business from chargebacks and fraud losses.',
     },
     hero: {
-      breadcrumb: 'PRODUCTS · MANAGE · FRAUD PROTECTION',
+      breadcrumb: 'Products · Manage · Fraud protection',
       title: 'Stop fraud before it costs you money.',
       subtitle:
         'Every Charm Payments transaction runs through AI-powered fraud screening. Basic protection is included free. Add Kount Advanced — the same fraud AI used by Fortune 500 companies — for enterprise-grade protection.',
@@ -431,7 +431,7 @@ export const FEATURES: Record<string, FeatureData> = {
     },
     bodyVariant: 'tier-cards',
     tierCards: {
-      eyebrow: 'LAYERS OF PROTECTION',
+      eyebrow: 'Layers of protection',
       title: 'Multiple lines of defense {on every transaction.}',
       tiers: [
         {
@@ -476,7 +476,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     industries: {
-      eyebrow: 'WHO NEEDS ADVANCED PROTECTION',
+      eyebrow: 'Who needs advanced protection',
       title: 'Industries with higher {fraud exposure.}',
       items: [
         {
@@ -506,7 +506,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     faq: {
-      eyebrow: 'COMMON QUESTIONS',
+      eyebrow: 'Common questions',
       title: 'Fraud Protection FAQ.',
       items: [
         {
@@ -536,7 +536,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     finalCta: {
-      eyebrow: 'PROTECT YOUR REVENUE',
+      eyebrow: 'Protect your revenue',
       title: 'Stop fraud before it {reaches your account.}',
       subtitle:
         'Basic fraud protection included free. Kount Advanced available for $7/mo. Apply today and protect every transaction.',
@@ -553,7 +553,7 @@ export const FEATURES: Record<string, FeatureData> = {
         'Generate payment QR codes and accept contactless payments anywhere. Print on menus, receipts, or storefronts. Included in all Charm Payments accounts.',
     },
     hero: {
-      breadcrumb: 'PRODUCTS · MANAGE · QR CODE PAYMENTS',
+      breadcrumb: 'Products · Manage · QR code payments',
       title: 'Print it. Display it. Get paid from it.',
       subtitle:
         'Generate a payment QR code and put it anywhere your customers are — menus, receipts, storefronts, flyers, or business cards. They scan, pay, done. No card reader. No terminal. No contact required.',
@@ -563,7 +563,7 @@ export const FEATURES: Record<string, FeatureData> = {
     },
     bodyVariant: 'how-it-works',
     howItWorks: {
-      eyebrow: 'HOW IT WORKS',
+      eyebrow: 'How it works',
       title: 'Scan. Pay. Done. {No hardware required.}',
       steps: [
         {
@@ -585,7 +585,7 @@ export const FEATURES: Record<string, FeatureData> = {
             'Customer pays with card, Apple Pay, or Google Pay. You get an instant notification. Funds deposit next business day.',
         },
       ],
-      checklistEyebrow: "WHAT'S INCLUDED",
+      checklistEyebrow: "What's included",
       checklist: [
         {
           title: 'Unlimited QR codes',
@@ -606,7 +606,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     industries: {
-      eyebrow: 'WHERE TO USE IT',
+      eyebrow: 'Where to use it',
       title: 'Put your QR code {everywhere customers are.}',
       items: [
         {
@@ -636,7 +636,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     faq: {
-      eyebrow: 'COMMON QUESTIONS',
+      eyebrow: 'Common questions',
       title: 'QR Code Payments FAQ.',
       items: [
         {
@@ -666,7 +666,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     finalCta: {
-      eyebrow: 'GET YOUR QR CODE',
+      eyebrow: 'Get your QR code',
       title: 'Contactless payments {everywhere you do business.}',
       subtitle:
         'QR code payments are included free in every Charm Payments account. Apply today.',
@@ -683,7 +683,7 @@ export const FEATURES: Record<string, FeatureData> = {
         'Automate subscription payments and recurring charges with Charm Payments. Set it once and collect automatically — weekly, monthly, or on any schedule.',
     },
     hero: {
-      breadcrumb: 'PRODUCTS · MANAGE · RECURRING BILLING',
+      breadcrumb: 'Products · Manage · Recurring billing',
       title: 'Set it once. Get paid every time.',
       subtitle:
         'Stop manually charging repeat customers. Set up automatic recurring payments and let Charm Payments handle the rest — weekly, monthly, quarterly, or any schedule you choose.',
@@ -698,7 +698,7 @@ export const FEATURES: Record<string, FeatureData> = {
     },
     bodyVariant: 'how-it-works',
     howItWorks: {
-      eyebrow: 'HOW IT WORKS',
+      eyebrow: 'How it works',
       title: 'Automated payments that {run themselves.}',
       steps: [
         {
@@ -720,7 +720,7 @@ export const FEATURES: Record<string, FeatureData> = {
             'Charges process on schedule without any action from you. Failed payments retry automatically. You get notified of successes and failures.',
         },
       ],
-      checklistEyebrow: "WHAT'S INCLUDED",
+      checklistEyebrow: "What's included",
       checklist: [
         {
           title: 'Any schedule',
@@ -741,7 +741,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     industries: {
-      eyebrow: 'BUILT FOR RECURRING REVENUE',
+      eyebrow: 'Built for recurring revenue',
       title: 'Every business that {bills repeat customers.}',
       items: [
         {
@@ -771,7 +771,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     faq: {
-      eyebrow: 'COMMON QUESTIONS',
+      eyebrow: 'Common questions',
       title: 'Recurring Billing FAQ.',
       items: [
         {
@@ -801,7 +801,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     finalCta: {
-      eyebrow: 'AUTOMATE YOUR BILLING',
+      eyebrow: 'Automate your billing',
       title: 'Stop chasing payments. {Automate everything.}',
       subtitle:
         'Recurring billing is included in every Charm Payments account. Apply today and set up your first subscription within 48 hours.',
@@ -818,7 +818,7 @@ export const FEATURES: Record<string, FeatureData> = {
         'Turn your iPhone or Android into a payment terminal with Charm Payments Tap to Pay. No hardware needed. Accept contactless payments anywhere. $0/mo.',
     },
     hero: {
-      breadcrumb: 'PRODUCTS · ACCEPT · TAP TO PAY',
+      breadcrumb: 'Products · Accept · Tap to Pay',
       title: 'Your phone is your payment terminal.',
       subtitle:
         'No card reader. No hardware to buy. Turn any iPhone or Android into a fully functional payment terminal — accept tap, chip, and contactless payments anywhere you do business.',
@@ -828,7 +828,7 @@ export const FEATURES: Record<string, FeatureData> = {
     },
     bodyVariant: 'how-it-works',
     howItWorks: {
-      eyebrow: 'HOW IT WORKS',
+      eyebrow: 'How it works',
       title: 'Accept a payment in {under 30 seconds.}',
       steps: [
         {
@@ -850,7 +850,7 @@ export const FEATURES: Record<string, FeatureData> = {
             'Customer taps their card, Apple Pay, or Google Pay to your phone. Payment approved in seconds. Receipt sent by email or text.',
         },
       ],
-      checklistEyebrow: "WHAT'S INCLUDED",
+      checklistEyebrow: "What's included",
       checklist: [
         {
           title: 'iPhone XS or later',
@@ -871,7 +871,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     industries: {
-      eyebrow: 'PERFECT FOR',
+      eyebrow: 'Perfect for',
       title: 'Every mobile merchant {in St. Louis.}',
       items: [
         {
@@ -901,7 +901,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     faq: {
-      eyebrow: 'COMMON QUESTIONS',
+      eyebrow: 'Common questions',
       title: 'Tap to Pay FAQ.',
       items: [
         {
@@ -931,7 +931,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     finalCta: {
-      eyebrow: 'GET STARTED FREE',
+      eyebrow: 'Get started free',
       title: 'No hardware. No monthly fee. {Just tap and get paid.}',
       subtitle:
         'Apply today and start accepting payments on your phone within 48 hours of approval.',
@@ -948,7 +948,7 @@ export const FEATURES: Record<string, FeatureData> = {
         'Send payment requests by text message with Charm Payments Text to Pay. Customer gets an SMS, taps the link, and pays in seconds. $5/mo.',
     },
     hero: {
-      breadcrumb: 'PRODUCTS · MANAGE · TEXT TO PAY',
+      breadcrumb: 'Products · Manage · Text to Pay',
       title: 'Send a text. Get paid in 30 seconds.',
       subtitle:
         "Text your customer a payment request. They tap the link, enter their card, and you're paid — before you even put your phone away. No app download. No invoice portal. Just a text and a payment.",
@@ -959,7 +959,7 @@ export const FEATURES: Record<string, FeatureData> = {
     },
     bodyVariant: 'how-it-works',
     howItWorks: {
-      eyebrow: 'HOW IT WORKS',
+      eyebrow: 'How it works',
       title: 'Three taps to {collect any payment.}',
       steps: [
         {
@@ -981,7 +981,7 @@ export const FEATURES: Record<string, FeatureData> = {
             'Customer enters their card details or uses Apple Pay. Transaction approved. You get a notification. Funds deposit next business day.',
         },
       ],
-      checklistEyebrow: "WHAT'S INCLUDED",
+      checklistEyebrow: "What's included",
       checklist: [
         {
           title: 'Works on any phone',
@@ -1002,7 +1002,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     industries: {
-      eyebrow: 'PERFECT FOR',
+      eyebrow: 'Perfect for',
       title: 'Get paid on the spot {no matter where you are.}',
       items: [
         {
@@ -1032,7 +1032,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     faq: {
-      eyebrow: 'COMMON QUESTIONS',
+      eyebrow: 'Common questions',
       title: 'Text to Pay FAQ.',
       items: [
         {
@@ -1062,7 +1062,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     finalCta: {
-      eyebrow: 'GET TEXT TO PAY',
+      eyebrow: 'Get Text to Pay',
       title: 'The fastest way to {collect any payment.}',
       subtitle:
         'Add Text to Pay to your Charm Payments account. $5/mo. Customers pay in under 30 seconds.',
@@ -1079,7 +1079,7 @@ export const FEATURES: Record<string, FeatureData> = {
         'Accept credit card payments from any browser with Charm Payments virtual terminal. No hardware needed. Perfect for phone orders, mail orders, and MOTO transactions.',
     },
     hero: {
-      breadcrumb: 'PRODUCTS · ACCEPT · VIRTUAL TERMINAL',
+      breadcrumb: 'Products · Accept · Virtual terminal',
       title: 'Accept payments from any browser, anywhere.',
       subtitle:
         'No hardware. No software to install. Log in to your Charm Payments dashboard, key in card details, and collect payment in seconds — from any device, any location.',
@@ -1089,7 +1089,7 @@ export const FEATURES: Record<string, FeatureData> = {
     },
     bodyVariant: 'how-it-works',
     howItWorks: {
-      eyebrow: 'HOW IT WORKS',
+      eyebrow: 'How it works',
       title: 'Three steps to {collect any payment.}',
       steps: [
         {
@@ -1111,7 +1111,7 @@ export const FEATURES: Record<string, FeatureData> = {
             'Transaction approved in seconds. Customer gets a receipt by email. Funds deposit to your bank account on the next business day.',
         },
       ],
-      checklistEyebrow: "WHAT'S INCLUDED",
+      checklistEyebrow: "What's included",
       checklist: [
         {
           title: 'All major cards',
@@ -1132,7 +1132,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     industries: {
-      eyebrow: 'WHO USES IT',
+      eyebrow: 'Who uses it',
       title: 'Built for businesses that {take payments remotely.}',
       items: [
         {
@@ -1162,7 +1162,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     faq: {
-      eyebrow: 'COMMON QUESTIONS',
+      eyebrow: 'Common questions',
       title: 'Virtual Terminal FAQ.',
       items: [
         {
@@ -1192,7 +1192,7 @@ export const FEATURES: Record<string, FeatureData> = {
       ],
     },
     finalCta: {
-      eyebrow: 'GET STARTED',
+      eyebrow: 'Get started',
       title: 'Ready to accept payments {from anywhere?}',
       subtitle:
         "Apply in minutes. Approved in 48 hours. Your virtual terminal is ready the same day you're approved.",
