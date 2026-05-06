@@ -72,6 +72,7 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
   return (
     <section
       ref={sectionRef}
+      className="border-t border-[rgba(0,0,0,0.06)]"
       style={{ padding: '96px 32px', background: '#FAFAFA' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
@@ -117,13 +118,13 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
                 {card.figLabel}
               </div>
               <h3
-                className="font-atelierSerif text-atelier-ink"
-                style={{ fontSize: 19, lineHeight: 1.25, fontWeight: 400, marginBottom: 10 }}
+                className="font-atelierSerif text-atelier-ink leading-[1.15]"
+                style={{ fontSize: 19, fontWeight: 400, marginBottom: 10 }}
               >
                 {card.title}
               </h3>
               <p
-                className="font-stripeSans"
+                className="font-stripeSans max-w-[260px]"
                 style={{
                   fontSize: 13,
                   lineHeight: 1.55,

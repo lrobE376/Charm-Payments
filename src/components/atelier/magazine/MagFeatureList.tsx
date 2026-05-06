@@ -72,7 +72,7 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
   return (
     <section
       ref={sectionRef}
-      className="bg-white"
+      className="bg-white border-t border-[rgba(0,0,0,0.06)]"
       style={{ padding: '96px 32px' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
@@ -102,14 +102,17 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
             gap: 18,
           }}
         >
-          {items.map((item, i) => (
+          {items.map((item, i) => {
+            // First row uses pure white; subsequent rows use near-white for visual hierarchy
+            const isFirstRow = i < columns
+            return (
             <article
               key={item.title}
               ref={(el) => {
                 itemRefs.current[i] = el
               }}
               style={{
-                background: '#FAFAFA',
+                background: isFirstRow ? '#FFFFFF' : '#FAFAFA',
                 border: '0.5px solid rgba(0,0,0,0.08)',
                 padding: '24px 20px',
                 borderRadius: 6,
@@ -122,10 +125,9 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
                 {item.figLabel}
               </div>
               <h3
-                className="font-atelierSerif text-atelier-ink"
+                className="font-atelierSerif text-atelier-ink leading-[1.15]"
                 style={{
                   fontSize: 18,
-                  lineHeight: 1.2,
                   fontWeight: 400,
                   marginBottom: 8,
                 }}
@@ -133,7 +135,7 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
                 {item.title}
               </h3>
               <p
-                className="font-stripeSans"
+                className="font-stripeSans max-w-[260px]"
                 style={{
                   fontSize: 13,
                   lineHeight: 1.55,
@@ -143,7 +145,8 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
                 {item.description}
               </p>
             </article>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
