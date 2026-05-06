@@ -13,14 +13,12 @@
 
   /* ── Brand palette ── */
   --primary:            #004421;   /* Forest Green — gradient start */
-  --primary-container:  #1E5C35;   /* gradient end */
   --secondary:          #006b58;   /* Teal — focus rings, tertiary text */
   --secondary-container:#d4f0e8;   /* Success pill background */
   --tertiary-fixed:     #fff0c6;   /* Pending pill background */
   --on-primary:         #ffffff;
   --on-surface:         #1c1c15;   /* Never pure #000 */
   --on-surface-variant: #3d3d2e;
-  --gold:               #C9A96E;   /* Premium accents only — use sparingly */
   --outline-variant:    rgba(28,28,21,0.15); /* Ghost border fallback */
 
   /* ── Legacy aliases (kept for backward-compat with existing components) ── */
@@ -41,6 +39,30 @@
   /* ── Typography tokens ── */
   --font-display: 'Manrope', system-ui, sans-serif;
   --font-body:    'Inter', system-ui, sans-serif;
+
+  /* ===== Atelier Palette — added Phase 2C-1 ===== */
+  --atelier-forest: #1E5C35;
+  --atelier-forest-deep: #0F3520;
+  --atelier-cream: #EDEADE;
+  --atelier-cream-warm: #F5F2EA;
+  --atelier-paper: #FAFAF7;
+  --atelier-gold: #BD9952;
+  --atelier-teal: #2ABFA0;
+  --atelier-teal-deep: #04342C;
+  --atelier-ink: #1A1A1A;
+  --atelier-ink-soft: #2A2A2A;
+
+  /* ===== Easing curves ===== */
+  --ease-card: cubic-bezier(0.2, 0.85, 0.25, 1);
+
+  /* ===== Hover state colors ===== */
+  --hover-card-bg: #FAF6EC;
+  --hover-card-border: #1E5C35;
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
 }
 
 .text-paragraph {
@@ -136,11 +158,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--gold) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--atelier-gold) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .accent-underline { position: relative; display: inline-block; }
-.accent-underline::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px; background: var(--gold); border-radius: 2px; }
+.accent-underline::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px; background: var(--atelier-gold); border-radius: 2px; }
 .shape-blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.10; pointer-events: none; z-index: 0; }
 
 /* Stats badge — surface lift, ghost border */
@@ -163,7 +185,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Primary — Forest Green gradient, md radius */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--atelier-forest) 100%);
   color: var(--on-primary);
   font-family: var(--font-body); font-weight: 600; font-size: 15px;
   padding: 14px 28px; border-radius: 0.375rem; /* md */
@@ -176,7 +198,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Accent — Gold, for premium CTA */
 .btn-accent {
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--gold); color: var(--primary);
+  background: var(--atelier-gold); color: var(--primary);
   font-family: var(--font-body); font-weight: 700; font-size: 15px;
   padding: 14px 28px; border-radius: 0.375rem;
   border: none;
