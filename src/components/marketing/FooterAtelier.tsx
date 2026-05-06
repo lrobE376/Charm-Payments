@@ -5,7 +5,7 @@ import { Container } from '@/components/atelier/Container'
 import { cn } from '@/lib/utils'
 
 const QUICK_LINKS = [
-  { label: 'Pricing', href: '/pricing' },
+  { label: 'About', href: '/about' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
   { label: 'Get a Quote', href: '/quote' },
