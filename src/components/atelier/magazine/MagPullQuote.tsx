@@ -108,7 +108,7 @@ export function MagPullQuote({
   return (
     <section
       ref={sectionRef}
-      className="bg-white"
+      className="bg-white border-t border-[rgba(0,0,0,0.06)]"
       style={{ padding: '96px 32px' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>

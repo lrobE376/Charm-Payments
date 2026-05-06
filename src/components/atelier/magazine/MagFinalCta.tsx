@@ -20,16 +20,16 @@ export type MagFinalCtaProps = {
 
 const FINAL_BLOB: Record<MagHeroVariant, { color: string }> = {
   home: {
-    color: 'radial-gradient(closest-side, rgba(30,92,53,0.075) 0%, rgba(189,153,82,0.04) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(30,92,53,0.09) 0%, rgba(189,153,82,0.05) 50%, transparent 75%)',
   },
   'solutions-restaurants': {
-    color: 'radial-gradient(closest-side, rgba(189,153,82,0.09) 0%, rgba(30,92,53,0.03) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(189,153,82,0.105) 0%, rgba(30,92,53,0.035) 50%, transparent 75%)',
   },
   defense: {
-    color: 'radial-gradient(closest-side, rgba(42,191,160,0.075) 0%, rgba(30,92,53,0.045) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(42,191,160,0.09) 0%, rgba(30,92,53,0.055) 50%, transparent 75%)',
   },
   feature: {
-    color: 'radial-gradient(closest-side, rgba(245,242,234,0.42) 0%, rgba(189,153,82,0.03) 50%, transparent 75%)',
+    color: 'radial-gradient(closest-side, rgba(245,242,234,0.49) 0%, rgba(189,153,82,0.035) 50%, transparent 75%)',
   },
 }
 
@@ -130,6 +130,16 @@ export function MagFinalCta({
       tl.to(ctasRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.05')
     }
 
+    // Refinement 7: after the headline finishes, sweep italic-target color forest → gold
+    italRefs.current.forEach((italEl) => {
+      if (!italEl) return
+      tl.to(
+        italEl,
+        { color: 'var(--atelier-gold)', duration: 0.5, ease: 'power2.inOut' },
+        '+=0.2',
+      )
+    })
+
     return () => {
       tl.kill()
       ScrollTrigger.getAll().forEach((t) => t.kill())
@@ -141,7 +151,7 @@ export function MagFinalCta({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-white"
+      className="relative overflow-hidden bg-white border-t border-[rgba(0,0,0,0.06)]"
       style={{ padding: '120px 32px' }}
     >
       {/* Bottom gradient blob */}

@@ -76,6 +76,7 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
   return (
     <section
       ref={sectionRef}
+      className="border-t border-[rgba(0,0,0,0.06)]"
       style={{ padding: '96px 32px', background: '#FAFAFA' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
