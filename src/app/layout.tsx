@@ -1,6 +1,25 @@
 import type { Metadata } from 'next'
+import { Manrope, Fraunces, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'sonner'
+
+const atelierManrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const atelierFraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+})
+
+const atelierJetBrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: { default: 'Charm Payments — Payment Processing Built for Business', template: '%s — Charm Payments' },
@@ -11,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${atelierManrope.variable} ${atelierFraunces.variable} ${atelierJetBrains.variable}`}>
       <body>
         <a
           href="#main-content"
