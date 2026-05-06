@@ -10,11 +10,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-export default function UnsubscribePage({
-  searchParams,
-}: {
-  searchParams: { submitted?: string }
-}) {
+export default async function UnsubscribePage(
+  props: {
+    searchParams: Promise<{ submitted?: string }>
+  }
+) {
+  const searchParams = await props.searchParams;
   if (searchParams.submitted === 'true') {
     return (
       <div className="min-h-[80vh] flex items-center justify-center px-6">
