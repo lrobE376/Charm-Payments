@@ -5,7 +5,8 @@ import { NextResponse } from 'next/server'
 /**
  * Verifies an NMI webhook signature using HMAC-SHA256.
  * NMI sends the signature in the X-Nmi-Signature header as a hex digest.
- * If NMI_WEBHOOK_SECRET is not set the check is skipped (dev / pre-credential mode).
+ * If NMI_WEBHOOK_SECRET is not configured the endpoint fails closed —
+ * it is unsafe to accept unsigned webhook calls in any environment.
  */
 function verifyNmiSignature(rawBody: string, signature: string, secret: string): boolean {
   const expected = createHmac('sha256', secret).update(rawBody, 'utf8').digest('hex')
@@ -17,14 +18,19 @@ function verifyNmiSignature(rawBody: string, signature: string, secret: string):
 }
 
 export async function POST(req: Request) {
-  const rawBody = await req.text()
-
   const secret = process.env.NMI_WEBHOOK_SECRET
-  if (secret) {
-    const signature = req.headers.get('x-nmi-signature') ?? ''
-    if (!verifyNmiSignature(rawBody, signature, secret)) {
-      return NextResponse.json({ error: 'Invalid signature', code: 'SIGNATURE_INVALID' }, { status: 401 })
-    }
+  if (!secret) {
+    console.error('[webhook] NMI_WEBHOOK_SECRET missing in environment, rejecting all webhook calls')
+    return NextResponse.json(
+      { error: 'Webhook secret not configured', code: 'WEBHOOK_NOT_CONFIGURED' },
+      { status: 503 },
+    )
+  }
+
+  const rawBody = await req.text()
+  const signature = req.headers.get('x-nmi-signature') ?? ''
+  if (!verifyNmiSignature(rawBody, signature, secret)) {
+    return NextResponse.json({ error: 'Invalid signature', code: 'SIGNATURE_INVALID' }, { status: 401 })
   }
 
   let body: {
