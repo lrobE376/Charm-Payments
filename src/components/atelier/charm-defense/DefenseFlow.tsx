@@ -99,37 +99,36 @@ export function DefenseFlow() {
       return
     }
 
-    if (lineEl) gsap.set(lineEl, { scaleX: 0, transformOrigin: 'left center' })
-    nums.forEach((el) => {
-      gsap.set(el, { opacity: 0, scale: 0.5 })
-    })
+    const ctx = gsap.context(() => {
+      if (lineEl) gsap.set(lineEl, { scaleX: 0, transformOrigin: 'left center' })
+      nums.forEach((el) => {
+        gsap.set(el, { opacity: 0, scale: 0.5 })
+      })
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 70%',
-        toggleActions: 'play none none none',
-      },
-    })
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 70%',
+          toggleActions: 'play none none none',
+        },
+      })
 
-    tl.to(nums, {
-      opacity: 1,
-      scale: 1,
-      duration: 0.5,
-      ease: 'back.out(1.6)',
-      stagger: 0.22,
-    })
+      tl.to(nums, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        ease: 'back.out(1.6)',
+        stagger: 0.22,
+      })
 
-    if (lineEl) {
-      tl.to(lineEl, { scaleX: 1, duration: 0.9, ease: 'power2.inOut' })
-    }
+      if (lineEl) {
+        tl.to(lineEl, { scaleX: 1, duration: 0.9, ease: 'power2.inOut' })
+      }
 
-    tl.call(() => setArrowReady(true))
+      tl.call(() => setArrowReady(true))
+    }, section)
 
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+    return () => ctx.revert()
   }, [])
 
   return (

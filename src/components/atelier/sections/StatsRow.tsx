@@ -68,35 +68,34 @@ export function StatsRow() {
       return
     }
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 90%',
-        toggleActions: 'play none none none',
-      },
-    })
-
-    refs.forEach((r, i) => {
-      const counter = { val: 0 }
-      tl.to(
-        counter,
-        {
-          val: STATS[i].value,
-          duration: 1.4,
-          ease: 'power2.out',
-          onUpdate: () => {
-            if (r.current)
-              r.current.textContent = String(Math.round(counter.val))
-          },
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 90%',
+          toggleActions: 'play none none none',
         },
-        i * 0.15,
-      )
-    })
+      })
 
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+      refs.forEach((r, i) => {
+        const counter = { val: 0 }
+        tl.to(
+          counter,
+          {
+            val: STATS[i].value,
+            duration: 1.4,
+            ease: 'power2.out',
+            onUpdate: () => {
+              if (r.current)
+                r.current.textContent = String(Math.round(counter.val))
+            },
+          },
+          i * 0.15,
+        )
+      })
+    }, section)
+
+    return () => ctx.revert()
   }, [refs])
 
   return (

@@ -29,24 +29,23 @@ export function WhatChanges() {
       return
     }
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 70%',
-        toggleActions: 'play none none none',
-      },
-    })
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 70%',
+          toggleActions: 'play none none none',
+        },
+      })
 
-    tl.fromTo(
-      els,
-      { opacity: 0, y: 14 },
-      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08 },
-    )
+      tl.fromTo(
+        els,
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08 },
+      )
+    }, section)
 
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+    return () => ctx.revert()
   }, [])
 
   const wrap = (id: string, i: number, node: React.ReactNode) => (

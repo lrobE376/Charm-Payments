@@ -89,133 +89,132 @@ export function WhyWeWin() {
       return
     }
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 75%',
-        toggleActions: 'play none none none',
-      },
-    })
-
-    tl.fromTo(
-      otherRows,
-      { opacity: 0, y: 8 },
-      { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', stagger: 0.13 },
-      0,
-    )
-
-    OTHER_FEES.forEach((f, i) => {
-      const counter = { val: 0 }
-      tl.to(
-        counter,
-        {
-          val: f.value,
-          duration: 0.5,
-          ease: 'power2.out',
-          onUpdate: () => {
-            const r = otherValRefs.current[i]
-            if (r) r.textContent = formatUSD(counter.val)
-          },
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
         },
-        i * 0.13,
-      )
-    })
+      })
 
-    tl.fromTo(
-      charmRows,
-      { opacity: 0, y: 8 },
-      { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', stagger: 0.13 },
-      '+=0.1',
-    )
-
-    CHARM_FEES.forEach((f, i) => {
-      const counter = { val: 0 }
-      tl.to(
-        counter,
-        {
-          val: f.value,
-          duration: 0.5,
-          ease: 'power2.out',
-          onUpdate: () => {
-            const r = charmValRefs.current[i]
-            if (r) r.textContent = formatUSD(counter.val)
-          },
-        },
-        `>-${0.4 + i * 0.13}`,
-      )
-    })
-
-    const otherTotalCounter = { val: 0 }
-    const charmTotalCounter = { val: 0 }
-    tl.to(
-      otherTotalCounter,
-      {
-        val: otherTotal,
-        duration: 0.7,
-        ease: 'power2.out',
-        onUpdate: () => {
-          if (otherTotalRef.current)
-            otherTotalRef.current.textContent = formatUSD(otherTotalCounter.val)
-        },
-      },
-      '+=0.1',
-    )
-    tl.to(
-      charmTotalCounter,
-      {
-        val: charmTotal,
-        duration: 0.7,
-        ease: 'power2.out',
-        onUpdate: () => {
-          if (charmTotalRef.current)
-            charmTotalRef.current.textContent = formatUSD(charmTotalCounter.val)
-        },
-      },
-      '<',
-    )
-
-    if (deltaBandRef.current) {
       tl.fromTo(
-        deltaBandRef.current,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+        otherRows,
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', stagger: 0.13 },
+        0,
+      )
+
+      OTHER_FEES.forEach((f, i) => {
+        const counter = { val: 0 }
+        tl.to(
+          counter,
+          {
+            val: f.value,
+            duration: 0.5,
+            ease: 'power2.out',
+            onUpdate: () => {
+              const r = otherValRefs.current[i]
+              if (r) r.textContent = formatUSD(counter.val)
+            },
+          },
+          i * 0.13,
+        )
+      })
+
+      tl.fromTo(
+        charmRows,
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', stagger: 0.13 },
         '+=0.1',
       )
-    }
 
-    const monthly = { val: 0 }
-    const annual = { val: 0 }
-    tl.to(
-      monthly,
-      {
-        val: MONTHLY_DELTA,
-        duration: 1.0,
-        ease: 'power2.out',
-        onUpdate: () => {
-          if (deltaMonthlyRef.current)
-            deltaMonthlyRef.current.textContent = `$${Math.round(monthly.val)}`
-        },
-      },
-      '<',
-    )
-    tl.to(
-      annual,
-      {
-        val: ANNUAL_DELTA,
-        duration: 1.0,
-        ease: 'power2.out',
-        onUpdate: () => {
-          if (deltaAnnualRef.current)
-            deltaAnnualRef.current.textContent = `$${Math.round(annual.val).toLocaleString('en-US')}/YR`
-        },
-      },
-      '<',
-    )
+      CHARM_FEES.forEach((f, i) => {
+        const counter = { val: 0 }
+        tl.to(
+          counter,
+          {
+            val: f.value,
+            duration: 0.5,
+            ease: 'power2.out',
+            onUpdate: () => {
+              const r = charmValRefs.current[i]
+              if (r) r.textContent = formatUSD(counter.val)
+            },
+          },
+          `>-${0.4 + i * 0.13}`,
+        )
+      })
 
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+      const otherTotalCounter = { val: 0 }
+      const charmTotalCounter = { val: 0 }
+      tl.to(
+        otherTotalCounter,
+        {
+          val: otherTotal,
+          duration: 0.7,
+          ease: 'power2.out',
+          onUpdate: () => {
+            if (otherTotalRef.current)
+              otherTotalRef.current.textContent = formatUSD(otherTotalCounter.val)
+          },
+        },
+        '+=0.1',
+      )
+      tl.to(
+        charmTotalCounter,
+        {
+          val: charmTotal,
+          duration: 0.7,
+          ease: 'power2.out',
+          onUpdate: () => {
+            if (charmTotalRef.current)
+              charmTotalRef.current.textContent = formatUSD(charmTotalCounter.val)
+          },
+        },
+        '<',
+      )
+
+      if (deltaBandRef.current) {
+        tl.fromTo(
+          deltaBandRef.current,
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+          '+=0.1',
+        )
+      }
+
+      const monthly = { val: 0 }
+      const annual = { val: 0 }
+      tl.to(
+        monthly,
+        {
+          val: MONTHLY_DELTA,
+          duration: 1.0,
+          ease: 'power2.out',
+          onUpdate: () => {
+            if (deltaMonthlyRef.current)
+              deltaMonthlyRef.current.textContent = `$${Math.round(monthly.val)}`
+          },
+        },
+        '<',
+      )
+      tl.to(
+        annual,
+        {
+          val: ANNUAL_DELTA,
+          duration: 1.0,
+          ease: 'power2.out',
+          onUpdate: () => {
+            if (deltaAnnualRef.current)
+              deltaAnnualRef.current.textContent = `$${Math.round(annual.val).toLocaleString('en-US')}/YR`
+          },
+        },
+        '<',
+      )
+    }, section)
+
+    return () => ctx.revert()
   }, [otherTotal, charmTotal])
 
   return (

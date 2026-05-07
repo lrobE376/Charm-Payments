@@ -36,41 +36,40 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
       return
     }
 
-    if (headerRef.current) {
-      headerRef.current.style.opacity = '0'
-      headerRef.current.style.transform = 'translateY(14px)'
-    }
-    if (theirsRef.current) {
-      theirsRef.current.style.opacity = '0'
-      theirsRef.current.style.transform = 'translateX(-18px)'
-    }
-    if (oursRef.current) {
-      oursRef.current.style.opacity = '0'
-      oursRef.current.style.transform = 'translateX(18px)'
-    }
+    const ctx = gsap.context(() => {
+      if (headerRef.current) {
+        headerRef.current.style.opacity = '0'
+        headerRef.current.style.transform = 'translateY(14px)'
+      }
+      if (theirsRef.current) {
+        theirsRef.current.style.opacity = '0'
+        theirsRef.current.style.transform = 'translateX(-18px)'
+      }
+      if (oursRef.current) {
+        oursRef.current.style.opacity = '0'
+        oursRef.current.style.transform = 'translateX(18px)'
+      }
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 78%',
-        toggleActions: 'play none none none',
-      },
-    })
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 78%',
+          toggleActions: 'play none none none',
+        },
+      })
 
-    if (headerRef.current) {
-      tl.to(headerRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' })
-    }
-    if (theirsRef.current) {
-      tl.to(theirsRef.current, { opacity: 1, x: 0, duration: 0.55, ease: 'power2.out' }, '+=0.05')
-    }
-    if (oursRef.current) {
-      tl.to(oursRef.current, { opacity: 1, x: 0, duration: 0.55, ease: 'power2.out' }, '-=0.35')
-    }
+      if (headerRef.current) {
+        tl.to(headerRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' })
+      }
+      if (theirsRef.current) {
+        tl.to(theirsRef.current, { opacity: 1, x: 0, duration: 0.55, ease: 'power2.out' }, '+=0.05')
+      }
+      if (oursRef.current) {
+        tl.to(oursRef.current, { opacity: 1, x: 0, duration: 0.55, ease: 'power2.out' }, '-=0.35')
+      }
+    }, section)
 
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+    return () => ctx.revert()
   }, [])
 
   return (

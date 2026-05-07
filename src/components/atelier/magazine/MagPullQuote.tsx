@@ -81,19 +81,61 @@ export function MagPullQuote({
     }
 
     if (isCinematic) {
-      if (eyebrowRef.current) {
-        eyebrowRef.current.style.opacity = '0'
-        eyebrowRef.current.style.transform = 'translateY(14px)'
-      }
-      if (quoteRef.current) {
-        quoteRef.current.style.opacity = '0'
-        quoteRef.current.style.transform = 'scale(0.95)'
-        quoteRef.current.style.fontSize = '30px'
-      }
-      if (citeRef.current) {
-        citeRef.current.style.opacity = '0'
-        citeRef.current.style.transform = 'translateY(14px)'
-      }
+      const ctx = gsap.context(() => {
+        if (eyebrowRef.current) {
+          eyebrowRef.current.style.opacity = '0'
+          eyebrowRef.current.style.transform = 'translateY(14px)'
+        }
+        if (quoteRef.current) {
+          quoteRef.current.style.opacity = '0'
+          quoteRef.current.style.transform = 'scale(0.95)'
+          quoteRef.current.style.fontSize = '30px'
+        }
+        if (citeRef.current) {
+          citeRef.current.style.opacity = '0'
+          citeRef.current.style.transform = 'translateY(14px)'
+        }
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        })
+
+        if (eyebrowRef.current) {
+          tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' })
+        }
+        if (quoteRef.current) {
+          tl.to(
+            quoteRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              fontSize: '38px',
+              duration: 1.0,
+              ease: 'cubic-bezier(0.2, 0.85, 0.25, 1)',
+            },
+            '+=0.05',
+          )
+        }
+        if (italRef.current) {
+          tl.to(italRef.current, { color: 'var(--atelier-forest)', duration: 0.7, ease: 'power2.out' }, '+=0.1')
+        }
+        if (citeRef.current) {
+          tl.to(citeRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.3')
+        }
+      }, section)
+
+      return () => ctx.revert()
+    }
+
+    const ctx = gsap.context(() => {
+      els.forEach((el) => {
+        el.style.opacity = '0'
+        el.style.transform = 'translateY(14px)'
+      })
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -104,64 +146,20 @@ export function MagPullQuote({
       })
 
       if (eyebrowRef.current) {
-        tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' })
+        tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' })
       }
       if (quoteRef.current) {
-        tl.to(
-          quoteRef.current,
-          {
-            opacity: 1,
-            scale: 1,
-            fontSize: '38px',
-            duration: 1.0,
-            ease: 'cubic-bezier(0.2, 0.85, 0.25, 1)',
-          },
-          '+=0.05',
-        )
+        tl.to(quoteRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '+=0.05')
       }
       if (italRef.current) {
         tl.to(italRef.current, { color: 'var(--atelier-forest)', duration: 0.7, ease: 'power2.out' }, '+=0.1')
       }
       if (citeRef.current) {
-        tl.to(citeRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.3')
+        tl.to(citeRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.05')
       }
+    }, section)
 
-      return () => {
-        tl.kill()
-        ScrollTrigger.getAll().forEach((t) => t.kill())
-      }
-    }
-
-    els.forEach((el) => {
-      el.style.opacity = '0'
-      el.style.transform = 'translateY(14px)'
-    })
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 75%',
-        toggleActions: 'play none none none',
-      },
-    })
-
-    if (eyebrowRef.current) {
-      tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' })
-    }
-    if (quoteRef.current) {
-      tl.to(quoteRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '+=0.05')
-    }
-    if (italRef.current) {
-      tl.to(italRef.current, { color: 'var(--atelier-forest)', duration: 0.7, ease: 'power2.out' }, '+=0.1')
-    }
-    if (citeRef.current) {
-      tl.to(citeRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.05')
-    }
-
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+    return () => ctx.revert()
   }, [variant])
 
   return (

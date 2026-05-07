@@ -98,54 +98,53 @@ export function MagFinalCta({
       return
     }
 
-    els.forEach((el) => {
-      el.style.opacity = '0'
-      el.style.transform = 'translateY(14px)'
-    })
+    const ctx = gsap.context(() => {
+      els.forEach((el) => {
+        el.style.opacity = '0'
+        el.style.transform = 'translateY(14px)'
+      })
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 75%',
-        toggleActions: 'play none none none',
-      },
-    })
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
 
-    if (eyebrowRef.current) {
-      tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' })
-    }
+      if (eyebrowRef.current) {
+        tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' })
+      }
 
-    lineRefs.current.forEach((lineEl) => {
-      if (!lineEl) return
-      tl.to(lineEl, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, '+=0.05')
-    })
+      lineRefs.current.forEach((lineEl) => {
+        if (!lineEl) return
+        tl.to(lineEl, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, '+=0.05')
+      })
 
-    italRefs.current.forEach((italEl) => {
-      if (!italEl) return
-      tl.to(italEl, { color: 'var(--atelier-forest)', duration: 0.7, ease: 'power2.out' }, '+=0.1')
-    })
+      italRefs.current.forEach((italEl) => {
+        if (!italEl) return
+        tl.to(italEl, { color: 'var(--atelier-forest)', duration: 0.7, ease: 'power2.out' }, '+=0.1')
+      })
 
-    if (subtitleRef.current) {
-      tl.to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, '+=0.05')
-    }
-    if (ctasRef.current) {
-      tl.to(ctasRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.05')
-    }
+      if (subtitleRef.current) {
+        tl.to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, '+=0.05')
+      }
+      if (ctasRef.current) {
+        tl.to(ctasRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.05')
+      }
 
-    // Refinement 7: after the headline finishes, sweep italic-target color forest → gold
-    italRefs.current.forEach((italEl) => {
-      if (!italEl) return
-      tl.to(
-        italEl,
-        { color: 'var(--atelier-gold)', duration: 0.5, ease: 'power2.inOut' },
-        '+=0.2',
-      )
-    })
+      // Refinement 7: after the headline finishes, sweep italic-target color forest → gold
+      italRefs.current.forEach((italEl) => {
+        if (!italEl) return
+        tl.to(
+          italEl,
+          { color: 'var(--atelier-gold)', duration: 0.5, ease: 'power2.inOut' },
+          '+=0.2',
+        )
+      })
+    }, section)
 
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+    return () => ctx.revert()
   }, [headlineLines.length])
 
   const blob = FINAL_BLOB[gradientVariant]

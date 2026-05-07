@@ -54,34 +54,33 @@ export function DefenseNumbers() {
       return
     }
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      },
-    })
-
-    refs.forEach((r, i) => {
-      const counter = { val: 0 }
-      tl.to(
-        counter,
-        {
-          val: STATS[i].value,
-          duration: 1.5,
-          ease: 'power2.out',
-          onUpdate: () => {
-            if (r.current) r.current.textContent = String(Math.round(counter.val))
-          },
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
-        i * 0.12,
-      )
-    })
+      })
 
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+      refs.forEach((r, i) => {
+        const counter = { val: 0 }
+        tl.to(
+          counter,
+          {
+            val: STATS[i].value,
+            duration: 1.5,
+            ease: 'power2.out',
+            onUpdate: () => {
+              if (r.current) r.current.textContent = String(Math.round(counter.val))
+            },
+          },
+          i * 0.12,
+        )
+      })
+    }, section)
+
+    return () => ctx.revert()
   }, [refs])
 
   return (

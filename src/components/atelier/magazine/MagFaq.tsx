@@ -40,34 +40,33 @@ export function MagFaq({ eyebrow, title, items }: MagFaqProps) {
       return
     }
 
-    allEls.forEach((el) => {
-      el.style.opacity = '0'
-      el.style.transform = 'translateY(14px)'
-    })
+    const ctx = gsap.context(() => {
+      allEls.forEach((el) => {
+        el.style.opacity = '0'
+        el.style.transform = 'translateY(14px)'
+      })
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 75%',
-        toggleActions: 'play none none none',
-      },
-    })
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
 
-    if (headerRef.current) {
-      tl.to(headerRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' })
-    }
-    if (itemEls.length > 0) {
-      tl.to(
-        itemEls,
-        { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', stagger: 0.1 },
-        '+=0.05',
-      )
-    }
+      if (headerRef.current) {
+        tl.to(headerRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' })
+      }
+      if (itemEls.length > 0) {
+        tl.to(
+          itemEls,
+          { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', stagger: 0.1 },
+          '+=0.05',
+        )
+      }
+    }, section)
 
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+    return () => ctx.revert()
   }, [])
 
   return (

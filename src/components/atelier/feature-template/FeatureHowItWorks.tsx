@@ -77,33 +77,32 @@ export function FeatureHowItWorks({
       return
     }
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 75%',
-        toggleActions: 'play none none none',
-      },
-    })
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
 
-    tl.fromTo(
-      stepEls,
-      { opacity: 0, y: 14 },
-      { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', stagger: 0.1 },
-    )
-
-    if (checklistEls.length > 0) {
       tl.fromTo(
-        checklistEls,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', stagger: 0.06 },
-        '+=0.1',
+        stepEls,
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', stagger: 0.1 },
       )
-    }
 
-    return () => {
-      tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+      if (checklistEls.length > 0) {
+        tl.fromTo(
+          checklistEls,
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', stagger: 0.06 },
+          '+=0.1',
+        )
+      }
+    }, section)
+
+    return () => ctx.revert()
   }, [])
 
   return (

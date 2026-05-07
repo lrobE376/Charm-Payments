@@ -27,25 +27,24 @@ export function MagEditorialBreak({ text }: MagEditorialBreakProps) {
       return
     }
 
-    prose.style.opacity = '0'
-    prose.style.transform = 'translateY(8px)'
+    const ctx = gsap.context(() => {
+      prose.style.opacity = '0'
+      prose.style.transform = 'translateY(8px)'
 
-    const tween = gsap.to(prose, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 78%',
-        toggleActions: 'play none none none',
-      },
-    })
+      gsap.to(prose, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 78%',
+          toggleActions: 'play none none none',
+        },
+      })
+    }, section)
 
-    return () => {
-      tween.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
-    }
+    return () => ctx.revert()
   }, [])
 
   return (
