@@ -2,6 +2,8 @@
 import { createAdminClient } from '@/lib/supabase/admin'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
 import { triggerZap } from '@/lib/integrations/zapier'
+import { escapeHtml } from '@/lib/email/escape'
+import { rateLimitGate } from '@/lib/rate-limit/simple'
 
 async function sendResendEmail(to: string, subject: string, html: string): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY
@@ -24,6 +26,8 @@ async function sendResendEmail(to: string, subject: string, html: string): Promi
 }
 
 function applicationReceivedHtml(firstName: string, businessName: string): string {
+  const safeFirst = escapeHtml(firstName)
+  const safeBusiness = escapeHtml(businessName)
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,9 +45,9 @@ function applicationReceivedHtml(firstName: string, businessName: string): strin
         </tr>
         <tr>
           <td style="background:#ffffff;padding:32px;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;">
-            <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${firstName},</p>
+            <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${safeFirst},</p>
             <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6;">
-              We received your merchant account application for <strong>${businessName}</strong>.
+              We received your merchant account application for <strong>${safeBusiness}</strong>.
               Our underwriting team typically reviews new applications within 24–48 business hours
               and will contact you by email or phone.
             </p>
@@ -131,6 +135,8 @@ function coerceBool(val: boolean | string | undefined | null): boolean | null {
 }
 
 export async function POST(request: Request) {
+  const limited = rateLimitGate(request)
+  if (limited) return limited
   try {
     const body = (await request.json()) as ApplicationBody
 

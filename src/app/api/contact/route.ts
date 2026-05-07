@@ -3,6 +3,8 @@ import { createLead } from '@/lib/services/lead-service'
 import { sendLeadReceivedNotification } from '@/lib/integrations/notifications'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
 import { triggerZap } from '@/lib/integrations/zapier'
+import { escapeHtml } from '@/lib/email/escape'
+import { rateLimitGate } from '@/lib/rate-limit/simple'
 
 type ContactBody = {
   name?: string
@@ -70,6 +72,8 @@ function emailLayout(content: string): string {
 }
 
 export async function POST(req: Request) {
+  const limited = rateLimitGate(req)
+  if (limited) return limited
   try {
     const body = (await req.json()) as ContactBody
     const name = typeof body.name === 'string' ? body.name.trim() : ''
@@ -113,15 +117,24 @@ export async function POST(req: Request) {
 
     await sendLeadReceivedNotification(lead)
 
+    // Pre-escape every user-controlled value before HTML interpolation.
+    const safeName = escapeHtml(name)
+    const safeBusiness = escapeHtml(business)
+    const safeEmail = escapeHtml(email)
+    const safePhone = escapeHtml(phone)
+    const safeVolume = escapeHtml(volume)
+    const safeMessage = escapeHtml(message)
+    const safeLeadId = escapeHtml(lead.id)
+
     // Confirmation to the submitter
     await sendResendEmail(
       email,
       "We received your message — Charm Payments",
       emailLayout(`
-        <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${name},</p>
+        <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${safeName},</p>
         <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6;">
           Thanks for reaching out to Charm Payments. We received your inquiry for
-          <strong>${business}</strong> and a member of our team will be in touch within 1 business day.
+          <strong>${safeBusiness}</strong> and a member of our team will be in touch within 1 business day.
         </p>
         <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6;">
           In the meantime, you can email us at
@@ -139,14 +152,14 @@ export async function POST(req: Request) {
       emailLayout(`
         <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">New lead from contact form</p>
         <table cellpadding="0" cellspacing="0" style="width:100%;font-size:14px;color:#374151;">
-          <tr><td style="padding:6px 0;width:130px;color:#6b7280;">Name</td><td style="padding:6px 0;font-weight:600;">${name}</td></tr>
-          <tr><td style="padding:6px 0;color:#6b7280;">Business</td><td style="padding:6px 0;font-weight:600;">${business}</td></tr>
-          <tr><td style="padding:6px 0;color:#6b7280;">Email</td><td style="padding:6px 0;"><a href="mailto:${email}" style="color:#0c3a30;">${email}</a></td></tr>
-          ${phone ? `<tr><td style="padding:6px 0;color:#6b7280;">Phone</td><td style="padding:6px 0;">${phone}</td></tr>` : ''}
-          <tr><td style="padding:6px 0;color:#6b7280;">Monthly Volume</td><td style="padding:6px 0;">${volume}</td></tr>
-          ${message ? `<tr><td style="padding:6px 0;color:#6b7280;vertical-align:top;">Message</td><td style="padding:6px 0;">${message}</td></tr>` : ''}
+          <tr><td style="padding:6px 0;width:130px;color:#6b7280;">Name</td><td style="padding:6px 0;font-weight:600;">${safeName}</td></tr>
+          <tr><td style="padding:6px 0;color:#6b7280;">Business</td><td style="padding:6px 0;font-weight:600;">${safeBusiness}</td></tr>
+          <tr><td style="padding:6px 0;color:#6b7280;">Email</td><td style="padding:6px 0;"><a href="mailto:${safeEmail}" style="color:#0c3a30;">${safeEmail}</a></td></tr>
+          ${phone ? `<tr><td style="padding:6px 0;color:#6b7280;">Phone</td><td style="padding:6px 0;">${safePhone}</td></tr>` : ''}
+          <tr><td style="padding:6px 0;color:#6b7280;">Monthly Volume</td><td style="padding:6px 0;">${safeVolume}</td></tr>
+          ${message ? `<tr><td style="padding:6px 0;color:#6b7280;vertical-align:top;">Message</td><td style="padding:6px 0;">${safeMessage}</td></tr>` : ''}
         </table>
-        <p style="margin:16px 0 0;color:#6b7280;font-size:12px;">Lead ID: ${lead.id}</p>
+        <p style="margin:16px 0 0;color:#6b7280;font-size:12px;">Lead ID: ${safeLeadId}</p>
       `),
     )
 
