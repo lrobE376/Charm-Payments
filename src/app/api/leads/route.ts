@@ -3,13 +3,19 @@ import { sendLeadReceivedNotification } from '@/lib/integrations/notifications'
 import { parseLeadCreateBody } from '@/lib/validators/lead-payload'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
 import { triggerZap } from '@/lib/integrations/zapier'
+import { requireAdmin } from '@/lib/auth/admin'
+import { rateLimitGate } from '@/lib/rate-limit/simple'
 
-export async function GET() {
+export async function GET(req: Request) {
+  const denied = requireAdmin(req)
+  if (denied) return denied
   const leads = await getLeads()
   return jsonSuccess({ leads })
 }
 
 export async function POST(req: Request) {
+  const limited = rateLimitGate(req)
+  if (limited) return limited
   try {
     const body: unknown = await req.json()
     const parsed = parseLeadCreateBody(body)
