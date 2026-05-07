@@ -24,6 +24,7 @@ export type MagHeroProps = {
   secondaryCta?: { label: string; href: string }
   visualVariant: MagHeroVariant
   visualSlot: React.ReactNode
+  pills?: string[]
 }
 
 const BLOB: Record<MagHeroVariant, { color: string; pos: { top: string; left: string }; size: number }> = {
@@ -87,6 +88,7 @@ export function MagHero({
   secondaryCta,
   visualVariant,
   visualSlot,
+  pills,
 }: MagHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
@@ -282,6 +284,28 @@ export function MagHero({
             >
               {subtitle}
             </p>
+
+            {pills && pills.length > 0 ? (
+              <ul className="flex flex-wrap gap-2 list-none p-0" style={{ marginTop: 24, maxWidth: 600 }}>
+                {pills.map((pill) => (
+                  <li
+                    key={pill}
+                    className="font-stripeSans"
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 500,
+                      letterSpacing: '0.04em',
+                      color: 'rgba(0,0,0,0.6)',
+                      border: '0.5px solid rgba(0,0,0,0.18)',
+                      borderRadius: 980,
+                      padding: '4px 12px',
+                    }}
+                  >
+                    {pill}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
 
             <div
               ref={ctasRef}

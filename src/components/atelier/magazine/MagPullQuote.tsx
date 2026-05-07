@@ -13,6 +13,7 @@ export type MagPullQuoteProps = {
   citeRole: string
   citeLocation: string
   verifiedDate: string
+  variant?: 'standard' | 'cinematic-tier2'
 }
 
 function renderQuoteWithItalicTarget(text: string, italRef: React.RefObject<HTMLSpanElement | null>) {
@@ -50,6 +51,7 @@ export function MagPullQuote({
   citeRole,
   citeLocation,
   verifiedDate,
+  variant = 'standard',
 }: MagPullQuoteProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
@@ -63,14 +65,71 @@ export function MagPullQuote({
     if (!section) return
 
     const els = [eyebrowRef.current, quoteRef.current, citeRef.current].filter(Boolean) as HTMLElement[]
+    const isCinematic = variant === 'cinematic-tier2'
+    const reduced = prefersReducedMotion()
 
-    if (prefersReducedMotion()) {
+    if (reduced) {
       els.forEach((el) => {
         el.style.opacity = '1'
         el.style.transform = 'none'
       })
+      if (quoteRef.current && isCinematic) {
+        quoteRef.current.style.fontSize = '38px'
+      }
       if (italRef.current) italRef.current.style.color = 'var(--atelier-forest)'
       return
+    }
+
+    if (isCinematic) {
+      if (eyebrowRef.current) {
+        eyebrowRef.current.style.opacity = '0'
+        eyebrowRef.current.style.transform = 'translateY(14px)'
+      }
+      if (quoteRef.current) {
+        quoteRef.current.style.opacity = '0'
+        quoteRef.current.style.transform = 'scale(0.95)'
+        quoteRef.current.style.fontSize = '30px'
+      }
+      if (citeRef.current) {
+        citeRef.current.style.opacity = '0'
+        citeRef.current.style.transform = 'translateY(14px)'
+      }
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
+
+      if (eyebrowRef.current) {
+        tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' })
+      }
+      if (quoteRef.current) {
+        tl.to(
+          quoteRef.current,
+          {
+            opacity: 1,
+            scale: 1,
+            fontSize: '38px',
+            duration: 1.0,
+            ease: 'cubic-bezier(0.2, 0.85, 0.25, 1)',
+          },
+          '+=0.05',
+        )
+      }
+      if (italRef.current) {
+        tl.to(italRef.current, { color: 'var(--atelier-forest)', duration: 0.7, ease: 'power2.out' }, '+=0.1')
+      }
+      if (citeRef.current) {
+        tl.to(citeRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.3')
+      }
+
+      return () => {
+        tl.kill()
+        ScrollTrigger.getAll().forEach((t) => t.kill())
+      }
     }
 
     els.forEach((el) => {
@@ -103,7 +162,7 @@ export function MagPullQuote({
       tl.kill()
       ScrollTrigger.getAll().forEach((t) => t.kill())
     }
-  }, [])
+  }, [variant])
 
   return (
     <section
