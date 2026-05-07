@@ -1,8 +1,11 @@
 // src/app/api/integrations/ooma/route.ts
 import { createCallActivityPlaceholder } from '@/lib/integrations/ooma'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
+import { requireAdmin } from '@/lib/auth/admin'
 
 export async function POST(req: Request) {
+  const denied = requireAdmin(req)
+  if (denied) return denied
   try {
     const body = (await req.json()) as { leadName?: string; phone?: string; note?: string }
     const leadName = body.leadName

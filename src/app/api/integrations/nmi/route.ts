@@ -4,8 +4,11 @@ import {
   createTransactionPlaceholder,
 } from '@/lib/integrations/nmi'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
+import { requireAdmin } from '@/lib/auth/admin'
 
 export async function POST(req: Request) {
+  const denied = requireAdmin(req)
+  if (denied) return denied
   try {
     const body = (await req.json()) as { action?: string; merchantRef?: string; amountCents?: number; payload?: Record<string, unknown> }
     if (body.action === 'profile' && body.merchantRef) {
