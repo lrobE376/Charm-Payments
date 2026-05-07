@@ -3,6 +3,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
 import { sendEmail, quoteConfirmationHtml, quoteInternalAlertHtml, INTERNAL_TO } from '@/lib/email'
 import { triggerZap } from '@/lib/integrations/zapier'
+import { rateLimitGate } from '@/lib/rate-limit/simple'
 
 interface QuoteRequestBody {
   first_name: string
@@ -24,6 +25,8 @@ interface QuoteRequestBody {
 }
 
 export async function POST(request: Request) {
+  const limited = rateLimitGate(request)
+  if (limited) return limited
   try {
     const body = (await request.json()) as QuoteRequestBody
 
