@@ -163,10 +163,10 @@ export function SectionHero({
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className={cn('flex flex-col', copyAlign)}>
           <span className="section-label">{eyebrow}</span>
-          <h1 className="font-display mt-4 whitespace-pre-line text-4xl font-bold md:text-5xl lg:text-[3rem]">
+          <h1 className="font-display mt-4 whitespace-pre-line text-4xl font-bold text-inherit md:text-5xl lg:text-[3rem]">
             {title}
           </h1>
-          <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed lg:mx-0">
+          <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-inherit opacity-90 lg:mx-0">
             {description}
           </p>
           {trustItems?.length ? (
@@ -178,7 +178,8 @@ export function SectionHero({
                 <Link
                   href={primaryCta.href}
                   className={cn(
-                    'inline-flex min-h-[44px] items-center justify-center',
+                    'inline-flex min-h-[44px] min-w-0 items-center justify-center',
+                    'px-5 sm:px-7',
                     primaryCta.variant === 'secondary'
                       ? 'btn-outline'
                       : 'btn-accent',
@@ -190,7 +191,7 @@ export function SectionHero({
               {secondaryCta ? (
                 <Link
                   href={secondaryCta.href}
-                  className="btn-outline inline-flex min-h-[44px] items-center justify-center"
+                  className="btn-outline inline-flex min-h-[44px] min-w-0 items-center justify-center px-5 sm:px-7"
                 >
                   {secondaryCta.label}
                 </Link>

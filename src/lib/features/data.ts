@@ -8,15 +8,15 @@ export const FEATURES: Record<string, FeatureData> = {
   ach: {
     slug: 'ach',
     meta: {
-      title: 'ACH & eCheck Processing â€” Charm Payments',
+      title: 'ACH & eCheck Processing — Charm Payments',
       description:
         'Accept ACH bank transfers and eChecks with Charm Payments. Lower processing costs for high-ticket transactions. $25 setup, $5/mo, $0.50 per transaction.',
     },
     hero: {
-      breadcrumb: 'Products Â· Accept Â· ACH & eCheck',
+      breadcrumb: 'Products · Accept · ACH & eCheck',
       title: 'Accept bank transfers at a fraction of the cost.',
       subtitle:
-        'ACH and eCheck processing lets you collect payments directly from customer bank accounts â€” at dramatically lower rates than credit cards. Perfect for high-ticket transactions, B2B invoicing, and recurring payments.',
+        'ACH and eCheck processing lets you collect payments directly from customer bank accounts — at dramatically lower rates than credit cards. Perfect for high-ticket transactions, B2B invoicing, and recurring payments.',
       pills: ['$0.50 per transaction', '$5/mo', 'B2B Ready', 'Recurring Supported'],
       primaryCta: APPLY_CTA,
       secondaryCta: QUOTE_CTA,
@@ -30,13 +30,13 @@ export const FEATURES: Record<string, FeatureData> = {
           label: 'STEP 01',
           title: 'Customer provides bank details',
           description:
-            'Customer enters their routing number and account number â€” or you key it in on their behalf. Secure and encrypted at entry.',
+            'Customer enters their routing number and account number — or you key it in on their behalf. Secure and encrypted at entry.',
         },
         {
           label: 'STEP 02',
           title: 'Transfer initiates',
           description:
-            "Charm Payments initiates an ACH debit from the customer's bank account. Standard processing takes 1â€“3 business days.",
+            "Charm Payments initiates an ACH debit from the customer's bank account. Standard processing takes 1–3 business days.",
         },
         {
           label: 'STEP 03',
@@ -61,7 +61,7 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           title: 'Built for B2B and high-ticket',
-          description: 'Standard in commerce above $500 â€” saves significantly versus cards.',
+          description: 'Standard in commerce above $500 — saves significantly versus cards.',
         },
       ],
     },
@@ -105,11 +105,11 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           q: 'How long does an ACH transfer take?',
-          a: 'Standard ACH processing takes 1â€“3 business days. Same-day ACH may be available for qualified merchants.',
+          a: 'Standard ACH processing takes 1–3 business days. Same-day ACH may be available for qualified merchants.',
         },
         {
           q: 'What is a return fee?',
-          a: 'If a bank transfer fails â€” insufficient funds, closed account, or incorrect details â€” a $2.00 return fee applies.',
+          a: 'If a bank transfer fails — insufficient funds, closed account, or incorrect details — a $2.00 return fee applies.',
         },
         {
           q: 'Can I use ACH for recurring payments?',
@@ -138,15 +138,15 @@ export const FEATURES: Record<string, FeatureData> = {
   'card-present': {
     slug: 'card-present',
     meta: {
-      title: 'Card Present Terminals â€” Charm Payments',
+      title: 'Card Present Terminals — Charm Payments',
       description:
         'Professional payment terminals with built-in WiFi and 4G cellular backup. Never lose a sale when your WiFi goes down. PAX A920 Pro and more. $8/mo per device.',
     },
     hero: {
-      breadcrumb: 'Products Â· Accept Â· Card present',
+      breadcrumb: 'Products · Accept · Card present',
       title: 'Never lose a sale when WiFi goes down.',
       subtitle:
-        'Charm Payments terminals run on WiFi with automatic 4G cellular backup built in. When your internet drops, your terminal keeps processing â€” your customers never know the difference.',
+        'Charm Payments terminals run on WiFi with automatic 4G cellular backup built in. When your internet drops, your terminal keeps processing — your customers never know the difference.',
       // "NMI Certified" pill removed (brand-rule scrub)
       pills: ['WiFi + 4G Cellular Backup', '$8/mo per device', 'Next-Day Funding'],
       primaryCta: APPLY_CTA,
@@ -160,15 +160,15 @@ export const FEATURES: Record<string, FeatureData> = {
         {
           name: 'PAX A920 Pro',
           price: '$8/mo',
-          priceCaption: 'per device Â· month-to-month',
+          priceCaption: 'per device · month-to-month',
           description:
             'Android touchscreen terminal. WiFi primary with automatic 4G LTE cellular failover. Built-in receipt printer. Accepts tap, chip, swipe, and contactless.',
           features: [
-            '4G LTE cellular backup â€” automatic failover',
+            '4G LTE cellular backup — automatic failover',
             'WiFi + Ethernet + Bluetooth',
             'Built-in thermal receipt printer',
             'Android touchscreen interface',
-            'NFC contactless Â· Apple Pay Â· Google Pay',
+            'NFC contactless · Apple Pay · Google Pay',
           ],
           badge: 'MOST POPULAR',
           cta: { label: 'Get Free Rate Audit', href: '/quote' },
@@ -176,13 +176,13 @@ export const FEATURES: Record<string, FeatureData> = {
         {
           name: 'iProcess Mobile Reader',
           price: '$2.50/mo',
-          priceCaption: 'per device Â· pairs with phone',
+          priceCaption: 'per device · pairs with phone',
           description:
             'Compact Bluetooth card reader that pairs with your phone or tablet. Chip, swipe, and contactless. Perfect for mobile merchants.',
           features: [
             'Pairs with iOS and Android',
             'Chip + swipe + tap',
-            'Compact â€” fits in your pocket',
+            'Compact — fits in your pocket',
             'Long battery life',
             'Works with Charm Payments app',
           ],
@@ -191,7 +191,7 @@ export const FEATURES: Record<string, FeatureData> = {
         {
           name: 'Free Terminal Program',
           price: '$0',
-          priceCaption: 'upfront Â· qualified merchants',
+          priceCaption: 'upfront · qualified merchants',
           description:
             'Get a PAX A920 Pro at no upfront cost. Hardware cost is recovered through your processing volume over the first 6 months. Ask our team for details.',
           features: [
@@ -242,15 +242,15 @@ export const FEATURES: Record<string, FeatureData> = {
       items: [
         {
           q: 'How does the cellular backup work?',
-          a: 'The PAX A920 Pro connects to WiFi as its primary network. If WiFi drops, it automatically switches to 4G LTE â€” no action required from you or your staff. Your customers see no interruption.',
+          a: 'The PAX A920 Pro connects to WiFi as its primary network. If WiFi drops, it automatically switches to 4G LTE — no action required from you or your staff. Your customers see no interruption.',
         },
         {
           q: 'Do I own the terminal or lease it?',
-          a: "Standard option is a month-to-month device fee of $8/mo â€” you don't own the hardware outright but have no long-term commitment. Ask about our free terminal program for qualified merchants.",
+          a: "Standard option is a month-to-month device fee of $8/mo — you don't own the hardware outright but have no long-term commitment. Ask about our free terminal program for qualified merchants.",
         },
         {
           q: 'What happens if a terminal breaks?',
-          a: 'Contact our support team. Replacement terminals are shipped within 1â€“2 business days. Your merchant account stays active during replacement.',
+          a: 'Contact our support team. Replacement terminals are shipped within 1–2 business days. Your merchant account stays active during replacement.',
         },
         {
           q: 'Can I use multiple terminals under one account?',
@@ -279,15 +279,15 @@ export const FEATURES: Record<string, FeatureData> = {
   ecommerce: {
     slug: 'ecommerce',
     meta: {
-      title: 'E-Commerce Payment Gateway â€” Charm Payments',
+      title: 'E-Commerce Payment Gateway — Charm Payments',
       description:
         'Connect your online store to Charm Payments. 125+ shopping cart integrations, Collect.js, and hosted checkout. Accept payments online in minutes.',
     },
     hero: {
-      breadcrumb: 'Products Â· Accept Â· E-commerce',
+      breadcrumb: 'Products · Accept · E-commerce',
       title: 'Accept online payments with one line of code.',
       subtitle:
-        'Connect your online store to Charm Payments using Collect.js â€” a single script tag that adds secure card acceptance to any website. Or use our 125+ pre-built shopping cart integrations.',
+        'Connect your online store to Charm Payments using Collect.js — a single script tag that adds secure card acceptance to any website. Or use our 125+ pre-built shopping cart integrations.',
       pills: [
         '125+ Cart Integrations',
         'Collect.js',
@@ -305,7 +305,7 @@ export const FEATURES: Record<string, FeatureData> = {
         {
           name: 'Collect.js',
           description:
-            'Add a single script tag to your website. Collect.js handles card tokenization client-side â€” card data never touches your server. PCI compliant by design.',
+            'Add a single script tag to your website. Collect.js handles card tokenization client-side — card data never touches your server. PCI compliant by design.',
           features: [
             'Single script tag install',
             'Client-side card tokenization',
@@ -320,8 +320,8 @@ export const FEATURES: Record<string, FeatureData> = {
           description:
             'Pre-built integrations for Shopify, WooCommerce, Magento, BigCommerce, OpenCart, and additional. Install the plugin and connect your credentials.',
           features: [
-            'Shopify Â· WooCommerce Â· Magento',
-            'BigCommerce Â· OpenCart Â· PrestaShop',
+            'Shopify · WooCommerce · Magento',
+            'BigCommerce · OpenCart · PrestaShop',
             'No coding required',
             'Install and connect in minutes',
             'additional carts supported',
@@ -331,7 +331,7 @@ export const FEATURES: Record<string, FeatureData> = {
         {
           name: 'Hosted Payment Page',
           description:
-            'No website needed. Use your Charm Payments hosted checkout page â€” fully branded, mobile-optimized, and ready to share as a link or embed.',
+            'No website needed. Use your Charm Payments hosted checkout page — fully branded, mobile-optimized, and ready to share as a link or embed.',
           features: [
             'No website required',
             'Fully branded checkout',
@@ -379,11 +379,11 @@ export const FEATURES: Record<string, FeatureData> = {
       items: [
         {
           q: 'What is Collect.js and how does it work?',
-          a: "Collect.js is a JavaScript library that captures card details directly in the customer's browser and converts them to a secure token. The token is sent to your server â€” card data never touches your systems.",
+          a: "Collect.js is a JavaScript library that captures card details directly in the customer's browser and converts them to a secure token. The token is sent to your server — card data never touches your systems.",
         },
         {
           q: 'Do I need a developer to integrate?',
-          a: 'For Collect.js, basic JavaScript knowledge helps. For shopping cart plugins (Shopify, WooCommerce, etc.), no coding is required â€” install the plugin and add your credentials.',
+          a: 'For Collect.js, basic JavaScript knowledge helps. For shopping cart plugins (Shopify, WooCommerce, etc.), no coding is required — install the plugin and add your credentials.',
         },
         {
           q: 'Which shopping carts are supported?',
@@ -399,7 +399,7 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           q: 'What does e-commerce processing cost?',
-          a: 'Your standard processing rate applies â€” 2.90% + $0.30 per transaction on the Starter plan, or interchange-plus on the Growth plan. No extra gateway fee for e-commerce.',
+          a: 'Your standard processing rate applies — 2.90% + $0.30 per transaction on the Starter plan, or interchange-plus on the Growth plan. No extra gateway fee for e-commerce.',
         },
       ],
     },
@@ -416,15 +416,15 @@ export const FEATURES: Record<string, FeatureData> = {
   'fraud-protection': {
     slug: 'fraud-protection',
     meta: {
-      title: 'Fraud Protection â€” Charm Payments',
+      title: 'Fraud Protection — Charm Payments',
       description:
         'AI-powered fraud screening on every transaction. Basic fraud screening included free. Kount Advanced available. Protect your business from chargebacks and fraud losses.',
     },
     hero: {
-      breadcrumb: 'Products Â· Manage Â· Fraud protection',
+      breadcrumb: 'Products · Manage · Fraud protection',
       title: 'Stop fraud before it costs you money.',
       subtitle:
-        'Every Charm Payments transaction runs through AI-powered fraud screening. Basic protection is included free. Add Kount Advanced â€” the same fraud AI used by Fortune 500 companies â€” for enterprise-grade protection.',
+        'Every Charm Payments transaction runs through AI-powered fraud screening. Basic protection is included free. Add Kount Advanced — the same fraud AI used by Fortune 500 companies — for enterprise-grade protection.',
       pills: ['Included Free', 'AI-Powered', 'Kount Advanced Available', 'Real-Time Screening'],
       primaryCta: APPLY_CTA,
       secondaryCta: QUOTE_CTA,
@@ -448,11 +448,11 @@ export const FEATURES: Record<string, FeatureData> = {
           ],
         },
         {
-          name: 'KountÂ® Advanced',
+          name: 'Kount® Advanced',
           price: '$7/mo',
           priceCaption: '+ $0.07 per transaction',
           description:
-            "Enterprise-grade fraud AI from Kount â€” the industry standard used by the world's largest merchants. Machine learning that improves over time.",
+            "Enterprise-grade fraud AI from Kount — the industry standard used by the world's largest merchants. Machine learning that improves over time.",
           features: [
             'Machine learning fraud models',
             'Global fraud intelligence network',
@@ -527,7 +527,7 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           q: 'How does fraud screening affect approval rates?',
-          a: 'Basic screening has minimal impact on legitimate transactions. Kount Advanced uses machine learning to distinguish fraud from good orders â€” reducing false declines that hurt your revenue.',
+          a: 'Basic screening has minimal impact on legitimate transactions. Kount Advanced uses machine learning to distinguish fraud from good orders — reducing false declines that hurt your revenue.',
         },
         {
           q: 'What should I do if I get a chargeback?',
@@ -548,15 +548,15 @@ export const FEATURES: Record<string, FeatureData> = {
   'qr-codes': {
     slug: 'qr-codes',
     meta: {
-      title: 'QR Code Payments â€” Charm Payments',
+      title: 'QR Code Payments — Charm Payments',
       description:
         'Generate payment QR codes and accept contactless payments anywhere. Print on menus, receipts, or storefronts. Included in all Charm Payments accounts.',
     },
     hero: {
-      breadcrumb: 'Products Â· Manage Â· QR code payments',
+      breadcrumb: 'Products · Manage · QR code payments',
       title: 'Print it. Display it. Get paid from it.',
       subtitle:
-        'Generate a payment QR code and put it anywhere your customers are â€” menus, receipts, storefronts, flyers, or business cards. They scan, pay, done. No card reader. No terminal. No contact required.',
+        'Generate a payment QR code and put it anywhere your customers are — menus, receipts, storefronts, flyers, or business cards. They scan, pay, done. No card reader. No terminal. No contact required.',
       pills: ['Included Free', 'Any Device', 'No App Required', 'Instant Generation'],
       primaryCta: APPLY_CTA,
       secondaryCta: QUOTE_CTA,
@@ -653,7 +653,7 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           q: 'How do I use the QR code for print materials?',
-          a: 'Download the QR code as a PNG image from your dashboard and insert it into any design â€” menus, flyers, business cards, receipts, or signage.',
+          a: 'Download the QR code as a PNG image from your dashboard and insert it into any design — menus, flyers, business cards, receipts, or signage.',
         },
         {
           q: 'What happens if a QR code scan fails?',
@@ -678,15 +678,15 @@ export const FEATURES: Record<string, FeatureData> = {
   'recurring-billing': {
     slug: 'recurring-billing',
     meta: {
-      title: 'Recurring Billing â€” Charm Payments',
+      title: 'Recurring Billing — Charm Payments',
       description:
-        'Automate subscription payments and recurring charges with Charm Payments. Set it once and collect automatically â€” weekly, monthly, or on any schedule.',
+        'Automate subscription payments and recurring charges with Charm Payments. Set it once and collect automatically — weekly, monthly, or on any schedule.',
     },
     hero: {
-      breadcrumb: 'Products Â· Manage Â· Recurring billing',
+      breadcrumb: 'Products · Manage · Recurring billing',
       title: 'Set it once. Get paid every time.',
       subtitle:
-        'Stop manually charging repeat customers. Set up automatic recurring payments and let Charm Payments handle the rest â€” weekly, monthly, quarterly, or any schedule you choose.',
+        'Stop manually charging repeat customers. Set up automatic recurring payments and let Charm Payments handle the rest — weekly, monthly, quarterly, or any schedule you choose.',
       pills: [
         'Included in All Plans',
         'Any Schedule',
@@ -705,13 +705,13 @@ export const FEATURES: Record<string, FeatureData> = {
           label: 'STEP 01',
           title: 'Add the customer',
           description:
-            "Enter your customer's card details once. They're stored securely in your Customer Vault â€” encrypted and PCI compliant.",
+            "Enter your customer's card details once. They're stored securely in your Customer Vault — encrypted and PCI compliant.",
         },
         {
           label: 'STEP 02',
           title: 'Set the schedule',
           description:
-            'Choose how often to charge â€” daily, weekly, monthly, quarterly, or a custom date. Set the amount and let the system take over.',
+            'Choose how often to charge — daily, weekly, monthly, quarterly, or a custom date. Set the amount and let the system take over.',
         },
         {
           label: 'STEP 03',
@@ -760,7 +760,7 @@ export const FEATURES: Record<string, FeatureData> = {
           figLabel: 'FIG. 03.C',
           title: 'Tutoring & education',
           description:
-            'Monthly tuition, weekly session fees, or semester billing. Parents pay automatically â€” you focus on teaching.',
+            'Monthly tuition, weekly session fees, or semester billing. Parents pay automatically — you focus on teaching.',
         },
         {
           figLabel: 'FIG. 03.D',
@@ -776,7 +776,7 @@ export const FEATURES: Record<string, FeatureData> = {
       items: [
         {
           q: 'Is recurring billing included in my plan?',
-          a: 'Yes. Recurring billing is included in all Charm Payments merchant accounts â€” Starter, Growth, and Enterprise. No add-on fee required.',
+          a: 'Yes. Recurring billing is included in all Charm Payments merchant accounts — Starter, Growth, and Enterprise. No add-on fee required.',
         },
         {
           q: 'What happens when a card payment fails?',
@@ -788,7 +788,7 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           q: 'Is stored card data secure?',
-          a: 'Yes. Cards are stored in an encrypted Customer Vault that is PCI DSS compliant. The actual card number is never stored â€” only a secure token.',
+          a: 'Yes. Cards are stored in an encrypted Customer Vault that is PCI DSS compliant. The actual card number is never stored — only a secure token.',
         },
         {
           q: 'Can I offer a free trial period?',
@@ -813,15 +813,15 @@ export const FEATURES: Record<string, FeatureData> = {
   'tap-to-pay': {
     slug: 'tap-to-pay',
     meta: {
-      title: 'Tap to Pay â€” Charm Payments',
+      title: 'Tap to Pay — Charm Payments',
       description:
         'Turn your iPhone or Android into a payment terminal with Charm Payments Tap to Pay. No hardware needed. Accept contactless payments anywhere. $0/mo.',
     },
     hero: {
-      breadcrumb: 'Products Â· Accept Â· Tap to Pay',
+      breadcrumb: 'Products · Accept · Tap to Pay',
       title: 'Your phone is your payment terminal.',
       subtitle:
-        'No card reader. No hardware to buy. Turn any iPhone or Android into a fully functional payment terminal â€” accept tap, chip, and contactless payments anywhere you do business.',
+        'No card reader. No hardware to buy. Turn any iPhone or Android into a fully functional payment terminal — accept tap, chip, and contactless payments anywhere you do business.',
       pills: ['$0/mo', 'iPhone & Android', 'No Hardware', '$0.10 per tap'],
       primaryCta: APPLY_CTA,
       secondaryCta: QUOTE_CTA,
@@ -858,7 +858,7 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           title: 'Android 8.0 or later',
-          description: 'NFC-capable Android devices â€” most modern phones qualify.',
+          description: 'NFC-capable Android devices — most modern phones qualify.',
         },
         {
           title: '$0 monthly fee',
@@ -866,7 +866,7 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           title: 'WiFi or cellular',
-          description: 'Works wherever your phone has signal â€” no Bluetooth reader needed.',
+          description: 'Works wherever your phone has signal — no Bluetooth reader needed.',
         },
       ],
     },
@@ -884,7 +884,7 @@ export const FEATURES: Record<string, FeatureData> = {
           figLabel: 'FIG. 03.B',
           title: 'Food trucks & markets',
           description:
-            "Accept payments at farmers markets, pop-up events, and festivals. Works on your phone's data â€” no WiFi required.",
+            "Accept payments at farmers markets, pop-up events, and festivals. Works on your phone's data — no WiFi required.",
         },
         {
           figLabel: 'FIG. 03.C',
@@ -906,7 +906,7 @@ export const FEATURES: Record<string, FeatureData> = {
       items: [
         {
           q: 'What phones support Tap to Pay?',
-          a: 'iPhone XS and later running iOS 16 or higher. Android devices running Android 8.0 or higher with NFC capability â€” most modern Android phones qualify.',
+          a: 'iPhone XS and later running iOS 16 or higher. Android devices running Android 8.0 or higher with NFC capability — most modern Android phones qualify.',
         },
         {
           q: 'Does the customer need an app?',
@@ -943,15 +943,15 @@ export const FEATURES: Record<string, FeatureData> = {
   'text-to-pay': {
     slug: 'text-to-pay',
     meta: {
-      title: 'Text to Pay â€” Charm Payments',
+      title: 'Text to Pay — Charm Payments',
       description:
         'Send payment requests by text message with Charm Payments Text to Pay. Customer gets an SMS, taps the link, and pays in seconds. $5/mo.',
     },
     hero: {
-      breadcrumb: 'Products Â· Manage Â· Text to Pay',
+      breadcrumb: 'Products · Manage · Text to Pay',
       title: 'Send a text. Get paid in 30 seconds.',
       subtitle:
-        "Text your customer a payment request. They tap the link, enter their card, and you're paid â€” before you even put your phone away. No app download. No invoice portal. Just a text and a payment.",
+        "Text your customer a payment request. They tap the link, enter their card, and you're paid — before you even put your phone away. No app download. No invoice portal. Just a text and a payment.",
       // "Powered by Authvia TXT2Pay" pill removed (brand-rule scrub)
       pills: ['$5/mo', 'Any Phone', '$0.18 per txn'],
       primaryCta: APPLY_CTA,
@@ -972,7 +972,7 @@ export const FEATURES: Record<string, FeatureData> = {
           label: 'STEP 02',
           title: 'Customer gets a text',
           description:
-            'The SMS contains a secure payment link. Customer taps it â€” opens a mobile-optimized payment page. No app to download.',
+            'The SMS contains a secure payment link. Customer taps it — opens a mobile-optimized payment page. No app to download.',
         },
         {
           label: 'STEP 03',
@@ -985,7 +985,7 @@ export const FEATURES: Record<string, FeatureData> = {
       checklist: [
         {
           title: 'Works on any phone',
-          description: 'iPhone, Android, or any SMS-capable phone â€” no app for the customer.',
+          description: 'iPhone, Android, or any SMS-capable phone — no app for the customer.',
         },
         {
           title: 'Apple Pay & Google Pay',
@@ -993,11 +993,11 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           title: 'PCI-compliant page',
-          description: 'Encrypted payment page hosted by Charm â€” card data never on device.',
+          description: 'Encrypted payment page hosted by Charm — card data never on device.',
         },
         {
           title: 'Send from anywhere',
-          description: 'Dashboard, mobile browser, or our app â€” wherever you are.',
+          description: 'Dashboard, mobile browser, or our app — wherever you are.',
         },
       ],
     },
@@ -1009,7 +1009,7 @@ export const FEATURES: Record<string, FeatureData> = {
           figLabel: 'FIG. 03.A',
           title: 'Auto services',
           description:
-            "Car's ready? Text the customer before they arrive. They pay on the way â€” no waiting at the counter when they pick up.",
+            "Car's ready? Text the customer before they arrive. They pay on the way — no waiting at the counter when they pick up.",
         },
         {
           figLabel: 'FIG. 03.B',
@@ -1027,7 +1027,7 @@ export const FEATURES: Record<string, FeatureData> = {
           figLabel: 'FIG. 03.D',
           title: 'Health & wellness',
           description:
-            'Send payment after a session â€” massage, therapy, personal training. Clean and professional. No card reader needed.',
+            'Send payment after a session — massage, therapy, personal training. Clean and professional. No card reader needed.',
         },
       ],
     },
@@ -1041,11 +1041,11 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           q: 'Does the customer need to download an app?',
-          a: "No. The customer receives a standard SMS text message with a link. The payment page opens in their phone's browser â€” no app download required.",
+          a: "No. The customer receives a standard SMS text message with a link. The payment page opens in their phone's browser — no app download required.",
         },
         {
           q: 'What phones does it work on?',
-          a: 'Any phone that can receive text messages and open a web link â€” iPhone, Android, or any smartphone. Even basic smartphones work.',
+          a: 'Any phone that can receive text messages and open a web link — iPhone, Android, or any smartphone. Even basic smartphones work.',
         },
         {
           q: 'Is the payment page secure?',
@@ -1057,7 +1057,7 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           q: 'How is this different from invoicing?',
-          a: 'Text to Pay is designed for instant collection â€” send it, they pay immediately. Electronic invoicing is better for formal billing with line items, due dates, and payment tracking over time.',
+          a: 'Text to Pay is designed for instant collection — send it, they pay immediately. Electronic invoicing is better for formal billing with line items, due dates, and payment tracking over time.',
         },
       ],
     },
@@ -1074,15 +1074,15 @@ export const FEATURES: Record<string, FeatureData> = {
   'virtual-terminal': {
     slug: 'virtual-terminal',
     meta: {
-      title: 'Virtual Terminal â€” Charm Payments',
+      title: 'Virtual Terminal — Charm Payments',
       description:
         'Accept credit card payments from any browser with Charm Payments virtual terminal. No hardware needed. Perfect for phone orders, mail orders, and MOTO transactions.',
     },
     hero: {
-      breadcrumb: 'Products Â· Accept Â· Virtual terminal',
+      breadcrumb: 'Products · Accept · Virtual terminal',
       title: 'Accept payments from any browser, anywhere.',
       subtitle:
-        'No hardware. No software to install. Log in to your Charm Payments dashboard, key in card details, and collect payment in seconds â€” from any device, any location.',
+        'No hardware. No software to install. Log in to your Charm Payments dashboard, key in card details, and collect payment in seconds — from any device, any location.',
       pills: ['No Hardware Required', 'Works on Any Device', 'Visa MC Amex Discover'],
       primaryCta: APPLY_CTA,
       secondaryCta: QUOTE_CTA,
@@ -1096,7 +1096,7 @@ export const FEATURES: Record<string, FeatureData> = {
           label: 'STEP 01',
           title: 'Log in to your dashboard',
           description:
-            'Access your Charm Payments merchant portal from any browser â€” Chrome, Safari, Firefox. Works on laptop, tablet, or phone.',
+            'Access your Charm Payments merchant portal from any browser — Chrome, Safari, Firefox. Works on laptop, tablet, or phone.',
         },
         {
           label: 'STEP 02',
@@ -1187,7 +1187,7 @@ export const FEATURES: Record<string, FeatureData> = {
         },
         {
           q: 'What does it cost?',
-          a: 'Flat rate plan â€” 2.90% + $0.30 per transaction. No monthly fee on the Starter plan. No setup fee. Talk to us about interchange-plus on the Growth plan.',
+          a: 'Flat rate plan — 2.90% + $0.30 per transaction. No monthly fee on the Starter plan. No setup fee. Talk to us about interchange-plus on the Growth plan.',
         },
       ],
     },

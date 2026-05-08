@@ -133,7 +133,7 @@ export function MagHero({
 
     const tl = gsap.timeline({ delay: 0.05 })
 
-    // Eyebrow â€” 200ms in
+    // Eyebrow — 200ms in
     if (eyebrowRef.current) {
       tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, 0.2)
     }
@@ -195,7 +195,7 @@ export function MagHero({
     <section
       ref={sectionRef}
       className="relative overflow-hidden bg-apple-canvas"
-      style={{ padding: '100px 32px' }}
+      style={{ padding: 'clamp(64px, 8vw, 100px) clamp(20px, 5vw, 32px)' }}
     >
       {/* Page-specific gradient blob */}
       <div
@@ -216,7 +216,7 @@ export function MagHero({
           {/* Copy column */}
           <div>
             {(() => {
-              const isSection = eyebrow.trim().startsWith('Â§')
+              const isSection = eyebrow.trim().startsWith('§')
               const eyebrowClass = isSection
                 ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
                 : 'font-stripeSans'
@@ -239,18 +239,20 @@ export function MagHero({
             <h1
               className="font-atelierSerif text-apple-ink"
               style={{
-                fontSize: 'clamp(34px, 4vw, 48px)',
-                lineHeight: 1,
+                fontSize: 'clamp(32px, 4vw, 48px)',
+                lineHeight: 1.04,
                 fontWeight: 500,
-                letterSpacing: '-0.025em',
+                letterSpacing: 0,
+                maxWidth: '100%',
+                overflowWrap: 'break-word',
               }}
             >
               {headlineLines.map((line, i) => {
-                const lineStyle: React.CSSProperties = { display: 'block' }
+                const lineStyle: React.CSSProperties = { display: 'block', maxWidth: '100%', overflowWrap: 'break-word' }
                 if (line.size === 'lg') {
-                  lineStyle.fontSize = 'clamp(40px, 5.4vw, 64px)'
-                  lineStyle.lineHeight = 0.96
-                  lineStyle.letterSpacing = '-0.03em'
+                  lineStyle.fontSize = 'clamp(34px, 5.4vw, 64px)'
+                  lineStyle.lineHeight = 1
+                  lineStyle.letterSpacing = 0
                 }
                 return (
                   <div
@@ -310,22 +312,22 @@ export function MagHero({
               <Link
                 href={primaryCta.href}
                 className={cn(
-                  'inline-flex items-center gap-1.5',
+                  'inline-flex min-w-0 items-center justify-center gap-1.5',
                   'bg-atelier-forest text-white',
                   'font-stripeSans text-sm font-medium',
-                  'px-6 py-3 rounded-pill',
+                  'px-5 py-3 sm:px-6 rounded-pill',
                   'hover:opacity-90 transition-opacity',
                   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
                 )}
               >
                 {primaryCta.label}
-                <span aria-hidden>â†’</span>
+                <span aria-hidden>→</span>
               </Link>
               {secondaryCta ? (
                 <Link
                   href={secondaryCta.href}
                   className={cn(
-                    'inline-flex items-center px-[22px] py-[11px] text-sm font-medium font-stripeSans',
+                    'inline-flex min-w-0 items-center justify-center px-5 py-[11px] text-sm font-medium font-stripeSans sm:px-[22px]',
                     'border border-black/[0.18] text-apple-ink rounded-pill',
                     'hover:border-black/40 transition-colors',
                     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',

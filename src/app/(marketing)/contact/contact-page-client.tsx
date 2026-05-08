@@ -11,7 +11,7 @@ import { MagGradientBreak } from '@/components/atelier/magazine/MagGradientBreak
 import { MagFinalCta } from '@/components/atelier/magazine/MagFinalCta'
 
 const trustBullets = [
-  'Dedicated underwriting â€” not a black-box instant decline',
+  'Dedicated underwriting — not a black-box instant decline',
   'Interchange-plus options for growing volume',
   'Gateway setup and cart help included',
   'Month-to-month on Starter & Growth plans',
@@ -22,7 +22,7 @@ const contactMethods = [
     Icon: Phone,
     title: 'Call Us',
     line1: 'merchants@charmpayments.com',
-    line2: 'Monâ€“Fri 8amâ€“6pm CST',
+    line2: 'Mon–Fri 8am–6pm CST',
   },
   {
     Icon: Mail,
@@ -33,8 +33,8 @@ const contactMethods = [
   {
     Icon: Clock,
     title: 'Business Hours',
-    line1: 'Monday â€“ Friday',
-    line2: '8:00 AM â€“ 6:00 PM CST',
+    line1: 'Monday – Friday',
+    line2: '8:00 AM – 6:00 PM CST',
   },
   {
     Icon: MapPin,
@@ -115,10 +115,10 @@ export function ContactPageClient() {
 
   return (
     <>
-      {/* HERO â€” Apple canvas, text-only, pill CTAs */}
+      {/* HERO — Apple canvas, text-only, pill CTAs */}
       <section
         className="relative overflow-hidden bg-apple-canvas"
-        style={{ padding: '100px 32px' }}
+        style={{ padding: 'clamp(64px, 8vw, 100px) clamp(20px, 5vw, 32px)' }}
       >
         <div
           aria-hidden
@@ -149,14 +149,15 @@ export function ContactPageClient() {
           <h1
             className="font-atelierSerif text-apple-ink"
             style={{
-              fontSize: 'clamp(40px, 5.4vw, 64px)',
-              lineHeight: 0.96,
+              fontSize: 'clamp(34px, 5.4vw, 64px)',
+              lineHeight: 1,
               fontWeight: 500,
-              letterSpacing: '-0.03em',
+              letterSpacing: 0,
               margin: 0,
+              overflowWrap: 'break-word',
             }}
           >
-            Get Approved in 24â€“48 Hours
+            Get Approved in 24–48 Hours
           </h1>
           <p
             className="font-stripeSans mx-auto"
@@ -174,21 +175,21 @@ export function ContactPageClient() {
             <Link
               href="/apply"
               className={cn(
-                'inline-flex items-center gap-1.5',
+                'inline-flex min-w-0 items-center justify-center gap-1.5',
                 'bg-atelier-forest text-white',
                 'font-stripeSans text-sm font-medium',
-                'px-6 py-3 rounded-pill',
+                'px-5 py-3 rounded-pill sm:px-6',
                 'hover:opacity-90 transition-opacity',
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
               )}
             >
               Get Free Rate Audit
-              <span aria-hidden>â†’</span>
+              <span aria-hidden>→</span>
             </Link>
             <Link
               href="/quote"
               className={cn(
-                'inline-flex items-center px-[22px] py-[11px] text-sm font-medium font-stripeSans',
+                'inline-flex min-w-0 items-center justify-center px-5 py-[11px] text-sm font-medium font-stripeSans sm:px-[22px]',
                 'border border-black/[0.18] text-apple-ink rounded-pill',
                 'hover:border-black/40 transition-colors',
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
@@ -200,7 +201,7 @@ export function ContactPageClient() {
         </div>
       </section>
 
-      {/* MAIN â€” image card + trust + contact methods (LEFT) Â· form (RIGHT) */}
+      {/* MAIN — image card + trust + contact methods (LEFT) · form (RIGHT) */}
       <section className="bg-apple-canvas" style={{ padding: '40px 32px 100px' }}>
         <div className="mx-auto" style={{ maxWidth: 1280 }}>
           <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
@@ -239,7 +240,7 @@ export function ContactPageClient() {
                         margin: 0,
                       }}
                     >
-                      Dedicated underwriting â€” not a black-box instant decline
+                      Dedicated underwriting — not a black-box instant decline
                     </p>
                   </div>
                 </div>
@@ -375,7 +376,7 @@ export function ContactPageClient() {
               </div>
             </div>
 
-            {/* RIGHT column â€” form */}
+            {/* RIGHT column — form */}
             <div>
               <div
                 style={{
@@ -406,7 +407,7 @@ export function ContactPageClient() {
                     color: 'rgba(0,0,0,0.65)',
                   }}
                 >
-                  We&apos;ll follow up with next steps â€” or start your application if you&apos;re ready.
+                  We&apos;ll follow up with next steps — or start your application if you&apos;re ready.
                 </p>
 
                 {submitted ? (
@@ -463,9 +464,9 @@ export function ContactPageClient() {
                           Select a range
                         </option>
                         <option value="under-10k">Under $10K</option>
-                        <option value="10k-50k">$10Kâ€“$50K</option>
-                        <option value="50k-100k">$50Kâ€“$100K</option>
-                        <option value="100k-500k">$100Kâ€“$500K</option>
+                        <option value="10k-50k">$10K–$50K</option>
+                        <option value="50k-100k">$50K–$100K</option>
+                        <option value="100k-500k">$100K–$500K</option>
                         <option value="over-500k">Over $500K</option>
                       </select>
                       {errors.volume && <p className="mt-1 text-sm text-red-600">{errors.volume}</p>}
@@ -573,9 +574,9 @@ export function ContactPageClient() {
       <MagForestBand
         eyebrow="Sales & support"
         headline="Same-day answers. Clear next steps. {No runaround.}"
-        subtitle="Dedicated underwriting â€” not a black-box instant decline. Interchange-plus options for growing volume. Gateway setup and cart help included. Month-to-month on Starter & Growth plans."
+        subtitle="Dedicated underwriting — not a black-box instant decline. Interchange-plus options for growing volume. Gateway setup and cart help included. Month-to-month on Starter & Growth plans."
         stats={[
-          { num: '24â€“48', label: 'Hours to approval' },
+          { num: '24–48', label: 'Hours to approval' },
           { num: 'Within 2', label: 'Business hours to reply' },
           { num: 'St. Louis', label: 'Headquarters' },
         ]}

@@ -4,7 +4,7 @@ import { MagPage } from '@/components/atelier/magazine/MagPage'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'Prototype â€” Restaurants â€” Charm Payments',
+  title: 'Prototype — Restaurants — Charm Payments',
   description: 'Design system prototype, not for public consumption.',
   robots: { index: false, follow: false },
 }
@@ -13,8 +13,8 @@ export default function PrototypeRestaurantsPage() {
   return (
     <MagPage
       meta={{
-        issue: 'Solutions Â· Vol. 02',
-        folio: 'Folio 003 â€” Restaurants & food service',
+        issue: 'Solutions · Vol. 02',
+        folio: 'Folio 003 — Restaurants & food service',
         filed: 'Filed 05.06.2026',
       }}
       hero={{
@@ -25,12 +25,12 @@ export default function PrototypeRestaurantsPage() {
           { text: '{A friendlier processor.}', italic: true, italicTarget: 'A friendlier processor.', size: 'lg' },
         ],
         subtitle:
-          'Independent restaurants run on small percentages. Charm Payments runs interchange-plus pricing, no monthly fees, and same-day deposits â€” built for places where every basis point counts.',
+          'Independent restaurants run on small percentages. Charm Payments runs interchange-plus pricing, no monthly fees, and same-day deposits — built for places where every basis point counts.',
         primaryCta: { label: 'Get a free rate audit', href: '/quote' },
         secondaryCta: { label: 'Talk to a human', href: '/contact' },
         visualVariant: 'solutions-restaurants',
         visualSlot: (
-          <HeroVisual variant="solutions-restaurants" caption="FIG. 01 â€” A SAMPLE STATEMENT" />
+          <HeroVisual variant="solutions-restaurants" caption="FIG. 01 — A SAMPLE STATEMENT" />
         ),
       }}
       editorialBreak={{
@@ -58,7 +58,7 @@ export default function PrototypeRestaurantsPage() {
             figLabel: 'Fig. 02.C',
             title: 'Card-present pricing',
             description:
-              'Dipped, swiped, tapped â€” same low rate. No keyed-in surcharges for tableside payments.',
+              'Dipped, swiped, tapped — same low rate. No keyed-in surcharges for tableside payments.',
             image: undefined,
           },
         ],
@@ -75,18 +75,18 @@ export default function PrototypeRestaurantsPage() {
         ],
       }}
       pullQuote={{
-        eyebrow: 'Â§ 03',
-        text: '"We were paying Toast 3.49% plus the swipe fee. Charm came in at {2.31% all-in.} That\'s {$8,400 a year} back in our pocket â€” at a place doing $58k a month."',
+        eyebrow: '§ 03',
+        text: '"We were paying Toast 3.49% plus the swipe fee. Charm came in at {2.31% all-in.} That\'s {$8,400 a year} back in our pocket — at a place doing $58k a month."',
         citeName: 'Diane R.',
-        citeRole: 'Owner Â· Provel Cucina',
+        citeRole: 'Owner · Provel Cucina',
         citeLocation: 'Maplewood, MO',
-        verifiedDate: 'Verified Â· 02.2026',
+        verifiedDate: 'Verified · 02.2026',
       }}
       comparison={{
         eyebrow: 'Restaurant processing, compared.',
         headline: 'Two ways to handle Saturday night. {One that respects the floor.}',
         theirs: {
-          label: 'Specimen A â€” Toast / Square / generic processors',
+          label: 'Specimen A — Toast / Square / generic processors',
           title: '3.49% + tip-adjustment fees',
           items: [
             'Tip-adjustment surcharges',
@@ -97,7 +97,7 @@ export default function PrototypeRestaurantsPage() {
           ],
         },
         ours: {
-          label: 'Specimen B â€” Charm Payments',
+          label: 'Specimen B — Charm Payments',
           title: '2.31% interchange-plus, all-in',
           items: [
             'No tip-adjustment fees, ever',
@@ -119,7 +119,7 @@ export default function PrototypeRestaurantsPage() {
           },
         ],
         subtitle:
-          'No commitment. No upsell. Just a real number against your real volume â€” usually within 24 hours.',
+          'No commitment. No upsell. Just a real number against your real volume — usually within 24 hours.',
         primaryCta: { label: 'Get a free rate audit', href: '/quote' },
         secondaryCta: { label: 'Get Free Rate Audit', href: '/quote' },
         gradientVariant: 'solutions-restaurants',

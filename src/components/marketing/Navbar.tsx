@@ -418,7 +418,7 @@ export default function Navbar() {
                     onClick={closeAllMobile}
                     className="py-2 text-sm font-semibold text-[var(--secondary)]"
                   >
-                    See all features â†’
+                    See all features →
                   </Link>
                 </div>
               )}
@@ -449,7 +449,7 @@ export default function Navbar() {
                     onClick={closeAllMobile}
                     className="py-2 text-sm font-semibold text-[var(--secondary)]"
                   >
-                    All solutions â†’
+                    All solutions →
                   </Link>
                 </div>
               )}

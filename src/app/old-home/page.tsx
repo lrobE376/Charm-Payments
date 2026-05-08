@@ -13,7 +13,7 @@ import { MerchantReviews } from '@/components/atelier/sections/MerchantReviews'
 import { StopOverpaying } from '@/components/atelier/sections/StopOverpaying'
 
 export const metadata: Metadata = {
-  title: 'Old Homepage Backup â€” Charm Payments',
+  title: 'Old Homepage Backup — Charm Payments',
   description: 'Frozen pre-migration snapshot of the homepage. Not for public consumption.',
   robots: { index: false, follow: false },
 }

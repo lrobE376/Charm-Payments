@@ -21,7 +21,7 @@ export type MagFeatureListProps = {
 }
 
 export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFeatureListProps) {
-  // 6-up mode: items.length === 6 OR columns === 6 â€” visually 3-col grid with 2 rows + compact treatment
+  // 6-up mode: items.length === 6 OR columns === 6 — visually 3-col grid with 2 rows + compact treatment
   const isSixUp = columns === 6 || items.length === 6
   const visualCols = isSixUp ? 3 : columns
   const cardPadding = isSixUp ? '20px 18px' : '24px 20px'
@@ -82,7 +82,7 @@ export function MagFeatureList({ eyebrow, headline, items, columns = 3 }: MagFea
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
         <div ref={headerRef} style={{ marginBottom: 64 }}>
           {(() => {
-            const isSection = eyebrow.trim().startsWith('Â§')
+            const isSection = eyebrow.trim().startsWith('§')
             const eyebrowClass = isSection
               ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
               : 'font-stripeSans'

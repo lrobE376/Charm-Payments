@@ -28,9 +28,9 @@ const stripeInter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: { default: 'Charm Payments â€” Payment Processing Built for Business', template: '%s â€” Charm Payments' },
+  title: { default: 'Charm Payments — Payment Processing Built for Business', template: '%s — Charm Payments' },
   description:
-    'Charm Payments gives St. Louis small businesses enterprise-grade payment processing â€” credit cards, ACH, Apple Pay, and more. Built for connected payments and licensed acquiring partners.',
+    'Charm Payments gives St. Louis small businesses enterprise-grade payment processing — credit cards, ACH, Apple Pay, and more. Built for connected payments and licensed acquiring partners.',
   metadataBase: new URL('https://charm-payments.vercel.app'),
 }
 

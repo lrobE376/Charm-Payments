@@ -13,16 +13,16 @@ import { MagFinalCta } from '@/components/atelier/magazine/MagFinalCta'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'Retail & Boutique Payment Processing â€“ Charm Payments',
+  title: 'Retail & Boutique Payment Processing – Charm Payments',
   description:
-    'Your retail processor charges the same blended rate on a basic debit card and a premium Amex â€” and keeps the spread. Charm shows you every fee, every card type, every time, with no hidden markup.',
+    'Your retail processor charges the same blended rate on a basic debit card and a premium Amex — and keeps the spread. Charm shows you every fee, every card type, every time, with no hidden markup.',
 }
 
 const VERTICALS = [
   'Clothing Boutiques',
   'Shoe Stores',
   'Gift & Specialty Shops',
-  'Home Goods & DÃ©cor',
+  'Home Goods & Decor',
   'Bookstores',
   'Toy & Hobby Shops',
   'Jewelry Retailers',
@@ -41,7 +41,7 @@ const FEATURES = [
     figLabel: 'In-Store POS',
     title: 'Works with many POS systems',
     description:
-      'payment infrastructure connects to the POS you already use. Tap, chip, swipe â€” every card type, every customer. No rip-and-replace required.',
+      'payment infrastructure connects to the POS you already use. Tap, chip, swipe — every card type, every customer. No rip-and-replace required.',
   },
   {
     figLabel: 'Online + In-Store',
@@ -53,13 +53,13 @@ const FEATURES = [
     figLabel: 'Installment Plans',
     title: 'Layaway and installments built in',
     description:
-      'Accept partial payments at purchase and automatically charge remaining balances on your schedule â€” without a third-party app eating into margin.',
+      'Accept partial payments at purchase and automatically charge remaining balances on your schedule — without a third-party app eating into margin.',
   },
   {
     figLabel: 'Fraud Defense',
     title: 'Chargeback protection tuned for retail',
     description:
-      'iSpyFraud rule sets, AVS matching, CVV verification, and 3D Secure â€” all configurable to your transaction mix. Dispute tools ready when you need them.',
+      'iSpyFraud rule sets, AVS matching, CVV verification, and 3D Secure — all configurable to your transaction mix. Dispute tools ready when you need them.',
   },
 ]
 
@@ -68,7 +68,7 @@ const WHY_CARDS = [
     fig: 'Reason 01',
     title: 'See every fee, every card, every time',
     description:
-      'Debit costs less than credit â€” as it should. Every card type listed separately on your statement.',
+      'Debit costs less than credit — as it should. Every card type listed separately on your statement.',
   },
   {
     fig: 'Reason 02',
@@ -147,24 +147,24 @@ export default function RetailSolutionsPage() {
       </div>
 
       <MagMetaStrip
-        issue="Charm Payments Â· Solutions"
+        issue="Charm Payments · Solutions"
         folio="Retail & Boutiques"
         filed="Filed 2026"
       />
 
       <MagHero
-        eyebrow="Retail & Boutiques Â· Payment Processing"
+        eyebrow="Retail & Boutiques · Payment Processing"
         headlineLines={[
           { text: "Your Processor Charges You the Same Rate on Debit and Amex. It Shouldn't." },
         ]}
-        subtitle="Every time a customer pays with a basic debit card, your flat-rate processor still charges you the premium rate â€” and pockets the difference. Charm shows you every fee, every card type, every time, across every channel you sell through."
+        subtitle="Every time a customer pays with a basic debit card, your flat-rate processor still charges you the premium rate — and pockets the difference. Charm shows you every fee, every card type, every time, across every channel you sell through."
         primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
         secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         visualVariant="solutions-restaurants"
         visualSlot={
           <HeroVisual
             variant="solutions-restaurants"
-            caption="FIG. 01 â€” A SAMPLE STATEMENT"
+            caption="FIG. 01 — A SAMPLE STATEMENT"
           />
         }
         pills={HERO_PILLS}
@@ -209,15 +209,15 @@ export default function RetailSolutionsPage() {
 
       <MagFeatureList
         eyebrow="Built for retail"
-        headline="Every Way You Sell â€” Without Paying More Than You Should"
+        headline="Every Way You Sell — Without Paying More Than You Should"
         items={FEATURES}
         columns={2}
       />
 
       <MagStickyCardScroll
         eyebrow="Why Charm Payments"
-        headline="Square works fine â€” until your {volume grows}"
-        body="Flat-rate processors are easy to start on. But every time a customer swipes an Amex Platinum or a premium Visa Rewards card, you pay the same blended rate â€” while the processor pockets the spread. At real retail volume, that margin gap is significant."
+        headline="Square works fine — until your {volume grows}"
+        body="Flat-rate processors are easy to start on. But every time a customer swipes an Amex Platinum or a premium Visa Rewards card, you pay the same blended rate — while the processor pockets the spread. At real retail volume, that margin gap is significant."
         cards={WHY_CARDS}
       />
 
@@ -270,7 +270,7 @@ export default function RetailSolutionsPage() {
                 margin: '14px 0 24px 0',
               }}
             >
-              Send us your last merchant statement. We will line-item every cost and show exactly what changes with Charm â€” before you commit to anything.
+              Send us your last merchant statement. We will line-item every cost and show exactly what changes with Charm — before you commit to anything.
             </p>
             <Link
               href="/quote"
@@ -283,7 +283,7 @@ export default function RetailSolutionsPage() {
               }}
             >
               Get your free audit
-              <span aria-hidden>â†’</span>
+              <span aria-hidden>→</span>
             </Link>
           </div>
         </div>
@@ -298,8 +298,8 @@ export default function RetailSolutionsPage() {
       <MagGradientBreak variant="light-to-forest" />
       <MagForestBand
         eyebrow="Built for retail"
-        headline="Register, website, pop-up â€” one merchant account covers every channel with {unified reporting and no separate processors eating into margin.}"
-        subtitle="Debit costs less than credit â€” as it should. In-store, online, and mobile in one dashboard with one reconciliation at month-end. Complete application in the morning, processing by the next day. Month-to-month â€” no penalty if your needs change."
+        headline="Register, website, pop-up — one merchant account covers every channel with {unified reporting and no separate processors eating into margin.}"
+        subtitle="Debit costs less than credit — as it should. In-store, online, and mobile in one dashboard with one reconciliation at month-end. Complete application in the morning, processing by the next day. Month-to-month — no penalty if your needs change."
         stats={[
           { num: 'Audit', label: 'Statement-first intake' },
           { num: 'Tools', label: 'Workflow-ready' },
@@ -315,7 +315,7 @@ export default function RetailSolutionsPage() {
           { text: 'Find Out What Square Has Been', size: 'normal' },
           { text: 'Keeping From Every Sale.', italicTarget: 'Keeping From Every Sale.', size: 'normal' },
         ]}
-        subtitle="Your last statement is a blended number designed to be hard to question. We'll break it into every card type, every fee, and show you exactly what changes with Charm â€” no commitment, no pressure."
+        subtitle="Your last statement is a blended number designed to be hard to question. We'll break it into every card type, every fee, and show you exactly what changes with Charm — no commitment, no pressure."
         primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
         secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         gradientVariant="solutions-restaurants"

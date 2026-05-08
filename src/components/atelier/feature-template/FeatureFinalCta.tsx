@@ -13,7 +13,7 @@ export type FeatureFinalCtaProps = {
 }
 
 const DEFAULT_DISCLAIMER =
-  'Charm Payments â€” built and supported in St. Louis, Missouri. Subject to merchant agreement and underwriting approval.'
+  'Charm Payments — built and supported in St. Louis, Missouri. Subject to merchant agreement and underwriting approval.'
 
 function renderTitle(title: string) {
   if (!title.includes('{')) return title
@@ -44,7 +44,7 @@ export function FeatureFinalCta({
   disclaimer,
 }: FeatureFinalCtaProps) {
   const eyebrowText = eyebrow ?? 'Get started'
-  const isSection = eyebrowText.trim().startsWith('Â§')
+  const isSection = eyebrowText.trim().startsWith('§')
   const eyebrowClass = isSection
     ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
     : 'font-stripeSans'
@@ -89,7 +89,7 @@ export function FeatureFinalCta({
               )}
             >
               {primaryCta.label}
-              <span aria-hidden>â†’</span>
+              <span aria-hidden>→</span>
             </Link>
             {secondaryCta ? (
               <Link

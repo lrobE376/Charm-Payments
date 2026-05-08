@@ -12,7 +12,7 @@ export type FeatureFaqProps = {
 
 export function FeatureFaq({ eyebrow, title, items }: FeatureFaqProps) {
   const eyebrowText = eyebrow ?? 'Questions'
-  const isSection = eyebrowText.trim().startsWith('Â§')
+  const isSection = eyebrowText.trim().startsWith('§')
   const eyebrowClass = isSection
     ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
     : 'font-stripeSans'

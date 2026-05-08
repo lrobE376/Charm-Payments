@@ -4,7 +4,7 @@ import { MagPage } from '@/components/atelier/magazine/MagPage'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'Prototype â€” Charm Defense â€” Charm Payments',
+  title: 'Prototype — Charm Defense — Charm Payments',
   description: 'Design system prototype, not for public consumption.',
   robots: { index: false, follow: false },
 }
@@ -13,8 +13,8 @@ export default function PrototypeCharmDefensePage() {
   return (
     <MagPage
       meta={{
-        issue: 'Defense Â· Vol. 03',
-        folio: 'Folio 004 â€” The nine gates',
+        issue: 'Defense · Vol. 03',
+        folio: 'Folio 004 — The nine gates',
         filed: 'Filed 05.06.2026',
       }}
       hero={{
@@ -24,11 +24,11 @@ export default function PrototypeCharmDefensePage() {
           { text: "Losing them {isn't.}", italicTarget: "isn't.", size: 'lg' },
         ],
         subtitle:
-          'Charm Defense is a 9-gate fraud and chargeback prevention system, built into every Charm Payments account. We intercept disputes, build evidence, and respond on your behalf â€” most resolve before they post.',
+          'Charm Defense is a 9-gate fraud and chargeback prevention system, built into every Charm Payments account. We intercept disputes, build evidence, and respond on your behalf — most resolve before they post.',
         primaryCta: { label: 'See how it works', href: '#flow' },
         secondaryCta: { label: 'Get Free Rate Audit', href: '/quote' },
         visualVariant: 'defense',
-        visualSlot: <HeroVisual variant="defense" caption="FIG. 01 â€” THE NINE GATES" />,
+        visualSlot: <HeroVisual variant="defense" caption="FIG. 01 — THE NINE GATES" />,
       }}
       editorialBreak={{
         text: 'Most processors wait for disputes. Charm Defense stops them {before they start.}',
@@ -41,7 +41,7 @@ export default function PrototypeCharmDefensePage() {
             figLabel: 'Fig. 02.A',
             title: 'Pre-transaction',
             description:
-              'Risk scoring, address verification, CVV checking, and velocity monitoring â€” every transaction screened before it settles.',
+              'Risk scoring, address verification, CVV checking, and velocity monitoring — every transaction screened before it settles.',
             image: undefined,
           },
           {
@@ -55,7 +55,7 @@ export default function PrototypeCharmDefensePage() {
             figLabel: 'Fig. 02.C',
             title: 'Post-transaction',
             description:
-              'Evidence assembly, response drafting, and representment on your behalf â€” most disputes resolved without action from you.',
+              'Evidence assembly, response drafting, and representment on your behalf — most disputes resolved without action from you.',
             image: undefined,
           },
         ],
@@ -133,18 +133,18 @@ export default function PrototypeCharmDefensePage() {
         ],
       }}
       pullQuote={{
-        eyebrow: 'Â§ 04',
+        eyebrow: '§ 04',
         text: '"We were losing {18% of disputes} we got. Charm Defense brought it to {78% won.} On a card-not-present business, that\'s the difference between profit and breaking even."',
         citeName: 'James K.',
-        citeRole: 'Owner Â· K&K Outdoor Supply',
+        citeRole: 'Owner · K&K Outdoor Supply',
         citeLocation: 'Chesterfield, MO',
-        verifiedDate: 'Verified Â· 01.2026',
+        verifiedDate: 'Verified · 01.2026',
       }}
       comparison={{
         eyebrow: 'With Defense, vs. without.',
         headline: 'Two paths through a chargeback. {Only one ends with your money.}',
         theirs: {
-          label: 'Specimen A â€” Standard processors',
+          label: 'Specimen A — Standard processors',
           title: 'You handle disputes alone',
           items: [
             'No dispute intercept',
@@ -155,7 +155,7 @@ export default function PrototypeCharmDefensePage() {
           ],
         },
         ours: {
-          label: 'Specimen B â€” Charm Defense',
+          label: 'Specimen B — Charm Defense',
           title: 'We respond on your behalf',
           items: [
             'Network alert intercepts',
@@ -177,7 +177,7 @@ export default function PrototypeCharmDefensePage() {
           },
         ],
         subtitle:
-          'Charm Defense is included in every Charm Payments account. Apply once, get the full system â€” no add-on, no surcharge.',
+          'Charm Defense is included in every Charm Payments account. Apply once, get the full system — no add-on, no surcharge.',
         primaryCta: { label: 'Get Free Rate Audit', href: '/quote' },
         secondaryCta: { label: 'Get a free rate audit', href: '/quote' },
         gradientVariant: 'defense',

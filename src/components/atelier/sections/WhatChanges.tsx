@@ -79,7 +79,7 @@ export function WhatChanges() {
     >
       <Container>
         <div className="mb-2xl">
-          <EyebrowTag section="Â§04" label="WHAT CHANGES" />
+          <EyebrowTag section="§04" label="WHAT CHANGES" />
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',
@@ -92,8 +92,8 @@ export function WhatChanges() {
             processors.
           </h2>
           <p className="text-base text-black/70 max-w-2xl mt-md leading-relaxed">
-            One merchant account covers every channel â€” register, website,
-            phone orders, and recurring billing â€” with unified reporting and no
+            One merchant account covers every channel — register, website,
+            phone orders, and recurring billing — with unified reporting and no
             extra processors to manage.
           </p>
         </div>
@@ -104,7 +104,7 @@ export function WhatChanges() {
             0,
             <SpecCard
               title="Virtual Terminal"
-              description="Key in card and ACH payments from any browser â€” perfect for phone and mail orders."
+              description="Key in card and ACH payments from any browser — perfect for phone and mail orders."
             />,
           )}
 
@@ -116,7 +116,7 @@ export function WhatChanges() {
               title="E-Commerce Gateway"
               code={
                 <>
-                  <span className="text-atelier-gold/85">{'// React Â· 1 component'}</span>
+                  <span className="text-atelier-gold/85">{'// React · 1 component'}</span>
                   {'\n'}
                   <span className="text-atelier-gold">import</span>{' '}
                   <span>{'{ Charm }'}</span>{' '}
@@ -131,7 +131,7 @@ export function WhatChanges() {
                 </>
               }
             >
-              <FooterLabel text="many INTEGRATIONS Â· DROP-IN" />
+              <FooterLabel text="many INTEGRATIONS · DROP-IN" />
             </SpecCard>,
           )}
 
@@ -140,7 +140,7 @@ export function WhatChanges() {
             2,
             <SpecCard
               title="ACH Processing"
-              description="Accept large invoices by bank transfer â€” costs less than cards, settles predictably, fully reported."
+              description="Accept large invoices by bank transfer — costs less than cards, settles predictably, fully reported."
             />,
           )}
 
@@ -161,7 +161,7 @@ export function WhatChanges() {
               title="Recurring Billing"
               code={
                 <>
-                  <span className="text-atelier-gold/85">{'// charge.failed â†’ retry'}</span>
+                  <span className="text-atelier-gold/85">{'// charge.failed → retry'}</span>
                   {'\n'}
                   <span className="text-atelier-gold">on</span>
                   <span>{'('}</span>
@@ -178,7 +178,7 @@ export function WhatChanges() {
                 </>
               }
             >
-              <FooterLabel text="SMART RETRIES Â· BUILT-IN" />
+              <FooterLabel text="SMART RETRIES · BUILT-IN" />
             </SpecCard>,
           )}
 
@@ -187,7 +187,7 @@ export function WhatChanges() {
             5,
             <SpecCard
               title="Real-Time Reporting"
-              description="See every transaction, batch, and settlement in real time â€” no more guessing where your money is between statements."
+              description="See every transaction, batch, and settlement in real time — no more guessing where your money is between statements."
             />,
           )}
         </div>

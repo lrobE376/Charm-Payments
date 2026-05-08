@@ -47,7 +47,7 @@ export default function ApplyApplicationForm() {
     zip: '',
     bank_name: '',
     account_type: 'checking' as 'checking' | 'savings',
-    // Raw sensitive fields â€” NEVER included in the API payload.
+    // Raw sensitive fields — NEVER included in the API payload.
     // They live here only to drive UX validation and last4 derivation.
     _routing_number_raw: '',
     _account_number_raw: '',
@@ -85,7 +85,7 @@ export default function ApplyApplicationForm() {
       state:            form.state || undefined,
       zip:              form.zip || undefined,
       current_terminal: form.current_terminal || undefined,
-      // Safe bank metadata â€” raw numbers derived to last4 client-side
+      // Safe bank metadata — raw numbers derived to last4 client-side
       bank_name:        form.bank_name || undefined,
       account_type:     form.account_type,
       account_last4:    last4(form._account_number_raw) ?? undefined,
@@ -139,7 +139,7 @@ export default function ApplyApplicationForm() {
       />
 
       <h1 className="text-2xl font-bold text-gray-900">Merchant application</h1>
-      <p className="mt-2 text-sm text-gray-500">Step {step} of 4 â€” structured for underwriting; no instant decision logic yet.</p>
+      <p className="mt-2 text-sm text-gray-500">Step {step} of 4 — structured for underwriting; no instant decision logic yet.</p>
       <div
         role="progressbar"
         aria-valuenow={step}
@@ -171,7 +171,7 @@ export default function ApplyApplicationForm() {
               value={form.business_type}
               onChange={(e) => update('business_type', e.target.value)}
             >
-              <option value="">Selectâ€¦</option>
+              <option value="">Select…</option>
               {businessTypes.map((t) => (
                 <option key={t} value={t}>
                   {t}
@@ -236,7 +236,7 @@ export default function ApplyApplicationForm() {
           <h2 className="text-sm font-bold uppercase tracking-wide text-brand-dark">Settlement banking</h2>
           <p className="text-xs text-gray-500">
             Account used for deposits must match the legal business or DBA on file.
-            Only the last four digits of each number are stored â€” raw values never leave your browser.
+            Only the last four digits of each number are stored — raw values never leave your browser.
           </p>
           <Input
             label="Bank name"
@@ -287,17 +287,17 @@ export default function ApplyApplicationForm() {
               {form.dba_name ? ` (${form.dba_name})` : ''}
             </p>
             <p>
-              {form.owner_first_name} {form.owner_last_name} Â· {form.owner_email}
+              {form.owner_first_name} {form.owner_last_name} · {form.owner_email}
             </p>
             <p>
               {form.address}, {form.city}, {form.state} {form.zip}
             </p>
             <p>
-              Volume: {form.monthly_volume} Â· Avg ticket: {form.average_ticket}
+              Volume: {form.monthly_volume} · Avg ticket: {form.average_ticket}
             </p>
             <p>
               Bank: {form.bank_name} &middot; {form.account_type} &middot; acct ending{' '}
-              {last4(form._account_number_raw) ?? 'â€”'}
+              {last4(form._account_number_raw) ?? '—'}
             </p>
           </div>
           <label className="flex cursor-pointer items-start gap-3 text-sm text-gray-700">

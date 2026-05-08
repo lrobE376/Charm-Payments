@@ -80,7 +80,7 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
         <div ref={headerRef} style={{ marginBottom: 64 }}>
           {(() => {
-            const isSection = eyebrow.trim().startsWith('Â§')
+            const isSection = eyebrow.trim().startsWith('§')
             const eyebrowClass = isSection
               ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
               : 'font-stripeSans'
@@ -120,7 +120,7 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
               }}
               className={cn('bg-transparent')}
             >
-              {/* Image slot â€” 280Ã—180 (16:10), placeholder when no src */}
+              {/* Image slot — 280×180 (16:10), placeholder when no src */}
               <CardImageSlot src={card.image} alt={card.imageAlt} />
 
               <div
@@ -221,7 +221,7 @@ function CardImageSlot({ src, alt }: { src?: string; alt?: string }) {
           color: 'rgba(0,0,0,0.35)',
         }}
       >
-        Image Â· 280 Ã— 180
+        Image · 280 × 180
       </div>
       <div
         className="absolute font-atelierMono"
@@ -234,7 +234,7 @@ function CardImageSlot({ src, alt }: { src?: string; alt?: string }) {
           color: 'rgba(0,0,0,0.35)',
         }}
       >
-        â†—
+        ↗
       </div>
     </div>
   )

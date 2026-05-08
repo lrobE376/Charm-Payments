@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { HeaderAtelier } from '@/components/marketing/HeaderAtelier'
 
 export const metadata: Metadata = {
-  title: 'Prototype â€” Charm Payments',
+  title: 'Prototype — Charm Payments',
   description: 'Design system prototype, not for public consumption.',
   robots: { index: false, follow: false },
 }
@@ -26,7 +26,7 @@ export default function PrototypeLayout({ children }: { children: React.ReactNod
           textAlign: 'center',
         }}
       >
-        Charm Payments Â· St. Louis Â· 2026 Â· Prototype
+        Charm Payments · St. Louis · 2026 · Prototype
       </footer>
     </>
   )

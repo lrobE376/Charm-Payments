@@ -149,9 +149,9 @@ export function HeaderAtelier() {
       >
         <div className="flex items-center justify-center gap-3 py-1.5 px-lg text-xs">
           <span className="text-atelier-cream/85">
-            Free account review â€” we&apos;ll beat your current rate
+            Free account review — we&apos;ll beat your current rate
           </span>
-          <span className="text-atelier-cream/30" aria-hidden>Â·</span>
+          <span className="text-atelier-cream/30" aria-hidden>·</span>
           <Link
             href="/quote"
             className={cn(
@@ -182,7 +182,7 @@ export function HeaderAtelier() {
               'flex items-center shrink-0',
               'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-atelier-gold',
             )}
-            aria-label="Charm Payments â€” home"
+            aria-label="Charm Payments — home"
           >
             <Image
               src="/images/logo.png"
@@ -190,7 +190,7 @@ export function HeaderAtelier() {
               width={320}
               height={120}
               priority
-              className="h-12 w-auto"
+              className="h-9 w-auto sm:h-12"
             />
           </Link>
 
@@ -409,7 +409,8 @@ export function HeaderAtelier() {
                 'whitespace-nowrap',
               )}
             >
-              Get Free Rate Audit
+              <span className="hidden sm:inline">Get Free Rate Audit</span>
+              <span className="sm:hidden">Rate Audit</span>
             </Link>
 
             <button
@@ -577,7 +578,7 @@ export function HeaderAtelier() {
           >
             merchants@charmpayments.com
           </a>
-          <span className="text-atelier-cream/40" aria-hidden>Â·</span>
+          <span className="text-atelier-cream/40" aria-hidden>·</span>
           <a
             href="mailto:merchants@charmpayments.com"
             className="text-atelier-cream/85 hover:text-atelier-cream transition-colors"

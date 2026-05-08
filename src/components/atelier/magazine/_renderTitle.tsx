@@ -3,7 +3,7 @@ import React from 'react'
 
 /**
  * Magazine micro-syntax: text wrapped in {curly braces} renders as italic + forest accent.
- * "Three things that change {on day one.}" â†’ "Three things that change " + <em>on day one.</em>
+ * "Three things that change {on day one.}" → "Three things that change " + <em>on day one.</em>
  */
 export function renderTitle(
   title: string,

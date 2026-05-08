@@ -90,7 +90,7 @@ export default function SupportTicketForm() {
         <textarea id="st-message" name="message" required rows={4} className={`${input} min-h-[100px] resize-y py-2`} />
       </div>
       <button type="submit" className="rounded-lg bg-brand-dark px-4 py-2 text-sm font-semibold text-white hover:bg-brand-dark/90" disabled={loading}>
-        {loading ? 'Submittingâ€¦' : 'Open ticket'}
+        {loading ? 'Submitting…' : 'Open ticket'}
       </button>
     </form>
   )

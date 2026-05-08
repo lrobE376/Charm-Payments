@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Terms & Conditions â€” Charm Payments' },
+  title: { absolute: 'Terms & Conditions — Charm Payments' },
   description:
     'Review the terms and conditions governing your Charm Payments merchant account, including fees, chargebacks, and acceptable use.',
 }

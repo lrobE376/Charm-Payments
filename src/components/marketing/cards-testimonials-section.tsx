@@ -16,7 +16,7 @@
     initials: 'RJ',
     name: 'Rico J.',
     business: 'Personal Trainer, Midtown STL',
-    quote: 'Handed out 200 paper cards last year. Zero callbacks. One Charm Card â€” three new clients this month.',
+    quote: 'Handed out 200 paper cards last year. Zero callbacks. One Charm Card — three new clients this month.',
   },
 ] as const
 
@@ -41,7 +41,7 @@ export default function CardsTestimonialsSection() {
               <p className="mt-1 text-sm text-gray-500">{t.business}</p>
               <p className="mt-4 flex-1 italic leading-relaxed text-gray-700">&ldquo;{t.quote}&rdquo;</p>
               <p className="mt-4 text-brand-accent" aria-hidden="true">
-                {'â˜…â˜…â˜…â˜…â˜…'}
+                {'★★★★★'}
               </p>
             </article>
           ))}

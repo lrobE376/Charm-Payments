@@ -1,7 +1,7 @@
 ﻿import { BadgeCheck, MapPin } from 'lucide-react'
 
 /**
- * B2B trust strip â€” word-style marks (no trademark artwork) + partner badges.
+ * B2B trust strip — word-style marks (no trademark artwork) + partner badges.
  */
 export default function SocialProofStrip() {
   return (

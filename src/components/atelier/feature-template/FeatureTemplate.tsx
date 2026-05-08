@@ -13,7 +13,7 @@ const UNIVERSAL_FOREST_BAND = {
   eyebrow: 'Every feature, included',
   headline: 'Apply once. Get the {whole stack.}',
   subtitle:
-    'Charm Payments accounts come with the full toolkit â€” no add-ons, no tier upgrades, no surprise charges.',
+    'Charm Payments accounts come with the full toolkit — no add-ons, no tier upgrades, no surprise charges.',
   stats: [
     { num: '0', label: 'Add-on fees' },
     { num: 'Same day', label: 'Approval target' },

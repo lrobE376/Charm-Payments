@@ -30,7 +30,7 @@ export function EyebrowTag({
     >
       <span>{section}</span>
       <span aria-hidden className="mx-1.5 opacity-70">
-        Â·
+        ·
       </span>
       <span>{label}</span>
     </span>

@@ -118,7 +118,7 @@ export function MagPullQuoteRow({ eyebrow, title, items }: MagPullQuoteRowProps)
                       marginTop: 4,
                     }}
                   >
-                    {[item.role, item.location].filter(Boolean).join(' Â· ')}
+                    {[item.role, item.location].filter(Boolean).join(' · ')}
                   </div>
                 ) : null}
                 {item.verified ? (
@@ -133,7 +133,7 @@ export function MagPullQuoteRow({ eyebrow, title, items }: MagPullQuoteRowProps)
                       textTransform: 'uppercase',
                     }}
                   >
-                    Verified{item.verifiedDate ? ` Â· ${item.verifiedDate}` : ''}
+                    Verified{item.verifiedDate ? ` · ${item.verifiedDate}` : ''}
                   </div>
                 ) : null}
               </div>

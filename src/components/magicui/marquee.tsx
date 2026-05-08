@@ -10,9 +10,9 @@ interface MarqueeProps {
   pauseOnHover?: boolean;
   children: ReactNode;
   vertical?: boolean;
-  /** Number of duplicated sets â€” increase for very few items */
+  /** Number of duplicated sets — increase for very few items */
   repeat?: number;
-  /** Color of the fade-out edges â€” must match the section background */
+  /** Color of the fade-out edges — must match the section background */
   fadeColor?: string;
 }
 

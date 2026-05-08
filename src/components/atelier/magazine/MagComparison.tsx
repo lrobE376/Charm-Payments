@@ -81,7 +81,7 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
         <div ref={headerRef} style={{ marginBottom: 64 }}>
           {(() => {
-            const isSection = eyebrow.trim().startsWith('Â§')
+            const isSection = eyebrow.trim().startsWith('§')
             const eyebrowClass = isSection
               ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
               : 'font-stripeSans'
@@ -113,7 +113,7 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
           className="grid gap-6"
           style={{ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}
         >
-          {/* Theirs â€” neutral border, transparent canvas bg */}
+          {/* Theirs — neutral border, transparent canvas bg */}
           <div
             ref={theirsRef}
             className="bg-apple-canvas"
@@ -163,7 +163,7 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
                       fontSize: 14,
                     }}
                   >
-                    Ã—
+                    ×
                   </span>
                   <span>{item}</span>
                 </li>
@@ -171,7 +171,7 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
             </ul>
           </div>
 
-          {/* Ours â€” forest border, transparent canvas bg */}
+          {/* Ours — forest border, transparent canvas bg */}
           <div
             ref={oursRef}
             className="bg-apple-canvas"
@@ -221,7 +221,7 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
                       fontSize: 14,
                     }}
                   >
-                    âœ“
+                    ✓
                   </span>
                   <span>{item}</span>
                 </li>

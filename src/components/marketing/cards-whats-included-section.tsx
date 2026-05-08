@@ -13,7 +13,7 @@ const digitalFeatures = [
 
 const physicalFeatures = [
   'Metal or bamboo finish options',
-  'NFC chip embedded â€” one tap shares your digital card',
+  'NFC chip embedded — one tap shares your digital card',
   'QR code printed on back',
   'No app needed to scan',
   'One-time hardware cost (not a subscription)',
@@ -72,7 +72,7 @@ export default function CardsWhatsIncludedSection() {
 
         <div className="charm-card mt-10 border-l-4 border-brand-accent bg-brand-card p-5">
           <p className="text-[var(--paragraph)] leading-relaxed">
-            ðŸ”‘ The physical card is the key. Your digital profile is the room. You control everything from the dashboard.
+            The physical card is the key. Your digital profile is the room. You control everything from the dashboard.
           </p>
         </div>
       </div>

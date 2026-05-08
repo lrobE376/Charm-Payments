@@ -73,7 +73,7 @@ export function FooterAtelier() {
           )}
         >
           <div>
-            <Link href="/" aria-label="Charm Payments â€” home" className="inline-block">
+            <Link href="/" aria-label="Charm Payments — home" className="inline-block">
               <Image
                 src="/images/white-logo.png"
                 alt="Charm Payments"

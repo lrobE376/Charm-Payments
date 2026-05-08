@@ -102,12 +102,12 @@ export async function POST(req: Request) {
       notes,
     })
 
-    // Fire-and-forget â€” do not await, must not block response
+    // Fire-and-forget — do not await, must not block response
     triggerZap('contact', {
       name,
       email,
       phone: phone || undefined,
-      subject: `Contact form inquiry â€” ${business}`,
+      subject: `Contact form inquiry — ${business}`,
       message: message || notes,
       businessName: business,
       monthlyVolume: volume,
@@ -129,7 +129,7 @@ export async function POST(req: Request) {
     // Confirmation to the submitter
     await sendResendEmail(
       email,
-      "We received your message â€” Charm Payments",
+      "We received your message — Charm Payments",
       emailLayout(`
         <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${safeName},</p>
         <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6;">
@@ -141,14 +141,14 @@ export async function POST(req: Request) {
           <a href="mailto:merchants@charmpayments.com" style="color:#0c3a30;">merchants@charmpayments.com</a>
          .
         </p>
-        <p style="margin:0;color:#374151;font-size:14px;">â€” The Charm Payments Team</p>
+        <p style="margin:0;color:#374151;font-size:14px;">— The Charm Payments Team</p>
       `),
     )
 
     // Internal notification to the sales inbox
     await sendResendEmail(
       'merchants@charmpayments.com',
-      `New contact form lead â€” ${business}`,
+      `New contact form lead — ${business}`,
       emailLayout(`
         <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">New lead from contact form</p>
         <table cellpadding="0" cellspacing="0" style="width:100%;font-size:14px;color:#374151;">

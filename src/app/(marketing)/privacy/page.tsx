@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Privacy Policy â€” Charm Payments' },
+  title: { absolute: 'Privacy Policy — Charm Payments' },
   description:
     'Learn how Charm Payments collects, uses, and protects your business and personal information as a merchant account holder.',
 }

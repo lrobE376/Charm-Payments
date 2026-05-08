@@ -13,7 +13,7 @@ import { MagFinalCta } from '@/components/atelier/magazine/MagFinalCta'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'E-Commerce Payment Processing â€“ Charm Payments',
+  title: 'E-Commerce Payment Processing – Charm Payments',
   description:
     "Stripe's 2.9% is easy to start on and expensive to scale. Charm gives you a dedicated merchant account, shows you every fee every card type every time, and won't pause your account without warning.",
 }
@@ -53,13 +53,13 @@ const FEATURES = [
     figLabel: 'Subscriptions',
     title: 'Recurring billing without the add-on',
     description:
-      'Build subscription products, billing cycles, and smart retry logic inside payment infrastructure â€” no Stripe Billing or third-party tool required. Reduces cost and complexity.',
+      'Build subscription products, billing cycles, and smart retry logic inside payment infrastructure — no Stripe Billing or third-party tool required. Reduces cost and complexity.',
   },
   {
     figLabel: 'Fraud & 3D Secure',
     title: 'Layered fraud controls for online risk',
     description:
-      '3D Secure 2.0, AVS matching, CVV rules, and iSpyFraud â€” all configurable to your transaction risk profile. Dispute documentation built in when chargebacks hit.',
+      '3D Secure 2.0, AVS matching, CVV rules, and iSpyFraud — all configurable to your transaction risk profile. Dispute documentation built in when chargebacks hit.',
   },
 ]
 
@@ -68,7 +68,7 @@ const WHY_CARDS = [
     fig: 'Reason 01',
     title: 'See every fee, every card, every time',
     description:
-      'Debit is cheaper than credit â€” and you see that on every line of your statement.',
+      'Debit is cheaper than credit — and you see that on every line of your statement.',
   },
   {
     fig: 'Reason 02',
@@ -146,24 +146,24 @@ export default function EcommerceSolutionsPage() {
       </div>
 
       <MagMetaStrip
-        issue="Charm Payments Â· Solutions"
+        issue="Charm Payments · Solutions"
         folio="E-Commerce"
         filed="Filed 2026"
       />
 
       <MagHero
-        eyebrow="E-Commerce Â· Payment Processing"
+        eyebrow="E-Commerce · Payment Processing"
         headlineLines={[
           { text: 'Stripe Is Taking More From Every Sale Than Your Blended Rate Shows.' },
         ]}
-        subtitle="Stripe and PayPal charge the same flat rate whether a customer pays with a basic debit card or a premium Amex â€” and keep the difference. Charm gives you a dedicated merchant account, shows you every fee every card type every time, and won't pause your business without warning."
+        subtitle="Stripe and PayPal charge the same flat rate whether a customer pays with a basic debit card or a premium Amex — and keep the difference. Charm gives you a dedicated merchant account, shows you every fee every card type every time, and won't pause your business without warning."
         primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
         secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         visualVariant="solutions-restaurants"
         visualSlot={
           <HeroVisual
             variant="solutions-restaurants"
-            caption="FIG. 01 â€” A SAMPLE STATEMENT"
+            caption="FIG. 01 — A SAMPLE STATEMENT"
           />
         }
         pills={HERO_PILLS}
@@ -208,15 +208,15 @@ export default function EcommerceSolutionsPage() {
 
       <MagFeatureList
         eyebrow="Built for e-commerce"
-        headline="Every Problem With Your Current Payment Stack â€” Gone"
+        headline="Every Problem With Your Current Payment Stack — Gone"
         items={FEATURES}
         columns={2}
       />
 
       <MagStickyCardScroll
         eyebrow="Why Charm Payments"
-        headline="Stripe's 2.9% is simple â€” and {expensive at scale}"
-        body="Stripe and PayPal are easy to integrate but built around a flat rate that does not care whether a customer pays with a basic debit card or a premium Amex rewards card. At e-commerce volume, that blended margin gap is a significant monthly cost â€” and you are on an aggregated account that can be paused without warning."
+        headline="Stripe's 2.9% is simple — and {expensive at scale}"
+        body="Stripe and PayPal are easy to integrate but built around a flat rate that does not care whether a customer pays with a basic debit card or a premium Amex rewards card. At e-commerce volume, that blended margin gap is a significant monthly cost — and you are on an aggregated account that can be paused without warning."
         cards={WHY_CARDS}
       />
 
@@ -269,7 +269,7 @@ export default function EcommerceSolutionsPage() {
                 margin: '14px 0 24px 0',
               }}
             >
-              Send us your last processor statement. We will line-item the comparison and show exactly what changes with Charm â€” before you commit to anything.
+              Send us your last processor statement. We will line-item the comparison and show exactly what changes with Charm — before you commit to anything.
             </p>
             <Link
               href="/quote"
@@ -282,7 +282,7 @@ export default function EcommerceSolutionsPage() {
               }}
             >
               Get your free audit
-              <span aria-hidden>â†’</span>
+              <span aria-hidden>→</span>
             </Link>
           </div>
         </div>
@@ -297,8 +297,8 @@ export default function EcommerceSolutionsPage() {
       <MagGradientBreak variant="light-to-forest" />
       <MagForestBand
         eyebrow="Built for e-commerce"
-        headline="Checkout, subscriptions, fraud, and digital wallets â€” one merchant account handles everything so you stop paying for {three separate tools to run one store.}"
-        subtitle="Connects to the platform you already use without ripping anything out. A real MID with stable fund flow, not an aggregated account that can be paused. Month-to-month â€” earn it every statement cycle."
+        headline="Checkout, subscriptions, fraud, and digital wallets — one merchant account handles everything so you stop paying for {three separate tools to run one store.}"
+        subtitle="Connects to the platform you already use without ripping anything out. A real MID with stable fund flow, not an aggregated account that can be paused. Month-to-month — earn it every statement cycle."
         stats={[
           { num: 'Audit', label: 'Statement-first intake' },
           { num: 'Connect', label: 'Stripe Connect-ready' },
@@ -314,7 +314,7 @@ export default function EcommerceSolutionsPage() {
           { text: 'Find Out What Stripe Has Been', size: 'normal' },
           { text: 'Keeping From Every Sale.', italicTarget: 'Keeping From Every Sale.', size: 'normal' },
         ]}
-        subtitle="Your last Stripe statement is a blended number that hides what you actually pay per card type. We'll break it down, line by line, and show you exactly what changes with Charm â€” no commitment, no pressure."
+        subtitle="Your last Stripe statement is a blended number that hides what you actually pay per card type. We'll break it down, line by line, and show you exactly what changes with Charm — no commitment, no pressure."
         primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
         secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         gradientVariant="solutions-restaurants"

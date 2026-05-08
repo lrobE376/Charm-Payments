@@ -9,7 +9,7 @@ import { prefersReducedMotion } from '@/lib/motion'
 
 const PILLS = [
   'AUTOMATED EVIDENCE',
-  'ALERTS Â· VISA Â· MC',
+  'ALERTS · VISA · MC',
   'FULLY MANAGED',
   'ZERO MERCHANT EFFORT',
 ]
@@ -100,7 +100,7 @@ export function DefenseHero() {
                 aria-hidden
                 className="block w-1.5 h-1.5 rounded-full bg-atelier-gold"
               />
-              INCLUDED Â· NO ADD-ON Â· NO UPCHARGE
+              INCLUDED · NO ADD-ON · NO UPCHARGE
             </span>
 
             <h1
@@ -131,7 +131,7 @@ export function DefenseHero() {
                 )}
               >
                 Get Free Rate Audit
-                <span aria-hidden>â†—</span>
+                <span aria-hidden>↗</span>
               </a>
               <a
                 href="#flow"
@@ -144,7 +144,7 @@ export function DefenseHero() {
                 )}
               >
                 See how it works
-                <span aria-hidden>â†’</span>
+                <span aria-hidden>→</span>
               </a>
             </div>
 
@@ -160,7 +160,7 @@ export function DefenseHero() {
                     'whitespace-nowrap',
                   )}
                 >
-                  âœ“ {pill}
+                  ✓ {pill}
                 </li>
               ))}
             </ul>
@@ -180,7 +180,7 @@ export function DefenseHero() {
               )}
             >
               <span className="font-atelierMono text-[10px] uppercase tracking-label text-black/55">
-                YOUR ACCOUNT Â· LIVE
+                YOUR ACCOUNT · LIVE
               </span>
               <span
                 className={cn(
@@ -240,7 +240,7 @@ export function DefenseHero() {
                 DEFENSE FEE
               </span>
               <span className="font-atelierMono text-sm text-atelier-gold tracking-spec">
-                $0.00 Â· INCLUDED
+                $0.00 · INCLUDED
               </span>
             </div>
           </div>

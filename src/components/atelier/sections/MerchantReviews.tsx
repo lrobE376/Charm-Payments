@@ -83,7 +83,7 @@ export function MerchantReviews() {
     >
       <Container>
         <div className="mb-2xl">
-          <EyebrowTag section="Â§07" label="MERCHANT REVIEWS" />
+          <EyebrowTag section="§07" label="MERCHANT REVIEWS" />
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',

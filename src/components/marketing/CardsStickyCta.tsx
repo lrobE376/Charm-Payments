@@ -47,7 +47,7 @@ export default function CardsStickyCta() {
           href="/cards"
           className="btn-accent ml-3 inline-flex min-h-[48px] flex-1 items-center justify-center"
         >
-          Get Your Card â†’
+          Get Your Card →
         </Link>
       </div>
     </div>

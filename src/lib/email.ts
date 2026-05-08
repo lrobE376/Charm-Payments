@@ -1,7 +1,7 @@
 ﻿// src/lib/email.ts
 // Shared Resend email sender and HTML templates.
-// All templates use inline styles â€” safe for all email clients.
-// Never log email body contents â€” keep PII out of server logs.
+// All templates use inline styles — safe for all email clients.
+// Never log email body contents — keep PII out of server logs.
 // All user-controlled values are HTML-escaped via escapeHtml() before
 // interpolation to prevent HTML/script injection in inboxes.
 
@@ -11,7 +11,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://charmpayments.com'
 const FROM = 'Charm Payments <noreply@charmpayments.com>'
 const INTERNAL_TO = 'merchants@charmpayments.com'
 
-// â”€â”€ sender â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- sender --------------------------------------------------------------------
 
 export async function sendEmail(to: string, subject: string, html: string): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY
@@ -25,7 +25,7 @@ export async function sendEmail(to: string, subject: string, html: string): Prom
   })
 }
 
-// â”€â”€ shared layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- shared layout -------------------------------------------------------------
 
 function layout(body: string): string {
   return `<!DOCTYPE html>
@@ -43,7 +43,7 @@ function layout(body: string): string {
       <tr>
         <td style="background:#ffffff;padding:32px;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;">
           ${body}
-          <p style="margin:24px 0 0;color:#374151;font-size:14px;">â€” The Charm Payments Team</p>
+          <p style="margin:24px 0 0;color:#374151;font-size:14px;">— The Charm Payments Team</p>
         </td>
       </tr>
       <tr>
@@ -69,7 +69,7 @@ function link(href: string, label: string): string {
   return `<a href="${escapeHtml(href)}" style="color:#0c3a30;font-weight:600;">${escapeHtml(label)}</a>`
 }
 
-// â”€â”€ templates â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- templates -----------------------------------------------------------------
 
 /** Sent to the merchant after they submit a quote/rate-audit request. */
 export function quoteConfirmationHtml(firstName: string, businessName: string): string {
@@ -78,7 +78,7 @@ export function quoteConfirmationHtml(firstName: string, businessName: string): 
   return layout(`
     <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${safeFirst},</p>
     ${p(`We received your rate audit request for <strong>${safeBusiness}</strong>.`)}
-    ${p('One of our analysts will review your processing history and send you a personalized savings report within <strong>1â€“2 business days</strong>. If you uploaded a statement, we\'ll use it to build an exact comparison against your current rates.')}
+    ${p('One of our analysts will review your processing history and send you a personalized savings report within <strong>1–2 business days</strong>. If you uploaded a statement, we\'ll use it to build an exact comparison against your current rates.')}
     ${p(`In the meantime, ${link(`${SITE_URL}/faq`, 'browse our FAQ')} or ${link(`${SITE_URL}/contact`, 'reach out directly')} if you have questions.`)}
   `)
 }
@@ -149,7 +149,7 @@ export function leadInternalAlertHtml(
   const safeVolume = escapeHtml(volume)
   const safeSource = escapeHtml(source)
   return layout(`
-    <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:700;">New lead â€” ${safeSource}</p>
+    <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:700;">New lead — ${safeSource}</p>
     <table cellpadding="0" cellspacing="0" style="width:100%;margin-bottom:16px;">
       ${[
         ['Name', safeName],
@@ -186,7 +186,7 @@ export function ticketInternalAlertHtml(
   // Escape FIRST, then convert newlines to <br /> on the already-safe text.
   const safeMessage = escapeHtml(message).replace(/\n/g, '<br />')
   return layout(`
-    <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:700;">New support ticket â€” ${safePriorityUpper}</p>
+    <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:700;">New support ticket — ${safePriorityUpper}</p>
     <table cellpadding="0" cellspacing="0" style="width:100%;margin-bottom:16px;">
       ${[
         ['Ticket ID', safeTicketId],
@@ -220,7 +220,7 @@ export function merchantApprovalHtml(
   const safeMid = escapeHtml(mid)
   return layout(`
     <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${safeFirst},</p>
-    ${p(`Great news â€” your merchant account for <strong>${safeBusiness}</strong> has been approved and is ready to process payments.`)}
+    ${p(`Great news — your merchant account for <strong>${safeBusiness}</strong> has been approved and is ready to process payments.`)}
     <table cellpadding="0" cellspacing="0" style="width:100%;margin:16px 0;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:16px;">
       <tr>
         <td style="padding:8px 12px 8px 0;font-size:13px;font-weight:600;color:#166534;">Merchant ID (MID)</td>

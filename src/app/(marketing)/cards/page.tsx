@@ -18,16 +18,16 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Charm Cards â€” Digital Business Cards with Built-In Payments',
+  title: 'Charm Cards — Digital Business Cards with Built-In Payments',
   description:
-    'Premium digital business cards with Apple & Google Wallet saving, a built-in Pay Me button, NFC tap sharing, and lead capture â€” powered by Charm Payments.',
+    'Premium digital business cards with Apple & Google Wallet saving, a built-in Pay Me button, NFC tap sharing, and lead capture — powered by Charm Payments.',
 }
 
 const includedCards = [
   {
     icon: Wallet,
     name: 'Apple & Google Wallet',
-    desc: 'Customers save your card directly to their phone wallet with one tap. Your info is always current â€” no app download ever required.',
+    desc: 'Customers save your card directly to their phone wallet with one tap. Your info is always current — no app download ever required.',
     features: [
       'Works on every iPhone & Android',
       'Updates automatically when you change info',
@@ -37,7 +37,7 @@ const includedCards = [
   {
     icon: CreditCard,
     name: 'Pay Me Button',
-    desc: 'Every card has a built-in Charm Payments payment link. Tap the card, see your info, pay you â€” all in one place.',
+    desc: 'Every card has a built-in Charm Payments payment link. Tap the card, see your info, pay you — all in one place.',
     features: [
       'Links directly to your Charm Payments account',
       'Accept card, ACH, Apple Pay & Google Pay',
@@ -47,7 +47,7 @@ const includedCards = [
   {
     icon: QrCode,
     name: 'QR Code + NFC Tap',
-    desc: 'Share your card with a tap of a physical NFC card or a QR code scan â€” no app needed on the other person\'s phone.',
+    desc: 'Share your card with a tap of a physical NFC card or a QR code scan — no app needed on the other person\'s phone.',
     features: [
       'Metal, bamboo, or PVC physical NFC cards available',
       'QR code downloadable for print materials',
@@ -69,7 +69,7 @@ const includedCards = [
   {
     icon: Globe,
     name: 'Custom Domain & Branding',
-    desc: 'Your card lives on your domain. Your logo, your colors, your brand â€” zero Charm branding visible to your customers if you want it gone.',
+    desc: 'Your card lives on your domain. Your logo, your colors, your brand — zero Charm branding visible to your customers if you want it gone.',
     features: ['Custom subdomain included', 'Full color and logo control', 'Email signature embed included'],
   },
 ] as const
@@ -79,7 +79,7 @@ const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay
 export default function CharmCardsPage() {
   return (
     <>
-      {/* SECTION 1 â€” DARK HERO */}
+      {/* SECTION 1 — DARK HERO */}
       <section
         className="relative overflow-hidden px-6 py-20 text-center md:py-28"
         style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 100%)' }}
@@ -99,7 +99,7 @@ export default function CharmCardsPage() {
               {`Your Business Card That\nAlso Collects Payments`}
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
-              A premium digital business card with a built-in Pay Me button, Apple & Google Wallet saving, lead capture, and NFC tap sharing â€” all under the Charm
+              A premium digital business card with a built-in Pay Me button, Apple & Google Wallet saving, lead capture, and NFC tap sharing — all under the Charm
               Payments brand.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -141,7 +141,7 @@ export default function CharmCardsPage() {
                 </div>
                 <div>
                   <p className="text-[11px] text-gray-400 font-medium uppercase tracking-wide">Apple Wallet</p>
-                  <p className="text-sm font-bold text-brand-dark">Card Saved âœ“</p>
+                  <p className="text-sm font-bold text-brand-dark">Card Saved ✓</p>
                 </div>
               </div>
               <div className="absolute -top-4 -right-4 bg-brand-dark rounded-2xl shadow-xl px-4 py-3">
@@ -155,7 +155,7 @@ export default function CharmCardsPage() {
 
       <CardsWhatsIncludedSection />
 
-      {/* SECTION 2 â€” WHAT'S INCLUDED */}
+      {/* SECTION 2 — WHAT'S INCLUDED */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto max-w-3xl text-center reveal">
@@ -209,7 +209,7 @@ export default function CharmCardsPage() {
         </div>
       </section>
 
-      {/* SECTION 3 â€” HOW IT WORKS */}
+      {/* SECTION 3 — HOW IT WORKS */}
       <section id="how-it-works" className="section-ptb scroll-mt-24 bg-brand-light">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto max-w-3xl text-center reveal">
@@ -220,7 +220,7 @@ export default function CharmCardsPage() {
           </div>
 
           <div className="mt-16 space-y-24 max-w-6xl mx-auto">
-            {/* STEP 1 â€” mockup left, copy right */}
+            {/* STEP 1 — mockup left, copy right */}
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="bg-white rounded-[24px] shadow-xl p-6 border border-gray-100">
                 <div className="bg-brand-dark rounded-[16px] p-6 mb-4">
@@ -248,7 +248,7 @@ export default function CharmCardsPage() {
                     ))}
                   </div>
                   <div className="space-y-2">
-                    {['ðŸ“ St. Louis, MO', 'âœ‚ï¸ Cuts Â· Fades Â· Lineups', 'ðŸŒ wilsonbarberstudio.com'].map((item) => (
+                    {['St. Louis, MO St. Louis, MO', 'Cuts Cuts · Fades · Lineups', 'wilsonbarberstudio.com wilsonbarberstudio.com'].map((item) => (
                       <p key={item} className="text-white/70 text-xs">
                         {item}
                       </p>
@@ -287,7 +287,7 @@ export default function CharmCardsPage() {
               </div>
             </div>
 
-            {/* STEP 2 â€” copy left, mockup right */}
+            {/* STEP 2 — copy left, mockup right */}
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-brand-dark flex items-center justify-center mb-6">
@@ -296,10 +296,10 @@ export default function CharmCardsPage() {
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold text-brand-dark mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  Share your card â€” tap, scan, or send a link
+                  Share your card — tap, scan, or send a link
                 </h3>
                 <p className="text-paragraph leading-relaxed mb-4">
-                  Send your link, display your QR code, or tap your NFC card. Customers save it straight to their Apple or Google Wallet with one tap â€” no app
+                  Send your link, display your QR code, or tap your NFC card. Customers save it straight to their Apple or Google Wallet with one tap — no app
                   download ever required.
                 </p>
                 <ul className="space-y-2">
@@ -336,14 +336,14 @@ export default function CharmCardsPage() {
                   ].map((item) => (
                     <div key={item.label} className={`rounded-xl px-4 py-2.5 text-xs font-semibold flex items-center justify-between ${item.color}`}>
                       {item.label}
-                      <span>â€º</span>
+                      <span>—º</span>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* STEP 3 â€” mockup left, copy right */}
+            {/* STEP 3 — mockup left, copy right */}
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="bg-white rounded-[24px] shadow-xl p-6 border border-gray-100">
                 <p className="text-sm font-bold text-brand-dark mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -366,7 +366,7 @@ export default function CharmCardsPage() {
                       <span className="font-semibold text-brand-dark">{lead.name}</span>
                       <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold text-center ${lead.color}`}>{lead.source}</span>
                       <span className="text-gray-400">{lead.date}</span>
-                      <span className="text-brand-accent font-bold">Follow up â†’</span>
+                      <span className="text-brand-accent font-bold">Follow up →</span>
                     </div>
                   ))}
                 </div>
@@ -395,7 +395,7 @@ export default function CharmCardsPage() {
                   Capture leads and track every interaction
                 </h3>
                 <p className="text-paragraph leading-relaxed mb-4">
-                  Every card view, Pay Me tap, QR scan, and wallet save is tracked automatically. See who engaged and follow up with context â€” no missed leads, no
+                  Every card view, Pay Me tap, QR scan, and wallet save is tracked automatically. See who engaged and follow up with context — no missed leads, no
                   lost connections.
                 </p>
                 <ul className="space-y-2">
@@ -409,7 +409,7 @@ export default function CharmCardsPage() {
               </div>
             </div>
 
-            {/* STEP 4 â€” copy left, mockup right */}
+            {/* STEP 4 — copy left, mockup right */}
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-brand-accent flex items-center justify-center mb-6">
@@ -418,11 +418,11 @@ export default function CharmCardsPage() {
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold text-brand-dark mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  Get paid â€” directly from your card
+                  Get paid — directly from your card
                 </h3>
                 <p className="text-paragraph leading-relaxed mb-4">
                   Every card view is a payment opportunity. Your Pay Me button is one tap away from any device, anywhere. Accept cards, ACH, Apple Pay, and Google
-                  Pay â€” all through Charm Payments.
+                  Pay — all through Charm Payments.
                 </p>
                 <ul className="space-y-2">
                   {['No separate invoice app needed', 'Accept all major cards + digital wallets', 'Funds deposited next business day'].map((item) => (
@@ -447,7 +447,7 @@ export default function CharmCardsPage() {
                   <div className="w-5 h-5 rounded-full bg-brand-accent/20 flex items-center justify-center">
                     <CheckCircle className="w-3 h-3 text-brand-accent" strokeWidth={2} aria-hidden />
                   </div>
-                  <p className="text-xs text-gray-400">Secured by Charm Payments Â· licensed acquiring partners</p>
+                  <p className="text-xs text-gray-400">Secured by Charm Payments · licensed acquiring partners</p>
                 </div>
               </div>
             </div>
@@ -469,7 +469,7 @@ export default function CharmCardsPage() {
                 Barbers. Florists. Boutiques. Anyone who hustles.
               </h3>
               <p className="text-paragraph leading-relaxed">
-                Charm Cards are built for real St. Louis business owners â€” not corporate offices. One tap shares your info. One more tap gets you paid. No app
+                Charm Cards are built for real St. Louis business owners — not corporate offices. One tap shares your info. One more tap gets you paid. No app
                 download, no paper cards, no chasing invoices.
               </p>
             </div>
@@ -479,7 +479,7 @@ export default function CharmCardsPage() {
 
       <CardsTestimonialsSection />
 
-      {/* SECTION 4 â€” PRICING */}
+      {/* SECTION 4 — PRICING */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-3xl px-6">
           <div className="text-center reveal">
@@ -519,7 +519,7 @@ export default function CharmCardsPage() {
 
             <div className="rounded-[20px] border-2 border-brand-accent bg-brand-dark p-8 text-white">
               <span className="inline-block rounded-full bg-brand-accent px-4 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-brand-dark">
-                PRO â€” MOST POPULAR
+                PRO — MOST POPULAR
               </span>
               <div className="mt-6 flex flex-wrap items-baseline gap-1">
                 <span className="font-display text-4xl font-bold text-white">$25</span>
@@ -586,7 +586,7 @@ export default function CharmCardsPage() {
 
       <CardsFaqSection />
 
-      {/* SECTION 5 â€” DARK CTA (homepage SECTION 7 pattern) */}
+      {/* SECTION 5 — DARK CTA (homepage SECTION 7 pattern) */}
       <section
         className="section-ptb relative overflow-hidden px-6 text-center"
         style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 50%, #0f4a3d 100%)' }}

@@ -5,9 +5,9 @@ import { CheckCircle2, ArrowRight } from 'lucide-react'
 import { gatewayFeatures } from '@/lib/nmi-products'
 
 export const metadata: Metadata = {
-  title: 'Gateway Features â€” Charm Payments',
+  title: 'Gateway Features — Charm Payments',
   description:
-    'Virtual Terminal, Collect.js, Customer Vault, Recurring Billing, Fraud Prevention, Webhooks, 3DS, and more â€” all included in your Charm Payments gateway.',
+    'Virtual Terminal, Collect.js, Customer Vault, Recurring Billing, Fraud Prevention, Webhooks, 3DS, and more — all included in your Charm Payments gateway.',
 }
 
 export default function GatewayFeaturesPage() {
@@ -24,7 +24,7 @@ export default function GatewayFeaturesPage() {
             </h1>
             <p className="text-lg text-white/75 leading-relaxed">
               From accepting online payments with a single line of code to automating subscription
-              billing and preventing fraud before it happens â€” the payment infrastructure has it all built in.
+              billing and preventing fraud before it happens — the payment infrastructure has it all built in.
             </p>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function GatewayFeaturesPage() {
             <div className="charm-card p-8 bg-brand-dark text-white">
               <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
               <p className="text-white/70 mb-6 leading-relaxed">
-                Get Free Rate Audit and get access to the full payment infrastructure â€” including
+                Get Free Rate Audit and get access to the full payment infrastructure — including
                 every feature on this page.
               </p>
               <Link
@@ -110,7 +110,7 @@ export default function GatewayFeaturesPage() {
                 href="/contact"
                 className="mt-3 text-white/60 hover:text-white text-sm text-center block transition-colors"
               >
-                Have questions? Contact us first â†’
+                Have questions? Contact us first →
               </Link>
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function GatewayFeaturesPage() {
               Also Need Payment Hardware?
             </h3>
             <p className="text-gray-600 text-sm mt-1">
-              We offer certified payment infrastructure terminals for every environment â€” countertop, mobile, and
+              We offer certified payment infrastructure terminals for every environment — countertop, mobile, and
               unattended.
             </p>
           </div>

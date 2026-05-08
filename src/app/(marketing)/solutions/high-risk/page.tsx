@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: 'High Risk â€” Charm Payments',
+  title: 'High Risk — Charm Payments',
   description:
     'High Risk payment processing from Charm Payments. Built for connected payments gateway and licensed acquiring partners acquiring.',
 }
@@ -68,7 +68,7 @@ export default function HighRiskSolutionsPage() {
             )}
           >
             See All Features
-            <span aria-hidden>â†’</span>
+            <span aria-hidden>→</span>
           </Link>
           <Link
             href="/apply"

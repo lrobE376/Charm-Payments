@@ -19,7 +19,7 @@ export function BorderBeam({
   colorFrom?: string;
   colorTo?: string;
   borderWidth?: number;
-  /** Background color of the parent card â€” used to mask the interior. Defaults to Charm surface. */
+  /** Background color of the parent card — used to mask the interior. Defaults to Charm surface. */
   contentBackground?: string;
 }) {
   return (
@@ -36,7 +36,7 @@ export function BorderBeam({
         className,
       )}
     >
-      {/* Spinning conic gradient â€” clipped by the overflow:hidden parent */}
+      {/* Spinning conic gradient — clipped by the overflow:hidden parent */}
       <div
         style={{
           background: `conic-gradient(from 0deg, transparent 0%, ${colorFrom} 15%, ${colorTo} 30%, transparent 40%)`,

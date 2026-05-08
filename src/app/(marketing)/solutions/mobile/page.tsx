@@ -13,9 +13,9 @@ import { MagFinalCta } from '@/components/atelier/magazine/MagFinalCta'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'Mobile & On-the-Go Payment Processing â€“ Charm Payments',
+  title: 'Mobile & On-the-Go Payment Processing – Charm Payments',
   description:
-    'Square charges you the same flat rate on a debit card as a premium rewards card â€” even in the field. Charm shows you every fee, every card type, every time, with offline mode and text-to-pay built in.',
+    'Square charges you the same flat rate on a debit card as a premium rewards card — even in the field. Charm shows you every fee, every card type, every time, with offline mode and text-to-pay built in.',
 }
 
 const VERTICALS = [
@@ -43,7 +43,7 @@ const FEATURES = [
     figLabel: 'Mobile Reader',
     title: 'EMV and tap-to-pay on any device',
     description:
-      'Chip, tap, and swipe from any iOS or Android device. Works on 4G or WiFi. Connects to your payment infrastructure merchant account â€” same settlement, same reporting as your other channels.',
+      'Chip, tap, and swipe from any iOS or Android device. Works on 4G or WiFi. Connects to your payment infrastructure merchant account — same settlement, same reporting as your other channels.',
   },
   {
     figLabel: 'Text to Pay',
@@ -70,7 +70,7 @@ const WHY_CARDS = [
     fig: 'Reason 01',
     title: 'See every fee, every card, every time',
     description:
-      'Debit costs less than credit â€” even on mobile. No flat 2.6% regardless of card type.',
+      'Debit costs less than credit — even on mobile. No flat 2.6% regardless of card type.',
   },
   {
     fig: 'Reason 02',
@@ -94,7 +94,7 @@ const WHY_CARDS = [
 const TESTIMONIALS = [
   {
     quote:
-      'Taking payments at the farmers market used to be a hassle. Now it just works â€” tap, done, next customer.',
+      'Taking payments at the farmers market used to be a hassle. Now it just works — tap, done, next customer.',
     name: 'Angela T.',
     role: 'Farmers Market Vendor',
   },
@@ -119,7 +119,7 @@ const FAQS = [
   },
   {
     q: 'Does offline mode work for all transaction types?',
-    a: 'Offline mode queues card-present transactions. They are processed and settled when your device reconnects. There is a small risk tolerance window â€” we set it to match your typical transaction size.',
+    a: 'Offline mode queues card-present transactions. They are processed and settled when your device reconnects. There is a small risk tolerance window — we set it to match your typical transaction size.',
   },
   {
     q: 'Can I use text-to-pay without a card reader?',
@@ -148,24 +148,24 @@ export default function MobileSolutionsPage() {
       </div>
 
       <MagMetaStrip
-        issue="Charm Payments Â· Solutions"
+        issue="Charm Payments · Solutions"
         folio="Mobile & On-the-Go"
         filed="Filed 2026"
       />
 
       <MagHero
-        eyebrow="Mobile & On-the-Go Â· Payment Processing"
+        eyebrow="Mobile & On-the-Go · Payment Processing"
         headlineLines={[
           { text: "Square Charges You a Flat Rate in the Field. You Shouldn't Have to Accept That." },
         ]}
-        subtitle="Being mobile shouldn't mean paying more. Square and PayPal charge the same flat rate regardless of card type â€” and pocket the spread on every debit swipe. Charm shows you every fee, every card type, every time, with a reader, text-to-pay, and offline mode built for how you actually work."
+        subtitle="Being mobile shouldn't mean paying more. Square and PayPal charge the same flat rate regardless of card type — and pocket the spread on every debit swipe. Charm shows you every fee, every card type, every time, with a reader, text-to-pay, and offline mode built for how you actually work."
         primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
         secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         visualVariant="solutions-restaurants"
         visualSlot={
           <HeroVisual
             variant="solutions-restaurants"
-            caption="FIG. 01 â€” A SAMPLE STATEMENT"
+            caption="FIG. 01 — A SAMPLE STATEMENT"
           />
         }
         pills={HERO_PILLS}
@@ -210,7 +210,7 @@ export default function MobileSolutionsPage() {
 
       <MagFeatureList
         eyebrow="Built for mobile"
-        headline="Every Problem With Mobile Processing â€” Solved"
+        headline="Every Problem With Mobile Processing — Solved"
         items={FEATURES}
         columns={2}
       />
@@ -218,7 +218,7 @@ export default function MobileSolutionsPage() {
       <MagStickyCardScroll
         eyebrow="Why Charm Payments"
         headline="Mobile processors charge flat rates built for {their convenience}"
-        body="Square, PayPal, and Stripe are easy to start on â€” but they charge the same flat rate on a debit card as they do on a premium rewards card. At volume, that margin gap adds up to real money. With Charm, you see every fee, every card type, every time â€” debit costs what debit should cost, and your statement proves it."
+        body="Square, PayPal, and Stripe are easy to start on — but they charge the same flat rate on a debit card as they do on a premium rewards card. At volume, that margin gap adds up to real money. With Charm, you see every fee, every card type, every time — debit costs what debit should cost, and your statement proves it."
         cards={WHY_CARDS}
       />
 
@@ -271,7 +271,7 @@ export default function MobileSolutionsPage() {
                 margin: '14px 0 24px 0',
               }}
             >
-              Send us your last processor statement. We will line-item the comparison and show exactly what you save at your transaction mix â€” before you commit to anything.
+              Send us your last processor statement. We will line-item the comparison and show exactly what you save at your transaction mix — before you commit to anything.
             </p>
             <Link
               href="/quote"
@@ -284,7 +284,7 @@ export default function MobileSolutionsPage() {
               }}
             >
               Get your free audit
-              <span aria-hidden>â†’</span>
+              <span aria-hidden>→</span>
             </Link>
           </div>
         </div>
@@ -299,8 +299,8 @@ export default function MobileSolutionsPage() {
       <MagGradientBreak variant="light-to-forest" />
       <MagForestBand
         eyebrow="Built for mobile"
-        headline="Bad signal, no reader, client wants a link â€” one merchant account handles every scenario {without juggling multiple apps or paying multiple processors.}"
-        subtitle="Debit costs less than credit â€” even on mobile. Queue transactions in low-connectivity zones and sync automatically. Send a payment link by text â€” no reader required for every transaction. Month-to-month, built for businesses that move."
+        headline="Bad signal, no reader, client wants a link — one merchant account handles every scenario {without juggling multiple apps or paying multiple processors.}"
+        subtitle="Debit costs less than credit — even on mobile. Queue transactions in low-connectivity zones and sync automatically. Send a payment link by text — no reader required for every transaction. Month-to-month, built for businesses that move."
         stats={[
           { num: 'Audit', label: 'Statement-first intake' },
           { num: 'Offline', label: 'Mode included' },
@@ -316,7 +316,7 @@ export default function MobileSolutionsPage() {
           { text: 'Find Out How Much Your Mobile', size: 'normal' },
           { text: 'Processor Has Been Keeping.', italicTarget: 'Has Been Keeping.', size: 'normal' },
         ]}
-        subtitle="Your last statement is a flat number that hides what every card type actually costs. We'll break it down and show you exactly what changes with Charm â€” no commitment, no pressure."
+        subtitle="Your last statement is a flat number that hides what every card type actually costs. We'll break it down and show you exactly what changes with Charm — no commitment, no pressure."
         primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
         secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         gradientVariant="solutions-restaurants"

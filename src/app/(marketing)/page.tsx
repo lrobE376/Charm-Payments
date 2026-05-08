@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <MagPage
       meta={{
-        issue: 'Charm Payments Â· St. Louis, MO',
+        issue: 'Charm Payments · St. Louis, MO',
         folio: 'Accept payments. Reduce chargebacks. Manage the business.',
         filed: 'Filed 05.06.2026',
       }}
@@ -29,7 +29,14 @@ export default function HomePage() {
         primaryCta: { label: 'Get Free Rate Audit', href: '/quote' },
         secondaryCta: { label: 'Talk to Charm', href: '/contact' },
         visualVariant: 'home',
-        visualSlot: <HeroVisual variant="home" caption="FIG. 01 â€” A NEW STANDARD" />,
+        visualSlot: (
+          <HeroVisual
+            variant="home"
+            caption="FIG. 01 — A NEW STANDARD"
+            src="/images/pexels-rdne-7697434.jpg"
+            alt="Barber serving a client in a local merchant storefront."
+          />
+        ),
       }}
       marquee={{
         eyebrow: 'Accepted everywhere',
@@ -124,11 +131,11 @@ export default function HomePage() {
         rows: [
           { label: 'City', value: 'St. Louis, Missouri' },
           { label: 'Founded', value: '2024' },
-          { label: 'Support', value: 'Local Â· same time zone' },
+          { label: 'Support', value: 'Local · same time zone' },
           { label: 'Scope', value: 'St. Louis & nationwide' },
           { label: 'Documentary', value: 'Stripe Connect-ready merchant layer' },
           { label: 'Frame 001', value: 'Barber checking his Charm dashboard between clients.' },
-          { label: 'Geo', value: 'St. Louis, MO Â· 38.6270Â° N Â· 90.1994Â° W' },
+          { label: 'Geo', value: 'St. Louis, MO · 38.6270° N · 90.1994° W' },
         ],
         footnote:
           "From rate audit to chargeback support, Charm Connect is designed for merchants who want a serious operating layer before they commit to onboarding.",
@@ -150,27 +157,27 @@ export default function HomePage() {
         eyebrow: 'Why we win.',
         headline: "What your current setup doesn't {make easy} to audit.",
         theirs: {
-          label: 'Specimen A â€” The Other Guys',
+          label: 'Specimen A — The Other Guys',
           title: 'Extracted: $359.85/mo',
           items: [
-            'Discount rate Â· Bundled % Â· $269.00',
-            'Per-transaction Â· 120 Ã— $0.20 Â· $24.00',
-            'Statement fee Â· Monthly Â· $12.50',
-            'PCI compliance Â· Quarterly Â· $19.95',
-            'Non-qual surcharge Â· Card-mix Â· $28.40',
-            'Batch fee Â· Per close Â· $6.00',
+            'Discount rate · Bundled % · $269.00',
+            'Per-transaction · 120 × $0.20 · $24.00',
+            'Statement fee · Monthly · $12.50',
+            'PCI compliance · Quarterly · $19.95',
+            'Non-qual surcharge · Card-mix · $28.40',
+            'Batch fee · Per close · $6.00',
           ],
         },
         ours: {
-          label: 'Specimen B â€” Charm Payments',
-          title: 'Billed: $190.00/mo Â· You keep $169/mo Â· $2,028/yr',
+          label: 'Specimen B — Charm Payments',
+          title: 'Billed: $190.00/mo · You keep $169/mo · $2,028/yr',
           items: [
-            'Interchange Â· Passthrough Â· $165.00',
-            'Charm markup Â· Flat Â· $25.00',
-            'Statement fee Â· Not billed',
-            'PCI compliance Â· Not billed',
-            'Non-qual surcharge Â· Not billed',
-            'Batch fee Â· Not billed',
+            'Interchange · Passthrough · $165.00',
+            'Charm markup · Flat · $25.00',
+            'Statement fee · Not billed',
+            'PCI compliance · Not billed',
+            'Non-qual surcharge · Not billed',
+            'Batch fee · Not billed',
           ],
         },
       }}

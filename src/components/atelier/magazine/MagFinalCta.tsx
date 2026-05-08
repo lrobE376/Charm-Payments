@@ -133,7 +133,7 @@ export function MagFinalCta({
         tl.to(ctasRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.05')
       }
 
-      // Refinement 7: after the headline finishes, sweep italic-target color forest â†’ gold
+      // Refinement 7: after the headline finishes, sweep italic-target color forest → gold
       italRefs.current.forEach((italEl) => {
         if (!italEl) return
         tl.to(
@@ -172,7 +172,7 @@ export function MagFinalCta({
 
       <div className="relative mx-auto text-center" style={{ maxWidth: 760 }}>
         {(() => {
-          const isSection = eyebrow.trim().startsWith('Â§')
+          const isSection = eyebrow.trim().startsWith('§')
           const eyebrowClass = isSection
             ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
             : 'font-stripeSans'
@@ -250,7 +250,7 @@ export function MagFinalCta({
             )}
           >
             {primaryCta.label}
-            <span aria-hidden>â†’</span>
+            <span aria-hidden>→</span>
           </Link>
           {secondaryCta ? (
             <Link

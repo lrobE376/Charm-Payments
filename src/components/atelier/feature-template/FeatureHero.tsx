@@ -21,7 +21,7 @@ export function FeatureHero({
   primaryCta,
   secondaryCta,
 }: FeatureHeroProps) {
-  const isSection = breadcrumb.trim().startsWith('Â§')
+  const isSection = breadcrumb.trim().startsWith('§')
   const eyebrowClass = isSection
     ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold mb-base'
     : 'font-stripeSans mb-base'
@@ -115,7 +115,7 @@ export function FeatureHero({
                 )}
               >
                 {primaryCta.label}
-                <span aria-hidden>â†’</span>
+                <span aria-hidden>→</span>
               </Link>
 
               {secondaryCta ? (
@@ -135,7 +135,7 @@ export function FeatureHero({
           </div>
 
           <div>
-            <HeroVisual variant="feature" caption="FIG. 01 â€” A SAMPLE STATEMENT" />
+            <HeroVisual variant="feature" caption="FIG. 01 — A SAMPLE STATEMENT" />
           </div>
         </div>
       </Container>

@@ -89,7 +89,7 @@ export function DefenseNumbers() {
       className="bg-atelier-ink text-atelier-cream py-12 px-lg"
     >
       <Container>
-        <EyebrowTag section="Â§" label="THE NUMBERS" variant="gold" />
+        <EyebrowTag section="§" label="THE NUMBERS" variant="gold" />
 
         <div className="mt-2xl grid grid-cols-1 md:grid-cols-3">
           {STATS.map((s, i) => (
@@ -144,7 +144,7 @@ export function DefenseNumbers() {
               )}
             >
               Get Free Rate Audit
-              <span aria-hidden>â†—</span>
+              <span aria-hidden>↗</span>
             </a>
             <a
               href="/quote"

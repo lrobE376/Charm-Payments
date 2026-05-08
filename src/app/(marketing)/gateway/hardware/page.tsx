@@ -5,9 +5,9 @@ import { CheckCircle2, ArrowRight, Cpu } from 'lucide-react'
 import { hardwareDevices } from '@/lib/nmi-products'
 
 export const metadata: Metadata = {
-  title: 'Payment Hardware â€” Charm Payments',
+  title: 'Payment Hardware — Charm Payments',
   description:
-    'payment infrastructure-certified payment terminals for every environment. PAX A920 SmartPOS, Ingenico Lane/3000, and Lane/7000 â€” all EMV, NFC, and PCI PTS 5.X certified.',
+    'payment infrastructure-certified payment terminals for every environment. PAX A920 SmartPOS, Ingenico Lane/3000, and Lane/7000 — all EMV, NFC, and PCI PTS 5.X certified.',
 }
 
 const categories = [
@@ -153,7 +153,7 @@ export default function HardwarePage() {
                 </h2>
                 <p className="text-white/70 leading-relaxed mb-4">
                   payment infrastructure&apos;s unattended platform supports parking paystations, vending machines, kiosks,
-                  EV charging stations, transit ticketing, and toll booths â€” all managed through the
+                  EV charging stations, transit ticketing, and toll booths — all managed through the
                   same gateway dashboard.
                 </p>
                 <ul className="space-y-2">

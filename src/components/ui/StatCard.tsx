@@ -28,8 +28,8 @@ export default function StatCard({ label, value, sub, icon: Icon, trend, trendVa
                 trend === 'neutral' && 'text-gray-500'
               )}
             >
-              {trend === 'up' && 'â†‘ '}
-              {trend === 'down' && 'â†“ '}
+              {trend === 'up' && '↑ '}
+              {trend === 'down' && '↓ '}
               {trendValue}
             </p>
           )}

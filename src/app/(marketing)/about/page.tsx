@@ -5,9 +5,9 @@ import Link from 'next/link'
 import PrimaryCTA from '@/components/conversion/PrimaryCTA'
 
 export const metadata: Metadata = {
-  title: { absolute: 'About â€” Charm Payments' },
+  title: { absolute: 'About — Charm Payments' },
   description:
-    'Charm Payments is a St. Louis-based payment facilitator founded by Lee Robertson. We give Main Street merchants a local alternative to Square and Stripe â€” built on payment infrastructure and licensed acquiring partners.',
+    'Charm Payments is a St. Louis-based payment facilitator founded by Lee Robertson. We give Main Street merchants a local alternative to Square and Stripe — built on payment infrastructure and licensed acquiring partners.',
 }
 
 export default function AboutPage() {
@@ -23,7 +23,7 @@ export default function AboutPage() {
             </h1>
             <p className="text-white/75 mt-5 max-w-xl text-lg leading-relaxed">
               Charm Payments gives independent merchants a transparent, locally-owned alternative to
-              the big processors â€” with no hidden fees, real support, and the infrastructure of
+              the big processors — with no hidden fees, real support, and the infrastructure of
               enterprise acquirers behind it.
             </p>
             <div className="mt-8">
@@ -74,11 +74,11 @@ export default function AboutPage() {
               Lee Robertson brings more than 15 years of experience in information technology,
               systems integration, and business operations to Charm Payments. A proud Lincoln
               University of Missouri alumnus, Lee has spent his career understanding how technology
-              can remove friction for business owners â€” and how often it fails to.
+              can remove friction for business owners — and how often it fails to.
             </p>
             <p className="text-gray-600 mt-4 leading-relaxed">
               After watching friends and clients overpay for merchant processing through opaque flat
-              rates and arbitrary fees â€” and receiving no support when disputes arose â€” Lee founded
+              rates and arbitrary fees — and receiving no support when disputes arose — Lee founded
               Charm Payments to do things differently. The mission is simple: give St. Louis
               merchants the same pricing transparency, gateway technology, and acquiring infrastructure
               that enterprise retailers have, without the enterprise-level complexity.
@@ -116,7 +116,7 @@ export default function AboutPage() {
             </h2>
             <p className="text-gray-600 mt-5 text-lg leading-relaxed">
               Square and Stripe built their businesses around simplicity for startups. Independent
-              merchants â€” restaurants, salons, retailers, service businesses â€” deserve more than a
+              merchants — restaurants, salons, retailers, service businesses — deserve more than a
               one-size-fits-all flat rate. They deserve interchange-plus transparency, a real
               account manager they can call, and a processor that understands their industry.
             </p>
@@ -160,7 +160,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold text-gray-900">Enterprise infrastructure. Main Street pricing.</h2>
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
               We white-label the same gateway and acquiring network used by national chains and
-              enterprise retailers â€” and deliver it to independent merchants at competitive rates.
+              enterprise retailers — and deliver it to independent merchants at competitive rates.
             </p>
           </div>
 
@@ -172,8 +172,8 @@ export default function AboutPage() {
                 Network Merchants Inc. (payment infrastructure) is one of the largest independent payment gateways in
                 North America, processing billions in annual volume. Charm Payments operates as an
                 payment infrastructure white-label reseller, giving merchants access to payment infrastructure&apos;s full feature
-                suite â€” virtual terminal, customer vault, recurring billing, hosted fields,
-                iSpyFraud â€” under our brand.
+                suite — virtual terminal, customer vault, recurring billing, hosted fields,
+                iSpyFraud — under our brand.
               </p>
             </div>
             <div className="rounded-2xl border border-gray-100 bg-brand-light p-8">
@@ -205,8 +205,8 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-bold">Ready to work with a local processor?</h2>
           <p className="text-white/75 mt-4 leading-relaxed">
-            Apply online in minutes. Our team reviews applications within 24â€“48 hours and contacts
-            you directly â€” no automated runaround.
+            Apply online in minutes. Our team reviews applications within 24–48 hours and contacts
+            you directly — no automated runaround.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             <PrimaryCTA variant="on-dark" />
@@ -218,7 +218,7 @@ export default function AboutPage() {
             </Link>
           </div>
           <p className="mt-8 text-xs text-white/40">
-            Charm Payments Â· Charm Holdings LLC Â· St. Louis, MO Â· Northwest Registered Agent
+            Charm Payments · Charm Holdings LLC · St. Louis, MO · Northwest Registered Agent
           </p>
         </div>
       </section>

@@ -13,9 +13,9 @@ import { MagFinalCta } from '@/components/atelier/magazine/MagFinalCta'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'Beauty & Salons Payment Processing â€“ Charm Payments',
+  title: 'Beauty & Salons Payment Processing – Charm Payments',
   description:
-    "Your salon processor bundles fees you can't see and holds funds after your busiest days. Charm shows you every fee, every card type, every time â€” with local St. Louis support and 24-hour approval.",
+    "Your salon processor bundles fees you can't see and holds funds after your busiest days. Charm shows you every fee, every card type, every time — with local St. Louis support and 24-hour approval.",
 }
 
 const VERTICALS = [
@@ -39,27 +39,27 @@ const HERO_PILLS = [
 const FEATURES = [
   {
     figLabel: 'Tip Prompting',
-    title: 'Tips that settle clean â€” every time',
+    title: 'Tips that settle clean — every time',
     description:
-      'Tip adjustments after the fact are the number one chargeback trigger in beauty. Ours prompt at the terminal and settle with the original batch â€” no disputes, no manual math, no surprises on your statement.',
+      'Tip adjustments after the fact are the number one chargeback trigger in beauty. Ours prompt at the terminal and settle with the original batch — no disputes, no manual math, no surprises on your statement.',
   },
   {
     figLabel: 'Membership Billing',
     title: 'Automate your monthly memberships',
     description:
-      'Blowout clubs, waxing memberships, skincare plans â€” the revenue is supposed to be passive. Set the schedule once and smart retry logic handles failed cards. Stop chasing clients for money they already agreed to pay.',
+      'Blowout clubs, waxing memberships, skincare plans — the revenue is supposed to be passive. Set the schedule once and smart retry logic handles failed cards. Stop chasing clients for money they already agreed to pay.',
   },
   {
     figLabel: 'Card on File',
     title: 'Charge cards on file with one click',
     description:
-      'A card on file at booking means a no-show is a billable event, not a lost hour. Stored securely, charged with one click, fully PCI compliant. Your time has a price â€” now you can enforce it.',
+      'A card on file at booking means a no-show is a billable event, not a lost hour. Stored securely, charged with one click, fully PCI compliant. Your time has a price — now you can enforce it.',
   },
   {
     figLabel: 'Multi-Location',
     title: 'Every Stylist Tracked. One Login to See It All.',
     description:
-      'Booth renters and multi-location owners stop sharing one murky merchant account. Each chair or location has its own reporting. One dashboard, clear numbers â€” no more confusion about who processed what.',
+      'Booth renters and multi-location owners stop sharing one murky merchant account. Each chair or location has its own reporting. One dashboard, clear numbers — no more confusion about who processed what.',
   },
 ]
 
@@ -114,7 +114,7 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     q: 'Does Charm Payments handle tip adjustments?',
-    a: 'Yes. Tip prompts are built into the gateway and settle with the same batch as the original transaction â€” eliminating the most common chargeback trigger in beauty.',
+    a: 'Yes. Tip prompts are built into the gateway and settle with the same batch as the original transaction — eliminating the most common chargeback trigger in beauty.',
   },
   {
     q: 'Can I store client cards for recurring charges?',
@@ -122,7 +122,7 @@ const FAQS = [
   },
   {
     q: 'How long does approval take?',
-    a: 'We target 24 hours on complete applications. Most beauty businesses are straightforward â€” if you have your business docs ready, you can be processing fast.',
+    a: 'We target 24 hours on complete applications. Most beauty businesses are straightforward — if you have your business docs ready, you can be processing fast.',
   },
   {
     q: 'Do you support multiple locations?',
@@ -147,24 +147,24 @@ export default function BeautySolutionsPage() {
       </div>
 
       <MagMetaStrip
-        issue="Charm Payments Â· Solutions"
+        issue="Charm Payments · Solutions"
         folio="Beauty & Salons"
         filed="Filed 2026"
       />
 
       <MagHero
-        eyebrow="Beauty & Salons Â· Payment Processing"
+        eyebrow="Beauty & Salons · Payment Processing"
         headlineLines={[
           { text: 'Your Processor Is Taking More From Every Service Than You Know.' },
         ]}
-        subtitle="Every Saturday your processor closes the batch and quietly keeps the spread between what it costs them and what they charge you. Charm shows you every fee, every card type, every time â€” and gives you a real person to call when something goes wrong."
+        subtitle="Every Saturday your processor closes the batch and quietly keeps the spread between what it costs them and what they charge you. Charm shows you every fee, every card type, every time — and gives you a real person to call when something goes wrong."
         primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
         secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         visualVariant="solutions-restaurants"
         visualSlot={
           <HeroVisual
             variant="solutions-restaurants"
-            caption="FIG. 01 â€” A SAMPLE STATEMENT"
+            caption="FIG. 01 — A SAMPLE STATEMENT"
           />
         }
         pills={HERO_PILLS}
@@ -209,7 +209,7 @@ export default function BeautySolutionsPage() {
 
       <MagFeatureList
         eyebrow="Built for beauty"
-        headline="Every Problem Your Current Processor Creates â€” Solved"
+        headline="Every Problem Your Current Processor Creates — Solved"
         items={FEATURES}
         columns={2}
       />
@@ -217,7 +217,7 @@ export default function BeautySolutionsPage() {
       <MagStickyCardScroll
         eyebrow="Why Charm Payments"
         headline="Stop guessing what you actually earned"
-        body="Most beauty businesses are on flat-rate processors that bundle fees, hold funds after busy weekends, and make it impossible to audit what you paid. With Charm, you see every fee, every card type, every time â€” and when your card mix improves, so does your cost."
+        body="Most beauty businesses are on flat-rate processors that bundle fees, hold funds after busy weekends, and make it impossible to audit what you paid. With Charm, you see every fee, every card type, every time — and when your card mix improves, so does your cost."
         cards={WHY_CARDS}
       />
 
@@ -270,7 +270,7 @@ export default function BeautySolutionsPage() {
                 margin: '14px 0 24px 0',
               }}
             >
-              Send us your last merchant statement. We&apos;ll line-item every cost and show exactly what changes with Charm â€” before you commit to anything.
+              Send us your last merchant statement. We&apos;ll line-item every cost and show exactly what changes with Charm — before you commit to anything.
             </p>
             <Link
               href="/quote"
@@ -283,7 +283,7 @@ export default function BeautySolutionsPage() {
               }}
             >
               Get your free audit
-              <span aria-hidden>â†’</span>
+              <span aria-hidden>→</span>
             </Link>
           </div>
         </div>
@@ -299,7 +299,7 @@ export default function BeautySolutionsPage() {
       <MagForestBand
         eyebrow="Built for beauty"
         headline="Tips settle automatically. Memberships charge themselves. No-shows lose their leverage. {All without three separate apps or a single manual reconciliation.}"
-        subtitle="You see the exact interchange cost on every card type plus our fixed markup. When your terminal goes down on a Saturday, we pick up â€” real people, same time zone. No lock-in, no early termination penalties."
+        subtitle="You see the exact interchange cost on every card type plus our fixed markup. When your terminal goes down on a Saturday, we pick up — real people, same time zone. No lock-in, no early termination penalties."
         stats={[
           { num: 'Audit', label: 'Statement-first intake' },
           { num: '24 hours', label: 'Approval target' },
@@ -315,7 +315,7 @@ export default function BeautySolutionsPage() {
           { text: 'Find Out What Your Processor', size: 'normal' },
           { text: 'Has Been Keeping From You.', italicTarget: 'Has Been Keeping From You.', size: 'normal' },
         ]}
-        subtitle="Your last merchant statement is full of fees your processor designed to be invisible. We'll translate every line and show you exactly what changes with Charm â€” no commitment, no pressure."
+        subtitle="Your last merchant statement is full of fees your processor designed to be invisible. We'll translate every line and show you exactly what changes with Charm — no commitment, no pressure."
         primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
         secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         gradientVariant="solutions-restaurants"

@@ -23,31 +23,31 @@ const faqItems: { id: number; category: Category; q: string; a: string }[] = [
     id: 1,
     category: 'pricing',
     q: 'What are your processing rates?',
-    a: "Our Starter plan is a flat rate of 2.9% + $0.30 per transaction â€” no monthly fee and no setup fee. Our Growth plan uses interchange-plus pricing at IC+ 0.30%, which is the most transparent pricing model in the industry â€” you see exactly what the card network charges plus our fixed markup. Enterprise accounts receive custom volume-based pricing. All rates and fees are disclosed in your Merchant Agreement before you sign anything.",
+    a: "Our Starter plan is a flat rate of 2.9% + $0.30 per transaction — no monthly fee and no setup fee. Our Growth plan uses interchange-plus pricing at IC+ 0.30%, which is the most transparent pricing model in the industry — you see exactly what the card network charges plus our fixed markup. Enterprise accounts receive custom volume-based pricing. All rates and fees are disclosed in your Merchant Agreement before you sign anything.",
   },
   {
     id: 2,
     category: 'pricing',
     q: 'Are there monthly fees or hidden charges?',
-    a: "No monthly fees on Starter or Growth plans. No setup fees on any plan. The only costs you'll see are your per-transaction rates and standard card network assessment fees â€” which every processor passes through. We do not add hidden markups. Your complete Schedule of Fees is provided with your merchant application before you commit to anything.",
+    a: "No monthly fees on Starter or Growth plans. No setup fees on any plan. The only costs you'll see are your per-transaction rates and standard card network assessment fees — which every processor passes through. We do not add hidden markups. Your complete Schedule of Fees is provided with your merchant application before you commit to anything.",
   },
   {
     id: 3,
     category: 'pricing',
     q: 'What is interchange-plus pricing and why is it better?',
-    a: 'Interchange is the base cost that Visa or Mastercard charges for every transaction â€” it varies by card type. Interchange-plus pricing passes that exact base cost to you, then adds our fixed markup on top. You see both numbers on your statement. Compare this to flat-rate or tiered pricing where processors bundle everything together and pocket the difference. IC+ pricing typically saves businesses 15â€“30% compared to flat-rate at higher volumes.',
+    a: 'Interchange is the base cost that Visa or Mastercard charges for every transaction — it varies by card type. Interchange-plus pricing passes that exact base cost to you, then adds our fixed markup on top. You see both numbers on your statement. Compare this to flat-rate or tiered pricing where processors bundle everything together and pocket the difference. IC+ pricing typically saves businesses 15–30% compared to flat-rate at higher volumes.',
   },
   {
     id: 4,
     category: 'pricing',
     q: 'Are there fees for chargebacks?',
-    a: 'Yes â€” a chargeback fee applies when a cardholder disputes a transaction with their bank. This fee is disclosed in your Schedule of Fees before you sign up. The disputed amount is also temporarily held while the case is reviewed. We notify you immediately when a chargeback is filed and assist you in submitting evidence to contest it if you have grounds to do so.',
+    a: 'Yes — a chargeback fee applies when a cardholder disputes a transaction with their bank. This fee is disclosed in your Schedule of Fees before you sign up. The disputed amount is also temporarily held while the case is reviewed. We notify you immediately when a chargeback is filed and assist you in submitting evidence to contest it if you have grounds to do so.',
   },
   {
     id: 5,
     category: 'approval',
     q: 'How long does merchant approval take?',
-    a: 'Most standard merchant accounts are approved within 24â€“48 business hours. High-risk accounts or businesses with unusual processing history may take 3â€“5 business days. Once approved, our team configures your gateway and you can start accepting payments the same day. We handle the technical setup at no charge.',
+    a: 'Most standard merchant accounts are approved within 24–48 business hours. High-risk accounts or businesses with unusual processing history may take 3–5 business days. Once approved, our team configures your gateway and you can start accepting payments the same day. We handle the technical setup at no charge.',
   },
   {
     id: 6,
@@ -59,37 +59,37 @@ const faqItems: { id: number; category: Category; q: string; a: string }[] = [
     id: 7,
     category: 'approval',
     q: 'Do you approve high-risk merchants?',
-    a: 'Yes. We have specialized underwriting for industries that traditional processors often decline â€” including subscription businesses, high-ticket retail, continuity billing, and others. Contact our team to discuss your specific business type before applying so we can match you with the right underwriting pathway.',
+    a: 'Yes. We have specialized underwriting for industries that traditional processors often decline — including subscription businesses, high-ticket retail, continuity billing, and others. Contact our team to discuss your specific business type before applying so we can match you with the right underwriting pathway.',
   },
   {
     id: 8,
     category: 'tech',
     q: 'When do I receive my funds?',
-    a: 'Card transactions typically settle to your verified bank account within 1â€“2 business days. ACH transactions follow standard Nacha settlement timelines â€” generally 1â€“3 business days. Settlement timing is outlined in your Merchant Agreement. New merchants may have a brief holding period during initial processing as part of standard risk management.',
+    a: 'Card transactions typically settle to your verified bank account within 1–2 business days. ACH transactions follow standard Nacha settlement timelines — generally 1–3 business days. Settlement timing is outlined in your Merchant Agreement. New merchants may have a brief holding period during initial processing as part of standard risk management.',
   },
   {
     id: 9,
     category: 'tech',
     q: 'How do I integrate the payment gateway?',
-    a: 'We support many shopping cart integrations including WooCommerce, Shopify, Magento, BigCommerce, and more. We also offer a hosted payment page that requires zero development â€” just drop a link or button on your site. For custom integrations, payment infrastructure provides a full API with detailed documentation. Our team assists with setup and integration at no charge.',
+    a: 'We support many shopping cart integrations including WooCommerce, Shopify, Magento, BigCommerce, and more. We also offer a hosted payment page that requires zero development — just drop a link or button on your site. For custom integrations, payment infrastructure provides a full API with detailed documentation. Our team assists with setup and integration at no charge.',
   },
   {
     id: 10,
     category: 'tech',
     q: 'Is there a long-term contract?',
-    a: 'No long-term contracts on Starter or Growth plans â€” both are month-to-month. You can cancel at any time. Enterprise accounts may include negotiated term agreements based on volume commitments, which are clearly disclosed before signing.',
+    a: 'No long-term contracts on Starter or Growth plans — both are month-to-month. You can cancel at any time. Enterprise accounts may include negotiated term agreements based on volume commitments, which are clearly disclosed before signing.',
   },
   {
     id: 11,
     category: 'chargebacks',
     q: 'What happens when I get a chargeback?',
-    a: 'When a cardholder disputes a transaction with their bank, the bank files a chargeback against your merchant account. The disputed amount is temporarily held and a chargeback fee is charged. Our team notifies you immediately with the dispute amount, reason code, and response deadline. We guide you through submitting evidence to contest the chargeback if you have grounds to do so. The final outcome is determined by the card network â€” not Charm Payments.',
+    a: 'When a cardholder disputes a transaction with their bank, the bank files a chargeback against your merchant account. The disputed amount is temporarily held and a chargeback fee is charged. Our team notifies you immediately with the dispute amount, reason code, and response deadline. We guide you through submitting evidence to contest the chargeback if you have grounds to do so. The final outcome is determined by the card network — not Charm Payments.',
   },
   {
     id: 12,
     category: 'chargebacks',
     q: 'How can I prevent chargebacks?',
-    a: 'Our chargeback prevention tools include real-time alerts, dispute documentation support, and fraud screening through the payment infrastructure. Clear communication with your customers also helps â€” use a recognizable business name on card statements, provide clear refund policies, and respond quickly to customer complaints. On the technical side, use AVS (Address Verification) and CVV verification on card-not-present transactions, enable 3D Secure for e-commerce, and keep transaction records and shipping confirmations for every order. Our iSpyFraud screening also flags suspicious transactions before they process.',
+    a: 'Our chargeback prevention tools include real-time alerts, dispute documentation support, and fraud screening through the payment infrastructure. Clear communication with your customers also helps — use a recognizable business name on card statements, provide clear refund policies, and respond quickly to customer complaints. On the technical side, use AVS (Address Verification) and CVV verification on card-not-present transactions, enable 3D Secure for e-commerce, and keep transaction records and shipping confirmations for every order. Our iSpyFraud screening also flags suspicious transactions before they process.',
   },
 ]
 
@@ -113,7 +113,7 @@ export function FaqPageClient() {
 
   return (
     <>
-      {/* SECTION 1 â€” HERO */}
+      {/* SECTION 1 — HERO */}
       <section
         className="relative px-6 py-20 text-center md:py-28"
         style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 100%)' }}
@@ -127,7 +127,7 @@ export function FaqPageClient() {
         </div>
       </section>
 
-      {/* SECTION 2 â€” TABS + ACCORDION */}
+      {/* SECTION 2 — TABS + ACCORDION */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-4xl px-6">
           <div className="flex flex-wrap justify-center gap-2 md:gap-3">
@@ -220,7 +220,7 @@ export function FaqPageClient() {
         </div>
       </div>
 
-      {/* SECTION 3 â€” CTA */}
+      {/* SECTION 3 — CTA */}
       <section className="bg-brand-light px-6 py-16 text-center">
         <h2 className="font-display text-2xl font-bold text-[var(--heading)] md:text-3xl">Still Have Questions?</h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-gray-600">

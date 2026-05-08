@@ -5,7 +5,7 @@ import { FooterAtelier } from '@/components/marketing/FooterAtelier'
 export const metadata: Metadata = {
   title: 'Payment Processing Built for Business',
   description:
-    'Charm Payments gives St. Louis small businesses enterprise-grade payment processing â€” credit cards, ACH, Apple Pay, and more. No long-term contracts.',
+    'Charm Payments gives St. Louis small businesses enterprise-grade payment processing — credit cards, ACH, Apple Pay, and more. No long-term contracts.',
 }
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {

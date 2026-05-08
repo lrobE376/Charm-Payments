@@ -18,16 +18,16 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Payment Processing Features â€” Charm Payments',
+  title: 'Payment Processing Features — Charm Payments',
   description:
-    'Every feature included with your Charm Payments merchant account â€” virtual terminal, invoicing, text to pay, recurring billing, QR codes, fraud screening, and more.',
+    'Every feature included with your Charm Payments merchant account — virtual terminal, invoicing, text to pay, recurring billing, QR codes, fraud screening, and more.',
 }
 
 const coreFeatures = [
   {
     icon: Monitor,
     name: 'Virtual Terminal',
-    desc: 'Accept payments from any browser â€” no hardware needed. Key in card details manually for phone orders, mail orders, and MOTO transactions. Works on any device, anywhere.',
+    desc: 'Accept payments from any browser — no hardware needed. Key in card details manually for phone orders, mail orders, and MOTO transactions. Works on any device, anywhere.',
     features: [
       'Accept Visa, MC, Amex, Discover',
       'Phone and mail order ready',
@@ -50,28 +50,28 @@ const coreFeatures = [
   {
     icon: RefreshCw,
     name: 'Recurring Billing',
-    desc: 'Set up automatic charges on any schedule â€” weekly, monthly, or annually. Perfect for memberships, retainers, subscription boxes, and service contracts.',
+    desc: 'Set up automatic charges on any schedule — weekly, monthly, or annually. Perfect for memberships, retainers, subscription boxes, and service contracts.',
     features: ['Weekly, monthly, or custom schedule', 'Automatic retry on failed payments', 'Customer vault for stored cards', 'Included in all plans'],
   },
   {
     icon: QrCode,
     name: 'QR Code Payments',
-    desc: 'Generate a payment QR code and put it anywhere â€” receipts, business cards, flyers, menus, storefronts. Customer scans and pays. Zero hardware required.',
+    desc: 'Generate a payment QR code and put it anywhere — receipts, business cards, flyers, menus, storefronts. Customer scans and pays. Zero hardware required.',
     features: ['Instant QR code generation', 'Print on any marketing material', 'Contactless and hygienic', 'Included in all plans'],
   },
   {
     icon: Globe,
     name: 'E-Commerce Gateway',
     desc: 'Connect your online store to Charm Payments with one line of code using Collect.js. Supports 125+ shopping carts including Shopify, WooCommerce, and Magento.',
-    features: ['Collect.js â€” single line of code', '125+ shopping cart integrations', 'Hosted payment page included', 'Apple Pay and Google Pay ready'],
+    features: ['Collect.js — single line of code', '125+ shopping cart integrations', 'Hosted payment page included', 'Apple Pay and Google Pay ready'],
   },
 ] as const
 
 const omniItems = [
   { icon: Globe, title: 'Online', desc: 'E-commerce, hosted pages, buy buttons, and Collect.js' },
   { icon: Store, title: 'In-Store', desc: 'Card present terminals with WiFi and 4G cellular backup' },
-  { icon: Smartphone, title: 'Mobile', desc: 'Tap to Pay on iPhone and Android â€” no hardware needed' },
-  { icon: Phone, title: 'Phone & Mail', desc: 'Virtual terminal for MOTO â€” key in card details manually' },
+  { icon: Smartphone, title: 'Mobile', desc: 'Tap to Pay on iPhone and Android — no hardware needed' },
+  { icon: Phone, title: 'Phone & Mail', desc: 'Virtual terminal for MOTO — key in card details manually' },
 ] as const
 
 const fraudItems = [
@@ -80,7 +80,7 @@ const fraudItems = [
     desc: 'AI-powered screening on every transaction. Flags suspicious patterns before they become chargebacks.',
   },
   {
-    title: 'KountÂ® Advanced Fraud Prevention',
+    title: 'Kount® Advanced Fraud Prevention',
     desc: "Enterprise-grade fraud AI used by the world's largest merchants. Machine learning that improves with every transaction.",
   },
   {
@@ -108,8 +108,8 @@ const addOnRows = [
   { feature: 'Automatic Card Updater', monthly: '$5.00/mo', perTxn: '$0.20/record', bestFor: 'Subscription businesses' },
   { feature: 'Payer Authentication', monthly: '$9.00/mo', perTxn: '$0.09/txn', bestFor: 'High-risk reduction' },
   { feature: 'Kount Advanced Fraud', monthly: '$7.00/mo', perTxn: '$0.07/txn', bestFor: 'High volume merchants' },
-  { feature: 'Card Present Device', monthly: '$8.00/mo', perTxn: 'â€”', bestFor: 'Retail / restaurant' },
-  { feature: 'iProcess Mobile Reader', monthly: '$2.50/mo', perTxn: 'â€”', bestFor: 'Mobile merchants' },
+  { feature: 'Card Present Device', monthly: '$8.00/mo', perTxn: '—', bestFor: 'Retail / restaurant' },
+  { feature: 'iProcess Mobile Reader', monthly: '$2.50/mo', perTxn: '—', bestFor: 'Mobile merchants' },
   { feature: 'Electronic Checks (ACH)', monthly: '$15.00/mo', perTxn: '$0.20/txn', bestFor: 'B2B / high ticket' },
   { feature: 'Level III Processing', monthly: '$10.00/mo', perTxn: '$0.10/txn', bestFor: 'B2B / government' },
 ] as const
@@ -119,7 +119,7 @@ const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay
 export default function FeaturesPage() {
   return (
     <>
-      {/* SECTION 1 â€” DARK HERO */}
+      {/* SECTION 1 — DARK HERO */}
       <section
         className="relative overflow-hidden px-6 py-20 text-center md:py-28"
         style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 100%)' }}
@@ -130,7 +130,7 @@ export default function FeaturesPage() {
             {`Every Tool Your Business\nNeeds to Get Paid`}
           </h1>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-white/75">
-            One merchant account. One gateway. Every payment feature included â€” virtual terminal, invoicing, text to pay, recurring billing, QR codes, and fraud
+            One merchant account. One gateway. Every payment feature included — virtual terminal, invoicing, text to pay, recurring billing, QR codes, and fraud
             protection. No separate apps. No extra subscriptions.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -163,7 +163,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* SECTION 2 â€” CORE FEATURES */}
+      {/* SECTION 2 — CORE FEATURES */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center reveal">
@@ -172,7 +172,7 @@ export default function FeaturesPage() {
               <span className="gradient-text">{`Built for How\nReal Businesses Work`}</span>
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-lg text-[var(--paragraph)]/90">
-              Every Charm Payments merchant account includes these tools from day one â€” no upgrades required.
+              Every Charm Payments merchant account includes these tools from day one — no upgrades required.
             </p>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -197,7 +197,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* SECTION 3 â€” ACCEPT ANYWHERE */}
+      {/* SECTION 3 — ACCEPT ANYWHERE */}
       <section className="section-ptb bg-brand-light">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center reveal">
@@ -206,7 +206,7 @@ export default function FeaturesPage() {
               {`Accept Payments\nAnywhere Customers Are`}
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-lg text-[var(--paragraph)]/90">
-              Online, in-store, mobile, or over the phone â€” Charm Payments works across every channel your business operates in.
+              Online, in-store, mobile, or over the phone — Charm Payments works across every channel your business operates in.
             </p>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -221,7 +221,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* SECTION 4 â€” FRAUD AND SECURITY */}
+      {/* SECTION 4 — FRAUD AND SECURITY */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center reveal">
@@ -230,7 +230,7 @@ export default function FeaturesPage() {
               {`Bank-Level Security\nOn Every Transaction`}
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-lg text-[var(--paragraph)]/90">
-              Every Charm Payments account includes multiple layers of fraud protection â€” from basic screening to Kount Advanced, the same AI fraud system used by
+              Every Charm Payments account includes multiple layers of fraud protection — from basic screening to Kount Advanced, the same AI fraud system used by
               Fortune 500 companies.
             </p>
           </div>
@@ -278,7 +278,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* SECTION 5 â€” ADD-ON PRODUCTS */}
+      {/* SECTION 5 — ADD-ON PRODUCTS */}
       <section className="section-ptb bg-brand-light">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center reveal">
@@ -326,7 +326,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* SECTION 6 â€” INTEGRATIONS */}
+      {/* SECTION 6 — INTEGRATIONS */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center reveal">
@@ -335,7 +335,7 @@ export default function FeaturesPage() {
               {`Connects to the Tools\nYou Already Use`}
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-lg text-[var(--paragraph)]/90">
-              many payment processor connections and 125+ shopping cart integrations â€” Charm Payments works with your existing stack out of the box.
+              many payment processor connections and 125+ shopping cart integrations — Charm Payments works with your existing stack out of the box.
             </p>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-3">
@@ -343,7 +343,7 @@ export default function FeaturesPage() {
               <ShoppingCart className="h-8 w-8 text-brand-dark" aria-hidden />
               <h3 className="font-display mt-4 text-xl font-bold text-[var(--heading)]">E-Commerce Platforms</h3>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                Shopify Â· WooCommerce Â· Magento Â· BigCommerce Â· OpenCart Â· PrestaShop Â· osCommerce Â· Volusion
+                Shopify · WooCommerce · Magento · BigCommerce · OpenCart · PrestaShop · osCommerce · Volusion
               </p>
               <p className="mt-4 text-xs font-semibold text-brand-dark">125+ total integrations</p>
             </div>
@@ -351,7 +351,7 @@ export default function FeaturesPage() {
               <Code className="h-8 w-8 text-brand-dark" aria-hidden />
               <h3 className="font-display mt-4 text-xl font-bold text-[var(--heading)]">Developer APIs &amp; SDKs</h3>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                REST API Â· Collect.js Â· Direct Post Â· Gateway Emulator Â· Webhooks Â· Batch Upload Â· iOS SDK Â· Android SDK
+                REST API · Collect.js · Direct Post · Gateway Emulator · Webhooks · Batch Upload · iOS SDK · Android SDK
               </p>
               <p className="mt-4 text-xs font-semibold text-brand-dark">Full API documentation included</p>
             </div>
@@ -359,7 +359,7 @@ export default function FeaturesPage() {
               <Building2 className="h-8 w-8 text-brand-dark" aria-hidden />
               <h3 className="font-display mt-4 text-xl font-bold text-[var(--heading)]">Payment Networks</h3>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                Visa Â· Mastercard Â· Discover Â· American Express Â· JCB Â· Diners Club Â· China Union Pay Â· Apple Pay Â· Google Pay
+                Visa · Mastercard · Discover · American Express · JCB · Diners Club · China Union Pay · Apple Pay · Google Pay
               </p>
               <p className="mt-4 text-xs font-semibold text-brand-dark">USD, CAD + international processors</p>
             </div>
@@ -367,7 +367,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* SECTION 7 â€” DARK CTA */}
+      {/* SECTION 7 — DARK CTA */}
       <section
         className="section-ptb px-6 text-center"
         style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 50%, #0f4a3d 100%)' }}
@@ -378,7 +378,7 @@ export default function FeaturesPage() {
             {`Everything Included.\nNo Feature Paywalls.`}
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-white/75">
-            Every Charm Payments merchant account comes with the full payment infrastructure â€” virtual terminal, recurring billing, QR codes, e-commerce integrations, and fraud
+            Every Charm Payments merchant account comes with the full payment infrastructure — virtual terminal, recurring billing, QR codes, e-commerce integrations, and fraud
             protection. Apply in minutes. Approved in 48 hours.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
