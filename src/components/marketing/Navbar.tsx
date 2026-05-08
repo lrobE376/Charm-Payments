@@ -1,4 +1,4 @@
-// src/components/marketing/Navbar.tsx
+﻿// src/components/marketing/Navbar.tsx
 'use client'
 
 import Link from 'next/link'
@@ -59,7 +59,7 @@ const solutionsItems: { href: string; name: string; desc: string; Icon: LucideIc
 ]
 
 const gatewayItems: { href: string; name: string; desc: string; Icon: LucideIcon }[] = [
-  { href: '/gateway',          name: 'Gateway Overview',  desc: 'The full NMI platform',                 Icon: Globe   },
+  { href: '/gateway',          name: 'Gateway Overview',  desc: 'The full payment infrastructure platform',                 Icon: Globe   },
   { href: '/gateway/features', name: 'Gateway Features',  desc: 'Virtual Terminal, Vault, Fraud & more', Icon: Zap     },
   { href: '/gateway/hardware', name: 'Payment Hardware',  desc: 'PAX A920, Lane/3000, Lane/7000',        Icon: Cpu     },
 ]
@@ -144,8 +144,8 @@ export default function Navbar() {
       {/* Utility bar */}
       <div className="hidden bg-[var(--primary)] py-2 text-sm text-white md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-end gap-6 px-6">
-          <a href="tel:+13145550198" className="transition-colors hover:text-[var(--atelier-gold)]">
-            +1 (314) 555-0198
+          <a href="mailto:merchants@charmpayments.com" className="transition-colors hover:text-[var(--atelier-gold)]">
+            merchants@charmpayments.com
           </a>
           <a href="mailto:merchants@charmpayments.com" className="transition-colors hover:text-[var(--atelier-gold)]">
             merchants@charmpayments.com
@@ -365,7 +365,7 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-4 md:flex">
             <Button size="sm" asChild>
-              <Link href="/apply">Apply Now</Link>
+              <Link href="/apply">Get Free Rate Audit</Link>
             </Button>
           </div>
 
@@ -418,7 +418,7 @@ export default function Navbar() {
                     onClick={closeAllMobile}
                     className="py-2 text-sm font-semibold text-[var(--secondary)]"
                   >
-                    See all features →
+                    See all features â†’
                   </Link>
                 </div>
               )}
@@ -449,7 +449,7 @@ export default function Navbar() {
                     onClick={closeAllMobile}
                     className="py-2 text-sm font-semibold text-[var(--secondary)]"
                   >
-                    All solutions →
+                    All solutions â†’
                   </Link>
                 </div>
               )}
@@ -499,7 +499,7 @@ export default function Navbar() {
               >
                 <Button size="sm" asChild>
                   <Link href="/apply" onClick={closeAllMobile}>
-                    Apply Now
+                    Get Free Rate Audit
                   </Link>
                 </Button>
               </div>
@@ -510,3 +510,6 @@ export default function Navbar() {
     </div>
   )
 }
+
+
+

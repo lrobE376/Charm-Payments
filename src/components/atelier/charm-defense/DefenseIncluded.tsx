@@ -1,4 +1,4 @@
-// src/components/atelier/charm-defense/DefenseIncluded.tsx
+﻿// src/components/atelier/charm-defense/DefenseIncluded.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -15,25 +15,25 @@ const FEATURES = [
     id: 'alerts',
     title: 'Real-time chargeback alerts',
     description:
-      'Visa and Mastercard alerts intercept disputes before they post. Stay below the 1% threshold and protect your processing eligibility — automatically.',
+      'Visa and Mastercard alerts intercept disputes before they post. Stay below the 1% threshold and protect your processing eligibility â€” automatically.',
   },
   {
     id: 'evidence',
     title: 'Automated evidence packets',
     description:
-      'Charm pulls every relevant data point — transaction logs, customer history, shipping confirmation, IP, device fingerprint — and assembles a complete, optimized dispute response.',
+      'Charm pulls every relevant data point â€” transaction logs, customer history, shipping confirmation, IP, device fingerprint â€” and assembles a complete, optimized dispute response.',
   },
   {
     id: 'friendly-fraud',
     title: 'Friendly-fraud prevention',
     description:
-      'Block known digital shoplifters before they ship. Every Charm merchant benefits from the network — repeat offenders flagged across thousands of accounts.',
+      'Block known digital shoplifters before they ship. Every Charm merchant benefits from the network â€” repeat offenders flagged across thousands of accounts.',
   },
   {
     id: 'managed',
     title: 'Fully managed end-to-end',
     description:
-      "From the first alert to the final recovery. You get a notification when we win — that's the only thing on your plate.",
+      "From the first alert to the final recovery. You get a notification when we win â€” that's the only thing on your plate.",
   },
 ]
 
@@ -79,7 +79,7 @@ export function DefenseIncluded() {
     <section ref={sectionRef} className="bg-atelier-creamWarm py-9 px-lg">
       <Container>
         <div className="mb-2xl">
-          <EyebrowTag section="§" label="WHAT'S INCLUDED" />
+          <EyebrowTag section="Â§" label="WHAT'S INCLUDED" />
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',
@@ -114,3 +114,6 @@ export function DefenseIncluded() {
     </section>
   )
 }
+
+
+

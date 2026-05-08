@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 
@@ -124,9 +124,12 @@ export default function CardsNfcDemo() {
       </div>
 
       <p className="mt-4 text-xs leading-relaxed text-gray-600">
-        Demo profile (illustrative): <span className="font-semibold text-brand-dark">Marcus B.</span> · Master Barber · The Grove — phone, Pay Me, and Book Now rows
+        Demo profile (illustrative): <span className="font-semibold text-brand-dark">Marcus B.</span> Â· Master Barber Â· The Grove â€” phone, Pay Me, and Book Now rows
         appear after tap.
       </p>
     </div>
   )
 }
+
+
+

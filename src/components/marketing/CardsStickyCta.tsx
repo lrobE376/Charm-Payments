@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
@@ -47,9 +47,12 @@ export default function CardsStickyCta() {
           href="/cards"
           className="btn-accent ml-3 inline-flex min-h-[48px] flex-1 items-center justify-center"
         >
-          Get Your Card →
+          Get Your Card â†’
         </Link>
       </div>
     </div>
   )
 }
+
+
+

@@ -1,7 +1,7 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Privacy Policy — Charm Payments' },
+  title: { absolute: 'Privacy Policy â€” Charm Payments' },
   description:
     'Learn how Charm Payments collects, uses, and protects your business and personal information as a merchant account holder.',
 }
@@ -43,7 +43,7 @@ export default function PrivacyPage() {
           Contact Us
         </h2>
         <p className="text-paragraph mb-4">
-          Questions about this policy? Email us at merchants@charmpayments.com or call +1 (314) 555-0198.
+          Questions about this policy? Email us at merchants@charmpayments.com or call merchants@charmpayments.com.
         </p>
         <p className="text-sm text-gray-400 mt-12">
           Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds
@@ -53,3 +53,6 @@ export default function PrivacyPage() {
     </section>
   )
 }
+
+
+

@@ -1,4 +1,4 @@
-// src/components/atelier/feature-template/FeatureFaq.tsx
+﻿// src/components/atelier/feature-template/FeatureFaq.tsx
 import { Container } from '@/components/atelier/Container'
 import { cn } from '@/lib/utils'
 
@@ -12,7 +12,7 @@ export type FeatureFaqProps = {
 
 export function FeatureFaq({ eyebrow, title, items }: FeatureFaqProps) {
   const eyebrowText = eyebrow ?? 'Questions'
-  const isSection = eyebrowText.trim().startsWith('§')
+  const isSection = eyebrowText.trim().startsWith('Â§')
   const eyebrowClass = isSection
     ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
     : 'font-stripeSans'
@@ -84,3 +84,6 @@ export function FeatureFaq({ eyebrow, title, items }: FeatureFaqProps) {
     </section>
   )
 }
+
+
+

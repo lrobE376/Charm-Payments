@@ -1,4 +1,4 @@
-// src/components/atelier/charm-defense/DefenseNumbers.tsx
+﻿// src/components/atelier/charm-defense/DefenseNumbers.tsx
 'use client'
 
 import { useEffect, useMemo, useRef } from 'react'
@@ -89,7 +89,7 @@ export function DefenseNumbers() {
       className="bg-atelier-ink text-atelier-cream py-12 px-lg"
     >
       <Container>
-        <EyebrowTag section="§" label="THE NUMBERS" variant="gold" />
+        <EyebrowTag section="Â§" label="THE NUMBERS" variant="gold" />
 
         <div className="mt-2xl grid grid-cols-1 md:grid-cols-3">
           {STATS.map((s, i) => (
@@ -143,8 +143,8 @@ export function DefenseNumbers() {
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
               )}
             >
-              Apply for a Charm account
-              <span aria-hidden>↗</span>
+              Get Free Rate Audit
+              <span aria-hidden>â†—</span>
             </a>
             <a
               href="/quote"
@@ -163,3 +163,6 @@ export function DefenseNumbers() {
     </section>
   )
 }
+
+
+

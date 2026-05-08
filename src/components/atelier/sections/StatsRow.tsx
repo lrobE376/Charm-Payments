@@ -1,4 +1,4 @@
-// src/components/atelier/sections/StatsRow.tsx
+﻿// src/components/atelier/sections/StatsRow.tsx
 'use client'
 
 import { useEffect, useMemo, useRef } from 'react'
@@ -140,3 +140,6 @@ export function StatsRow() {
     </section>
   )
 }
+
+
+

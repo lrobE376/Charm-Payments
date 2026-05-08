@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/HeroVisual.tsx
+﻿// src/components/atelier/magazine/HeroVisual.tsx
 import Image from 'next/image'
 
 export type HeroVisualVariant =
@@ -15,44 +15,14 @@ export type HeroVisualProps = {
   alt?: string
 }
 
-const VARIANT_TINT: Record<HeroVisualVariant, { from: string; to: string; ring: string }> = {
-  home: {
-    from: 'rgba(30,92,53,0.10)',
-    to: 'rgba(189,153,82,0.06)',
-    ring: 'rgba(30,92,53,0.18)',
-  },
-  'solutions-restaurants': {
-    from: 'rgba(189,153,82,0.14)',
-    to: 'rgba(30,92,53,0.06)',
-    ring: 'rgba(189,153,82,0.22)',
-  },
-  defense: {
-    from: 'rgba(42,191,160,0.10)',
-    to: 'rgba(30,92,53,0.10)',
-    ring: 'rgba(42,191,160,0.20)',
-  },
-  feature: {
-    from: 'rgba(245,242,234,0.55)',
-    to: 'rgba(189,153,82,0.06)',
-    ring: 'rgba(0,0,0,0.10)',
-  },
-  custom: {
-    from: 'rgba(0,0,0,0.04)',
-    to: 'rgba(0,0,0,0.02)',
-    ring: 'rgba(0,0,0,0.10)',
-  },
-}
-
-export function HeroVisual({ variant, caption, src, alt }: HeroVisualProps) {
-  const tint = VARIANT_TINT[variant]
-
+export function HeroVisual({ caption, src, alt }: HeroVisualProps) {
   return (
-    <figure className="flex flex-col items-stretch gap-3" style={{ width: 360 }}>
+    <figure className="flex w-full max-w-[360px] flex-col items-stretch gap-3">
       {src ? (
         <div
           className="relative overflow-hidden"
           style={{
-            width: 360,
+            width: '100%',
             height: 360,
             borderRadius: 8,
             border: '0.5px solid rgba(0,0,0,0.08)',
@@ -68,7 +38,7 @@ export function HeroVisual({ variant, caption, src, alt }: HeroVisualProps) {
           />
         </div>
       ) : (
-        <Placeholder tint={tint} />
+        <Placeholder />
       )}
 
       <figcaption
@@ -81,13 +51,13 @@ export function HeroVisual({ variant, caption, src, alt }: HeroVisualProps) {
   )
 }
 
-function Placeholder({ tint: _tint }: { tint: { from: string; to: string; ring: string } }) {
+function Placeholder() {
   // Pattern is neutral across variants. The variant tint travels through the FIG label only.
   return (
     <div
       className="relative overflow-hidden"
       style={{
-        width: 360,
+        width: '100%',
         height: 360,
         borderRadius: 8,
         border: `0.5px dashed rgba(0,0,0,0.18)`,
@@ -95,7 +65,7 @@ function Placeholder({ tint: _tint }: { tint: { from: string; to: string; ring: 
       }}
       aria-hidden
     >
-      {/* Concentric rings — quiet, geometric, intentional */}
+      {/* Concentric rings â€” quiet, geometric, intentional */}
       <svg
         className="absolute inset-0 m-auto"
         width="220"
@@ -137,14 +107,17 @@ function Placeholder({ tint: _tint }: { tint: { from: string; to: string; ring: 
         className="absolute bottom-3 left-3 font-atelierMono text-[10px] uppercase tracking-label"
         style={{ color: 'rgba(0,0,0,0.35)' }}
       >
-        Image slot · 360 × 360
+        Image slot Â· 360 Ã— 360
       </div>
       <div
         className="absolute top-3 right-3 font-atelierMono text-[10px] uppercase tracking-label"
         style={{ color: 'rgba(0,0,0,0.35)' }}
       >
-        ↗
+        â†—
       </div>
     </div>
   )
 }
+
+
+

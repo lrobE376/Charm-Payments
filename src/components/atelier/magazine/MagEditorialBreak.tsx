@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagEditorialBreak.tsx
+﻿// src/components/atelier/magazine/MagEditorialBreak.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -72,3 +72,6 @@ export function MagEditorialBreak({ text }: MagEditorialBreakProps) {
     </section>
   )
 }
+
+
+

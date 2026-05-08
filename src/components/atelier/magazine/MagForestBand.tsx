@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagForestBand.tsx
+﻿// src/components/atelier/magazine/MagForestBand.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -89,20 +89,20 @@ export function MagForestBand({
       '+=0.05',
     )
 
-    // Parallax — driven by section progress through the viewport
+    // Parallax â€” driven by section progress through the viewport
     const parallaxTrigger = ScrollTrigger.create({
       trigger: section,
       start: 'top bottom',
       end: 'bottom top',
       onUpdate: (self) => {
         const p = self.progress // 0 entering, 1 exiting
-        // Layer 1 (gold): translateY (-60 → +60), translateX (-20 → +20)
+        // Layer 1 (gold): translateY (-60 â†’ +60), translateX (-20 â†’ +20)
         if (goldLayer) {
           const y = -60 + p * 120
           const x = -20 + p * 40
           goldLayer.style.transform = `translate(${x}px, ${y}px)`
         }
-        // Layer 2 (teal): translateY (+80 → -80), translateX (+30 → -30)
+        // Layer 2 (teal): translateY (+80 â†’ -80), translateX (+30 â†’ -30)
         if (tealLayer) {
           const y = 80 - p * 160
           const x = 30 - p * 60
@@ -123,7 +123,7 @@ export function MagForestBand({
       className="relative overflow-hidden bg-forest-band text-apple-canvas"
       style={{ padding: '100px 32px' }}
     >
-      {/* Background image slot — sits behind glow layers */}
+      {/* Background image slot â€” sits behind glow layers */}
       {backgroundImage ? (
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <Image
@@ -141,7 +141,7 @@ export function MagForestBand({
           className="pointer-events-none absolute inset-0"
           style={{ opacity: 0.08 }}
         >
-          {/* Empty placeholder — subtle concentric circles in white/gold */}
+          {/* Empty placeholder â€” subtle concentric circles in white/gold */}
           <svg
             className="absolute inset-0 m-auto"
             width="640"
@@ -166,7 +166,7 @@ export function MagForestBand({
               color: 'rgba(255,255,255,0.3)',
             }}
           >
-            Background image slot · full-bleed
+            Background image slot Â· full-bleed
           </div>
         </div>
       )}
@@ -294,3 +294,6 @@ export function MagForestBand({
     </section>
   )
 }
+
+
+

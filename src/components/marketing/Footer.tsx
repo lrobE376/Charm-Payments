@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <Image src="/images/logo.png" alt="Charm Payments" width={220} height={66} className="h-12 w-auto object-contain" />
             <p className="mt-4 text-sm text-white/70 leading-relaxed">
-              Enterprise payment processing for businesses of all sizes — powered by NMI Gateway and First Data/Fiserv acquiring.
+              Enterprise payment processing for businesses of all sizes â€” Built for connected payments Gateway and licensed acquiring partners acquiring.
             </p>
           </div>
           <div>
@@ -20,7 +20,7 @@ export default function Footer() {
                   ['Terms & Conditions', '/terms'],
                   ['Privacy Policy', '/privacy'],
                   ['Pricing Plans', '/pricing'],
-                  ['Get a Quote', '/quote'],
+                  ['Get Free Rate Audit', '/quote'],
                   ['FAQ', '/faq'],
                   ['Contact Us', '/contact'],
                 ] as const
@@ -77,8 +77,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="tel:+13145550198" className="hover:text-brand-accent transition-colors">
-                  +1 (314) 555-0198
+                <a href="mailto:merchants@charmpayments.com" className="hover:text-brand-accent transition-colors">
+                  merchants@charmpayments.com
                 </a>
               </li>
             </ul>
@@ -94,20 +94,20 @@ export default function Footer() {
           <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">Processing partners &amp; infrastructure</p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-6 md:gap-12">
             <div className="flex h-12 min-w-[140px] items-center justify-center rounded-lg border border-white/15 bg-white/5 px-6">
-              <span className="text-sm font-black tracking-tight text-white">NMI Gateway</span>
+              <span className="text-sm font-black tracking-tight text-white">payment infrastructure</span>
             </div>
             <div className="flex h-12 min-w-[140px] items-center justify-center rounded-lg border border-white/15 bg-white/5 px-6">
-              <span className="text-sm font-black tracking-tight text-white">First Data</span>
+              <span className="text-sm font-black tracking-tight text-white">licensed acquiring partners</span>
             </div>
           </div>
           <p className="mx-auto mt-3 max-w-2xl text-center text-[10px] leading-relaxed text-white/35">
-            Enterprise-grade gateway and acquiring rails — bank-level security and PCI-compliant tokenization.
+            Enterprise-grade gateway and acquiring rails â€” bank-level security and PCI-compliant tokenization.
           </p>
         </div>
       </div>
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
-          <p>© Charm Payments — A Charm Holdings LLC Company</p>
+          <p>Â© Charm Payments â€” A Charm Holdings LLC Company</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors">
               Privacy Policy
@@ -121,3 +121,6 @@ export default function Footer() {
     </footer>
   )
 }
+
+
+

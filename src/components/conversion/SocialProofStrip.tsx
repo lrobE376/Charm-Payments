@@ -1,7 +1,7 @@
-import { BadgeCheck, MapPin } from 'lucide-react'
+﻿import { BadgeCheck, MapPin } from 'lucide-react'
 
 /**
- * B2B trust strip — word-style marks (no trademark artwork) + partner badges.
+ * B2B trust strip â€” word-style marks (no trademark artwork) + partner badges.
  */
 export default function SocialProofStrip() {
   return (
@@ -24,7 +24,7 @@ export default function SocialProofStrip() {
             style={{ background: 'var(--secondary-container)', color: 'var(--primary)', outline: '1px solid var(--outline-variant)' }}
           >
             <BadgeCheck className="h-4 w-4 shrink-0" style={{ color: 'var(--atelier-gold)' }} aria-hidden />
-            Official NMI Certified Partner
+            Platform support layer
           </span>
           <span
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold"
@@ -38,3 +38,6 @@ export default function SocialProofStrip() {
     </section>
   )
 }
+
+
+

@@ -1,8 +1,8 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import { FaqPageClient } from './faq-page-client'
 
 export const metadata: Metadata = {
-  title: 'FAQ — Payment Processing Questions',
+  title: 'FAQ â€” Payment Processing Questions',
   description:
     'Get answers to common questions about Charm Payments merchant accounts, processing fees, setup time, supported payment types, and more.',
 }
@@ -10,3 +10,6 @@ export const metadata: Metadata = {
 export default function FaqPage() {
   return <FaqPageClient />
 }
+
+
+

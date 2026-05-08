@@ -1,5 +1,5 @@
-/**
- * Trust signals above the fold — payment brands + NMI.
+﻿/**
+ * Trust signals above the fold â€” payment brands + payment infrastructure.
  * Word-style marks only (no trademark assets) for safe display.
  */
 export default function TrustBar({ className = '' }: { className?: string }) {
@@ -27,10 +27,13 @@ export default function TrustBar({ className = '' }: { className?: string }) {
           ))}
         </div>
         <p className="text-center text-xs font-semibold text-[var(--heading)]/80 sm:text-right">
-          <span className="text-brand-accent">●</span> Powered by{' '}
-          <span className="font-bold text-brand-dark">NMI Gateway</span>
+          <span className="text-brand-accent">â—</span> Built for{' '}
+          <span className="font-bold text-brand-dark">payment infrastructure</span>
         </p>
       </div>
     </div>
   )
 }
+
+
+

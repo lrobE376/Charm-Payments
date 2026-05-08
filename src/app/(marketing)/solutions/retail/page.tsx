@@ -1,4 +1,4 @@
-// src/app/(marketing)/solutions/retail/page.tsx
+﻿// src/app/(marketing)/solutions/retail/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MagMetaStrip } from '@/components/atelier/magazine/MagMetaStrip'
@@ -13,16 +13,16 @@ import { MagFinalCta } from '@/components/atelier/magazine/MagFinalCta'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'Retail & Boutique Payment Processing – Charm Payments',
+  title: 'Retail & Boutique Payment Processing â€“ Charm Payments',
   description:
-    'Your retail processor charges the same blended rate on a basic debit card and a premium Amex — and keeps the spread. Charm shows you every fee, every card type, every time, with no hidden markup.',
+    'Your retail processor charges the same blended rate on a basic debit card and a premium Amex â€” and keeps the spread. Charm shows you every fee, every card type, every time, with no hidden markup.',
 }
 
 const VERTICALS = [
   'Clothing Boutiques',
   'Shoe Stores',
   'Gift & Specialty Shops',
-  'Home Goods & Décor',
+  'Home Goods & DÃ©cor',
   'Bookstores',
   'Toy & Hobby Shops',
   'Jewelry Retailers',
@@ -32,34 +32,34 @@ const VERTICALS = [
 const HERO_PILLS = [
   'See every fee, every card, every time',
   'POS + e-commerce unified',
-  '200+ cart integrations',
+  'many cart integrations',
   'No long-term contracts',
 ]
 
 const FEATURES = [
   {
     figLabel: 'In-Store POS',
-    title: 'Works with 200+ POS systems',
+    title: 'Works with many POS systems',
     description:
-      'NMI connects to the POS you already use. Tap, chip, swipe — every card type, every customer. No rip-and-replace required.',
+      'payment infrastructure connects to the POS you already use. Tap, chip, swipe â€” every card type, every customer. No rip-and-replace required.',
   },
   {
     figLabel: 'Online + In-Store',
     title: 'One gateway for your whole business',
     description:
-      'Brick-and-mortar and e-commerce run through the same NMI account. Unified reporting across channels. No reconciling two separate systems at month-end.',
+      'Brick-and-mortar and e-commerce run through the same payment infrastructure account. Unified reporting across channels. No reconciling two separate systems at month-end.',
   },
   {
     figLabel: 'Installment Plans',
     title: 'Layaway and installments built in',
     description:
-      'Accept partial payments at purchase and automatically charge remaining balances on your schedule — without a third-party app eating into margin.',
+      'Accept partial payments at purchase and automatically charge remaining balances on your schedule â€” without a third-party app eating into margin.',
   },
   {
     figLabel: 'Fraud Defense',
     title: 'Chargeback protection tuned for retail',
     description:
-      'iSpyFraud rule sets, AVS matching, CVV verification, and 3D Secure — all configurable to your transaction mix. Dispute tools ready when you need them.',
+      'iSpyFraud rule sets, AVS matching, CVV verification, and 3D Secure â€” all configurable to your transaction mix. Dispute tools ready when you need them.',
   },
 ]
 
@@ -68,7 +68,7 @@ const WHY_CARDS = [
     fig: 'Reason 01',
     title: 'See every fee, every card, every time',
     description:
-      'Debit costs less than credit — as it should. Every card type listed separately on your statement.',
+      'Debit costs less than credit â€” as it should. Every card type listed separately on your statement.',
   },
   {
     fig: 'Reason 02',
@@ -114,15 +114,15 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     q: 'Can I use my existing POS hardware?',
-    a: 'In most cases, yes. NMI integrates with 200+ POS systems. We will confirm compatibility during onboarding before you commit to anything.',
+    a: 'In most cases, yes. payment infrastructure integrates with many POS systems. We will confirm compatibility during onboarding before you commit to anything.',
   },
   {
     q: 'How does unified reporting work across in-store and online?',
-    a: 'Both channels run through the same NMI merchant account. Every transaction appears in one dashboard regardless of where it originated.',
+    a: 'Both channels run through the same payment infrastructure merchant account. Every transaction appears in one dashboard regardless of where it originated.',
   },
   {
     q: 'What happens when a customer disputes a charge?',
-    a: 'You get a clear notification with the evidence window timeline. NMI provides documentation tools and our team walks you through the response process.',
+    a: 'You get a clear notification with the evidence window timeline. payment infrastructure provides documentation tools and our team walks you through the response process.',
   },
   {
     q: 'Do you support Apple Pay and Google Pay?',
@@ -143,28 +143,28 @@ export default function RetailSolutionsPage() {
           color: 'rgba(0,0,0,0.5)',
         }}
       >
-        Trusted by 500+ St. Louis merchants
+        Built for serious independent merchants
       </div>
 
       <MagMetaStrip
-        issue="Charm Payments · Solutions"
+        issue="Charm Payments Â· Solutions"
         folio="Retail & Boutiques"
         filed="Filed 2026"
       />
 
       <MagHero
-        eyebrow="Retail & Boutiques · Payment Processing"
+        eyebrow="Retail & Boutiques Â· Payment Processing"
         headlineLines={[
           { text: "Your Processor Charges You the Same Rate on Debit and Amex. It Shouldn't." },
         ]}
-        subtitle="Every time a customer pays with a basic debit card, your flat-rate processor still charges you the premium rate — and pockets the difference. Charm shows you every fee, every card type, every time, across every channel you sell through."
-        primaryCta={{ label: 'Get My Free Rate Audit', href: '/apply' }}
-        secondaryCta={{ label: 'Free Rate Audit', href: '/quote' }}
+        subtitle="Every time a customer pays with a basic debit card, your flat-rate processor still charges you the premium rate â€” and pockets the difference. Charm shows you every fee, every card type, every time, across every channel you sell through."
+        primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
+        secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         visualVariant="solutions-restaurants"
         visualSlot={
           <HeroVisual
             variant="solutions-restaurants"
-            caption="FIG. 01 — A SAMPLE STATEMENT"
+            caption="FIG. 01 â€” A SAMPLE STATEMENT"
           />
         }
         pills={HERO_PILLS}
@@ -209,15 +209,15 @@ export default function RetailSolutionsPage() {
 
       <MagFeatureList
         eyebrow="Built for retail"
-        headline="Every Way You Sell — Without Paying More Than You Should"
+        headline="Every Way You Sell â€” Without Paying More Than You Should"
         items={FEATURES}
         columns={2}
       />
 
       <MagStickyCardScroll
         eyebrow="Why Charm Payments"
-        headline="Square works fine — until your {volume grows}"
-        body="Flat-rate processors are easy to start on. But every time a customer swipes an Amex Platinum or a premium Visa Rewards card, you pay the same blended rate — while the processor pockets the spread. At real retail volume, that margin gap is significant."
+        headline="Square works fine â€” until your {volume grows}"
+        body="Flat-rate processors are easy to start on. But every time a customer swipes an Amex Platinum or a premium Visa Rewards card, you pay the same blended rate â€” while the processor pockets the spread. At real retail volume, that margin gap is significant."
         cards={WHY_CARDS}
       />
 
@@ -270,7 +270,7 @@ export default function RetailSolutionsPage() {
                 margin: '14px 0 24px 0',
               }}
             >
-              Send us your last merchant statement. We will line-item every cost and show exactly what changes with Charm — before you commit to anything.
+              Send us your last merchant statement. We will line-item every cost and show exactly what changes with Charm â€” before you commit to anything.
             </p>
             <Link
               href="/quote"
@@ -283,7 +283,7 @@ export default function RetailSolutionsPage() {
               }}
             >
               Get your free audit
-              <span aria-hidden>→</span>
+              <span aria-hidden>â†’</span>
             </Link>
           </div>
         </div>
@@ -298,11 +298,11 @@ export default function RetailSolutionsPage() {
       <MagGradientBreak variant="light-to-forest" />
       <MagForestBand
         eyebrow="Built for retail"
-        headline="Register, website, pop-up — one merchant account covers every channel with {unified reporting and no separate processors eating into margin.}"
-        subtitle="Debit costs less than credit — as it should. In-store, online, and mobile in one dashboard with one reconciliation at month-end. Complete application in the morning, processing by the next day. Month-to-month — no penalty if your needs change."
+        headline="Register, website, pop-up â€” one merchant account covers every channel with {unified reporting and no separate processors eating into margin.}"
+        subtitle="Debit costs less than credit â€” as it should. In-store, online, and mobile in one dashboard with one reconciliation at month-end. Complete application in the morning, processing by the next day. Month-to-month â€” no penalty if your needs change."
         stats={[
-          { num: '500+', label: 'St. Louis merchants' },
-          { num: '200+', label: 'POS systems' },
+          { num: 'Audit', label: 'Statement-first intake' },
+          { num: 'Tools', label: 'Workflow-ready' },
           { num: '24 hours', label: 'Approval target' },
         ]}
       />
@@ -315,11 +315,14 @@ export default function RetailSolutionsPage() {
           { text: 'Find Out What Square Has Been', size: 'normal' },
           { text: 'Keeping From Every Sale.', italicTarget: 'Keeping From Every Sale.', size: 'normal' },
         ]}
-        subtitle="Your last statement is a blended number designed to be hard to question. We'll break it into every card type, every fee, and show you exactly what changes with Charm — no commitment, no pressure."
-        primaryCta={{ label: 'Get My Free Audit', href: '/apply' }}
-        secondaryCta={{ label: 'Free Rate Audit', href: '/quote' }}
+        subtitle="Your last statement is a blended number designed to be hard to question. We'll break it into every card type, every fee, and show you exactly what changes with Charm â€” no commitment, no pressure."
+        primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
+        secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         gradientVariant="solutions-restaurants"
       />
     </>
   )
 }
+
+
+

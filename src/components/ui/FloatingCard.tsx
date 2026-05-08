@@ -1,4 +1,4 @@
-// src/components/ui/FloatingCard.tsx
+﻿// src/components/ui/FloatingCard.tsx
 'use client'
 
 import { motion } from 'framer-motion'
@@ -25,3 +25,6 @@ export default function FloatingCard({
     </motion.div>
   )
 }
+
+
+

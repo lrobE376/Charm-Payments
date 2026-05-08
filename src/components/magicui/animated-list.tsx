@@ -1,4 +1,4 @@
-// src/components/magicui/animated-list.tsx
+﻿// src/components/magicui/animated-list.tsx
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -52,3 +52,6 @@ export function AnimatedListItem({ children }: { children: ReactNode }) {
     </motion.div>
   );
 }
+
+
+

@@ -1,4 +1,4 @@
-// src/components/atelier/sections/Hero.tsx
+﻿// src/components/atelier/sections/Hero.tsx
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
@@ -182,20 +182,20 @@ export function Hero() {
               Your current processor bundles fees you can&apos;t audit, holds
               funds you&apos;ve already earned, and routes you to a chatbot
               when something breaks. We&apos;ll show you exactly what
-              you&apos;re paying — and what changes with Charm.
+              you&apos;re paying â€” and what changes with Charm.
             </p>
             <div className="flex gap-sm flex-wrap mb-lg">
               <a
                 href="/apply"
                 className="inline-flex items-center gap-xs bg-atelier-forest text-atelier-cream px-[18px] py-[10px] text-[12px] font-medium rounded-atelierXs hover:opacity-90 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold"
               >
-                Apply Now
+                Get Free Rate Audit
               </a>
               <a
                 href="/quote"
                 className="inline-flex items-center text-atelier-gold px-1 py-[10px] text-[12px] hover:opacity-80 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold"
               >
-                Free Rate Audit →
+                Free Rate Audit â†’
               </a>
             </div>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-3.5 gap-y-2 max-w-[380px]">
@@ -205,7 +205,7 @@ export function Hero() {
                   className="flex items-center gap-2 text-[12px] text-atelier-cream/85"
                 >
                   <span className="text-atelier-gold" aria-hidden>
-                    ✓
+                    âœ“
                   </span>
                   <span>{b}</span>
                 </li>
@@ -296,3 +296,6 @@ export function Hero() {
     </section>
   )
 }
+
+
+

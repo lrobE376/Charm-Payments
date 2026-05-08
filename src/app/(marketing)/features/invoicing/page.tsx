@@ -1,4 +1,4 @@
-// src/app/(marketing)/features/invoicing/page.tsx
+﻿// src/app/(marketing)/features/invoicing/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -24,14 +24,14 @@ import { Marquee } from '@/components/magicui/marquee'
 import WaitlistForm from './WaitlistForm'
 
 export const metadata: Metadata = {
-  title: 'Charm Invoicing — Charm Payments',
+  title: 'Charm Invoicing â€” Charm Payments',
   description:
-    'Free professional invoicing for independent consultants and freelancers. Automatic payment reminders, online payment links, and next-day funding — built into your Charm Payments account.',
+    'Free professional invoicing for independent consultants and freelancers. Automatic payment reminders, online payment links, and next-day funding â€” built into your Charm Payments account.',
 }
 
 const pageDisclaimer = (
   <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-relaxed text-white/60">
-    Charm Payments is a registered ISO/Agent of Fiserv/First Data Merchant Services. Processing services are subject to merchant approval and compliance with applicable
+    Charm Payments is a registered ISO/Agent of licensed acquiring partners/licensed acquiring partners Merchant Services. Processing services are subject to merchant approval and compliance with applicable
     regulations.
   </p>
 )
@@ -75,7 +75,7 @@ const painCards = [
   {
     Icon: HelpCircle,
     title: '"I thought I paid that"',
-    body: "The client is certain they sent it. You check your bank. Nothing. You spend an hour tracing email threads, finding proof, feeling like the villain in your own story — because you asked to be paid for work you already did.",
+    body: "The client is certain they sent it. You check your bank. Nothing. You spend an hour tracing email threads, finding proof, feeling like the villain in your own story â€” because you asked to be paid for work you already did.",
   },
   {
     Icon: Calendar,
@@ -93,12 +93,12 @@ const turnBlocks = [
   {
     Icon: CheckCircle,
     title: 'You stop being the collector',
-    body: "Charm sends the reminders on a schedule you set. Day 7, day 14, day 30 — automatically. You never have to write another 'just following up' email. The relationship stays intact. The invoice gets paid.",
+    body: "Charm sends the reminders on a schedule you set. Day 7, day 14, day 30 â€” automatically. You never have to write another 'just following up' email. The relationship stays intact. The invoice gets paid.",
   },
   {
     Icon: Zap,
     title: 'They pay the first time',
-    body: "Your client gets a clean invoice with a single payment link. Card, ACH, bank transfer — whatever's easiest for them. No account required. No PDF to print and mail. Most pay the same day.",
+    body: "Your client gets a clean invoice with a single payment link. Card, ACH, bank transfer â€” whatever's easiest for them. No account required. No PDF to print and mail. Most pay the same day.",
   },
   {
     Icon: Smile,
@@ -116,7 +116,7 @@ const steps = [
   {
     Icon: CreditCard,
     title: 'Your client pays online',
-    body: 'They get an email with a secure payment link. Card, ACH, or bank transfer — no account required. Most clients pay within 24 hours.',
+    body: 'They get an email with a secure payment link. Card, ACH, or bank transfer â€” no account required. Most clients pay within 24 hours.',
   },
   {
     Icon: TrendingUp,
@@ -126,14 +126,14 @@ const steps = [
   {
     Icon: Settings,
     title: 'Charm handles the rest',
-    body: "Automatic reminders on your schedule. Late fee triggers if you've set them. A full audit trail of every invoice, every payment, every status — without you lifting a finger.",
+    body: "Automatic reminders on your schedule. Late fee triggers if you've set them. A full audit trail of every invoice, every payment, every status â€” without you lifting a finger.",
   },
 ]
 
 const compareRows = [
-  { feature: 'Monthly software fee',         current: '$15 – $60 / month',  charm: '$0' },
+  { feature: 'Monthly software fee',         current: '$15 â€“ $60 / month',  charm: '$0' },
   { feature: 'Per-invoice fee',              current: 'Up to $1 / invoice', charm: '$0' },
-  { feature: 'Payment processing cut',       current: '2.9% – 3.5% + fees', charm: 'Your standard Charm rate' },
+  { feature: 'Payment processing cut',       current: '2.9% â€“ 3.5% + fees', charm: 'Your standard Charm rate' },
   { feature: 'Automatic payment reminders',  current: 'You do it manually',  charm: 'Included' },
   { feature: 'Client self-pay portal',       current: 'Paid tier only',      charm: 'Included' },
   { feature: 'Branded PDF invoices',         current: 'Paid tier only',      charm: 'Included' },
@@ -142,15 +142,15 @@ const compareRows = [
 ]
 
 const trustItems = [
-  { Icon: Shield,    name: 'NMI Gateway',        subtitle: 'Processing $3B+ annually' },
-  { Icon: Building2, name: 'First Data / Fiserv', subtitle: '40+ years of acquiring'  },
+  { Icon: Shield,    name: 'payment infrastructure',        subtitle: 'Processing $3B+ annually' },
+  { Icon: Building2, name: 'licensed acquiring partners', subtitle: 'subject to approval'  },
   { Icon: Award,     name: 'Charm Holdings LLC',  subtitle: 'Registered ISO/Agent'    },
 ]
 
 export default function InvoicingPage() {
   return (
     <>
-      {/* ── Section 1: Hero ─────────────────────────────────────── */}
+      {/* â”€â”€ Section 1: Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section
         className="relative overflow-hidden px-6 py-20 text-center md:py-28"
         style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 100%)' }}
@@ -163,7 +163,7 @@ export default function InvoicingPage() {
             </SparklesText>
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-            Send a professional invoice. Get paid the next business day. Let Charm send the reminders, chase the late payments, and keep the books — so you don&apos;t have to.
+            Send a professional invoice. Get paid the next business day. Let Charm send the reminders, chase the late payments, and keep the books â€” so you don&apos;t have to.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <div className="relative inline-flex overflow-hidden rounded-[0.375rem]">
@@ -186,7 +186,7 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 2: Pain — dark gradient, white cards with icons ─ */}
+      {/* â”€â”€ Section 2: Pain â€” dark gradient, white cards with icons â”€ */}
       <section
         className="section-ptb"
         style={{ background: 'linear-gradient(to bottom, #0a1f14, #0f2819)' }}
@@ -212,7 +212,7 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 3: The Turn — cream with radial glow, grid, gold icons */}
+      {/* â”€â”€ Section 3: The Turn â€” cream with radial glow, grid, gold icons */}
       <section
         className="section-ptb bg-[#fdf9ed]"
         style={{ backgroundImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,169,110,0.10) 0%, transparent 70%)' }}
@@ -235,7 +235,7 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 4: How It Works — pure white, large numbered steps ─ */}
+      {/* â”€â”€ Section 4: How It Works â€” pure white, large numbered steps â”€ */}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-7xl px-6">
           <p className="section-label">HOW IT WORKS</p>
@@ -260,7 +260,7 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 5: The Real Math — cream tint, dense table ──────── */}
+      {/* â”€â”€ Section 5: The Real Math â€” cream tint, dense table â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="section-ptb bg-[#fdf9ed]">
         <div className="mx-auto max-w-5xl px-6">
           <p className="section-label">THE REAL COST OF WHAT YOU&apos;RE USING NOW</p>
@@ -289,7 +289,7 @@ export default function InvoicingPage() {
           </div>
           <div className="mt-8 rounded-2xl bg-[#004421] px-8 py-6">
             <p className="text-base font-medium leading-relaxed text-white">
-              For a consultant invoicing $15,000/month, switching to Charm typically saves $400–$800 per year plus 40–60 hours of admin time.
+              For a consultant invoicing $15,000/month, switching to Charm typically saves $400â€“$800 per year plus 40â€“60 hours of admin time.
             </p>
           </div>
           <p className="mt-4 text-xs text-[#3d3d2e]/70">
@@ -298,7 +298,7 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 6: Why This Works — dark forest, white text, Marquee */}
+      {/* â”€â”€ Section 6: Why This Works â€” dark forest, white text, Marquee */}
       <section className="section-ptb bg-[#004421]">
         <div className="mx-auto max-w-7xl px-6">
           <p className="section-label !border-white/20 !bg-white/10 !text-brand-accent">BUILT ON REAL INFRASTRUCTURE</p>
@@ -316,7 +316,7 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 7: FAQ — white, understated ─────────────────────*/}
+      {/* â”€â”€ Section 7: FAQ â€” white, understated â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€*/}
       <section className="section-ptb bg-white">
         <div className="mx-auto max-w-3xl px-6">
           <p className="section-label">YOU PROBABLY HAVE QUESTIONS</p>
@@ -324,15 +324,15 @@ export default function InvoicingPage() {
           <div className="mt-8">
             <FaqItem
               q="Is Charm Invoicing really free?"
-              a="No monthly fee. No per-invoice charge. No software subscription. You pay only the processing rate on payments you collect — the same rate you'd pay anyway for card processing."
+              a="No monthly fee. No per-invoice charge. No software subscription. You pay only the processing rate on payments you collect â€” the same rate you'd pay anyway for card processing."
             />
             <FaqItem
               q="Do I need an existing Charm Payments account?"
-              a="Yes — Charm Invoicing is built into your Charm merchant account. If you don't have one yet, you can apply at the same time you join the waitlist."
+              a="Yes â€” Charm Invoicing is built into your Charm merchant account. If you don't have one yet, you can apply at the same time you join the waitlist."
             />
             <FaqItem
               q="What does payment processing actually cost?"
-              a="Rates are quote-based and depend on your business and volume. Most merchants pay between 2.3% and 2.9% plus a small per-transaction fee for card payments. ACH is significantly cheaper. We give you a straight number — no rate cards."
+              a="Rates are quote-based and depend on your business and volume. Most merchants pay between 2.3% and 2.9% plus a small per-transaction fee for card payments. ACH is significantly cheaper. We give you a straight number â€” no rate cards."
             />
             <FaqItem
               q="Can my clients pay without signing up for anything?"
@@ -340,7 +340,7 @@ export default function InvoicingPage() {
             />
             <FaqItem
               q="How is this different from other invoicing software that's already free?"
-              a="Most 'free' invoicing tools route payments through their own gateway at 2.9–3.5%. The invoicing looks free but the processing isn't. Charm is already your payment processor (or will be) — invoicing is bundled in at no extra cost. One relationship, one rate."
+              a="Most 'free' invoicing tools route payments through their own gateway at 2.9â€“3.5%. The invoicing looks free but the processing isn't. Charm is already your payment processor (or will be) â€” invoicing is bundled in at no extra cost. One relationship, one rate."
             />
             <FaqItem
               q="Does it handle recurring billing?"
@@ -348,7 +348,7 @@ export default function InvoicingPage() {
             />
             <FaqItem
               q="Is my data and my clients' data secure?"
-              a="Yes. All data is encrypted in transit and at rest. Payment data is PCI-compliant. Card numbers are tokenized immediately — neither you nor Charm stores them."
+              a="Yes. All data is encrypted in transit and at rest. Payment data is PCI-compliant. Card numbers are tokenized immediately â€” neither you nor Charm stores them."
             />
             <FaqItem
               q="When is it launching, and how do I get early access?"
@@ -358,7 +358,7 @@ export default function InvoicingPage() {
         </div>
       </section>
 
-      {/* ── Section 8: Final CTA — dark gradient ────────────────────*/}
+      {/* â”€â”€ Section 8: Final CTA â€” dark gradient â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€*/}
       <section
         id="waitlist"
         className="section-ptb px-6 text-center text-white"
@@ -380,3 +380,6 @@ export default function InvoicingPage() {
     </>
   )
 }
+
+
+

@@ -1,12 +1,12 @@
-// src/app/(marketing)/solutions/high-risk/page.tsx
+﻿// src/app/(marketing)/solutions/high-risk/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: 'High Risk — Charm Payments',
+  title: 'High Risk â€” Charm Payments',
   description:
-    'High Risk payment processing from Charm Payments. Powered by NMI gateway and First Data/Fiserv acquiring.',
+    'High Risk payment processing from Charm Payments. Built for connected payments gateway and licensed acquiring partners acquiring.',
 }
 
 export default function HighRiskSolutionsPage() {
@@ -52,7 +52,7 @@ export default function HighRiskSolutionsPage() {
             color: 'rgba(0,0,0,0.72)',
           }}
         >
-          Full page coming soon. In the meantime, learn about all our features or apply now.
+          Full page coming soon. In the meantime, learn about all our features or Get Free Rate Audit.
         </p>
 
         <div className="flex flex-wrap justify-center gap-3" style={{ marginTop: 36 }}>
@@ -68,7 +68,7 @@ export default function HighRiskSolutionsPage() {
             )}
           >
             See All Features
-            <span aria-hidden>→</span>
+            <span aria-hidden>â†’</span>
           </Link>
           <Link
             href="/apply"
@@ -79,10 +79,13 @@ export default function HighRiskSolutionsPage() {
               'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
             )}
           >
-            Apply Now
+            Get Free Rate Audit
           </Link>
         </div>
       </div>
     </section>
   )
 }
+
+
+

@@ -1,4 +1,4 @@
-// src/components/atelier/sections/StopOverpaying.tsx
+﻿// src/components/atelier/sections/StopOverpaying.tsx
 import { Container } from '@/components/atelier/Container'
 import { EyebrowTag } from '@/components/atelier/EyebrowTag'
 import { cn } from '@/lib/utils'
@@ -38,7 +38,7 @@ export function StopOverpaying() {
       <Container>
         <div className="max-w-3xl">
           <EyebrowTag
-            section="§08"
+            section="Â§08"
             label="STOP OVERPAYING TODAY"
             variant="gold"
           />
@@ -54,7 +54,7 @@ export function StopOverpaying() {
           <p className="text-base text-atelier-cream/[0.78] mt-md leading-relaxed max-w-2xl">
             Your last statement has fees your processor buried on purpose.
             We&apos;ll find every one, line them up, and show you exactly what
-            you&apos;d save — no cost, no commitment.
+            you&apos;d save â€” no cost, no commitment.
           </p>
           <div className="mt-xl flex flex-wrap gap-sm">
             <a
@@ -67,8 +67,8 @@ export function StopOverpaying() {
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
               )}
             >
-              Get My Free Rate Audit
-              <span aria-hidden>↗</span>
+              Get Free Rate Audit
+              <span aria-hidden>â†—</span>
             </a>
             <a
               href="/quote"
@@ -111,3 +111,6 @@ export function StopOverpaying() {
     </section>
   )
 }
+
+
+

@@ -1,4 +1,4 @@
-// src/components/ui/HeroVisual.tsx
+﻿// src/components/ui/HeroVisual.tsx
 // Hero right-panel: image + 3 bleeding data cards with CreditCardHero-style mouse tilt
 'use client'
 
@@ -16,7 +16,7 @@ export default function HeroVisual() {
     const tilt = tiltRef.current
     if (!el || !tilt) return
     const { left, top, width, height } = el.getBoundingClientRect()
-    const x = (e.clientX - left) / width - 0.5   // -0.5 → 0.5
+    const x = (e.clientX - left) / width - 0.5   // -0.5 â†’ 0.5
     const y = (e.clientY - top) / height - 0.5
     tilt.style.transform = `perspective(1200px) rotateY(${x * 7}deg) rotateX(${-y * 5}deg)`
   }
@@ -34,16 +34,16 @@ export default function HeroVisual() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Tilt wrapper — CSS perspective applied via JS on mouse move */}
+      {/* Tilt wrapper â€” CSS perspective applied via JS on mouse move */}
       <div
         ref={tiltRef}
         style={{ transition: 'transform 0.18s ease-out' }}
       >
-        {/* Main hero image — device mockup */}
+        {/* Main hero image â€” device mockup */}
         <div className="relative overflow-hidden rounded-[20px] border border-white/10 shadow-2xl shadow-black/40">
           <Image
-            src="/images/hero-devices.png"
-            alt="Charm Payments dashboard on desktop and mobile devices"
+            src="/images/pexels-rdne-7697434.jpg"
+            alt="Merchant reviewing payment operations on a tablet"
             width={600}
             height={680}
             className="animate-ken-burns h-[540px] w-full object-contain object-center"
@@ -51,7 +51,7 @@ export default function HeroVisual() {
           />
         </div>
 
-        {/* ── Bottom-left bleeding card — Payment Received (slow depth) ── */}
+        {/* â”€â”€ Bottom-left bleeding card â€” Payment Received (slow depth) â”€â”€ */}
         <FloatingCard
           duration={5}
           className="absolute -bottom-6 -left-8 flex items-center gap-3 rounded-[0.75rem] px-4 py-3"
@@ -75,12 +75,12 @@ export default function HeroVisual() {
               className="text-sm font-bold"
               style={{ fontFamily: 'var(--font-display)', color: 'var(--on-surface)' }}
             >
-              $142.00 ✓
+              $142.00 âœ“
             </p>
           </div>
         </FloatingCard>
 
-        {/* ── Top-right bleeding card — brand status (fast depth) ── */}
+        {/* â”€â”€ Top-right bleeding card â€” brand status (fast depth) â”€â”€ */}
         <FloatingCard
           duration={3}
           className="absolute -right-6 -top-5 rounded-[0.75rem] px-4 py-3"
@@ -93,7 +93,7 @@ export default function HeroVisual() {
           <p className="text-sm font-semibold text-white">Processing Active</p>
         </FloatingCard>
 
-        {/* ── Mid-right bleeding stat — gold premium indicator (medium depth) ── */}
+        {/* â”€â”€ Mid-right bleeding stat â€” gold premium indicator (medium depth) â”€â”€ */}
         <FloatingCard
           duration={4}
           className="absolute -right-10 bottom-28 rounded-[0.75rem] px-4 py-3"
@@ -117,3 +117,6 @@ export default function HeroVisual() {
     </div>
   )
 }
+
+
+

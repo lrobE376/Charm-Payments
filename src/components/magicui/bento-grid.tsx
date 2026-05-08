@@ -1,4 +1,4 @@
-// src/components/magicui/bento-grid.tsx
+﻿// src/components/magicui/bento-grid.tsx
 import { cn } from "@/lib/utils";
 import type { ComponentType, ReactNode } from "react";
 
@@ -61,7 +61,7 @@ export function BentoCard({
           href={href}
           className="pointer-events-auto text-sm font-medium text-[#004421] transition-colors hover:text-[#C9A96E]"
         >
-          {cta} →
+          {cta} â†’
         </a>
       </div>
 
@@ -69,3 +69,6 @@ export function BentoCard({
     </div>
   );
 }
+
+
+

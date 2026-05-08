@@ -1,4 +1,4 @@
-// src/app/(marketing)/features/invoicing/WaitlistForm.tsx
+﻿// src/app/(marketing)/features/invoicing/WaitlistForm.tsx
 'use client'
 
 import { useState } from 'react'
@@ -46,3 +46,6 @@ export default function WaitlistForm({ cta = 'Join the Waitlist' }: { cta?: stri
     </form>
   )
 }
+
+
+

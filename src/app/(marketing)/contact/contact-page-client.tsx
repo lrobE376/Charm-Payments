@@ -1,4 +1,4 @@
-// src/app/(marketing)/contact/contact-page-client.tsx
+﻿// src/app/(marketing)/contact/contact-page-client.tsx
 'use client'
 
 import { useState } from 'react'
@@ -11,7 +11,7 @@ import { MagGradientBreak } from '@/components/atelier/magazine/MagGradientBreak
 import { MagFinalCta } from '@/components/atelier/magazine/MagFinalCta'
 
 const trustBullets = [
-  'Dedicated underwriting — not a black-box instant decline',
+  'Dedicated underwriting â€” not a black-box instant decline',
   'Interchange-plus options for growing volume',
   'Gateway setup and cart help included',
   'Month-to-month on Starter & Growth plans',
@@ -21,8 +21,8 @@ const contactMethods = [
   {
     Icon: Phone,
     title: 'Call Us',
-    line1: '+1 (314) 555-0198',
-    line2: 'Mon–Fri 8am–6pm CST',
+    line1: 'merchants@charmpayments.com',
+    line2: 'Monâ€“Fri 8amâ€“6pm CST',
   },
   {
     Icon: Mail,
@@ -33,8 +33,8 @@ const contactMethods = [
   {
     Icon: Clock,
     title: 'Business Hours',
-    line1: 'Monday – Friday',
-    line2: '8:00 AM – 6:00 PM CST',
+    line1: 'Monday â€“ Friday',
+    line2: '8:00 AM â€“ 6:00 PM CST',
   },
   {
     Icon: MapPin,
@@ -103,7 +103,7 @@ export function ContactPageClient() {
     setLoading(false)
     if (!res.ok) {
       const j = (await res.json().catch(() => ({}))) as { error?: string }
-      setSubmitError(j.error || 'Something went wrong. Please call us at +1 (314) 555-0198.')
+      setSubmitError(j.error || 'Something went wrong. Please call us at merchants@charmpayments.com.')
       return
     }
     setSubmitted(true)
@@ -115,7 +115,7 @@ export function ContactPageClient() {
 
   return (
     <>
-      {/* HERO — Apple canvas, text-only, pill CTAs */}
+      {/* HERO â€” Apple canvas, text-only, pill CTAs */}
       <section
         className="relative overflow-hidden bg-apple-canvas"
         style={{ padding: '100px 32px' }}
@@ -156,7 +156,7 @@ export function ContactPageClient() {
               margin: 0,
             }}
           >
-            Get Approved in 24–48 Hours
+            Get Approved in 24â€“48 Hours
           </h1>
           <p
             className="font-stripeSans mx-auto"
@@ -182,8 +182,8 @@ export function ContactPageClient() {
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
               )}
             >
-              Apply Now
-              <span aria-hidden>→</span>
+              Get Free Rate Audit
+              <span aria-hidden>â†’</span>
             </Link>
             <Link
               href="/quote"
@@ -194,13 +194,13 @@ export function ContactPageClient() {
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
               )}
             >
-              Get Instant Quote
+              Talk to Charm
             </Link>
           </div>
         </div>
       </section>
 
-      {/* MAIN — image card + trust + contact methods (LEFT) · form (RIGHT) */}
+      {/* MAIN â€” image card + trust + contact methods (LEFT) Â· form (RIGHT) */}
       <section className="bg-apple-canvas" style={{ padding: '40px 32px 100px' }}>
         <div className="mx-auto" style={{ maxWidth: 1280 }}>
           <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
@@ -239,7 +239,7 @@ export function ContactPageClient() {
                         margin: 0,
                       }}
                     >
-                      Dedicated underwriting — not a black-box instant decline
+                      Dedicated underwriting â€” not a black-box instant decline
                     </p>
                   </div>
                 </div>
@@ -360,7 +360,7 @@ export function ContactPageClient() {
                   Speak with a specialist during business hours.
                 </p>
                 <a
-                  href="tel:+13145550198"
+                  href="mailto:merchants@charmpayments.com"
                   className={cn(
                     'inline-flex items-center gap-1.5',
                     'bg-atelier-forest text-white',
@@ -370,12 +370,12 @@ export function ContactPageClient() {
                     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
                   )}
                 >
-                  Call +1 (314) 555-0198
+                  Call merchants@charmpayments.com
                 </a>
               </div>
             </div>
 
-            {/* RIGHT column — form */}
+            {/* RIGHT column â€” form */}
             <div>
               <div
                 style={{
@@ -406,7 +406,7 @@ export function ContactPageClient() {
                     color: 'rgba(0,0,0,0.65)',
                   }}
                 >
-                  We&apos;ll follow up with next steps — or start your application if you&apos;re ready.
+                  We&apos;ll follow up with next steps â€” or start your application if you&apos;re ready.
                 </p>
 
                 {submitted ? (
@@ -463,9 +463,9 @@ export function ContactPageClient() {
                           Select a range
                         </option>
                         <option value="under-10k">Under $10K</option>
-                        <option value="10k-50k">$10K–$50K</option>
-                        <option value="50k-100k">$50K–$100K</option>
-                        <option value="100k-500k">$100K–$500K</option>
+                        <option value="10k-50k">$10Kâ€“$50K</option>
+                        <option value="50k-100k">$50Kâ€“$100K</option>
+                        <option value="100k-500k">$100Kâ€“$500K</option>
                         <option value="over-500k">Over $500K</option>
                       </select>
                       {errors.volume && <p className="mt-1 text-sm text-red-600">{errors.volume}</p>}
@@ -573,9 +573,9 @@ export function ContactPageClient() {
       <MagForestBand
         eyebrow="Sales & support"
         headline="Same-day answers. Clear next steps. {No runaround.}"
-        subtitle="Dedicated underwriting — not a black-box instant decline. Interchange-plus options for growing volume. Gateway setup and cart help included. Month-to-month on Starter & Growth plans."
+        subtitle="Dedicated underwriting â€” not a black-box instant decline. Interchange-plus options for growing volume. Gateway setup and cart help included. Month-to-month on Starter & Growth plans."
         stats={[
-          { num: '24–48', label: 'Hours to approval' },
+          { num: '24â€“48', label: 'Hours to approval' },
           { num: 'Within 2', label: 'Business hours to reply' },
           { num: 'St. Louis', label: 'Headquarters' },
         ]}
@@ -590,10 +590,13 @@ export function ContactPageClient() {
           { text: 'online right now?', italicTarget: 'online right now?', size: 'normal' },
         ]}
         subtitle="No setup fees. No long-term contracts."
-        primaryCta={{ label: 'Apply Now', href: '/apply' }}
-        secondaryCta={{ label: 'Get Instant Quote', href: '/quote' }}
+        primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
+        secondaryCta={{ label: 'Talk to Charm', href: '/quote' }}
         gradientVariant="home"
       />
     </>
   )
 }
+
+
+

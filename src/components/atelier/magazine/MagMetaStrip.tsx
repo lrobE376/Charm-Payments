@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagMetaStrip.tsx
+﻿// src/components/atelier/magazine/MagMetaStrip.tsx
 
 export type MagMetaStripProps = {
   issue: string
@@ -23,3 +23,6 @@ export function MagMetaStrip({ issue, folio, filed }: MagMetaStripProps) {
     </div>
   )
 }
+
+
+

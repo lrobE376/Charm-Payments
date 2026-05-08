@@ -1,4 +1,4 @@
-// src/components/atelier/sections/WhyWeWin.tsx
+﻿// src/components/atelier/sections/WhyWeWin.tsx
 'use client'
 
 import { useEffect, useMemo, useRef } from 'react'
@@ -13,7 +13,7 @@ type Fee = { code: string; label: string; sub?: string; value: number }
 
 const OTHER_FEES: Fee[] = [
   { code: 'FEE-001', label: 'Discount rate', sub: 'Bundled %', value: 269.0 },
-  { code: 'FEE-002', label: 'Per-transaction', sub: '120 × $0.20', value: 24.0 },
+  { code: 'FEE-002', label: 'Per-transaction', sub: '120 Ã— $0.20', value: 24.0 },
   { code: 'FEE-003', label: 'Statement fee', sub: 'Monthly', value: 12.5 },
   { code: 'FEE-004', label: 'PCI compliance', sub: 'Quarterly', value: 19.95 },
   { code: 'FEE-005', label: 'Non-qual surcharge', sub: 'Card-mix', value: 28.4 },
@@ -25,7 +25,7 @@ const CHARM_FEES: Fee[] = [
   { code: 'CHRG-B', label: 'Charm markup', sub: 'Flat', value: 25.0 },
 ]
 
-const NOT_BILLED = ['— NOT BILLED —', '— NOT BILLED —', '— NOT BILLED —', '— NOT BILLED —']
+const NOT_BILLED = ['â€” NOT BILLED â€”', 'â€” NOT BILLED â€”', 'â€” NOT BILLED â€”', 'â€” NOT BILLED â€”']
 
 const MONTHLY_DELTA = 169
 const ANNUAL_DELTA = MONTHLY_DELTA * 12
@@ -225,7 +225,7 @@ export function WhyWeWin() {
     >
       <Container>
         <div className="mb-2xl">
-          <EyebrowTag section="§03" label="WHY WE WIN" />
+          <EyebrowTag section="Â§03" label="WHY WE WIN" />
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',
@@ -237,7 +237,7 @@ export function WhyWeWin() {
             <em className="italic text-atelier-forest">want you</em> to audit.
           </h2>
           <p className="text-base text-black/70 max-w-2xl mt-md leading-relaxed">
-            You see every fee, every card type, every time — not a blended rate
+            You see every fee, every card type, every time â€” not a blended rate
             your processor designed to keep you from asking questions.
           </p>
         </div>
@@ -396,13 +396,13 @@ export function WhyWeWin() {
                   )}
                 >
                   <span className="font-atelierMono text-[10px] uppercase tracking-spec text-black/30">
-                    —
+                    â€”
                   </span>
                   <span className="font-atelierMono text-[11px] uppercase tracking-spec text-black/55">
                     {label}
                   </span>
                   <span className="font-atelierMono text-sm text-black/30 tabular-nums">
-                    —
+                    â€”
                   </span>
                 </div>
               ))}
@@ -438,7 +438,7 @@ export function WhyWeWin() {
         >
           <div>
             <div className="font-atelierMono text-[10px] uppercase tracking-label text-atelier-gold">
-              DELTA · MONTHLY
+              DELTA Â· MONTHLY
             </div>
             <div className="font-atelierSerif text-xl md:text-2xl mt-0.5">
               You keep{' '}
@@ -470,7 +470,7 @@ export function WhyWeWin() {
             Switch to Charm
           </a>
           <p className="text-xs text-black/55 font-atelierMono mt-base max-w-xl mx-auto">
-            Competitors named illustratively — compare your actual statement
+            Competitors named illustratively â€” compare your actual statement
             side-by-side in a free rate audit.
           </p>
         </div>
@@ -478,3 +478,6 @@ export function WhyWeWin() {
     </section>
   )
 }
+
+
+

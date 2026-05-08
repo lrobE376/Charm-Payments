@@ -1,4 +1,4 @@
-// src/app/(marketing)/solutions/restaurants/page.tsx
+﻿// src/app/(marketing)/solutions/restaurants/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MagMetaStrip } from '@/components/atelier/magazine/MagMetaStrip'
@@ -13,9 +13,9 @@ import { MagFinalCta } from '@/components/atelier/magazine/MagFinalCta'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'Restaurants & Food Service Payment Processing – Charm Payments',
+  title: 'Restaurants & Food Service Payment Processing â€“ Charm Payments',
   description:
-    "Your processor is pocketing the spread between what rewards cards cost at interchange and what they charge you. At restaurant volumes, that's thousands a year. Charm shows you every fee — and picks up the phone.",
+    "Your processor is pocketing the spread between what rewards cards cost at interchange and what they charge you. At restaurant volumes, that's thousands a year. Charm shows you every fee â€” and picks up the phone.",
 }
 
 const VERTICALS = [
@@ -23,7 +23,7 @@ const VERTICALS = [
   'QSR & Fast Casual',
   'Bars & Nightclubs',
   'Food Trucks',
-  'Cafés & Coffee Shops',
+  'CafÃ©s & Coffee Shops',
   'Bakeries & Delis',
   'Ghost Kitchens',
   'Catering Companies',
@@ -41,7 +41,7 @@ const FEATURES = [
     figLabel: 'Tableside Payments',
     title: 'Every channel. One gateway.',
     description:
-      'EMV chip, tap-to-pay, and swipe at the table, counter, or bar. Online ordering connects to the same NMI gateway and settles into the same batch as in-house transactions.',
+      'EMV chip, tap-to-pay, and swipe at the table, counter, or bar. Online ordering connects to the same payment infrastructure and settles into the same batch as in-house transactions.',
   },
   {
     figLabel: 'Tip & Split',
@@ -59,7 +59,7 @@ const FEATURES = [
     figLabel: 'Reporting',
     title: 'End-of-day reporting that actually helps',
     description:
-      'Batch reports by location, terminal, or server. See exactly what you processed, what you netted, and where chargebacks are concentrating — exportable in seconds.',
+      'Batch reports by location, terminal, or server. See exactly what you processed, what you netted, and where chargebacks are concentrating â€” exportable in seconds.',
   },
 ]
 
@@ -68,7 +68,7 @@ const WHY_CARDS = [
     fig: 'Reason 01',
     title: 'See every fee, every card, every time',
     description:
-      'Rewards cards cost you more at interchange — with us, you see that actual cost instead of a blended rate hiding the difference.',
+      'Rewards cards cost you more at interchange â€” with us, you see that actual cost instead of a blended rate hiding the difference.',
   },
   {
     fig: 'Reason 02',
@@ -114,11 +114,11 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     q: 'Can I connect online ordering to the same merchant account?',
-    a: 'Yes. NMI connects your online ordering flow directly to your merchant account. Orders settle into the same batch as in-house transactions with unified reporting.',
+    a: 'Yes. payment infrastructure connects your online ordering flow directly to your merchant account. Orders settle into the same batch as in-house transactions with unified reporting.',
   },
   {
     q: 'How does tip adjustment work to avoid chargebacks?',
-    a: 'Tips are captured at the terminal at time of payment and settle with the original transaction. This eliminates the most common restaurant chargeback trigger — post-authorization tip adjustments.',
+    a: 'Tips are captured at the terminal at time of payment and settle with the original transaction. This eliminates the most common restaurant chargeback trigger â€” post-authorization tip adjustments.',
   },
   {
     q: 'Do you support multi-location operations?',
@@ -126,14 +126,14 @@ const FAQS = [
   },
   {
     q: 'How fast is approval?',
-    a: 'We target 24 hours on complete applications. Restaurants are a standard MCC — if your documents are in order, you can be processing quickly.',
+    a: 'We target 24 hours on complete applications. Restaurants are a standard MCC â€” if your documents are in order, you can be processing quickly.',
   },
 ]
 
 export default function RestaurantsSolutionsPage() {
   return (
     <>
-      {/* Trust strip — above MagHero, meta-strip-style */}
+      {/* Trust strip â€” above MagHero, meta-strip-style */}
       <div
         className="bg-apple-canvas font-stripeSans text-center"
         style={{
@@ -144,36 +144,36 @@ export default function RestaurantsSolutionsPage() {
           color: 'rgba(0,0,0,0.5)',
         }}
       >
-        Trusted by 500+ St. Louis merchants
+        Built for serious independent merchants
       </div>
 
       <MagMetaStrip
-        issue="Charm Payments · Solutions"
+        issue="Charm Payments Â· Solutions"
         folio="Restaurants & Food Service"
         filed="Filed 2026"
       />
 
       <MagHero
-        eyebrow="Restaurants & Food Service · Payment Processing"
+        eyebrow="Restaurants & Food Service Â· Payment Processing"
         headlineLines={[
           {
             text: 'Your Processor Profits Every Time a Rewards Card Hits Your Terminal.',
           },
         ]}
-        subtitle="Every Amex Platinum and Visa Rewards card your guest swipes has a higher interchange cost — and your flat-rate processor keeps the difference. Charm shows you every fee, every card type, every time, and settles your funds the next business day."
-        primaryCta={{ label: 'Get My Free Rate Audit', href: '/apply' }}
-        secondaryCta={{ label: 'Free Rate Audit', href: '/quote' }}
+        subtitle="Every Amex Platinum and Visa Rewards card your guest swipes has a higher interchange cost â€” and your flat-rate processor keeps the difference. Charm shows you every fee, every card type, every time, and settles your funds the next business day."
+        primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
+        secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         visualVariant="solutions-restaurants"
         visualSlot={
           <HeroVisual
             variant="solutions-restaurants"
-            caption="FIG. 01 — A SAMPLE STATEMENT"
+            caption="FIG. 01 â€” A SAMPLE STATEMENT"
           />
         }
         pills={HERO_PILLS}
       />
 
-      {/* Verticals strip — inline static chips */}
+      {/* Verticals strip â€” inline static chips */}
       <section className="bg-apple-canvas" style={{ padding: '32px 32px 12px' }}>
         <div className="mx-auto" style={{ maxWidth: 1280 }}>
           <div className="flex flex-wrap items-center gap-3">
@@ -213,7 +213,7 @@ export default function RestaurantsSolutionsPage() {
 
       <MagFeatureList
         eyebrow="Built for restaurants"
-        headline="Every Problem Your Processor Creates at the Table — Solved"
+        headline="Every Problem Your Processor Creates at the Table â€” Solved"
         items={FEATURES}
         columns={2}
       />
@@ -221,7 +221,7 @@ export default function RestaurantsSolutionsPage() {
       <MagStickyCardScroll
         eyebrow="Why Charm Payments"
         headline="Rewards cards are costing you more than you think"
-        body="With flat-rate pricing, every premium rewards card your guest swipes costs you the same blended rate — but the processor pockets the difference between interchange and what they charge you. At restaurant volumes, that adds up to thousands a year. With Charm, you see every fee, every card type, every time — not a blended rate designed to obscure it."
+        body="With flat-rate pricing, every premium rewards card your guest swipes costs you the same blended rate â€” but the processor pockets the difference between interchange and what they charge you. At restaurant volumes, that adds up to thousands a year. With Charm, you see every fee, every card type, every time â€” not a blended rate designed to obscure it."
         cards={WHY_CARDS}
       />
 
@@ -231,7 +231,7 @@ export default function RestaurantsSolutionsPage() {
         items={TESTIMONIALS}
       />
 
-      {/* Free Rate Audit callout — inline section between testimonials and FAQ */}
+      {/* Free Rate Audit callout â€” inline section between testimonials and FAQ */}
       <section className="bg-apple-canvas" style={{ padding: '60px 32px' }}>
         <div className="mx-auto" style={{ maxWidth: 800 }}>
           <div
@@ -276,7 +276,7 @@ export default function RestaurantsSolutionsPage() {
                 margin: '14px 0 24px 0',
               }}
             >
-              Send us your last merchant statement. We&apos;ll line-item every cost and show exactly what changes with Charm — before you commit to anything.
+              Send us your last merchant statement. We&apos;ll line-item every cost and show exactly what changes with Charm â€” before you commit to anything.
             </p>
             <Link
               href="/quote"
@@ -289,7 +289,7 @@ export default function RestaurantsSolutionsPage() {
               }}
             >
               Get your free audit
-              <span aria-hidden>→</span>
+              <span aria-hidden>â†’</span>
             </Link>
           </div>
         </div>
@@ -305,9 +305,9 @@ export default function RestaurantsSolutionsPage() {
       <MagForestBand
         eyebrow="Built for restaurants"
         headline="Tips that don't trigger chargebacks. Settlements you can predict. {Reporting that tells you where the money actually went.}"
-        subtitle="Funds on a predictable schedule. No holds after high-volume weekends. Separate MIDs per location with unified reporting across your entire operation. Month-to-month — we earn your business every statement cycle."
+        subtitle="Funds on a predictable schedule. No holds after high-volume weekends. Separate MIDs per location with unified reporting across your entire operation. Month-to-month â€” we earn your business every statement cycle."
         stats={[
-          { num: '500+', label: 'St. Louis merchants' },
+          { num: 'Audit', label: 'Statement-first intake' },
           { num: 'Next day', label: 'Settlement standard' },
           { num: '24 hours', label: 'Approval target' },
         ]}
@@ -321,11 +321,14 @@ export default function RestaurantsSolutionsPage() {
           { text: 'Find Out How Much Your Processor', size: 'normal' },
           { text: 'Kept Last Month.', italicTarget: 'Kept Last Month.', size: 'normal' },
         ]}
-        subtitle="Your last statement has a blended rate your processor designed to be unauditable. We'll break it down line by line and show you exactly what changes — no commitment, no pressure."
-        primaryCta={{ label: 'Get My Free Audit', href: '/apply' }}
-        secondaryCta={{ label: 'Free Rate Audit', href: '/quote' }}
+        subtitle="Your last statement has a blended rate your processor designed to be unauditable. We'll break it down line by line and show you exactly what changes â€” no commitment, no pressure."
+        primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
+        secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         gradientVariant="solutions-restaurants"
       />
     </>
   )
 }
+
+
+

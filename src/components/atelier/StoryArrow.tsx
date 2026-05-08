@@ -1,4 +1,4 @@
-// src/components/atelier/StoryArrow.tsx
+﻿// src/components/atelier/StoryArrow.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -105,3 +105,6 @@ export function StoryArrow({
     </div>
   )
 }
+
+
+

@@ -1,4 +1,4 @@
-// src/components/atelier/EyebrowTag.tsx
+﻿// src/components/atelier/EyebrowTag.tsx
 import { cn } from '@/lib/utils'
 
 export interface EyebrowTagProps {
@@ -30,9 +30,12 @@ export function EyebrowTag({
     >
       <span>{section}</span>
       <span aria-hidden className="mx-1.5 opacity-70">
-        ·
+        Â·
       </span>
       <span>{label}</span>
     </span>
   )
 }
+
+
+

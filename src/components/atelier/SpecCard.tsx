@@ -1,4 +1,4 @@
-// src/components/atelier/SpecCard.tsx
+﻿// src/components/atelier/SpecCard.tsx
 import { cn } from '@/lib/utils'
 
 type SpecCardVariant = 'default' | 'code' | 'verified'
@@ -227,3 +227,6 @@ export function SpecCard({
     </div>
   )
 }
+
+
+

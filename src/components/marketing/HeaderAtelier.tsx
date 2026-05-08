@@ -1,9 +1,10 @@
-// src/components/marketing/HeaderAtelier.tsx
+﻿// src/components/marketing/HeaderAtelier.tsx
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type MegaItem = { name: string; desc: string; href: string }
@@ -83,7 +84,7 @@ function PanelCta({ href, label, onNavigate }: { href: string; label: string; on
       )}
     >
       {label}
-      <span aria-hidden>→</span>
+      <ArrowRight className="h-4 w-4" aria-hidden />
     </Link>
   )
 }
@@ -135,10 +136,11 @@ export function HeaderAtelier() {
   }
 
   return (
-    <header className="sticky top-0 z-50">
+    <header className="sticky top-0 z-50 bg-atelier-creamWarm">
       {/* Promo bar */}
       <div
         className={cn(
+          'hidden',
           'bg-[#0F3520] text-atelier-cream',
           'transition-transform duration-300 ease-out origin-top',
           collapsed ? '-translate-y-full' : 'translate-y-0',
@@ -147,9 +149,9 @@ export function HeaderAtelier() {
       >
         <div className="flex items-center justify-center gap-3 py-1.5 px-lg text-xs">
           <span className="text-atelier-cream/85">
-            Free account review — we&apos;ll beat your current rate
+            Free account review â€” we&apos;ll beat your current rate
           </span>
-          <span className="text-atelier-cream/30" aria-hidden>·</span>
+          <span className="text-atelier-cream/30" aria-hidden>Â·</span>
           <Link
             href="/quote"
             className={cn(
@@ -159,7 +161,7 @@ export function HeaderAtelier() {
               'hover:opacity-90 transition-opacity',
             )}
           >
-            GET INSTANT QUOTE
+            Talk to Charm
           </Link>
         </div>
       </div>
@@ -168,7 +170,7 @@ export function HeaderAtelier() {
       <div
         ref={navRef}
         className={cn(
-          'bg-atelier-creamWarm',
+          'bg-atelier-creamWarm/95 backdrop-blur-xl',
           '[border-bottom-width:0.5px] border-black/[0.08]',
         )}
       >
@@ -180,7 +182,7 @@ export function HeaderAtelier() {
               'flex items-center shrink-0',
               'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-atelier-gold',
             )}
-            aria-label="Charm Payments — home"
+            aria-label="Charm Payments â€” home"
           >
             <Image
               src="/images/logo.png"
@@ -213,15 +215,13 @@ export function HeaderAtelier() {
                 )}
               >
                 Products
-                <span
+                <ChevronDown
                   aria-hidden
                   className={cn(
-                    'text-atelier-ink/40 text-[10px] transition-transform duration-200',
+                    'h-4 w-4 text-atelier-ink/40 transition-transform duration-200',
                     mega === 'products' && 'rotate-180',
                   )}
-                >
-                  ⌄
-                </span>
+                />
               </button>
               <div
                 className={cn(
@@ -283,15 +283,13 @@ export function HeaderAtelier() {
                 )}
               >
                 Solutions
-                <span
+                <ChevronDown
                   aria-hidden
                   className={cn(
-                    'text-atelier-ink/40 text-[10px] transition-transform duration-200',
+                    'h-4 w-4 text-atelier-ink/40 transition-transform duration-200',
                     mega === 'solutions' && 'rotate-180',
                   )}
-                >
-                  ⌄
-                </span>
+                />
               </button>
               <div
                 className={cn(
@@ -341,15 +339,13 @@ export function HeaderAtelier() {
                 )}
               >
                 Gateway
-                <span
+                <ChevronDown
                   aria-hidden
                   className={cn(
-                    'text-atelier-ink/40 text-[10px] transition-transform duration-200',
+                    'h-4 w-4 text-atelier-ink/40 transition-transform duration-200',
                     mega === 'gateway' && 'rotate-180',
                   )}
-                >
-                  ⌄
-                </span>
+                />
               </button>
               <div
                 className={cn(
@@ -404,7 +400,7 @@ export function HeaderAtelier() {
 
           <div className="flex items-center gap-2">
             <Link
-              href="/apply"
+              href="/quote"
               className={cn(
                 'bg-atelier-forest text-atelier-cream',
                 'px-3.5 py-1.5 text-xs font-medium rounded-atelierXs',
@@ -413,7 +409,7 @@ export function HeaderAtelier() {
                 'whitespace-nowrap',
               )}
             >
-              Apply Now
+              Get Free Rate Audit
             </Link>
 
             <button
@@ -430,9 +426,11 @@ export function HeaderAtelier() {
               aria-controls="mobile-nav"
               onClick={() => setMobileOpen((v) => !v)}
             >
-              <span aria-hidden className="text-base leading-none">
-                {mobileOpen ? '×' : '≡'}
-              </span>
+              {mobileOpen ? (
+                <X className="h-6 w-6" aria-hidden />
+              ) : (
+                <Menu className="h-6 w-6" aria-hidden />
+              )}
             </button>
           </div>
         </div>
@@ -460,7 +458,10 @@ export function HeaderAtelier() {
                   )}
                 >
                   Products
-                  <span aria-hidden className={cn('text-atelier-ink/40 transition-transform', mobileSection === 'products' && 'rotate-180')}>⌄</span>
+                  <ChevronDown
+                    aria-hidden
+                    className={cn('h-4 w-4 text-atelier-ink/40 transition-transform', mobileSection === 'products' && 'rotate-180')}
+                  />
                 </button>
                 {mobileSection === 'products' ? (
                   <div className="pl-3 pb-2 [border-left-width:1px] border-atelier-forest/20">
@@ -493,7 +494,10 @@ export function HeaderAtelier() {
                   )}
                 >
                   Solutions
-                  <span aria-hidden className={cn('text-atelier-ink/40 transition-transform', mobileSection === 'solutions' && 'rotate-180')}>⌄</span>
+                  <ChevronDown
+                    aria-hidden
+                    className={cn('h-4 w-4 text-atelier-ink/40 transition-transform', mobileSection === 'solutions' && 'rotate-180')}
+                  />
                 </button>
                 {mobileSection === 'solutions' ? (
                   <div className="pl-3 pb-2 [border-left-width:1px] border-atelier-forest/20">
@@ -519,7 +523,10 @@ export function HeaderAtelier() {
                   )}
                 >
                   Gateway
-                  <span aria-hidden className={cn('text-atelier-ink/40 transition-transform', mobileSection === 'gateway' && 'rotate-180')}>⌄</span>
+                  <ChevronDown
+                    aria-hidden
+                    className={cn('h-4 w-4 text-atelier-ink/40 transition-transform', mobileSection === 'gateway' && 'rotate-180')}
+                  />
                 </button>
                 {mobileSection === 'gateway' ? (
                   <div className="pl-3 pb-2 [border-left-width:1px] border-atelier-forest/20">
@@ -556,6 +563,7 @@ export function HeaderAtelier() {
       {/* Bottom contact bar */}
       <div
         className={cn(
+          'hidden',
           'bg-atelier-forest text-atelier-cream',
           'transition-transform duration-300 ease-out origin-top',
           collapsed ? '-translate-y-full' : 'translate-y-0',
@@ -564,12 +572,12 @@ export function HeaderAtelier() {
       >
         <div className="flex items-center justify-end gap-3 py-1 px-lg font-atelierMono text-xs">
           <a
-            href="tel:+13145550198"
+            href="mailto:merchants@charmpayments.com"
             className="text-atelier-cream/85 hover:text-atelier-cream transition-colors"
           >
-            +1 (314) 555-0198
+            merchants@charmpayments.com
           </a>
-          <span className="text-atelier-cream/40" aria-hidden>·</span>
+          <span className="text-atelier-cream/40" aria-hidden>Â·</span>
           <a
             href="mailto:merchants@charmpayments.com"
             className="text-atelier-cream/85 hover:text-atelier-cream transition-colors"
@@ -581,3 +589,6 @@ export function HeaderAtelier() {
     </header>
   )
 }
+
+
+

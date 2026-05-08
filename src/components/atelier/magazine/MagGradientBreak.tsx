@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagGradientBreak.tsx
+﻿// src/components/atelier/magazine/MagGradientBreak.tsx
 
 export type MagGradientBreakVariant =
   | 'light-to-tinted'
@@ -36,3 +36,6 @@ export function MagGradientBreak({ variant, height }: MagGradientBreakProps) {
     />
   )
 }
+
+
+

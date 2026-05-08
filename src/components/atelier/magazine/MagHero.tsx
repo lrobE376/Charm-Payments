@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagHero.tsx
+﻿// src/components/atelier/magazine/MagHero.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -133,7 +133,7 @@ export function MagHero({
 
     const tl = gsap.timeline({ delay: 0.05 })
 
-    // Eyebrow — 200ms in
+    // Eyebrow â€” 200ms in
     if (eyebrowRef.current) {
       tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, 0.2)
     }
@@ -212,16 +212,11 @@ export function MagHero({
       />
 
       <div className="relative mx-auto" style={{ maxWidth: 1280 }}>
-        <div
-          className="grid gap-x-16 gap-y-12 items-start"
-          style={{
-            gridTemplateColumns: 'minmax(0, 1fr) 360px',
-          }}
-        >
+        <div className="grid grid-cols-1 gap-x-16 gap-y-12 items-start lg:grid-cols-[minmax(0,1fr)_360px]">
           {/* Copy column */}
           <div>
             {(() => {
-              const isSection = eyebrow.trim().startsWith('§')
+              const isSection = eyebrow.trim().startsWith('Â§')
               const eyebrowClass = isSection
                 ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
                 : 'font-stripeSans'
@@ -324,7 +319,7 @@ export function MagHero({
                 )}
               >
                 {primaryCta.label}
-                <span aria-hidden>→</span>
+                <span aria-hidden>â†’</span>
               </Link>
               {secondaryCta ? (
                 <Link
@@ -349,3 +344,6 @@ export function MagHero({
     </section>
   )
 }
+
+
+

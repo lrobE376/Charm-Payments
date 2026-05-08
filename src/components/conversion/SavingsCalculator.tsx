@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useMemo, useState } from 'react'
 
@@ -27,7 +27,7 @@ export default function SavingsCalculator() {
           <span data-animate="fade-up" className="section-label">RATE REALITY CHECK</span>
           <h2 data-animate="fade-up" data-delay="80" className="mt-3 text-3xl font-bold md:text-4xl" style={{ color: 'var(--on-surface)' }}>See what interchange-plus could mean for you</h2>
           <p data-animate="fade-up" data-delay="160" className="mt-3 text-lg text-[var(--paragraph)]/85">
-            Slide your volume — we&apos;ll show an illustrative savings range based on typical flat-rate competitor pricing.
+            Slide your volume â€” we&apos;ll show an illustrative savings range based on typical flat-rate competitor pricing.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default function SavingsCalculator() {
           </div>
 
           <p className="mt-4 text-center text-xs leading-relaxed text-gray-500">
-            Based on average savings vs. standard flat-rate competitors. Actual savings depend on your mix, card types, and current statement —{' '}
+            Based on average savings vs. standard flat-rate competitors. Actual savings depend on your mix, card types, and current statement â€”{' '}
             <span className="font-semibold text-sales-navy">your free audit</span> tells the real story.
           </p>
         </div>
@@ -77,3 +77,6 @@ export default function SavingsCalculator() {
     </section>
   )
 }
+
+
+

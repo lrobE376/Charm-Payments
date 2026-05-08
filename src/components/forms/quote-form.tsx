@@ -1,21 +1,21 @@
-'use client'
+﻿'use client'
 // src/components/forms/quote-form.tsx
 
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { useDropzone } from 'react-dropzone'
 
-// ── constants ────────────────────────────────────────────────────────────────
+// â”€â”€ constants â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const processorOptions = [
-  { value: '', label: 'Select processor' },
+  { value: '', label: 'Select current platform' },
   { value: 'Square', label: 'Square' },
   { value: 'Stripe', label: 'Stripe' },
   { value: 'Toast', label: 'Toast' },
   { value: 'Clover', label: 'Clover' },
   { value: 'PayPal/Zettle', label: 'PayPal / Zettle' },
   { value: 'Heartland', label: 'Heartland' },
-  { value: 'First Data/Fiserv', label: 'First Data / Fiserv' },
+  { value: 'legacy-acquirer', label: 'Legacy acquirer / ISO' },
   { value: 'Chase Paymentech', label: 'Chase Paymentech' },
   { value: 'Bank', label: 'Bank' },
   { value: 'Other', label: 'Other' },
@@ -25,9 +25,9 @@ const processorOptions = [
 const volumeOptions = [
   { value: '', label: 'Select range' },
   { value: 'under-10k', label: 'Under $10K / month' },
-  { value: '10k-50k', label: '$10K – $50K' },
-  { value: '50k-100k', label: '$50K – $100K' },
-  { value: '100k-500k', label: '$100K – $500K' },
+  { value: '10k-50k', label: '$10K â€“ $50K' },
+  { value: '50k-100k', label: '$50K â€“ $100K' },
+  { value: '100k-500k', label: '$100K â€“ $500K' },
   { value: 'over-500k', label: 'Over $500K' },
 ]
 
@@ -54,7 +54,7 @@ const paymentTimingOptions = [
   { value: 'scheduled', label: 'Scheduled / installment' },
 ]
 
-// ── types ────────────────────────────────────────────────────────────────────
+// â”€â”€ types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 interface UploadedFile {
   name: string
@@ -80,16 +80,16 @@ interface FormState {
   notes: string
 }
 
-// ── styles ───────────────────────────────────────────────────────────────────
+// â”€â”€ styles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const inputCls =
   'w-full rounded-lg border border-[rgba(8,39,32,0.12)] bg-white px-4 py-3 text-[var(--paragraph)] min-h-[44px] outline-none transition focus:border-brand-dark focus:ring-2 focus:ring-brand-dark/15'
 const labelCls = 'mb-2 block text-sm font-semibold text-[var(--heading)]'
 
-// ── step indicator ───────────────────────────────────────────────────────────
+// â”€â”€ step indicator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function StepIndicator({ step }: { step: number }) {
-  const steps = ['Contact & Processor', 'How You Take Orders', 'Statement Upload']
+  const steps = ['Merchant profile', 'Payment workflow', 'Statement review']
   return (
     <div className="mb-8 flex items-center gap-0">
       {steps.map((title, i) => {
@@ -108,7 +108,7 @@ function StepIndicator({ step }: { step: number }) {
                       : 'bg-gray-200 text-gray-500'
                 }`}
               >
-                {done ? '✓' : num}
+                {done ? 'âœ“' : num}
               </div>
               <span className={`mt-1 hidden text-xs sm:block ${active ? 'font-semibold text-brand-dark' : 'text-gray-400'}`}>
                 {title}
@@ -124,7 +124,7 @@ function StepIndicator({ step }: { step: number }) {
   )
 }
 
-// ── dropzone step ────────────────────────────────────────────────────────────
+// â”€â”€ dropzone step â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function StatementDropzone({
   uploads,
@@ -185,9 +185,9 @@ function StatementDropzone({
       >
         <input {...getInputProps()} />
         <p className="text-sm font-semibold text-brand-dark">
-          {isDragActive ? 'Drop files here…' : 'Drag & drop your statement here'}
+          {isDragActive ? 'Drop files hereâ€¦' : 'Drag & drop your statement here'}
         </p>
-        <p className="mt-1 text-xs text-gray-500">PDF, JPG, PNG — max 10 MB — up to 3 files</p>
+        <p className="mt-1 text-xs text-gray-500">PDF, JPG, PNG â€” max 10 MB â€” up to 3 files</p>
         <button
           type="button"
           className="mt-3 rounded-lg bg-brand-dark px-4 py-2 text-xs font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
@@ -203,10 +203,10 @@ function StatementDropzone({
             <li key={i} className="flex items-center gap-3 rounded-lg border border-gray-100 bg-white px-4 py-3 text-sm">
               <span className="flex-1 truncate text-gray-700">{f.name}</span>
               {f.status === 'uploading' && (
-                <span className="text-xs text-gray-400">Uploading…</span>
+                <span className="text-xs text-gray-400">Uploadingâ€¦</span>
               )}
               {f.status === 'done' && (
-                <span className="font-bold text-brand-accent">✓</span>
+                <span className="font-bold text-brand-accent">âœ“</span>
               )}
               {f.status === 'error' && (
                 <span className="text-xs text-red-500">Failed</span>
@@ -219,7 +219,7 @@ function StatementDropzone({
   )
 }
 
-// ── main component ───────────────────────────────────────────────────────────
+// â”€â”€ main component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function QuoteForm() {
   const [step, setStep] = useState(1)
@@ -337,13 +337,13 @@ export default function QuoteForm() {
     setDone(true)
   }
 
-  // ── success state ──────────────────────────────────────────────────────────
+  // â”€â”€ success state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   if (done) {
     return (
       <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-accent/20">
-          <span className="text-xl font-bold text-brand-dark">✓</span>
+          <span className="text-xl font-bold text-brand-dark">âœ“</span>
         </div>
         <h2 className="text-xl font-bold text-brand-dark">Quote request received</h2>
         <p className="mt-2 text-gray-600">
@@ -356,7 +356,7 @@ export default function QuoteForm() {
     )
   }
 
-  // ── form ───────────────────────────────────────────────────────────────────
+  // â”€â”€ form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
@@ -368,7 +368,7 @@ export default function QuoteForm() {
         </div>
       )}
 
-      {/* ── Step 1 ── */}
+      {/* â”€â”€ Step 1 â”€â”€ */}
       {step === 1 && (
         <div className="space-y-5">
           <div className="grid gap-5 sm:grid-cols-2">
@@ -401,7 +401,7 @@ export default function QuoteForm() {
             </div>
           </div>
           <div>
-            <label className={labelCls} htmlFor="qf-processor">Current processor</label>
+            <label className={labelCls} htmlFor="qf-processor">Current payment platform</label>
             <select id="qf-processor" className={inputCls}
               value={form.current_processor} onChange={(e) => set('current_processor', e.target.value)}>
               {processorOptions.map((o) => (
@@ -426,12 +426,12 @@ export default function QuoteForm() {
             </div>
           </div>
           <button type="button" onClick={nextStep} className="btn-accent w-full justify-center sm:w-auto">
-            Next: How you take orders →
+            Next: Payment workflow
           </button>
         </div>
       )}
 
-      {/* ── Step 2 ── */}
+      {/* â”€â”€ Step 2 â”€â”€ */}
       {step === 2 && (
         <div className="space-y-6">
           <div>
@@ -494,44 +494,44 @@ export default function QuoteForm() {
           <div className="flex gap-3">
             <button type="button" onClick={() => setStep(1)}
               className="btn-outline flex-1 justify-center sm:flex-none">
-              ← Back
+              â† Back
             </button>
             <button type="button" onClick={nextStep}
               className="btn-accent flex-1 justify-center sm:flex-none">
-              Next: Upload statement →
+            Next: Statement review
             </button>
           </div>
         </div>
       )}
 
-      {/* ── Step 3 ── */}
+      {/* â”€â”€ Step 3 â”€â”€ */}
       {step === 3 && (
         <form onSubmit={onSubmit} noValidate>
           <div className="space-y-6">
             <div>
-              <p className={labelCls}>Upload your processing statement</p>
+              <p className={labelCls}>Upload your current statement</p>
               <StatementDropzone uploads={uploads} onUploaded={handleUpload} />
               <p className="mt-3 text-xs text-gray-500">
-                Don&apos;t have it?{' '}
-                <span className="font-medium text-brand-dark">Submit without it</span> — we&apos;ll request it later.
+                Don&apos;t have it nearby?{' '}
+                <span className="font-medium text-brand-dark">Submit without it</span> and Charm can request it later.
               </p>
             </div>
 
             <div>
               <label className={labelCls} htmlFor="qf-notes">Anything else we should know? <span className="text-gray-400 font-normal">(optional)</span></label>
               <textarea id="qf-notes" rows={3} className={`${inputCls} resize-none`}
-                placeholder="Special pricing needs, high-risk items, multiple locations…"
+                placeholder="Special pricing needs, high-risk items, multiple locationsâ€¦"
                 value={form.notes} onChange={(e) => set('notes', e.target.value)} />
             </div>
 
             <div className="flex gap-3">
               <button type="button" onClick={() => setStep(2)}
                 className="btn-outline flex-1 justify-center sm:flex-none">
-                ← Back
+                â† Back
               </button>
               <button type="submit" disabled={loading}
                 className="btn-accent flex-1 justify-center sm:flex-none disabled:opacity-60">
-                {loading ? 'Submitting…' : 'Get my quote'}
+                {loading ? 'Submitting...' : 'Get Free Rate Audit'}
               </button>
             </div>
           </div>
@@ -540,3 +540,6 @@ export default function QuoteForm() {
     </div>
   )
 }
+
+
+

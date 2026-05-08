@@ -1,19 +1,19 @@
-const faqItems = [
+﻿const faqItems = [
   {
     q: 'Do people need an app to tap my card?',
-    a: 'No app required — ever. When someone taps your Charm Card, their phone opens your profile instantly in Safari or Chrome. Works on any modern iPhone or Android.',
+    a: 'No app required â€” ever. When someone taps your Charm Card, their phone opens your profile instantly in Safari or Chrome. Works on any modern iPhone or Android.',
   },
   {
     q: 'Can I update my info after the card ships?',
-    a: 'Yes. Your digital profile lives in your Charm Cards dashboard. Change your number, add a new service, or swap your photo anytime — your physical card always points to the latest version.',
+    a: 'Yes. Your digital profile lives in your Charm Cards dashboard. Change your number, add a new service, or swap your photo anytime â€” your physical card always points to the latest version.',
   },
   {
     q: 'What if I lose my physical card?',
-    a: 'Order a replacement for $15. Your digital card (the link and wallet pass) stays active and unchanged — no data is stored on the physical card itself.',
+    a: 'Order a replacement for $15. Your digital card (the link and wallet pass) stays active and unchanged â€” no data is stored on the physical card itself.',
   },
   {
     q: 'How many team members can I add?',
-    a: 'Unlimited users on every plan at $99/month flat. Add your whole crew — barbers, stylists, front desk — no per-seat fees.',
+    a: 'Unlimited users on every plan at $99/month flat. Add your whole crew â€” barbers, stylists, front desk â€” no per-seat fees.',
   },
 ] as const
 
@@ -38,3 +38,6 @@ export default function CardsFaqSection() {
     </section>
   )
 }
+
+
+

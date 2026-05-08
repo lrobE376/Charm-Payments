@@ -1,4 +1,4 @@
-// src/components/atelier/charm-defense/DefenseFlow.tsx
+﻿// src/components/atelier/charm-defense/DefenseFlow.tsx
 'use client'
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
@@ -23,28 +23,28 @@ type Step = {
 const STEPS: Step[] = [
   {
     num: '01',
-    stage: 'STAGE A · YOU',
+    stage: 'STAGE A Â· YOU',
     title: 'Subscribe',
-    body: 'Open a Charm merchant account. Defense activates with the same application — no second contract, no add-on cart.',
+    body: 'Open a Charm merchant account. Defense activates with the same application â€” no second contract, no add-on cart.',
     code: ['// account.created', 'defense: enabled', 'monitoring: live'],
     numeralBg: 'forest',
     codeBorder: 'black',
   },
   {
     num: '02',
-    stage: 'STAGE B · CHARM',
+    stage: 'STAGE B Â· CHARM',
     title: 'Disputed',
-    body: "A chargeback hits. Charm intercepts it the moment the issuing bank flags it — you don't open a portal, you don't draft a response.",
+    body: "A chargeback hits. Charm intercepts it the moment the issuing bank flags it â€” you don't open a portal, you don't draft a response.",
     code: ['// chargeback.received', 'amount: $142.00', 'reason: 10.4 fraud'],
     numeralBg: 'forest',
     codeBorder: 'black',
   },
   {
     num: '03',
-    stage: 'STAGE C · CHARM',
+    stage: 'STAGE C Â· CHARM',
     title: 'Response',
     body: 'Charm assembles the evidence packet, files the response, and recovers the funds. You get a notification when the case is won.',
-    code: ['// dispute.recovered', 'won: true', 'credited: $142.00 ✓'],
+    code: ['// dispute.recovered', 'won: true', 'credited: $142.00 âœ“'],
     numeralBg: 'gold',
     codeBorder: 'forest',
   },
@@ -142,7 +142,7 @@ export function DefenseFlow() {
     >
       <Container>
         <div className="mb-2xl">
-          <EyebrowTag section="§" label="THE FLOW" />
+          <EyebrowTag section="Â§" label="THE FLOW" />
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',
@@ -150,14 +150,14 @@ export function DefenseFlow() {
               'max-w-3xl',
             )}
           >
-            Three things happen —{' '}
+            Three things happen â€”{' '}
             <em className="italic text-atelier-forest">
               none of them are your job.
             </em>
           </h2>
           <p className="text-base text-black/70 max-w-2xl mt-md leading-relaxed">
             Subscribe to Charm Payments. When a chargeback hits, we monitor it,
-            respond to it, and fight to recover it — automatically.
+            respond to it, and fight to recover it â€” automatically.
           </p>
         </div>
 
@@ -271,9 +271,12 @@ export function DefenseFlow() {
             'font-atelierMono text-xs uppercase tracking-label text-black/55',
           )}
         >
-          ZERO MERCHANT EFFORT · CHARM HANDLES STAGES B AND C · YOU JUST GET PAID
+          ZERO MERCHANT EFFORT Â· CHARM HANDLES STAGES B AND C Â· YOU JUST GET PAID
         </p>
       </Container>
     </section>
   )
 }
+
+
+

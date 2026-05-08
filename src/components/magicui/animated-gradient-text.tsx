@@ -1,4 +1,4 @@
-// src/components/magicui/animated-gradient-text.tsx
+﻿// src/components/magicui/animated-gradient-text.tsx
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -35,3 +35,6 @@ export function AnimatedGradientText({
     </div>
   );
 }
+
+
+

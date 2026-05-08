@@ -1,4 +1,4 @@
-// src/components/atelier/sections/HowItWorks.tsx
+﻿// src/components/atelier/sections/HowItWorks.tsx
 'use client'
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
@@ -22,21 +22,21 @@ const STEPS: Step[] = [
   {
     num: '01',
     title: 'Apply in minutes',
-    body: 'Tell us about your business, volume, and how you take payments — online, in-store, or both.',
+    body: 'Tell us about your business, volume, and how you take payments â€” online, in-store, or both.',
     caption: 'EST. 5 MIN',
     numeralBg: 'forest',
   },
   {
     num: '02',
     title: 'Approved in 24 hours',
-    body: 'Submit a complete application — we target same-day to 24-hour approval when everything checks out.',
+    body: 'Submit a complete application â€” we target same-day to 24-hour approval when everything checks out.',
     caption: 'EST. T+1',
     numeralBg: 'forest',
   },
   {
     num: '03',
     title: 'Start accepting payments',
-    body: "Gateway keys, fraud rules, and cart connections go live — you're ready to run real transactions.",
+    body: "Gateway keys, fraud rules, and cart connections go live â€” you're ready to run real transactions.",
     caption: 'LIVE',
     numeralBg: 'gold',
   },
@@ -131,7 +131,7 @@ export function HowItWorks() {
     >
       <Container>
         <div className="mb-2xl">
-          <EyebrowTag section="§05" label="HOW IT WORKS" />
+          <EyebrowTag section="Â§05" label="HOW IT WORKS" />
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',
@@ -144,7 +144,7 @@ export function HowItWorks() {
           </h2>
           <p className="text-base text-black/70 max-w-2xl mt-md leading-relaxed">
             No setup project. We handle underwriting, configuration, and
-            go-live — you fill out one application.
+            go-live â€” you fill out one application.
           </p>
         </div>
 
@@ -232,3 +232,6 @@ export function HowItWorks() {
     </section>
   )
 }
+
+
+

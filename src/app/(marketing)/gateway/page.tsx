@@ -1,19 +1,19 @@
-// src/app/(marketing)/gateway/page.tsx
+﻿// src/app/(marketing)/gateway/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2, Zap, Shield, Globe, BarChart3 } from 'lucide-react'
 import { solutionVerticals } from '@/lib/nmi-products'
 
 export const metadata: Metadata = {
-  title: 'Gateway & Products — Charm Payments',
+  title: 'Gateway & Products â€” Charm Payments',
   description:
-    'Powered by NMI — a full-featured payment gateway with 200+ processor connections, 125+ shopping cart integrations, and hardware for every environment.',
+    'Built for connected payments â€” a full-featured payment gateway with many processor connections, 125+ shopping cart integrations, and hardware for every environment.',
 }
 
 const stats = [
-  { value: '$203B+', label: 'Payments Volume' },
+  { value: 'Connect', label: 'Platform Layer' },
   { value: '277K+', label: 'Merchants Served' },
-  { value: '200+', label: 'Processor Connections' },
+  { value: 'many', label: 'Processor Connections' },
   { value: '125+', label: 'Shopping Cart Integrations' },
 ]
 
@@ -22,7 +22,7 @@ const gatewayHighlights = [
     icon: Zap,
     title: 'Seamless White Labeling',
     description:
-      'Control your brand across the entire gateway — your logo, your colors, your domain name.',
+      'Control your brand across the entire gateway â€” your logo, your colors, your domain name.',
   },
   {
     icon: Shield,
@@ -40,7 +40,7 @@ const gatewayHighlights = [
     icon: BarChart3,
     title: 'Automated Billing & Reporting',
     description:
-      'Commissions tracking, residual reporting, and automated merchant billing — all from your Partner Portal.',
+      'Commissions tracking, residual reporting, and automated merchant billing â€” all from your Partner Portal.',
   },
 ]
 
@@ -51,19 +51,19 @@ export default function GatewayPage() {
       <section className="bg-brand-dark text-white section-ptb">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="section-label text-brand-accent mb-4">Powered by NMI</p>
+            <p className="section-label text-brand-accent mb-4">Built for connected payments</p>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
               A Complete Payment
               <span className="gradient-text block">Gateway & Product Suite</span>
             </h1>
             <p className="text-lg text-white/75 mb-8 leading-relaxed">
-              Charm Payments is built on the NMI gateway — the same infrastructure trusted by
-              277,000+ merchants and $203B+ in annual payment volume. You get every tool you need,
+              Charm Payments is built on the payment infrastructure â€” the same infrastructure trusted by
+              the infrastructure layer can support the tools merchants need,
               white-labeled under your brand.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/apply" className="btn-accent">
-                Apply for a Merchant Account
+                Get Free Rate Audit
               </Link>
               <Link href="/gateway/features" className="btn-outline border-white/30 text-white hover:border-brand-accent">
                 Explore Features
@@ -87,7 +87,7 @@ export default function GatewayPage() {
         </div>
       </section>
 
-      {/* Two Cards — Features & Hardware */}
+      {/* Two Cards â€” Features & Hardware */}
       <section className="section-ptb bg-brand-light">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -97,7 +97,7 @@ export default function GatewayPage() {
             </h2>
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
               From hosted checkout pages and recurring billing to countertop terminals and mobile
-              SmartPOS — everything ships through the same NMI gateway.
+              SmartPOS â€” everything ships through the same payment infrastructure.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
@@ -111,7 +111,7 @@ export default function GatewayPage() {
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Virtual Terminal, Collect.js, Customer Vault, Recurring Billing, Fraud Prevention,
-                Webhooks, 3DS, QuickBooks SyncPay, Google Pay — 11 powerful features included.
+                Webhooks, 3DS, QuickBooks SyncPay, Google Pay â€” 11 powerful features included.
               </p>
               <ul className="space-y-2 mb-8">
                 {[
@@ -147,7 +147,7 @@ export default function GatewayPage() {
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Certified terminals for countertop, mobile, and unattended environments. PAX A920
-                SmartPOS, Ingenico Lane/3000, Lane/7000 — all PCI PTS 5.X certified and NMI
+                SmartPOS, Ingenico Lane/3000, Lane/7000 â€” all PCI PTS 5.X certified and payment infrastructure
                 certified.
               </p>
               <ul className="space-y-2 mb-8">
@@ -228,13 +228,17 @@ export default function GatewayPage() {
             Ready to Start Accepting Payments?
           </h2>
           <p className="text-white/70 mb-8">
-            Apply for your merchant account today. No setup fees to start.
+            Get Free Rate Audit today. No setup fees to start.
           </p>
           <Link href="/apply" className="btn-accent text-lg px-8 py-4">
-            Apply for Your Merchant Account
+            Get Free Rate Audit
           </Link>
         </div>
       </section>
     </>
   )
 }
+
+
+
+

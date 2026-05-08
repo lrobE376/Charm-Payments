@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagPage.tsx
+﻿// src/components/atelier/magazine/MagPage.tsx
 import { MagMetaStrip, type MagMetaStripProps } from './MagMetaStrip'
 import { MagHero, type MagHeroProps } from './MagHero'
 import { MagMarquee, type MagMarqueeProps } from './MagMarquee'
@@ -89,3 +89,6 @@ export function MagPage({
     </>
   )
 }
+
+
+

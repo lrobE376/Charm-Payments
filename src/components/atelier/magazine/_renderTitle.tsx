@@ -1,9 +1,9 @@
-// src/components/atelier/magazine/_renderTitle.tsx
+﻿// src/components/atelier/magazine/_renderTitle.tsx
 import React from 'react'
 
 /**
  * Magazine micro-syntax: text wrapped in {curly braces} renders as italic + forest accent.
- * "Three things that change {on day one.}" → "Three things that change " + <em>on day one.</em>
+ * "Three things that change {on day one.}" â†’ "Three things that change " + <em>on day one.</em>
  */
 export function renderTitle(
   title: string,
@@ -27,3 +27,6 @@ export function renderTitle(
   if (lastIndex < title.length) parts.push(title.slice(lastIndex))
   return parts
 }
+
+
+

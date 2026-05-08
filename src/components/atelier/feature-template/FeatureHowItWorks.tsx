@@ -1,4 +1,4 @@
-// src/components/atelier/feature-template/FeatureHowItWorks.tsx
+﻿// src/components/atelier/feature-template/FeatureHowItWorks.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -110,7 +110,7 @@ export function FeatureHowItWorks({
       <Container>
         <div className="mb-2xl">
           {(() => {
-            const isSection = eyebrow.trim().startsWith('§')
+            const isSection = eyebrow.trim().startsWith('Â§')
             const eyebrowClass = isSection
               ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
               : 'font-stripeSans'
@@ -178,7 +178,7 @@ export function FeatureHowItWorks({
                   className="flex items-start gap-xs"
                 >
                   <span aria-hidden className="text-atelier-forest mt-0.5 shrink-0">
-                    ✓
+                    âœ“
                   </span>
                   <div>
                     <div className="font-atelierSans text-sm font-medium text-atelier-ink">
@@ -197,3 +197,6 @@ export function FeatureHowItWorks({
     </section>
   )
 }
+
+
+

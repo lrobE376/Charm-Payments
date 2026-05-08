@@ -1,4 +1,4 @@
-// src/app/(marketing)/solutions/services/page.tsx
+﻿// src/app/(marketing)/solutions/services/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MagMetaStrip } from '@/components/atelier/magazine/MagMetaStrip'
@@ -13,7 +13,7 @@ import { MagFinalCta } from '@/components/atelier/magazine/MagFinalCta'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'Service Business Payment Processing – Charm Payments',
+  title: 'Service Business Payment Processing â€“ Charm Payments',
   description:
     "Your current processor was built for retail, not service businesses. You're paying card-present flat rates on invoices, you have no ACH option, and no one picks up when billing breaks. Charm fixes all three.",
 }
@@ -43,7 +43,7 @@ const FEATURES = [
     figLabel: 'Virtual Terminal',
     title: 'Take card payments from any browser',
     description:
-      'Phone orders, email invoices, in-person — key in card details from any browser without hardware. No flat rate penalty for not having a register. Same next-day settlement.',
+      'Phone orders, email invoices, in-person â€” key in card details from any browser without hardware. No flat rate penalty for not having a register. Same next-day settlement.',
   },
   {
     figLabel: 'Invoice & Pay Links',
@@ -55,13 +55,13 @@ const FEATURES = [
     figLabel: 'Recurring Billing',
     title: 'Automate retainers and contracts',
     description:
-      'Monthly retainer charges, service contracts, subscription billing — set the schedule and let smart retry logic handle failed cards without interrupting client relationships.',
+      'Monthly retainer charges, service contracts, subscription billing â€” set the schedule and let smart retry logic handle failed cards without interrupting client relationships.',
   },
   {
     figLabel: 'ACH Processing',
     title: 'Bank transfers for big invoices',
     description:
-      'Accept bank-to-bank payments at lower interchange cost — ideal for large invoices, B2B contracts, and high-ticket services where card fees eat significant margin.',
+      'Accept bank-to-bank payments at lower interchange cost â€” ideal for large invoices, B2B contracts, and high-ticket services where card fees eat significant margin.',
   },
 ]
 
@@ -76,7 +76,7 @@ const WHY_CARDS = [
     fig: 'Reason 02',
     title: 'ACH processing',
     description:
-      'Bank transfers at lower cost — right for large invoices and B2B clients.',
+      'Bank transfers at lower cost â€” right for large invoices and B2B clients.',
   },
   {
     fig: 'Reason 03',
@@ -115,11 +115,11 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     q: 'Do I need a physical terminal to use Charm Payments?',
-    a: 'No. The virtual terminal lets you take card payments from any browser. If you also need in-person hardware, we can set that up — but it is not required.',
+    a: 'No. The virtual terminal lets you take card payments from any browser. If you also need in-person hardware, we can set that up â€” but it is not required.',
   },
   {
     q: 'How does recurring billing handle failed cards?',
-    a: 'NMI has built-in smart retry logic that automatically reattempts failed transactions on a configurable schedule before flagging for manual follow-up.',
+    a: 'payment infrastructure has built-in smart retry logic that automatically reattempts failed transactions on a configurable schedule before flagging for manual follow-up.',
   },
   {
     q: 'What is ACH processing and when should I use it?',
@@ -127,7 +127,7 @@ const FAQS = [
   },
   {
     q: 'Can clients pay through a link without calling me?',
-    a: 'Yes. You can generate a hosted payment link from NMI and send it via text, email, or include it in an invoice. The client pays at their convenience.',
+    a: 'Yes. You can generate a hosted payment link from payment infrastructure and send it via text, email, or include it in an invoice. The client pays at their convenience.',
   },
 ]
 
@@ -144,28 +144,28 @@ export default function ServicesIndustryPage() {
           color: 'rgba(0,0,0,0.5)',
         }}
       >
-        Trusted by 500+ St. Louis merchants
+        Built for serious independent merchants
       </div>
 
       <MagMetaStrip
-        issue="Charm Payments · Solutions"
+        issue="Charm Payments Â· Solutions"
         folio="Service Businesses"
         filed="Filed 2026"
       />
 
       <MagHero
-        eyebrow="Service Businesses · Payment Processing"
+        eyebrow="Service Businesses Â· Payment Processing"
         headlineLines={[
           { text: "You're Using a Retail Processor to Run a Service Business. That's Costing You." },
         ]}
-        subtitle="Flat-rate fees on every invoice. No ACH option for large clients. Support that's never heard of retainer billing. Your current processor wasn't built for how you work — Charm is. Virtual terminal, recurring billing, ACH, and pay links. One account, one human support line."
-        primaryCta={{ label: 'Get My Free Rate Audit', href: '/apply' }}
-        secondaryCta={{ label: 'Free Rate Audit', href: '/quote' }}
+        subtitle="Flat-rate fees on every invoice. No ACH option for large clients. Support that's never heard of retainer billing. Your current processor wasn't built for how you work â€” Charm is. Virtual terminal, recurring billing, ACH, and pay links. One account, one human support line."
+        primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
+        secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         visualVariant="solutions-restaurants"
         visualSlot={
           <HeroVisual
             variant="solutions-restaurants"
-            caption="FIG. 01 — A SAMPLE STATEMENT"
+            caption="FIG. 01 â€” A SAMPLE STATEMENT"
           />
         }
         pills={HERO_PILLS}
@@ -210,7 +210,7 @@ export default function ServicesIndustryPage() {
 
       <MagFeatureList
         eyebrow="Built for service businesses"
-        headline="Every Way Your Clients Pay — Without the Processor Tax"
+        headline="Every Way Your Clients Pay â€” Without the Processor Tax"
         items={FEATURES}
         columns={2}
       />
@@ -218,7 +218,7 @@ export default function ServicesIndustryPage() {
       <MagStickyCardScroll
         eyebrow="Why Charm Payments"
         headline="Chasing invoices while {overpaying to process them}"
-        body="Most service businesses are using processors built for retail — which means flat-rate fees on every invoice, no ACH option, and support that has never heard of a retainer billing setup. Seeing every fee, every card type, every time — and having ACH for big invoices — changes the economics completely."
+        body="Most service businesses are using processors built for retail â€” which means flat-rate fees on every invoice, no ACH option, and support that has never heard of a retainer billing setup. Seeing every fee, every card type, every time â€” and having ACH for big invoices â€” changes the economics completely."
         cards={WHY_CARDS}
       />
 
@@ -271,7 +271,7 @@ export default function ServicesIndustryPage() {
                 margin: '14px 0 24px 0',
               }}
             >
-              Send us your last merchant statement. We will line-item every cost and show exactly what changes with Charm — before you commit to anything.
+              Send us your last merchant statement. We will line-item every cost and show exactly what changes with Charm â€” before you commit to anything.
             </p>
             <Link
               href="/quote"
@@ -284,7 +284,7 @@ export default function ServicesIndustryPage() {
               }}
             >
               Get your free audit
-              <span aria-hidden>→</span>
+              <span aria-hidden>â†’</span>
             </Link>
           </div>
         </div>
@@ -299,10 +299,10 @@ export default function ServicesIndustryPage() {
       <MagGradientBreak variant="light-to-forest" />
       <MagForestBand
         eyebrow="Built for service businesses"
-        headline="Phone orders, invoices, retainers, ACH — one merchant account covers every collection method your service business uses, {without flat-rate fees on every transaction.}"
-        subtitle="No separate hardware required — take payments from any browser on any device. Bank transfers at lower cost, right for large invoices and B2B clients. Retainer automation with smart retry — set it and stop chasing clients. Month-to-month, no early termination penalties."
+        headline="Phone orders, invoices, retainers, ACH â€” one merchant account covers every collection method your service business uses, {without flat-rate fees on every transaction.}"
+        subtitle="No separate hardware required â€” take payments from any browser on any device. Bank transfers at lower cost, right for large invoices and B2B clients. Retainer automation with smart retry â€” set it and stop chasing clients. Month-to-month, no early termination penalties."
         stats={[
-          { num: '500+', label: 'St. Louis merchants' },
+          { num: 'Audit', label: 'Statement-first intake' },
           { num: 'Virtual', label: 'Terminal included' },
           { num: 'Month-to-month', label: 'No early termination' },
         ]}
@@ -316,11 +316,14 @@ export default function ServicesIndustryPage() {
           { text: 'Stop Paying Retail Processor Rates', size: 'normal' },
           { text: 'on Service Business Invoices.', italicTarget: 'on Service Business Invoices.', size: 'normal' },
         ]}
-        subtitle="Your last statement reflects a processor that wasn't built for you. We'll audit every line and show you exactly what changes with Charm — no commitment, no pressure."
-        primaryCta={{ label: 'Get My Free Audit', href: '/apply' }}
-        secondaryCta={{ label: 'Free Rate Audit', href: '/quote' }}
+        subtitle="Your last statement reflects a processor that wasn't built for you. We'll audit every line and show you exactly what changes with Charm â€” no commitment, no pressure."
+        primaryCta={{ label: 'Get Free Rate Audit', href: '/quote' }}
+        secondaryCta={{ label: 'Talk to Charm', href: '/contact' }}
         gradientVariant="solutions-restaurants"
       />
     </>
   )
 }
+
+
+

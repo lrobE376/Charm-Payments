@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagPullQuote.tsx
+﻿// src/components/atelier/magazine/MagPullQuote.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -169,7 +169,7 @@ export function MagPullQuote({
       style={{ padding: '100px 32px' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
-        {/* eyebrow column removed in Apple version — quote is the focal element */}
+        {/* eyebrow column removed in Apple version â€” quote is the focal element */}
         <div ref={eyebrowRef} className="sr-only">
           {eyebrow}
         </div>
@@ -218,3 +218,6 @@ export function MagPullQuote({
     </section>
   )
 }
+
+
+

@@ -1,4 +1,4 @@
-// src/components/atelier/charm-defense/DefenseHero.tsx
+﻿// src/components/atelier/charm-defense/DefenseHero.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -9,7 +9,7 @@ import { prefersReducedMotion } from '@/lib/motion'
 
 const PILLS = [
   'AUTOMATED EVIDENCE',
-  'ALERTS · VISA · MC',
+  'ALERTS Â· VISA Â· MC',
   'FULLY MANAGED',
   'ZERO MERCHANT EFFORT',
 ]
@@ -100,7 +100,7 @@ export function DefenseHero() {
                 aria-hidden
                 className="block w-1.5 h-1.5 rounded-full bg-atelier-gold"
               />
-              INCLUDED · NO ADD-ON · NO UPCHARGE
+              INCLUDED Â· NO ADD-ON Â· NO UPCHARGE
             </span>
 
             <h1
@@ -130,8 +130,8 @@ export function DefenseHero() {
                   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
                 )}
               >
-                Apply for a Charm account
-                <span aria-hidden>↗</span>
+                Get Free Rate Audit
+                <span aria-hidden>â†—</span>
               </a>
               <a
                 href="#flow"
@@ -144,7 +144,7 @@ export function DefenseHero() {
                 )}
               >
                 See how it works
-                <span aria-hidden>→</span>
+                <span aria-hidden>â†’</span>
               </a>
             </div>
 
@@ -160,7 +160,7 @@ export function DefenseHero() {
                     'whitespace-nowrap',
                   )}
                 >
-                  ✓ {pill}
+                  âœ“ {pill}
                 </li>
               ))}
             </ul>
@@ -180,7 +180,7 @@ export function DefenseHero() {
               )}
             >
               <span className="font-atelierMono text-[10px] uppercase tracking-label text-black/55">
-                YOUR ACCOUNT · LIVE
+                YOUR ACCOUNT Â· LIVE
               </span>
               <span
                 className={cn(
@@ -240,7 +240,7 @@ export function DefenseHero() {
                 DEFENSE FEE
               </span>
               <span className="font-atelierMono text-sm text-atelier-gold tracking-spec">
-                $0.00 · INCLUDED
+                $0.00 Â· INCLUDED
               </span>
             </div>
           </div>
@@ -266,3 +266,6 @@ function Cell({
     </div>
   )
 }
+
+
+

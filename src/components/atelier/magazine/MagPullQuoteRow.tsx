@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagPullQuoteRow.tsx
+﻿// src/components/atelier/magazine/MagPullQuoteRow.tsx
 import { renderTitle } from './_renderTitle'
 
 export type MagPullQuoteRowItem = {
@@ -118,7 +118,7 @@ export function MagPullQuoteRow({ eyebrow, title, items }: MagPullQuoteRowProps)
                       marginTop: 4,
                     }}
                   >
-                    {[item.role, item.location].filter(Boolean).join(' · ')}
+                    {[item.role, item.location].filter(Boolean).join(' Â· ')}
                   </div>
                 ) : null}
                 {item.verified ? (
@@ -133,7 +133,7 @@ export function MagPullQuoteRow({ eyebrow, title, items }: MagPullQuoteRowProps)
                       textTransform: 'uppercase',
                     }}
                   >
-                    Verified{item.verifiedDate ? ` · ${item.verifiedDate}` : ''}
+                    Verified{item.verifiedDate ? ` Â· ${item.verifiedDate}` : ''}
                   </div>
                 ) : null}
               </div>
@@ -144,3 +144,6 @@ export function MagPullQuoteRow({ eyebrow, title, items }: MagPullQuoteRowProps)
     </section>
   )
 }
+
+
+

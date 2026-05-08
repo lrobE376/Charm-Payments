@@ -1,4 +1,4 @@
-// src/components/atelier/sections/Marquee.tsx
+﻿// src/components/atelier/sections/Marquee.tsx
 'use client'
 
 import { Fragment } from 'react'
@@ -22,7 +22,7 @@ export function Marquee() {
 
   return (
     <section
-      aria-label={`Accepted: ${RAILS.join(' · ')}`}
+      aria-label={`Accepted: ${RAILS.join(' Â· ')}`}
       className={cn(
         'bg-atelier-creamWarm',
         '[border-bottom-width:0.5px] border-black/[0.08]',
@@ -57,7 +57,7 @@ export function Marquee() {
               {name}
             </span>
             <span aria-hidden className="font-atelierMono text-xs text-black/30">
-              ·
+              Â·
             </span>
           </Fragment>
         ))}
@@ -65,3 +65,6 @@ export function Marquee() {
     </section>
   )
 }
+
+
+

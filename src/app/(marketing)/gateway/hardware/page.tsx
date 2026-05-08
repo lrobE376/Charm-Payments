@@ -1,13 +1,13 @@
-// src/app/(marketing)/gateway/hardware/page.tsx
+﻿// src/app/(marketing)/gateway/hardware/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CheckCircle2, ArrowRight, Cpu } from 'lucide-react'
 import { hardwareDevices } from '@/lib/nmi-products'
 
 export const metadata: Metadata = {
-  title: 'Payment Hardware — Charm Payments',
+  title: 'Payment Hardware â€” Charm Payments',
   description:
-    'NMI-certified payment terminals for every environment. PAX A920 SmartPOS, Ingenico Lane/3000, and Lane/7000 — all EMV, NFC, and PCI PTS 5.X certified.',
+    'payment infrastructure-certified payment terminals for every environment. PAX A920 SmartPOS, Ingenico Lane/3000, and Lane/7000 â€” all EMV, NFC, and PCI PTS 5.X certified.',
 }
 
 const categories = [
@@ -28,7 +28,7 @@ const categories = [
   },
 ] as const
 
-const certBadges = ['PCI PTS 5.X', 'EMV L1 & L2', 'Visa Contactless', 'Mastercard Contactless', 'NMI Certified']
+const certBadges = ['PCI PTS 5.X', 'EMV L1 & L2', 'Visa Contactless', 'Mastercard Contactless', 'payment infrastructure Certified']
 
 export default function HardwarePage() {
   return (
@@ -43,7 +43,7 @@ export default function HardwarePage() {
               <span className="gradient-text block">Every Environment</span>
             </h1>
             <p className="text-lg text-white/75 mb-8 leading-relaxed">
-              Every device we offer is NMI-certified, PCI PTS 5.X compliant, and supports EMV
+              Every device we offer is payment infrastructure-certified, PCI PTS 5.X compliant, and supports EMV
               contact, contactless, and NFC payments right out of the box.
             </p>
             <div className="flex flex-wrap gap-2">
@@ -152,15 +152,15 @@ export default function HardwarePage() {
                   Payments That Run Without a Cashier
                 </h2>
                 <p className="text-white/70 leading-relaxed mb-4">
-                  NMI&apos;s unattended platform supports parking paystations, vending machines, kiosks,
-                  EV charging stations, transit ticketing, and toll booths — all managed through the
+                  payment infrastructure&apos;s unattended platform supports parking paystations, vending machines, kiosks,
+                  EV charging stations, transit ticketing, and toll booths â€” all managed through the
                   same gateway dashboard.
                 </p>
                 <ul className="space-y-2">
                   {[
                     'Auto-board terminals on first transaction',
                     'PCI P2PE for distributed remote networks',
-                    '20+ years unattended payment experience',
+                    'unattended payment workflow support',
                     'Unified reporting with retail & ecommerce',
                   ].map((b) => (
                     <li key={b} className="flex items-center gap-2 text-sm text-white/80">
@@ -201,7 +201,7 @@ export default function HardwarePage() {
           </div>
           <div className="flex flex-wrap gap-4">
             <Link href="/apply" className="btn-primary inline-flex items-center gap-2">
-              Apply for a Merchant Account <ArrowRight className="w-4 h-4" />
+              Get Free Rate Audit <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/contact" className="btn-outline inline-flex items-center gap-2">
               Contact Us
@@ -212,3 +212,7 @@ export default function HardwarePage() {
     </>
   )
 }
+
+
+
+

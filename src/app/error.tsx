@@ -1,4 +1,4 @@
-// src/app/error.tsx
+﻿// src/app/error.tsx
 'use client'
 
 import { useEffect } from 'react'
@@ -72,3 +72,6 @@ export default function GlobalError({ error, reset }: ErrorProps) {
     </div>
   )
 }
+
+
+

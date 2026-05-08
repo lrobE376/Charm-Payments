@@ -1,4 +1,4 @@
-// src/components/magicui/sparkles-text.tsx
+﻿// src/components/magicui/sparkles-text.tsx
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -90,3 +90,6 @@ export function SparklesText({
     </span>
   );
 }
+
+
+

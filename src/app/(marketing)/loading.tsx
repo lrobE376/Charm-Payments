@@ -1,4 +1,4 @@
-// src/app/(marketing)/loading.tsx
+﻿// src/app/(marketing)/loading.tsx
 export default function MarketingLoading() {
   return (
     <div className="animate-pulse">
@@ -29,3 +29,6 @@ export default function MarketingLoading() {
     </div>
   )
 }
+
+
+

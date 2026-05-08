@@ -1,35 +1,35 @@
-// src/app/(marketing)/page.tsx
+﻿// src/app/(marketing)/page.tsx
 import type { Metadata } from 'next'
 import { MagPage } from '@/components/atelier/magazine/MagPage'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
 
 export const metadata: Metadata = {
-  title: 'Payment Processing Built for Business',
+  title: 'Charm Connect - Merchant Platform Layer',
   description:
-    'Charm Payments gives St. Louis small businesses enterprise-grade payment processing — credit cards, ACH, Apple Pay, and more. No long-term contracts.',
+    'Charm Connect helps merchants accept payments, reduce chargebacks, and manage the business from one simple platform.',
 }
 
 export default function HomePage() {
   return (
     <MagPage
       meta={{
-        issue: 'Charm Payments · St. Louis, MO',
-        folio: 'A merchant account that respects the floor',
+        issue: 'Charm Payments Â· St. Louis, MO',
+        folio: 'Accept payments. Reduce chargebacks. Manage the business.',
         filed: 'Filed 05.06.2026',
       }}
       hero={{
-        eyebrow: 'A new specification.',
+        eyebrow: 'Premium merchant infrastructure.',
         headlineLines: [
-          { text: 'Your Processor Is' },
-          { text: 'Charging More' },
-          { text: 'Than You Know.', size: 'lg' },
+          { text: 'Charm Connect' },
+          { text: 'Is the Merchant Layer' },
+          { text: 'Your Business Actually Uses.', size: 'lg' },
         ],
         subtitle:
-          "Your current processor bundles fees you can't audit, holds funds you've already earned, and routes you to a chatbot when something breaks. We'll show you exactly what you're paying — and what changes with Charm.",
-        primaryCta: { label: 'Apply Now', href: '/apply' },
-        secondaryCta: { label: 'Free Rate Audit', href: '/quote' },
+          "Accept payments, reduce chargebacks, and manage your business from one simple platform. Stripe Connect can handle connected-account onboarding and core payment infrastructure when configured; Charm owns the branded merchant experience, rate-audit funnel, dashboard, and chargeback-support layer.",
+        primaryCta: { label: 'Get Free Rate Audit', href: '/quote' },
+        secondaryCta: { label: 'Talk to Charm', href: '/contact' },
         visualVariant: 'home',
-        visualSlot: <HeroVisual variant="home" caption="FIG. 01 — A NEW STANDARD" />,
+        visualSlot: <HeroVisual variant="home" caption="FIG. 01 â€” A NEW STANDARD" />,
       }}
       marquee={{
         eyebrow: 'Accepted everywhere',
@@ -47,80 +47,74 @@ export default function HomePage() {
         ],
         speed: 'normal',
       }}
-      statsRow={{
-        eyebrow: 'By the numbers.',
-        stats: [
-          { num: '0+', label: 'Merchants Served', sublabel: 'St. Louis & beyond' },
-          { num: '0hr', label: 'Approval Target', sublabel: 'On complete applications' },
-          { num: '$0', label: 'Setup Fees', sublabel: 'No cost to get started' },
-          { num: '0+', label: 'Cart Integrations', sublabel: 'E-commerce platforms' },
-        ],
-      }}
       featureList={{
         eyebrow: 'What changes.',
-        headline: 'Run every payment channel {without juggling} processors.',
+        headline: 'Run the merchant workflow {without juggling} disconnected tools.',
         columns: 6,
         items: [
           {
             figLabel: 'Fig. 04.A',
-            title: 'Virtual Terminal',
+            title: 'Rate Audit Intake',
             description:
-              'Key in card and ACH payments from any browser — perfect for phone and mail orders.',
+              'Collect the statement, business context, and pain points before a merchant commits to onboarding.',
           },
           {
             figLabel: 'Fig. 04.B',
-            title: 'E-Commerce Gateway',
-            description: '200+ integrations · drop-in.',
+            title: 'Stripe Connect-Ready Onboarding',
+            description: 'Prepared for hosted or embedded connected-account onboarding when configuration is live.',
           },
           {
             figLabel: 'Fig. 04.C',
-            title: 'ACH Processing',
+            title: 'Merchant Dashboard',
             description:
-              'Accept large invoices by bank transfer — costs less than cards, settles predictably, fully reported.',
+              'Profile, onboarding status, payments overview, support, platform fees, and dispute work in one place.',
           },
           {
             figLabel: 'Fig. 04.D',
-            title: 'Fraud Protection',
+            title: 'Charm Defense',
             description:
-              'iSpyFraud rules, tokenization, and 3D Secure aligned to your risk profile.',
+              'Nine Gates chargeback support turns disputes from a panic workflow into a documented operating system.',
           },
           {
             figLabel: 'Fig. 04.E',
-            title: 'Recurring Billing',
-            description: 'Smart retries · built-in.',
+            title: 'Business Tools',
+            description: 'Invoices, payment links, card tools, and support workflows under one merchant-facing brand.',
           },
           {
             figLabel: 'Fig. 04.F',
-            title: 'Real-Time Reporting',
+            title: 'Honest Infrastructure',
             description:
-              'See every transaction, batch, and settlement in real time — no more guessing where your money is between statements.',
+              'Charm is not presented as a bank or processor. The platform sits above payment infrastructure and owns the merchant experience.',
           },
         ],
       }}
       threeCards={{
         eyebrow: 'How it works.',
-        headline: 'Three steps to a processor that {works for you.}',
+        headline: 'Three steps to a platform that {works for the merchant.}',
         cards: [
           {
-            figLabel: 'EST. 5 MIN',
-            title: 'Apply in minutes',
+            figLabel: 'STEP 01',
+            title: 'Start with a rate audit',
             description:
-              'Tell us about your business, volume, and how you take payments — online, in-store, or both.',
-            image: undefined,
+              'Tell us about your business, current setup, and statement pain before you commit to onboarding.',
+            image: '/images/pexels-rdne-7697434.jpg',
+            imageAlt: 'Business owner reviewing a merchant payment application on a tablet.',
           },
           {
-            figLabel: 'EST. T+1',
-            title: 'Approved in 24 hours',
+            figLabel: 'STEP 02',
+            title: 'Map the operating layer',
             description:
-              'Submit a complete application — we target same-day to 24-hour approval when everything checks out.',
-            image: undefined,
+              'Charm reviews payment workflow, chargeback exposure, and which tools belong in your merchant dashboard.',
+            image: '/images/pexels-pavel-danilyuk-6612717.jpg',
+            imageAlt: 'Payment terminal and countertop setup ready for merchant approval.',
           },
           {
-            figLabel: 'LIVE',
-            title: 'Start accepting payments',
+            figLabel: 'STEP 03',
+            title: 'Onboard when ready',
             description:
-              "Gateway keys, fraud rules, and cart connections go live — you're ready to run real transactions.",
-            image: undefined,
+              "When onboarding is ready, Stripe Connect can handle account verification while Charm gives the merchant one branded operating layer.",
+            image: '/images/sumup-uALOu8Rdv9M-unsplash.jpg',
+            imageAlt: 'Customer completing a card payment at checkout.',
           },
         ],
       }}
@@ -130,99 +124,74 @@ export default function HomePage() {
         rows: [
           { label: 'City', value: 'St. Louis, Missouri' },
           { label: 'Founded', value: '2024' },
-          { label: 'Support', value: 'Local · same time zone' },
+          { label: 'Support', value: 'Local Â· same time zone' },
           { label: 'Scope', value: 'St. Louis & nationwide' },
-          { label: 'Documentary', value: 'No. 001 — 35mm · Kodak' },
+          { label: 'Documentary', value: 'Stripe Connect-ready merchant layer' },
           { label: 'Frame 001', value: 'Barber checking his Charm dashboard between clients.' },
-          { label: 'Geo', value: 'St. Louis, MO · 38.6270° N · 90.1994° W' },
+          { label: 'Geo', value: 'St. Louis, MO Â· 38.6270Â° N Â· 90.1994Â° W' },
         ],
         footnote:
-          "From barbershops to boutiques, St. Louis merchants use Charm to finally see what they're paying — and stop their processor from quietly keeping the difference.",
-      }}
-      pullQuoteRow={{
-        eyebrow: 'Merchant reviews.',
-        title: 'What merchants say {after switching.}',
-        items: [
-          {
-            quote:
-              'Charm Payments got us live before our launch weekend. Transparent pricing finally matched what we were promised.',
-            name: 'Marcus T.',
-            role: 'Metro Auto Repair',
-            verified: true,
-            verifiedDate: '03.2026',
-          },
-          {
-            quote:
-              'Recurring billing just works. Support picked up on the first ring when we had a gateway question.',
-            name: 'Diane R.',
-            role: 'Sunflower Wellness Spa',
-            verified: true,
-            verifiedDate: '02.2026',
-          },
-          {
-            quote:
-              'We process six figures monthly without downtime. The reporting exports clean into our accounting stack.',
-            name: 'James K.',
-            role: 'StreamFlow Software',
-            verified: true,
-            verifiedDate: '01.2026',
-          },
-        ],
+          "From rate audit to chargeback support, Charm Connect is designed for merchants who want a serious operating layer before they commit to onboarding.",
       }}
       forestBand={{
         eyebrow: 'The promise',
-        headline: 'We answer the phone. We honor the rate. We {show our math.}',
+        headline: 'Serious merchants need less noise and {better operating rhythm.}',
         subtitle:
-          'Built in St. Louis for independent merchants. No call centers. No hidden tiers. No surprise statement fees.',
+          'Built for independent merchants who want clean onboarding, better chargeback posture, and a dashboard that respects their time.',
         stats: [
-          { num: '48hr', label: 'From application to processing' },
-          { num: '$0', label: 'Monthly fees, ever' },
-          { num: '1', label: 'Phone number, real human' },
+          { num: 'Audit', label: 'Statement-first intake' },
+          { num: 'Defense', label: 'Chargeback support layer' },
+          { num: 'Connect', label: 'Stripe Connect-ready foundation' },
         ],
-        backgroundImage: undefined,
+        backgroundImage: '/images/christiann-koepke-WiE01mC9AtY-unsplash.jpg',
+        backgroundImageAlt: 'St. Louis storefront and local business street scene.',
       }}
       comparison={{
         eyebrow: 'Why we win.',
-        headline: "What your processor doesn't {want you} to audit.",
+        headline: "What your current setup doesn't {make easy} to audit.",
         theirs: {
-          label: 'Specimen A — The Other Guys',
+          label: 'Specimen A â€” The Other Guys',
           title: 'Extracted: $359.85/mo',
           items: [
-            'Discount rate · Bundled % · $269.00',
-            'Per-transaction · 120 × $0.20 · $24.00',
-            'Statement fee · Monthly · $12.50',
-            'PCI compliance · Quarterly · $19.95',
-            'Non-qual surcharge · Card-mix · $28.40',
-            'Batch fee · Per close · $6.00',
+            'Discount rate Â· Bundled % Â· $269.00',
+            'Per-transaction Â· 120 Ã— $0.20 Â· $24.00',
+            'Statement fee Â· Monthly Â· $12.50',
+            'PCI compliance Â· Quarterly Â· $19.95',
+            'Non-qual surcharge Â· Card-mix Â· $28.40',
+            'Batch fee Â· Per close Â· $6.00',
           ],
         },
         ours: {
-          label: 'Specimen B — Charm Payments',
-          title: 'Billed: $190.00/mo · You keep $169/mo · $2,028/yr',
+          label: 'Specimen B â€” Charm Payments',
+          title: 'Billed: $190.00/mo Â· You keep $169/mo Â· $2,028/yr',
           items: [
-            'Interchange · Passthrough · $165.00',
-            'Charm markup · Flat · $25.00',
-            'Statement fee · Not billed',
-            'PCI compliance · Not billed',
-            'Non-qual surcharge · Not billed',
-            'Batch fee · Not billed',
+            'Interchange Â· Passthrough Â· $165.00',
+            'Charm markup Â· Flat Â· $25.00',
+            'Statement fee Â· Not billed',
+            'PCI compliance Â· Not billed',
+            'Non-qual surcharge Â· Not billed',
+            'Batch fee Â· Not billed',
           ],
         },
       }}
       finalCta={{
-        eyebrow: 'Stop overpaying today.',
+        eyebrow: 'Start with the audit.',
         headlineLines: [
-          { text: 'Ready to see what your statement' },
-          { text: 'is hiding?', italicTarget: 'is hiding?', size: 'lg' },
+          { text: 'Send the statement.' },
+          { text: 'See the operating picture.', italicTarget: 'See the operating picture.', size: 'lg' },
         ],
         subtitle:
-          "Your last statement has fees your processor buried on purpose. We'll find every one, line them up, and show you exactly what you'd save — no cost, no commitment.",
-        primaryCta: { label: 'Get My Free Rate Audit', href: '/apply' },
-        secondaryCta: { label: 'Free Rate Audit', href: '/quote' },
+          "Charm reviews the statement, payment workflow, and chargeback exposure before asking you to onboard. No fake urgency, no processor cosplay, no obligation.",
+        primaryCta: { label: 'Get Free Rate Audit', href: '/quote' },
+        secondaryCta: { label: 'Talk to Charm', href: '/contact' },
         gradientVariant: 'home',
         disclaimer:
-          'Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds are subject to the terms of the Merchant Agreement. Rate audit is free and non-binding. We compare line-item against your last statement.',
+          'Charm Connect is a platform layer in progress. Payment onboarding and connected-account infrastructure are intended to run through Stripe Connect when configured. Rate audit is free and non-binding.',
       }}
     />
   )
 }
+
+
+
+

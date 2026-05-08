@@ -1,4 +1,4 @@
-// src/app/old-home/page.tsx
+﻿// src/app/old-home/page.tsx
 // Frozen snapshot of the Atelier-dark homepage (pre-Apple-canvas migration).
 // Used as emergency rollback if the new homepage at / needs to be reverted.
 import type { Metadata } from 'next'
@@ -13,7 +13,7 @@ import { MerchantReviews } from '@/components/atelier/sections/MerchantReviews'
 import { StopOverpaying } from '@/components/atelier/sections/StopOverpaying'
 
 export const metadata: Metadata = {
-  title: 'Old Homepage Backup — Charm Payments',
+  title: 'Old Homepage Backup â€” Charm Payments',
   description: 'Frozen pre-migration snapshot of the homepage. Not for public consumption.',
   robots: { index: false, follow: false },
 }
@@ -33,3 +33,6 @@ export default function OldHomePage() {
     </>
   )
 }
+
+
+

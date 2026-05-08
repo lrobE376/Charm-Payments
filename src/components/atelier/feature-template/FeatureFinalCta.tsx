@@ -1,4 +1,4 @@
-// src/components/atelier/feature-template/FeatureFinalCta.tsx
+﻿// src/components/atelier/feature-template/FeatureFinalCta.tsx
 import Link from 'next/link'
 import { Container } from '@/components/atelier/Container'
 import { cn } from '@/lib/utils'
@@ -13,7 +13,7 @@ export type FeatureFinalCtaProps = {
 }
 
 const DEFAULT_DISCLAIMER =
-  'Charm Payments — built and supported in St. Louis, Missouri. Subject to merchant agreement and underwriting approval.'
+  'Charm Payments â€” built and supported in St. Louis, Missouri. Subject to merchant agreement and underwriting approval.'
 
 function renderTitle(title: string) {
   if (!title.includes('{')) return title
@@ -44,7 +44,7 @@ export function FeatureFinalCta({
   disclaimer,
 }: FeatureFinalCtaProps) {
   const eyebrowText = eyebrow ?? 'Get started'
-  const isSection = eyebrowText.trim().startsWith('§')
+  const isSection = eyebrowText.trim().startsWith('Â§')
   const eyebrowClass = isSection
     ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
     : 'font-stripeSans'
@@ -89,7 +89,7 @@ export function FeatureFinalCta({
               )}
             >
               {primaryCta.label}
-              <span aria-hidden>→</span>
+              <span aria-hidden>â†’</span>
             </Link>
             {secondaryCta ? (
               <Link
@@ -117,3 +117,6 @@ export function FeatureFinalCta({
     </section>
   )
 }
+
+
+

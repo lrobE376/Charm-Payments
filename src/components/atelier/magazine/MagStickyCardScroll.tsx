@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagStickyCardScroll.tsx
+﻿// src/components/atelier/magazine/MagStickyCardScroll.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -320,3 +320,6 @@ export function MagStickyCardScroll({
     </section>
   )
 }
+
+
+

@@ -1,11 +1,11 @@
-// src/app/(marketing)/unsubscribe/page.tsx
+﻿// src/app/(marketing)/unsubscribe/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { CheckCircle2 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Unsubscribe — Charm Payments',
+  title: 'Unsubscribe â€” Charm Payments',
   description: 'Unsubscribe from Charm Payments marketing email communications.',
   robots: { index: false, follow: false },
 }
@@ -24,11 +24,11 @@ export default async function UnsubscribePage(
           <h1 className="text-2xl font-bold text-gray-900 mt-5">You&apos;re unsubscribed</h1>
           <p className="text-gray-500 mt-3 text-sm leading-relaxed">
             We&apos;ve received your request and will remove your address from our marketing list.
-            Please allow 24–48 hours for all campaigns to stop.
+            Please allow 24â€“48 hours for all campaigns to stop.
           </p>
           <p className="text-gray-400 mt-3 text-xs leading-relaxed">
-            Transactional emails related to your merchant account — payment confirmations, dispute
-            notices, and account alerts — will continue regardless of this preference.
+            Transactional emails related to your merchant account â€” payment confirmations, dispute
+            notices, and account alerts â€” will continue regardless of this preference.
           </p>
           <Link
             href="/"
@@ -89,3 +89,6 @@ export default async function UnsubscribePage(
     </div>
   )
 }
+
+
+

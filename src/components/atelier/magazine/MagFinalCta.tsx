@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagFinalCta.tsx
+﻿// src/components/atelier/magazine/MagFinalCta.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -133,7 +133,7 @@ export function MagFinalCta({
         tl.to(ctasRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.05')
       }
 
-      // Refinement 7: after the headline finishes, sweep italic-target color forest → gold
+      // Refinement 7: after the headline finishes, sweep italic-target color forest â†’ gold
       italRefs.current.forEach((italEl) => {
         if (!italEl) return
         tl.to(
@@ -172,7 +172,7 @@ export function MagFinalCta({
 
       <div className="relative mx-auto text-center" style={{ maxWidth: 760 }}>
         {(() => {
-          const isSection = eyebrow.trim().startsWith('§')
+          const isSection = eyebrow.trim().startsWith('Â§')
           const eyebrowClass = isSection
             ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
             : 'font-stripeSans'
@@ -250,7 +250,7 @@ export function MagFinalCta({
             )}
           >
             {primaryCta.label}
-            <span aria-hidden>→</span>
+            <span aria-hidden>â†’</span>
           </Link>
           {secondaryCta ? (
             <Link
@@ -285,3 +285,6 @@ export function MagFinalCta({
     </section>
   )
 }
+
+
+

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import Image from 'next/image'
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
@@ -11,7 +11,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       </header>
       <main className="flex-1 flex items-center justify-center p-6">{children}</main>
       <footer className="text-center py-4 text-xs text-gray-400 px-4">
-        <p>© Charm Payments — A Charm Holdings LLC Company</p>
+        <p>Â© Charm Payments â€” A Charm Holdings LLC Company</p>
         <p className="mt-1">
           Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds
           are subject to the terms of the Merchant Agreement.
@@ -20,3 +20,6 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
     </div>
   )
 }
+
+
+

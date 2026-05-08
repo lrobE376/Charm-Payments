@@ -1,4 +1,4 @@
-// src/components/atelier/feature-template/FeatureTierCards.tsx
+﻿// src/components/atelier/feature-template/FeatureTierCards.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -89,7 +89,7 @@ export function FeatureTierCards({ eyebrow, title, tiers }: FeatureTierCardsProp
       <Container>
         <div className="mb-2xl">
           {(() => {
-            const isSection = eyebrow.trim().startsWith('§')
+            const isSection = eyebrow.trim().startsWith('Â§')
             const eyebrowClass = isSection
               ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
               : 'font-stripeSans'
@@ -202,7 +202,7 @@ export function FeatureTierCards({ eyebrow, title, tiers }: FeatureTierCardsProp
                           isInverted ? 'text-atelier-gold' : 'text-atelier-forest',
                         )}
                       >
-                        ✓
+                        âœ“
                       </span>
                       <span>{f}</span>
                     </li>
@@ -223,7 +223,7 @@ export function FeatureTierCards({ eyebrow, title, tiers }: FeatureTierCardsProp
                     )}
                   >
                     {tier.cta.label}
-                    <span aria-hidden>↗</span>
+                    <span aria-hidden>â†—</span>
                   </Link>
                 ) : null}
               </div>
@@ -234,3 +234,6 @@ export function FeatureTierCards({ eyebrow, title, tiers }: FeatureTierCardsProp
     </section>
   )
 }
+
+
+

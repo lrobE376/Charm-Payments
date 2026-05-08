@@ -1,4 +1,4 @@
-import { BadgeCheck, Cpu, Headphones, Landmark, ShieldCheck, Zap } from 'lucide-react'
+﻿import { BadgeCheck, Cpu, Headphones, Landmark, ShieldCheck, Zap } from 'lucide-react'
 
 const reasons = [
   {
@@ -27,8 +27,8 @@ const reasons = [
     icon: ShieldCheck,
   },
   {
-    title: 'Powered by enterprise gateway',
-    body: 'NMI \u2014 the same stack behind billions in annual processing volume.',
+    title: 'Built for enterprise gateway',
+    body: 'payment infrastructure \u2014 the same stack behind billions in annual processing volume.',
     icon: Cpu,
   },
 ] as const
@@ -75,3 +75,6 @@ export default function ProofSection({ id = 'why-switch' }: { id?: string }) {
     </section>
   )
 }
+
+
+

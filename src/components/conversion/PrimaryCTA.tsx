@@ -1,4 +1,4 @@
-// src/components/conversion/PrimaryCTA.tsx
+﻿// src/components/conversion/PrimaryCTA.tsx
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
@@ -23,10 +23,10 @@ const ghostBtn =
   'bg-transparent hover:bg-[var(--primary)] hover:text-white'
 
 export default function PrimaryCTA({
-  primary = 'Apply Now',
-  secondary = 'Get Instant Quote',
-  primaryHref = '/apply',
-  secondaryHref = '/quote',
+  primary = 'Get Free Rate Audit',
+  secondary = 'Talk to Charm',
+  primaryHref = '/quote',
+  secondaryHref = '/contact',
   className = '',
   variant = 'default',
 }: PrimaryCTAProps) {
@@ -103,3 +103,6 @@ export default function PrimaryCTA({
     </div>
   )
 }
+
+
+

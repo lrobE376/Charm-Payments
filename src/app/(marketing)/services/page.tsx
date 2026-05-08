@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import PrimaryCTA from '@/components/conversion/PrimaryCTA'
@@ -18,9 +18,9 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Payment Processing Solutions — Charm Payments',
+  title: 'Payment Processing Solutions â€” Charm Payments',
   description:
-    'Charm Payments merchant solutions — virtual terminal, invoicing, text to pay, recurring billing, ACH, e-commerce gateway, and fraud protection. All in one account.',
+    'Charm Payments merchant solutions â€” virtual terminal, invoicing, text to pay, recurring billing, ACH, e-commerce gateway, and fraud protection. All in one account.',
 }
 
 const solutions = [
@@ -28,7 +28,7 @@ const solutions = [
     icon: Monitor,
     name: 'Virtual Terminal',
     description:
-      'Accept payments from any browser — no hardware required. Perfect for phone orders, mail orders, and manual card entry.',
+      'Accept payments from any browser â€” no hardware required. Perfect for phone orders, mail orders, and manual card entry.',
     features: [
       'Process Visa, Mastercard, Amex, Discover',
       'Manual card entry from any device',
@@ -52,10 +52,10 @@ const solutions = [
     icon: Globe,
     name: 'E-Commerce Gateway',
     description:
-      'Drop-in hosted payment pages and 200+ shopping cart integrations — go live with zero development required.',
+      'Drop-in hosted payment pages and many shopping cart integrations â€” go live with zero development required.',
     features: [
-      '200+ cart integrations including Shopify & WooCommerce',
-      'Hosted payment page — no coding needed',
+      'many cart integrations including Shopify & WooCommerce',
+      'Hosted payment page â€” no coding needed',
       '3D Secure authentication',
       'iSpyFraud real-time screening',
     ],
@@ -64,7 +64,7 @@ const solutions = [
     icon: Building2,
     name: 'ACH Processing',
     description:
-      'Accept bank transfers and eChecks at a fraction of card processing costs — ideal for high-ticket transactions.',
+      'Accept bank transfers and eChecks at a fraction of card processing costs â€” ideal for high-ticket transactions.',
     features: [
       'Same-day and next-day ACH options',
       'Lower processing costs than cards',
@@ -76,7 +76,7 @@ const solutions = [
     icon: Smartphone,
     name: 'Mobile Payments',
     description:
-      'Accept payments anywhere with mobile card readers and tap-to-pay solutions that connect to your NMI gateway.',
+      'Accept payments anywhere with mobile card readers and tap-to-pay solutions that connect to your payment infrastructure.',
     features: [
       'EMV chip and tap-to-pay support',
       'iOS and Android compatible',
@@ -88,7 +88,7 @@ const solutions = [
     icon: Shield,
     name: 'High-Risk Merchants',
     description:
-      'Specialized underwriting for industries that traditional processors decline — we work with complex business models.',
+      'Specialized underwriting for industries that traditional processors decline â€” we work with complex business models.',
     features: [
       'Subscription and continuity businesses',
       'High-ticket retail and services',
@@ -100,7 +100,7 @@ const solutions = [
     icon: CreditCard,
     name: 'Charm Cards',
     description:
-      'Digital business cards with a built-in Pay Me button, Apple & Google Wallet saving, NFC tap sharing, and lead capture — every merchant gets one.',
+      'Digital business cards with a built-in Pay Me button, Apple & Google Wallet saving, NFC tap sharing, and lead capture â€” every merchant gets one.',
     features: [
       'Apple & Google Wallet saving built in',
       'Pay Me button links to your Charm Payments account',
@@ -121,7 +121,7 @@ const integrations = [
   'Salesforce',
   'Zapier',
   'API / Custom',
-  'NMI Collect.js',
+  'payment infrastructure Collect.js',
   'Hosted Payment Page',
 ]
 
@@ -130,7 +130,7 @@ const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay
 export default function ServicesPage() {
   return (
     <>
-      {/* SECTION 1 — DARK HERO */}
+      {/* SECTION 1 â€” DARK HERO */}
       <section
         className="relative overflow-hidden px-6 py-20 text-center md:py-28"
         style={{ background: 'linear-gradient(135deg, #082720 0%, #0c3a30 100%)' }}
@@ -150,10 +150,10 @@ export default function ServicesPage() {
               Payment Processing Solutions for Every Business
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
-              One NMI-powered platform for card-present and card-not-present payments, recurring revenue, and specialized underwriting — built for how you actually run your business.
+              One payment infrastructure-powered platform for card-present and card-not-present payments, recurring revenue, and specialized underwriting â€” built for how you actually run your business.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <span className="stats-badge !bg-white/10 !text-white !border-white/15">200+ Cart Integrations</span>
+              <span className="stats-badge !bg-white/10 !text-white !border-white/15">many Cart Integrations</span>
               <span className="stats-badge !bg-white/10 !text-white !border-white/15">99.99% Uptime</span>
             </div>
             <div className="mt-10 flex justify-center">
@@ -179,7 +179,7 @@ export default function ServicesPage() {
                 </div>
                 <div>
                   <p className="text-[11px] text-gray-400 font-medium uppercase tracking-wide">Tap to Pay</p>
-                  <p className="text-sm font-bold text-brand-dark">Apple Pay ✓</p>
+                  <p className="text-sm font-bold text-brand-dark">Apple Pay âœ“</p>
                 </div>
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* SECTION 2 — SOLUTIONS GRID */}
+      {/* SECTION 2 â€” SOLUTIONS GRID */}
       <section id="solutions" className="section-ptb bg-white">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center reveal">
@@ -196,7 +196,7 @@ export default function ServicesPage() {
               <span className="gradient-text">Every Payment Channel</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-              From virtual terminal to high-risk programs — choose the mix that fits your operations.
+              From virtual terminal to high-risk programs â€” choose the mix that fits your operations.
             </p>
           </div>
 
@@ -271,7 +271,7 @@ export default function ServicesPage() {
             <span className="section-label">EVERY FEATURE INCLUDED</span>
             <h2 className="font-display mt-4 text-3xl font-bold text-brand-dark">One Account. Every Tool.</h2>
             <p className="text-paragraph mx-auto mt-4 max-w-2xl">
-              Your Charm Payments merchant account includes virtual terminal, invoicing, text to pay, recurring billing, QR codes, and fraud protection — all in one
+              Your Charm Payments merchant account includes virtual terminal, invoicing, text to pay, recurring billing, QR codes, and fraud protection â€” all in one
               gateway.
             </p>
           </div>
@@ -305,22 +305,22 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* SECTION 3 — WHY NMI */}
+      {/* SECTION 3 â€” WHY payment infrastructure */}
       <section
         className="px-6 py-20 md:py-24"
         style={{ background: 'linear-gradient(135deg, #0c3a30 0%, #082720 100%)' }}
       >
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div>
-            <span className="section-label !border-white/20 !bg-white/10 !text-brand-accent">NMI GATEWAY</span>
+            <span className="section-label !border-white/20 !bg-white/10 !text-brand-accent">payment infrastructure</span>
             <h2 className="font-display mt-4 text-2xl font-bold text-white md:text-3xl lg:text-4xl">
-              Powered by NMI — the Gateway Behind $100B+ in Annual Processing
+              Built for connected payments â€” the Gateway Behind Infrastructure in Annual Processing
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-white/70">
-              Enterprise-grade infrastructure, deep cart coverage, and the compliance rigor your customers expect — without stitching together multiple vendors.
+              Enterprise-grade infrastructure, deep cart coverage, and the compliance rigor your customers expect â€” without stitching together multiple vendors.
             </p>
             <ul className="mt-8 space-y-3">
-              {['Enterprise-grade infrastructure', 'First Data/Fiserv acquiring', '99.99% uptime SLA', 'PCI DSS Level 1 compliant'].map(
+              {['Enterprise-grade infrastructure', 'licensed acquiring partners acquiring', '99.99% uptime SLA', 'PCI DSS Level 1 compliant'].map(
                 (item) => (
                   <li key={item} className="flex items-center gap-3 text-white/90">
                     <CheckCircle className="h-5 w-5 shrink-0 text-brand-accent" strokeWidth={2} aria-hidden />
@@ -330,14 +330,14 @@ export default function ServicesPage() {
               )}
             </ul>
             <Link href="/apply" className="btn-accent mt-10 inline-flex">
-              Apply for Your Merchant Account
+              Get Free Rate Audit
             </Link>
           </div>
           <div className="grid gap-4">
             {[
-              { stat: '$100B+', label: 'Annual processing volume on NMI infrastructure' },
+              { stat: 'Infrastructure', label: 'Annual processing volume on payment infrastructure infrastructure' },
               { stat: '99.99%', label: 'Gateway uptime SLA' },
-              { stat: '200+', label: 'Shopping cart and platform integrations' },
+              { stat: 'many', label: 'Shopping cart and platform integrations' },
             ].map(({ stat, label }, i) => (
               <div
                 key={stat}
@@ -352,7 +352,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* SECTION 4 — INTEGRATIONS */}
+      {/* SECTION 4 â€” INTEGRATIONS */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <span className="section-label reveal">INTEGRATIONS</span>
@@ -370,11 +370,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* SECTION 5 — FINAL CTA */}
+      {/* SECTION 5 â€” FINAL CTA */}
       <section className="bg-brand-light px-6 py-20 text-center">
         <h2 className="font-display text-2xl font-bold text-[var(--heading)] md:text-3xl reveal">Not Sure Which Solution Is Right for You?</h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-          Our team will map your volume, industry, and checkout flow to the right products — no jargon, no pressure.
+          Our team will map your volume, industry, and checkout flow to the right products â€” no jargon, no pressure.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <PrimaryCTA />
@@ -383,3 +383,6 @@ export default function ServicesPage() {
     </>
   )
 }
+
+
+

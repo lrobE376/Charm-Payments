@@ -1,7 +1,7 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Terms & Conditions — Charm Payments' },
+  title: { absolute: 'Terms & Conditions â€” Charm Payments' },
   description:
     'Review the terms and conditions governing your Charm Payments merchant account, including fees, chargebacks, and acceptable use.',
 }
@@ -48,7 +48,7 @@ export default function TermsPage() {
         <h2 className="text-xl font-bold text-brand-dark mt-8 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
           Contact Us
         </h2>
-        <p className="text-paragraph mb-4">Questions? Email merchants@charmpayments.com or call +1 (314) 555-0198.</p>
+        <p className="text-paragraph mb-4">Questions? Email merchants@charmpayments.com or call merchants@charmpayments.com.</p>
         <p className="text-sm text-gray-400 mt-12">
           Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds
           are subject to the terms of the Merchant Agreement.
@@ -57,3 +57,6 @@ export default function TermsPage() {
     </section>
   )
 }
+
+
+

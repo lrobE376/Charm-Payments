@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagStatsRow.tsx
+﻿// src/components/atelier/magazine/MagStatsRow.tsx
 
 export type MagStatsRowStat = {
   num: string
@@ -122,3 +122,6 @@ export function MagStatsRow({ eyebrow, title, stats }: MagStatsRowProps) {
     </section>
   )
 }
+
+
+

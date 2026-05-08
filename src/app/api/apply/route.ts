@@ -1,4 +1,4 @@
-// src/app/api/apply/route.ts
+﻿// src/app/api/apply/route.ts
 import { createAdminClient } from '@/lib/supabase/admin'
 import { jsonError, jsonSuccess } from '@/lib/api-response'
 import { triggerZap } from '@/lib/integrations/zapier'
@@ -48,7 +48,7 @@ function applicationReceivedHtml(firstName: string, businessName: string): strin
             <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${safeFirst},</p>
             <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6;">
               We received your merchant account application for <strong>${safeBusiness}</strong>.
-              Our underwriting team typically reviews new applications within 24–48 business hours
+              Our underwriting team typically reviews new applications within 24â€“48 business hours
               and will contact you by email or phone.
             </p>
             <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6;">
@@ -61,9 +61,9 @@ function applicationReceivedHtml(firstName: string, businessName: string): strin
             <p style="margin:0;color:#374151;font-size:14px;">
               <a href="mailto:merchants@charmpayments.com" style="color:#0c3a30;">merchants@charmpayments.com</a>
               &nbsp;&middot;&nbsp;
-              <a href="tel:+13145550198" style="color:#0c3a30;">+1 (314) 555-0198</a>
+              <a href="mailto:merchants@charmpayments.com" style="color:#0c3a30;">merchants@charmpayments.com</a>
             </p>
-            <p style="margin:24px 0 0;color:#374151;font-size:14px;">— The Charm Payments Team</p>
+            <p style="margin:24px 0 0;color:#374151;font-size:14px;">â€” The Charm Payments Team</p>
           </td>
         </tr>
         <tr>
@@ -95,7 +95,7 @@ interface ApplicationBody {
   owner_dob?: string
   address?: string
   zip?: string
-  // Safe bank metadata — NO raw account or routing numbers
+  // Safe bank metadata â€” NO raw account or routing numbers
   bank_name?: string
   account_last4?: string   // exactly 4 digits, derived client-side
   routing_last4?: string   // exactly 4 digits, derived client-side
@@ -140,7 +140,7 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as ApplicationBody
 
-    // ── Required field validation ────────────────────────────────────────────
+    // â”€â”€ Required field validation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const {
       business_name,
       ein,
@@ -180,8 +180,8 @@ export async function POST(request: Request) {
       return jsonError('Missing required fields', 400, 'VALIDATION_ERROR')
     }
 
-    // ── Reject raw sensitive fields ──────────────────────────────────────────
-    // If a client sends account_number or routing_number the request is malformed —
+    // â”€â”€ Reject raw sensitive fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // If a client sends account_number or routing_number the request is malformed â€”
     // raw values must never reach this server.
     const raw = body as unknown as Record<string, unknown>
     if (raw['account_number'] !== undefined || raw['routing_number'] !== undefined) {
@@ -192,7 +192,7 @@ export async function POST(request: Request) {
       )
     }
 
-    // ── Validate last-4 format ───────────────────────────────────────────────
+    // â”€â”€ Validate last-4 format â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if (account_last4 !== undefined && !LAST4_RE.test(account_last4)) {
       return jsonError('account_last4 must be exactly 4 digits', 400, 'VALIDATION_ERROR')
     }
@@ -210,7 +210,7 @@ export async function POST(request: Request) {
     // Until that migration runs, we insert 'NOT_STORED' as a sentinel so the constraint
     // is satisfied without persisting the real value. The actual last-4 is in routing_last4.
     const { error } = await supabase.from('merchant_applications').insert({
-      // ── NOT NULL ────────────────────────────────────────────────────────────
+      // â”€â”€ NOT NULL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       business_name,
       business_type:           business_type ?? '',
       ein,
@@ -229,7 +229,7 @@ export async function POST(request: Request) {
       routing_number:          'NOT_STORED',
       account_last4:           account_last4 ?? '',
       status:                  'submitted',
-      // ── NULLABLE ────────────────────────────────────────────────────────────
+      // â”€â”€ NULLABLE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       dba_name:                dba_name ?? null,
       website:                 website ?? null,
       industry:                industry ?? null,
@@ -260,7 +260,7 @@ export async function POST(request: Request) {
       return jsonError('Failed to submit application', 500, 'DB_ERROR')
     }
 
-    // Fire-and-forget — do not await, must not block response.
+    // Fire-and-forget â€” do not await, must not block response.
     // Full underwriting detail is routed here so Salesforce has everything
     // even though Supabase only stores the minimal record above.
     triggerZap('application', {
@@ -296,7 +296,7 @@ export async function POST(request: Request) {
       needsRecurringBilling:  needs_recurring_billing,
       needsOnlinePayments:    needs_online_payments,
       needsInvoicing:         needs_invoicing,
-      // Bank metadata (last4 only — never raw numbers)
+      // Bank metadata (last4 only â€” never raw numbers)
       bankName:               bank_name,
       accountType:            account_type,
       accountLast4:           account_last4,
@@ -309,7 +309,7 @@ export async function POST(request: Request) {
 
     await sendResendEmail(
       owner_email,
-      'We received your application — Charm Payments',
+      'We received your application â€” Charm Payments',
       applicationReceivedHtml(owner_first_name, business_name),
     )
 
@@ -318,3 +318,4 @@ export async function POST(request: Request) {
     return jsonError('Internal server error', 500, 'SERVER_ERROR')
   }
 }
+

@@ -1,4 +1,4 @@
-// src/app/(marketing)/features/ach/page.tsx
+﻿// src/app/(marketing)/features/ach/page.tsx
 import type { Metadata } from 'next'
 import { FeatureTemplate } from '@/components/atelier/feature-template/FeatureTemplate'
 import { FEATURES } from '@/lib/features/data'
@@ -13,3 +13,6 @@ export const metadata: Metadata = {
 export default function AchFeaturePage() {
   return <FeatureTemplate data={data} />
 }
+
+
+

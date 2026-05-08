@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagSpecTable.tsx
+﻿// src/components/atelier/magazine/MagSpecTable.tsx
 
 export type MagSpecTableRow = {
   label: string
@@ -113,3 +113,6 @@ export function MagSpecTable({ eyebrow, title, rows, footnote }: MagSpecTablePro
     </section>
   )
 }
+
+
+

@@ -1,4 +1,4 @@
-// src/components/atelier/feature-template/FeatureIndustries.tsx
+﻿// src/components/atelier/feature-template/FeatureIndustries.tsx
 import { Container } from '@/components/atelier/Container'
 import { cn } from '@/lib/utils'
 
@@ -40,7 +40,7 @@ export function FeatureIndustries({ eyebrow, title, items }: FeatureIndustriesPr
       <Container>
         <div className="mb-2xl">
           {(() => {
-            const isSection = eyebrow.trim().startsWith('§')
+            const isSection = eyebrow.trim().startsWith('Â§')
             const eyebrowClass = isSection
               ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold'
               : 'font-stripeSans'
@@ -98,3 +98,6 @@ export function FeatureIndustries({ eyebrow, title, items }: FeatureIndustriesPr
     </section>
   )
 }
+
+
+

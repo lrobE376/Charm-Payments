@@ -1,4 +1,4 @@
-// src/components/atelier/SpecStrip.tsx
+﻿// src/components/atelier/SpecStrip.tsx
 import { cn } from '@/lib/utils'
 
 export interface SpecStripItem {
@@ -50,3 +50,6 @@ export function SpecStrip({ items, className }: SpecStripProps) {
     </dl>
   )
 }
+
+
+

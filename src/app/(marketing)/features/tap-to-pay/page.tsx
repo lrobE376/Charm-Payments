@@ -1,4 +1,4 @@
-// src/app/(marketing)/features/tap-to-pay/page.tsx
+﻿// src/app/(marketing)/features/tap-to-pay/page.tsx
 import type { Metadata } from 'next'
 import { FeatureTemplate } from '@/components/atelier/feature-template/FeatureTemplate'
 import { FEATURES } from '@/lib/features/data'
@@ -13,3 +13,6 @@ export const metadata: Metadata = {
 export default function TapToPayFeaturePage() {
   return <FeatureTemplate data={data} />
 }
+
+
+

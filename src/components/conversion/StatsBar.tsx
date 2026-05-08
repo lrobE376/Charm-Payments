@@ -1,5 +1,5 @@
-// src/components/conversion/StatsBar.tsx
-// Animated stats bar — IntersectionObserver triggers rAF count-up (zero deps)
+﻿// src/components/conversion/StatsBar.tsx
+// Animated stats bar â€” IntersectionObserver triggers rAF count-up (zero deps)
 // Pattern from 21st.dev CaseStudies / Animated Counter components
 'use client'
 
@@ -20,7 +20,7 @@ const stats: Stat[] = [
   { end: 200,  suffix: '+',  label: 'Cart Integrations',   sublabel: 'E-commerce platforms'        },
 ]
 
-/** easeOutExpo — snappy start, graceful finish */
+/** easeOutExpo â€” snappy start, graceful finish */
 function easeOutExpo(t: number) {
   return t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
 }
@@ -62,7 +62,7 @@ function StatItem({ stat, enabled, isLast }: { stat: Stat; enabled: boolean; isL
           : undefined
       }
     >
-      {/* Gold counter — display-lg scale from globals.css */}
+      {/* Gold counter â€” display-lg scale from globals.css */}
       <p
         className="display-lg tabular-nums"
         style={{ color: 'var(--atelier-gold)', lineHeight: 1 }}
@@ -130,3 +130,6 @@ export default function StatsBar() {
     </section>
   )
 }
+
+
+

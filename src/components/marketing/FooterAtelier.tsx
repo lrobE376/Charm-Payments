@@ -1,4 +1,4 @@
-// src/components/marketing/FooterAtelier.tsx
+﻿// src/components/marketing/FooterAtelier.tsx
 import Link from 'next/link'
 import Image from 'next/image'
 import { Container } from '@/components/atelier/Container'
@@ -7,21 +7,21 @@ import { cn } from '@/lib/utils'
 const QUICK_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'FAQ', href: '/faq' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Get a Quote', href: '/quote' },
+  { label: 'Talk to Charm', href: '/contact' },
+  { label: 'Get Free Rate Audit', href: '/quote' },
 ]
 
 const SOLUTIONS = [
-  { label: 'Charm Cards', href: '/cards' },
+  { label: 'Charm Connect', href: '/' },
   { label: 'Charm Defense', href: '/charm-defense' },
-  { label: 'Virtual Terminal', href: '/services' },
-  { label: 'Gateway', href: '/gateway' },
+  { label: 'Merchant Tools', href: '/features' },
+  { label: 'Charm Cards', href: '/cards' },
 ]
 
 const RESOURCES = [
   { label: 'Privacy Policy', href: '/privacy' },
   { label: 'Terms & Conditions', href: '/terms' },
-  { label: 'API Documentation', href: '/docs' },
+  { label: 'Merchant Dashboard', href: '/dashboard' },
   { label: 'Support', href: '/contact' },
 ]
 
@@ -63,7 +63,7 @@ export function FooterAtelier() {
   return (
     <footer
       role="contentinfo"
-      className="bg-[#0F3520] text-atelier-cream/70 py-6 px-lg"
+      className="bg-[#0F3520] text-atelier-cream/70 py-10 px-lg"
     >
       <Container>
         <div
@@ -73,7 +73,7 @@ export function FooterAtelier() {
           )}
         >
           <div>
-            <Link href="/" aria-label="Charm Payments — home" className="inline-block">
+            <Link href="/" aria-label="Charm Payments â€” home" className="inline-block">
               <Image
                 src="/images/white-logo.png"
                 alt="Charm Payments"
@@ -83,16 +83,10 @@ export function FooterAtelier() {
               />
             </Link>
             <p className="text-xs text-atelier-cream/65 mt-2 leading-relaxed max-w-sm">
-              Enterprise payment processing for businesses of all sizes — built
-              and supported in St. Louis.
+              Charm Connect helps merchants accept payments, reduce chargebacks,
+              and manage the business from one simple platform.
             </p>
-            <div className="mt-3 space-y-1">
-              <a
-                href="tel:+13145550198"
-                className="block font-atelierMono text-xs text-atelier-cream/85 hover:text-atelier-cream transition-colors"
-              >
-                +1 (314) 555-0198
-              </a>
+            <div className="mt-4 space-y-1">
               <a
                 href="mailto:merchants@charmpayments.com"
                 className="block font-atelierMono text-xs text-atelier-cream/85 hover:text-atelier-cream transition-colors"
@@ -125,13 +119,18 @@ export function FooterAtelier() {
           )}
         >
           <span className="text-xs text-atelier-cream/70">
-            © Charm Payments — A Charm Holdings LLC Company
+            (c) Charm Connect by Charm Payments
           </span>
           <span className="font-atelierMono text-xs text-atelier-cream/70">
-            Built in St. Louis · 2026
+            Premium merchant infrastructure journal
           </span>
         </div>
       </Container>
     </footer>
   )
 }
+
+
+
+
+

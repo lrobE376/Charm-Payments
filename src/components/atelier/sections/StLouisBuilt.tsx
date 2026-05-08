@@ -1,4 +1,4 @@
-// src/components/atelier/sections/StLouisBuilt.tsx
+﻿// src/components/atelier/sections/StLouisBuilt.tsx
 import Image from 'next/image'
 import { Container } from '@/components/atelier/Container'
 import { EyebrowTag } from '@/components/atelier/EyebrowTag'
@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 const SPEC_ROWS = [
   { label: 'CITY', value: 'St. Louis, Missouri' },
   { label: 'FOUNDED', value: '2024' },
-  { label: 'SUPPORT', value: 'Local · same time zone' },
+  { label: 'SUPPORT', value: 'Local Â· same time zone' },
   { label: 'SCOPE', value: 'St. Louis & nationwide' },
 ]
 
@@ -47,7 +47,7 @@ export function StLouisBuilt() {
                 'px-2 py-1',
               )}
             >
-              DOCUMENTARY · NO. 001
+              DOCUMENTARY Â· NO. 001
             </div>
 
             <div
@@ -59,7 +59,7 @@ export function StLouisBuilt() {
                 'px-2 py-1',
               )}
             >
-              35MM · KODAK
+              35MM Â· KODAK
             </div>
 
             <div
@@ -75,13 +75,13 @@ export function StLouisBuilt() {
                 Barber checking his Charm dashboard between clients.
               </p>
               <div className="font-atelierMono text-[10px] uppercase tracking-spec text-atelier-cream/70 mt-2">
-                ST. LOUIS, MO · 38.6270° N · 90.1994° W
+                ST. LOUIS, MO Â· 38.6270Â° N Â· 90.1994Â° W
               </div>
             </div>
           </div>
 
           <div>
-            <EyebrowTag section="§06" label="ST. LOUIS BUILT" />
+            <EyebrowTag section="Â§06" label="ST. LOUIS BUILT" />
             <h3
               className={cn(
                 'mt-base font-atelierSerif text-2xl md:text-3xl font-medium',
@@ -93,7 +93,7 @@ export function StLouisBuilt() {
             </h3>
             <p className="text-base text-black/70 mt-md leading-relaxed">
               From barbershops to boutiques, St. Louis merchants use Charm to
-              finally see what they&apos;re paying — and stop their processor
+              finally see what they&apos;re paying â€” and stop their processor
               from quietly keeping the difference.
             </p>
 
@@ -134,7 +134,7 @@ export function StLouisBuilt() {
                 )}
               >
                 Get My Free Audit
-                <span aria-hidden>↗</span>
+                <span aria-hidden>â†—</span>
               </a>
               <a
                 href="/quote"
@@ -154,3 +154,6 @@ export function StLouisBuilt() {
     </section>
   )
 }
+
+
+

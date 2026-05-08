@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagFaq.tsx
+﻿// src/components/atelier/magazine/MagFaq.tsx
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
@@ -195,3 +195,6 @@ export function MagFaq({ eyebrow, title, items }: MagFaqProps) {
     </section>
   )
 }
+
+
+

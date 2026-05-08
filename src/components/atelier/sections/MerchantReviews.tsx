@@ -1,4 +1,4 @@
-// src/components/atelier/sections/MerchantReviews.tsx
+﻿// src/components/atelier/sections/MerchantReviews.tsx
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -83,7 +83,7 @@ export function MerchantReviews() {
     >
       <Container>
         <div className="mb-2xl">
-          <EyebrowTag section="§07" label="MERCHANT REVIEWS" />
+          <EyebrowTag section="Â§07" label="MERCHANT REVIEWS" />
           <h2
             className={cn(
               'mt-base font-atelierSerif text-3xl md:text-4xl font-medium',
@@ -164,3 +164,6 @@ export function MerchantReviews() {
     </section>
   )
 }
+
+
+

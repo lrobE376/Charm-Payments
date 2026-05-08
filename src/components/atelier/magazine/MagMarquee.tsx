@@ -1,4 +1,4 @@
-// src/components/atelier/magazine/MagMarquee.tsx
+﻿// src/components/atelier/magazine/MagMarquee.tsx
 'use client'
 
 import { Fragment } from 'react'
@@ -28,7 +28,7 @@ export function MagMarquee({ eyebrow, items, speed = 'normal' }: MagMarqueeProps
 
   return (
     <section
-      aria-label={eyebrow ?? `Trusted by ${items.map((i) => i.name).join(' · ')}`}
+      aria-label={eyebrow ?? `Trusted by ${items.map((i) => i.name).join(' Â· ')}`}
       className="bg-apple-canvas overflow-hidden relative"
       style={{ padding: '60px 32px' }}
     >
@@ -134,3 +134,6 @@ export function MagMarquee({ eyebrow, items, speed = 'normal' }: MagMarqueeProps
     </section>
   )
 }
+
+
+

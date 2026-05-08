@@ -1,4 +1,4 @@
-// src/components/atelier/feature-template/FeatureHero.tsx
+﻿// src/components/atelier/feature-template/FeatureHero.tsx
 import Link from 'next/link'
 import { Container } from '@/components/atelier/Container'
 import { HeroVisual } from '@/components/atelier/magazine/HeroVisual'
@@ -21,7 +21,7 @@ export function FeatureHero({
   primaryCta,
   secondaryCta,
 }: FeatureHeroProps) {
-  const isSection = breadcrumb.trim().startsWith('§')
+  const isSection = breadcrumb.trim().startsWith('Â§')
   const eyebrowClass = isSection
     ? 'font-atelierMono text-xs uppercase tracking-label text-atelier-gold mb-base'
     : 'font-stripeSans mb-base'
@@ -48,10 +48,7 @@ export function FeatureHero({
         }}
       />
       <Container>
-        <div
-          className="grid gap-x-16 gap-y-12 items-start"
-          style={{ gridTemplateColumns: 'minmax(0, 1fr) 360px' }}
-        >
+        <div className="grid grid-cols-1 gap-x-16 gap-y-12 items-start lg:grid-cols-[minmax(0,1fr)_360px]">
           <div>
             <div className={eyebrowClass} style={eyebrowStyle}>
               {breadcrumb}
@@ -118,7 +115,7 @@ export function FeatureHero({
                 )}
               >
                 {primaryCta.label}
-                <span aria-hidden>→</span>
+                <span aria-hidden>â†’</span>
               </Link>
 
               {secondaryCta ? (
@@ -138,10 +135,13 @@ export function FeatureHero({
           </div>
 
           <div>
-            <HeroVisual variant="feature" caption="FIG. 01 — A SAMPLE STATEMENT" />
+            <HeroVisual variant="feature" caption="FIG. 01 â€” A SAMPLE STATEMENT" />
           </div>
         </div>
       </Container>
     </section>
   )
 }
+
+
+
