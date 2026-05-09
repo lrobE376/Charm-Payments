@@ -75,10 +75,10 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
     <section
       ref={sectionRef}
       className="bg-apple-canvas"
-      style={{ padding: '90px 32px' }}
+      style={{ padding: 'clamp(64px, 8vw, 90px) clamp(16px, 4vw, 32px)' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
-        <div ref={headerRef} style={{ marginBottom: 64 }}>
+        <div ref={headerRef} style={{ marginBottom: 'clamp(32px, 6vw, 64px)' }}>
           {(() => {
             const isSection = eyebrow.trim().startsWith('§')
             const eyebrowClass = isSection
@@ -100,18 +100,16 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
               fontSize: 'clamp(32px, 3.6vw, 44px)',
               lineHeight: 1.05,
               fontWeight: 500,
-              letterSpacing: '-0.02em',
+              letterSpacing: 0,
               maxWidth: 720,
+              overflowWrap: 'break-word',
             }}
           >
             {renderTitle(headline)}
           </h2>
         </div>
 
-        <div
-          className="grid"
-          style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 32 }}
-        >
+        <div className="grid gap-8 lg:grid-cols-3">
           {cards.map((card, i) => (
             <article
               key={card.title}
@@ -147,11 +145,12 @@ export function MagThreeCardRow({ eyebrow, headline, cards }: MagThreeCardRowPro
                 {card.title}
               </h3>
               <p
-                className="font-stripeSans max-w-[280px]"
+                className="font-stripeSans max-w-none"
                 style={{
                   fontSize: 15,
                   lineHeight: 1.55,
                   color: 'rgba(0,0,0,0.7)',
+                  overflowWrap: 'break-word',
                 }}
               >
                 {card.description}

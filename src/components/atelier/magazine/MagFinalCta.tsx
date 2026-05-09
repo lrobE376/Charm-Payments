@@ -153,7 +153,7 @@ export function MagFinalCta({
     <section
       ref={sectionRef}
       className="relative overflow-hidden bg-apple-canvas-warm"
-      style={{ padding: '100px 32px 140px' }}
+      style={{ padding: 'clamp(72px, 8vw, 100px) clamp(16px, 4vw, 32px) clamp(96px, 10vw, 140px)' }}
     >
       {/* Bottom gradient blob */}
       <div
@@ -195,10 +195,11 @@ export function MagFinalCta({
         <h2
           className="font-atelierSerif text-apple-ink"
           style={{
-            fontSize: 'clamp(36px, 4.6vw, 50px)',
-            lineHeight: 1,
+            fontSize: 'clamp(32px, 4.6vw, 50px)',
+            lineHeight: 1.02,
             fontWeight: 500,
-            letterSpacing: '-0.03em',
+            letterSpacing: 0,
+            overflowWrap: 'break-word',
           }}
         >
           {headlineLines.map((line, i) => (
@@ -241,10 +242,10 @@ export function MagFinalCta({
           <Link
             href={primaryCta.href}
             className={cn(
-              'inline-flex items-center gap-1.5',
+              'inline-flex min-w-0 items-center justify-center gap-1.5',
               'bg-atelier-forest text-white',
               'font-stripeSans text-sm font-medium',
-              'px-6 py-3 rounded-pill',
+              'px-5 py-3 sm:px-6 rounded-pill',
               'hover:opacity-90 transition-opacity',
               'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
             )}
@@ -256,7 +257,7 @@ export function MagFinalCta({
             <Link
               href={secondaryCta.href}
               className={cn(
-                'inline-flex items-center px-[22px] py-[11px] text-sm font-medium font-stripeSans',
+                'inline-flex min-w-0 items-center justify-center px-5 py-[11px] text-sm font-medium font-stripeSans sm:px-[22px]',
                 'border border-black/[0.18] text-apple-ink rounded-pill',
                 'hover:border-black/40 transition-colors',
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-atelier-gold',
@@ -276,6 +277,7 @@ export function MagFinalCta({
               lineHeight: 1.6,
               maxWidth: 640,
               color: 'rgba(0,0,0,0.5)',
+              overflowWrap: 'break-word',
             }}
           >
             {disclaimer}

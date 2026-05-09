@@ -56,32 +56,32 @@ const modules = [
 
 export default function DashboardShellPage() {
   return (
-    <main className="min-h-screen bg-apple-canvas px-6 py-10 text-apple-ink">
+    <main className="min-h-screen bg-apple-canvas px-4 py-8 text-apple-ink sm:px-6 sm:py-10">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-6 border-b border-black/10 pb-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="font-atelierMono text-xs uppercase tracking-label text-atelier-gold">
               Charm Connect dashboard
             </p>
-            <h1 className="mt-3 font-atelierSerif text-4xl font-medium leading-none md:text-5xl">
+            <h1 className="mt-3 max-w-2xl font-atelierSerif text-4xl font-medium leading-none md:text-5xl" style={{ overflowWrap: 'break-word' }}>
               Merchant operations shell.
             </h1>
-            <p className="mt-4 max-w-2xl font-stripeSans text-base leading-relaxed text-black/65">
+            <p className="mt-4 max-w-2xl font-stripeSans text-base leading-relaxed text-black/65" style={{ overflowWrap: 'break-word' }}>
               This is the future workspace for merchant onboarding, payments,
               disputes, support, and platform subscription status. It uses
               placeholder states only because live account data is not wired yet.
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/quote"
-              className="inline-flex items-center justify-center rounded-pill bg-atelier-forest px-6 py-3 font-stripeSans text-sm font-medium text-white transition-opacity hover:opacity-90"
+              className="inline-flex min-w-0 items-center justify-center rounded-pill bg-atelier-forest px-5 py-3 font-stripeSans text-sm font-medium text-white transition-opacity hover:opacity-90 sm:px-6"
             >
               Get Free Rate Audit
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-pill border border-black/20 px-6 py-3 font-stripeSans text-sm font-medium text-apple-ink transition-colors hover:border-black/40"
+              className="inline-flex min-w-0 items-center justify-center rounded-pill border border-black/20 px-5 py-3 font-stripeSans text-sm font-medium text-apple-ink transition-colors hover:border-black/40 sm:px-6"
             >
               Talk to Charm
             </Link>

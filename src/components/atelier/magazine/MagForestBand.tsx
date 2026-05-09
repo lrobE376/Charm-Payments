@@ -121,7 +121,7 @@ export function MagForestBand({
     <section
       ref={sectionRef}
       className="relative overflow-hidden bg-forest-band text-apple-canvas"
-      style={{ padding: '100px 32px' }}
+      style={{ padding: 'clamp(72px, 8vw, 100px) clamp(16px, 4vw, 32px)' }}
     >
       {/* Background image slot — sits behind glow layers */}
       {backgroundImage ? (
@@ -222,11 +222,12 @@ export function MagForestBand({
           style={{
             marginTop: 24,
             maxWidth: 720,
-            fontSize: 'clamp(36px, 4.4vw, 48px)',
+            fontSize: 'clamp(32px, 4.4vw, 48px)',
             lineHeight: 1.05,
             fontWeight: 500,
-            letterSpacing: '-0.025em',
+            letterSpacing: 0,
             color: '#FBFBFD',
+            overflowWrap: 'break-word',
           }}
         >
           {renderTitle(headline, 'italic text-[#BD9952]')}
@@ -247,12 +248,10 @@ export function MagForestBand({
         </p>
 
         <div
-          className="grid"
+          className="grid gap-8 lg:grid-cols-3"
           style={{
             marginTop: 64,
             paddingTop: 36,
-            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-            gap: 32,
             borderTop: '0.5px solid rgba(251,251,253,0.15)',
           }}
         >

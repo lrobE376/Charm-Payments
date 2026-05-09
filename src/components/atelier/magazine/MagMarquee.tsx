@@ -30,7 +30,7 @@ export function MagMarquee({ eyebrow, items, speed = 'normal' }: MagMarqueeProps
     <section
       aria-label={eyebrow ?? `Trusted by ${items.map((i) => i.name).join(' · ')}`}
       className="bg-apple-canvas overflow-hidden relative"
-      style={{ padding: '60px 32px' }}
+      style={{ padding: 'clamp(40px, 6vw, 60px) clamp(16px, 4vw, 32px)' }}
     >
       {eyebrow ? (
         <div

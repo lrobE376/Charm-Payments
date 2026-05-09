@@ -76,10 +76,10 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
     <section
       ref={sectionRef}
       className="bg-apple-canvas"
-      style={{ padding: '100px 32px' }}
+      style={{ padding: 'clamp(64px, 8vw, 100px) clamp(16px, 4vw, 32px)' }}
     >
       <div className="mx-auto" style={{ maxWidth: 1280 }}>
-        <div ref={headerRef} style={{ marginBottom: 64 }}>
+        <div ref={headerRef} style={{ marginBottom: 'clamp(32px, 6vw, 64px)' }}>
           {(() => {
             const isSection = eyebrow.trim().startsWith('§')
             const eyebrowClass = isSection
@@ -101,23 +101,21 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
               fontSize: 'clamp(32px, 3.6vw, 44px)',
               lineHeight: 1.05,
               fontWeight: 500,
-              letterSpacing: '-0.02em',
+              letterSpacing: 0,
               maxWidth: 720,
+              overflowWrap: 'break-word',
             }}
           >
             {renderTitle(headline)}
           </h2>
         </div>
 
-        <div
-          className="grid gap-6"
-          style={{ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}
-        >
+        <div className="grid gap-6 lg:grid-cols-2">
           {/* Theirs — neutral border, transparent canvas bg */}
           <div
             ref={theirsRef}
             className="bg-apple-canvas"
-            style={{ padding: '36px 32px', border: '0.5px solid rgba(0,0,0,0.10)', borderRadius: 16 }}
+            style={{ padding: 'clamp(24px, 4vw, 36px) clamp(20px, 4vw, 32px)', border: '0.5px solid rgba(0,0,0,0.10)', borderRadius: 16 }}
           >
             <div
               className="font-stripeSans"
@@ -134,10 +132,11 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
               className="font-atelierSerif text-apple-ink"
               style={{
                 marginTop: 8,
-                fontSize: 24,
+                fontSize: 'clamp(22px, 2.6vw, 24px)',
                 lineHeight: 1.2,
                 fontWeight: 500,
-                letterSpacing: '-0.015em',
+                letterSpacing: 0,
+                overflowWrap: 'break-word',
               }}
             >
               {theirs.title}
@@ -147,7 +146,7 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
                 <li
                   key={item}
                   className={cn('flex items-start gap-2.5 font-stripeSans')}
-                  style={{ fontSize: 14, lineHeight: 1.5, color: 'rgba(0,0,0,0.7)' }}
+                  style={{ fontSize: 14, lineHeight: 1.5, color: 'rgba(0,0,0,0.7)', overflowWrap: 'break-word' }}
                 >
                   <span
                     aria-hidden
@@ -175,7 +174,7 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
           <div
             ref={oursRef}
             className="bg-apple-canvas"
-            style={{ padding: '36px 32px', border: '1.5px solid #1E5C35', borderRadius: 16 }}
+            style={{ padding: 'clamp(24px, 4vw, 36px) clamp(20px, 4vw, 32px)', border: '1.5px solid #1E5C35', borderRadius: 16 }}
           >
             <div
               className="font-stripeSans"
@@ -192,10 +191,11 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
               className="font-atelierSerif text-apple-ink"
               style={{
                 marginTop: 8,
-                fontSize: 24,
+                fontSize: 'clamp(22px, 2.6vw, 24px)',
                 lineHeight: 1.2,
                 fontWeight: 500,
-                letterSpacing: '-0.015em',
+                letterSpacing: 0,
+                overflowWrap: 'break-word',
               }}
             >
               {ours.title}
@@ -205,7 +205,7 @@ export function MagComparison({ eyebrow, headline, theirs, ours }: MagComparison
                 <li
                   key={item}
                   className={cn('flex items-start gap-2.5 font-stripeSans')}
-                  style={{ fontSize: 14, lineHeight: 1.5, color: 'rgba(0,0,0,0.85)' }}
+                  style={{ fontSize: 14, lineHeight: 1.5, color: 'rgba(0,0,0,0.85)', overflowWrap: 'break-word' }}
                 >
                   <span
                     aria-hidden
