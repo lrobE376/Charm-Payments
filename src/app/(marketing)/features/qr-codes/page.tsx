@@ -1,18 +1,11 @@
-﻿// src/app/(marketing)/features/qr-codes/page.tsx
 import type { Metadata } from 'next'
-import { FeatureTemplate } from '@/components/atelier/feature-template/FeatureTemplate'
-import { FEATURES } from '@/lib/features/data'
+import { ProductFeaturePage } from '../_components/ProductFeaturePage'
+import { productFeaturePages } from '../_data/productFeaturePages'
 
-const data = FEATURES['qr-codes']
+const content = productFeaturePages.qrCodes
 
-export const metadata: Metadata = {
-  title: data.meta.title,
-  description: data.meta.description,
-}
+export const metadata: Metadata = content.metadata
 
 export default function QrCodesFeaturePage() {
-  return <FeatureTemplate data={data} />
+  return <ProductFeaturePage content={content} />
 }
-
-
-

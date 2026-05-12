@@ -1,18 +1,11 @@
-﻿// src/app/(marketing)/features/recurring-billing/page.tsx
 import type { Metadata } from 'next'
-import { FeatureTemplate } from '@/components/atelier/feature-template/FeatureTemplate'
-import { FEATURES } from '@/lib/features/data'
+import { ProductFeaturePage } from '../_components/ProductFeaturePage'
+import { productFeaturePages } from '../_data/productFeaturePages'
 
-const data = FEATURES['recurring-billing']
+const content = productFeaturePages.recurringBilling
 
-export const metadata: Metadata = {
-  title: data.meta.title,
-  description: data.meta.description,
-}
+export const metadata: Metadata = content.metadata
 
 export default function RecurringBillingFeaturePage() {
-  return <FeatureTemplate data={data} />
+  return <ProductFeaturePage content={content} />
 }
-
-
-
