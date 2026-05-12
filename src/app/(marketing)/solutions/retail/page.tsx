@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
-import { RetailEditorialExperience } from './retail-editorial-experience'
+import { SolutionEditorialPage } from '../_components/SolutionEditorialPage'
+import { solutionPages } from '../_data/solutionPages'
 
-export const metadata: Metadata = {
-  title: 'Retail & Boutique Payment Processing - Charm Payments',
-  description:
-    'Premium merchant infrastructure for retail, boutiques, and multi-channel businesses.',
-}
+const content = solutionPages.retail
+
+export const metadata: Metadata = content.metadata
 
 export default function RetailSolutionsPage() {
-  return <RetailEditorialExperience />
+  return <SolutionEditorialPage content={content} />
 }

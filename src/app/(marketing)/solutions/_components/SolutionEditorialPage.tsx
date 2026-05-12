@@ -4,13 +4,44 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, BarChart3, ShieldCheck, Store } from 'lucide-react'
+import {
+  ArrowRight,
+  BarChart3,
+  BriefcaseBusiness,
+  CalendarCheck,
+  CreditCard,
+  HandHeart,
+  MapPin,
+  ShieldAlert,
+  ShieldCheck,
+  ShoppingCart,
+  Smartphone,
+  Store,
+  Utensils,
+  type LucideIcon,
+} from 'lucide-react'
+import type { SolutionPageContent, SolutionIconKey } from '../_data/solutionPages'
 
 type RevealProps = {
   children: ReactNode
   className?: string
   delay?: number
   y?: number
+}
+
+const iconMap: Record<SolutionIconKey, LucideIcon> = {
+  barChart: BarChart3,
+  briefcase: BriefcaseBusiness,
+  calendar: CalendarCheck,
+  card: CreditCard,
+  handHeart: HandHeart,
+  location: MapPin,
+  risk: ShieldAlert,
+  shield: ShieldCheck,
+  shoppingCart: ShoppingCart,
+  smartphone: Smartphone,
+  store: Store,
+  utensils: Utensils,
 }
 
 function useRevealOnce<T extends HTMLElement>(rootMargin = '0px 0px -12% 0px') {
@@ -61,64 +92,11 @@ function RevealBlock({ children, className, delay = 0, y = 24 }: RevealProps) {
   )
 }
 
-const howItWorks = [
-  {
-    step: '01',
-    title: 'Accept payments anywhere',
-    copy: 'Take payments in-store, online, and on the go without changing your workflow.',
-  },
-  {
-    step: '02',
-    title: 'Manage the store',
-    copy: 'See sales, payouts, fees, and support in one simple dashboard.',
-  },
-  {
-    step: '03',
-    title: 'Keep risk moving down',
-    copy: 'Reduce chargebacks and fraud with clear support when issues show up.',
-  },
-]
+type SolutionEditorialPageProps = {
+  content: SolutionPageContent
+}
 
-const changes = [
-  {
-    step: '04.A',
-    title: 'For every kind of retail',
-    copy: 'Built for local shops, boutiques, beauty supply, sneaker shops, pop-ups, and specialty retail.',
-  },
-  {
-    step: '04.B',
-    title: 'Clear pricing',
-    copy: 'No setup fees, transparent pricing, and support that keeps the business moving.',
-  },
-  {
-    step: '04.C',
-    title: 'Retail operations',
-    copy: 'Payments, chargebacks, fraud review, and day-to-day support in one place.',
-  },
-]
-
-const acceptedEverywhere = [
-  'Virtual Terminal',
-  'Recurring Billing',
-  'PCI DSS',
-  'Visa',
-  'Mastercard',
-  'Amex',
-  'Discover',
-  'ACH/eCheck',
-  'Apple Pay',
-  'Google Pay',
-]
-
-const retailSupportItems = [
-  { Icon: Store, label: 'In-store, online, and mobile payments' },
-  { Icon: ShieldCheck, label: 'Chargeback and fraud support' },
-  { Icon: BarChart3, label: 'Reporting built for daily sales' },
-]
-
-const storeSetupPlatforms = ['Shopify', 'WooCommerce', 'WordPress']
-
-export function RetailEditorialExperience() {
+export function SolutionEditorialPage({ content }: SolutionEditorialPageProps) {
   const heroRef = useRef<HTMLElement | null>(null)
   const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({
@@ -136,12 +114,12 @@ export function RetailEditorialExperience() {
             <div className="min-w-0">
               <RevealBlock>
                 <p className="font-atelierMono text-[10px] uppercase tracking-[0.24em] text-[#0f3520]">
-                  Retail payment solutions
+                  {content.eyebrow}
                 </p>
               </RevealBlock>
 
               <div className="mt-4 space-y-3 sm:space-y-4">
-                {['Take Payments.', 'Manage Your Store.', 'All In One Place.'].map((line, index) => (
+                {content.titleLines.map((line, index) => (
                   <RevealBlock key={line} delay={0.08 + index * 0.08} y={28}>
                     <h1 className="max-w-3xl font-display text-3xl font-bold leading-[0.92] tracking-[-0.02em] text-[#10251b] sm:text-4xl lg:text-[3.8rem]">
                       {line}
@@ -152,53 +130,59 @@ export function RetailEditorialExperience() {
 
               <RevealBlock delay={0.28}>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-black/70 sm:text-lg">
-                  Charm Payments helps retail businesses accept payments, manage sales, reduce chargebacks, and keep
-                  operations moving from one simple platform.
+                  {content.subtitle}
                 </p>
               </RevealBlock>
 
               <RevealBlock delay={0.38}>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
-                    href="/quote"
+                    href={content.primaryCta.href}
                     className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-[#0f3520] bg-[#0f3520] px-5 py-3 font-stripeSans text-sm font-medium uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90"
                   >
-                    REQUEST AUDIT
+                    {content.primaryCta.label}
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex min-h-[44px] items-center justify-center border border-black/15 bg-white px-5 py-3 font-stripeSans text-sm font-medium uppercase tracking-[0.12em] text-[#11251b] transition-colors hover:border-black/30 hover:bg-[#faf8f4]"
-                  >
-                    TALK TO SALES
-                  </Link>
+                  {content.secondaryCta ? (
+                    <Link
+                      href={content.secondaryCta.href}
+                      className="inline-flex min-h-[44px] items-center justify-center border border-black/15 bg-white px-5 py-3 font-stripeSans text-sm font-medium uppercase tracking-[0.12em] text-[#11251b] transition-colors hover:border-black/30 hover:bg-[#faf8f4]"
+                    >
+                      {content.secondaryCta.label}
+                    </Link>
+                  ) : null}
                 </div>
               </RevealBlock>
 
               <RevealBlock delay={0.46}>
                 <div className="mt-6 flex flex-wrap gap-x-3 gap-y-2 text-[11px] uppercase tracking-[0.18em] text-[#0f3520]/82">
-                  <span>No Setup Fees</span>
-                  <span className="text-[#0f3520]/25">/</span>
-                  <span>Transparent Pricing</span>
-                  <span className="text-[#0f3520]/25">/</span>
-                  <span>No Long-Term Contracts</span>
+                  {content.proofStrip.map((item, index) => (
+                    <span key={item} className="contents">
+                      {index > 0 ? <span className="text-[#0f3520]/25">/</span> : null}
+                      <span>{item}</span>
+                    </span>
+                  ))}
                 </div>
               </RevealBlock>
 
               <RevealBlock delay={0.54}>
                 <div className="mt-5 max-w-2xl rounded-[6px] border border-black/10 bg-[#fbfaf7] p-4 sm:p-4.5">
                   <p className="font-atelierMono text-[10px] uppercase tracking-[0.26em] text-[#0f3520]">
-                    Built for retail stores
+                    {content.supportCard.eyebrow}
                   </p>
                   <div className="mt-3 grid gap-3 sm:grid-cols-3">
-                    {retailSupportItems.map(({ Icon, label }) => (
-                      <div key={label} className="flex items-start gap-3">
-                        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white text-[#0f3520]">
-                          <Icon className="h-4 w-4" aria-hidden />
-                        </span>
-                        <p className="text-sm leading-relaxed text-black/72">{label}</p>
-                      </div>
-                    ))}
+                    {content.supportCard.items.map(({ icon, label }) => {
+                      const Icon = iconMap[icon]
+
+                      return (
+                        <div key={label} className="flex items-start gap-3">
+                          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white text-[#0f3520]">
+                            <Icon className="h-4 w-4" aria-hidden />
+                          </span>
+                          <p className="text-sm leading-relaxed text-black/72">{label}</p>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </RevealBlock>
@@ -209,7 +193,7 @@ export function RetailEditorialExperience() {
                 className="flex h-full items-center justify-center font-atelierMono text-[10px] uppercase tracking-[0.28em] text-[#0f3520]/65"
                 style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
               >
-                FIG. 01 - RETAIL FLOOR
+                {content.figureLabel}
               </div>
             </div>
 
@@ -221,8 +205,8 @@ export function RetailEditorialExperience() {
                 >
                   <div className="relative aspect-[4/4.35] w-full">
                     <Image
-                      src="/images/sumup-K8c091KtYXs-unsplash.jpg"
-                      alt="Retail merchant checkout environment"
+                      src={content.heroImage.src}
+                      alt={content.heroImage.alt}
                       fill
                       priority
                       sizes="(max-width: 1024px) 100vw, 40vw"
@@ -232,7 +216,7 @@ export function RetailEditorialExperience() {
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(16,37,27,0.12)_48%,rgba(16,37,27,0.36)_100%)]" />
                   <div className="absolute inset-x-0 bottom-0 border-t border-white/20 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0.28)_100%)] p-4 text-white backdrop-blur-[1px]">
                     <p className="font-atelierMono text-[10px] uppercase tracking-[0.24em] text-white/70">
-                      Retail merchant / checkout crop
+                      {content.heroImage.caption}
                     </p>
                   </div>
                 </motion.div>
@@ -245,10 +229,10 @@ export function RetailEditorialExperience() {
                 >
                   <div className="p-4 sm:p-5">
                     <p className="font-atelierMono text-[10px] uppercase tracking-[0.24em] text-[#0f3520]">
-                      Works with your store setup
+                      {content.platformCard.eyebrow}
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
-                      {storeSetupPlatforms.map((item) => (
+                      {content.platformCard.items.map((item) => (
                         <span
                           key={item}
                           className="inline-flex items-center rounded-full border border-black/10 bg-[#fbfaf7] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[#11251b]"
@@ -258,7 +242,7 @@ export function RetailEditorialExperience() {
                       ))}
                     </div>
                     <p className="mt-3 max-w-md text-sm leading-relaxed text-black/66">
-                      Connect online checkout, product pages, and store workflows without rebuilding your business.
+                      {content.platformCard.body}
                     </p>
                   </div>
                 </motion.div>
@@ -277,7 +261,7 @@ export function RetailEditorialExperience() {
               </RevealBlock>
               <RevealBlock delay={0.06} y={18}>
                 <p className="max-w-[10rem] font-atelierMono text-[11px] uppercase leading-[1.2] tracking-[0.28em] text-[#0f3520]">
-                  How it works
+                  {content.howItWorks.kicker}
                 </p>
               </RevealBlock>
             </div>
@@ -285,12 +269,12 @@ export function RetailEditorialExperience() {
             <div>
               <RevealBlock delay={0.08} y={22}>
                 <h2 className="max-w-3xl font-display text-3xl font-bold leading-[0.96] tracking-[-0.02em] text-[#10251b] sm:text-4xl lg:text-5xl">
-                  Simple enough for the floor. Strong enough for the back office.
+                  {content.howItWorks.heading}
                 </h2>
               </RevealBlock>
 
               <div className="mt-7 grid border-y border-black/10 md:grid-cols-3 md:divide-x md:divide-black/10">
-                {howItWorks.map((item, index) => (
+                {content.howItWorks.steps.map((item, index) => (
                   <RevealBlock key={item.step} delay={0.12 + index * 0.08} y={18}>
                     <div className={`h-full px-0 py-5 md:px-6 ${index === 0 ? 'md:pl-0' : ''} ${index === 2 ? 'md:pr-0' : ''}`}>
                       <p className="font-atelierMono text-[10px] uppercase tracking-[0.26em] text-[#0f3520]">
@@ -318,14 +302,14 @@ export function RetailEditorialExperience() {
               </RevealBlock>
               <RevealBlock delay={0.06} y={18}>
                 <p className="max-w-[10rem] font-atelierMono text-[11px] uppercase leading-[1.2] tracking-[0.28em] text-[#0f3520]">
-                  What changes
+                  {content.changes.kicker}
                 </p>
               </RevealBlock>
             </div>
 
             <div className="grid gap-5 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:items-start">
               <div className="grid gap-3">
-                {changes.map((item, index) => (
+                {content.changes.items.map((item, index) => (
                   <RevealBlock key={item.step} delay={0.1 + index * 0.08} y={18}>
                     <article
                       className={`border border-black/10 bg-[#fbfaf7] p-4 shadow-[0_10px_30px_rgba(17,37,27,0.04)] ${index === 1 ? 'ml-0 sm:ml-4' : ''} ${index === 2 ? 'ml-0 sm:ml-8' : ''}`}
@@ -351,8 +335,8 @@ export function RetailEditorialExperience() {
                 >
                   <div className="relative h-full min-h-[420px] w-full">
                     <Image
-                      src="/images/sumup-aM4vzfIsAo0-unsplash.jpg"
-                      alt="Retail payment terminal on a counter"
+                      src={content.changes.image.src}
+                      alt={content.changes.image.alt}
                       fill
                       sizes="(max-width: 1024px) 100vw, 46vw"
                       className="object-cover"
@@ -361,10 +345,10 @@ export function RetailEditorialExperience() {
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(16,37,27,0.1)_44%,rgba(16,37,27,0.34)_100%)]" />
                   <div className="absolute inset-x-0 bottom-0 border-t border-white/15 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0.22)_100%)] p-3 text-white">
                     <p className="font-atelierMono text-[10px] uppercase tracking-[0.24em] text-white/72">
-                      Retail terminal
+                      {content.changes.image.caption}
                     </p>
                     <p className="mt-2 max-w-md text-sm leading-relaxed text-white/82">
-                      Operational clarity without the extra noise.
+                      {content.changes.image.body}
                     </p>
                   </div>
                 </motion.div>
@@ -383,7 +367,7 @@ export function RetailEditorialExperience() {
               </RevealBlock>
               <RevealBlock delay={0.06} y={18}>
                 <p className="max-w-[10rem] font-atelierMono text-[11px] uppercase leading-[1.2] tracking-[0.28em] text-white/68">
-                  Start with the audit
+                  {content.finalCta.kicker}
                 </p>
               </RevealBlock>
             </div>
@@ -392,13 +376,12 @@ export function RetailEditorialExperience() {
               <div>
                 <RevealBlock delay={0.08} y={22}>
                   <h2 className="max-w-3xl font-display text-3xl font-bold leading-[0.96] tracking-[-0.02em] sm:text-4xl lg:text-5xl">
-                    Send the statement. See the operating picture.
+                    {content.finalCta.title}
                   </h2>
                 </RevealBlock>
                 <RevealBlock delay={0.16}>
                   <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/76">
-                    Charm reviews the statement, payment workflow, and chargeback exposure before asking you to onboard.
-                    No fake urgency, no processor cosplay, no obligation.
+                    {content.finalCta.body}
                   </p>
                 </RevealBlock>
               </div>
@@ -406,18 +389,20 @@ export function RetailEditorialExperience() {
               <RevealBlock delay={0.18}>
                 <div className="flex flex-wrap gap-3 lg:justify-end">
                   <Link
-                    href="/quote"
+                    href={content.finalCta.primaryCta.href}
                     className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-white bg-white px-5 py-3 font-stripeSans text-sm font-medium uppercase tracking-[0.12em] text-[#0f3520] transition-opacity hover:opacity-90"
                   >
-                    REQUEST AUDIT
+                    {content.finalCta.primaryCta.label}
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex min-h-[44px] items-center justify-center border border-white/20 bg-transparent px-5 py-3 font-stripeSans text-sm font-medium uppercase tracking-[0.12em] text-white transition-colors hover:border-white/40 hover:bg-white/[0.08]"
-                  >
-                    TALK TO CHARM
-                  </Link>
+                  {content.finalCta.secondaryCta ? (
+                    <Link
+                      href={content.finalCta.secondaryCta.href}
+                      className="inline-flex min-h-[44px] items-center justify-center border border-white/20 bg-transparent px-5 py-3 font-stripeSans text-sm font-medium uppercase tracking-[0.12em] text-white transition-colors hover:border-white/40 hover:bg-white/[0.08]"
+                    >
+                      {content.finalCta.secondaryCta.label}
+                    </Link>
+                  ) : null}
                 </div>
               </RevealBlock>
             </div>
@@ -429,10 +414,10 @@ export function RetailEditorialExperience() {
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="font-atelierMono text-[10px] uppercase tracking-[0.32em] text-[#0f3520]">
-              Accepted everywhere
+              {content.acceptedEverywhere.eyebrow}
             </p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.22em] text-black/68 sm:text-xs">
-              {acceptedEverywhere.map((item) => (
+              {content.acceptedEverywhere.items.map((item) => (
                 <span key={item}>{item}</span>
               ))}
             </div>
