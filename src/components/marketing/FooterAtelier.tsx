@@ -1,136 +1,187 @@
-﻿// src/components/marketing/FooterAtelier.tsx
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react'
 import { Container } from '@/components/atelier/Container'
-import { cn } from '@/lib/utils'
 
-const QUICK_LINKS = [
-  { label: 'About', href: '/about' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Talk to Charm', href: '/contact' },
-  { label: 'Get Free Rate Audit', href: '/quote' },
+type FooterLink = {
+  label: string
+  href: string
+}
+
+const PRODUCT_LINKS: FooterLink[] = [
+  { label: 'Payment Gateway', href: '/gateway' },
+  { label: 'Chargeback Management', href: '/charm-defense' },
+  { label: 'Fraud Prevention', href: '/features/fraud-protection' },
+  { label: 'Payouts', href: '/dashboard' },
 ]
 
-const SOLUTIONS = [
-  { label: 'Charm Connect', href: '/' },
-  { label: 'Charm Defense', href: '/charm-defense' },
-  { label: 'Merchant Tools', href: '/features' },
-  { label: 'Charm Cards', href: '/cards' },
+const SOLUTION_LINKS: FooterLink[] = [
+  { label: 'Retail', href: '/solutions/retail' },
+  { label: 'E-Commerce', href: '/solutions/ecommerce' },
+  { label: 'High-Risk', href: '/solutions/high-risk' },
+  { label: 'SaaS', href: '#' },
 ]
 
-const RESOURCES = [
+const COMPANY_LINKS: FooterLink[] = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Careers', href: '#' },
+  { label: 'Press', href: '#' },
+  { label: 'Contact', href: '/contact' },
+]
+
+const RESOURCE_LINKS: FooterLink[] = [
+  { label: 'Docs', href: '#' },
+  { label: 'Blog', href: '#' },
+  { label: 'Help Center', href: '/faq' },
+  { label: 'Status', href: '#' },
+]
+
+const COMPLIANCE_LINKS: FooterLink[] = [
+  { label: 'PCI Compliance', href: '#' },
+  { label: 'Security', href: '#' },
   { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'Terms & Conditions', href: '/terms' },
-  { label: 'Merchant Dashboard', href: '/dashboard' },
-  { label: 'Support', href: '/contact' },
+  { label: 'Terms of Service', href: '/terms' },
+]
+
+const SOCIALS = [
+  { label: 'LinkedIn', Icon: Linkedin, href: '#' },
+  { label: 'X / Twitter', Icon: Twitter, href: '#' },
+  { label: 'YouTube', Icon: Youtube, href: '#' },
+  { label: 'Instagram', Icon: Instagram, href: '#' },
 ]
 
 function ColumnHeader({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className={cn(
-        'font-atelierMono text-xs uppercase tracking-label',
-        'text-atelier-cream/70 mb-sm',
-      )}
-    >
-      {children}
-    </div>
-  )
+  return <div className="mb-4 font-atelierMono text-[10px] uppercase tracking-[0.28em] text-[#0f3520]/62">{children}</div>
 }
 
-function ColumnLinks({
-  links,
-}: {
-  links: { label: string; href: string }[]
-}) {
+function LinkList({ links }: { links: FooterLink[] }) {
   return (
-    <ul className="space-y-1.5">
-      {links.map((l) => (
-        <li key={l.label}>
-          <Link
-            href={l.href}
-            className="text-xs hover:text-atelier-cream transition-colors"
-          >
-            {l.label}
-          </Link>
+    <ul className="space-y-2.5">
+      {links.map((link) => (
+        <li key={link.label}>
+          {link.href === '#' ? (
+            <a href={link.href} className="text-sm leading-relaxed text-[#11251b]/76 transition-colors hover:text-[#0f3520]">
+              {link.label}
+            </a>
+          ) : (
+            <Link href={link.href} className="text-sm leading-relaxed text-[#11251b]/76 transition-colors hover:text-[#0f3520]">
+              {link.label}
+            </Link>
+          )}
         </li>
       ))}
     </ul>
   )
 }
 
-export function FooterAtelier() {
+function SocialLinks() {
   return (
-    <footer
-      role="contentinfo"
-      className="bg-[#0F3520] text-atelier-cream/70 py-10 px-lg"
-    >
-      <Container>
-        <div
-          className={cn(
-            'grid grid-cols-1 gap-xl',
-            'md:grid-cols-[1.5fr_1fr_1fr_1fr]',
-          )}
+    <div className="mt-5 flex items-center gap-2">
+      {SOCIALS.map(({ label, Icon, href }) => (
+        <a
+          key={label}
+          href={href}
+          aria-label={label}
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/60 text-[#0f3520] transition-colors hover:border-black/20 hover:bg-white"
         >
-          <div>
-            <Link href="/" aria-label="Charm Payments — home" className="inline-block">
-              <Image
-                src="/images/white-logo.png"
-                alt="Charm Payments"
-                width={320}
-                height={120}
-                className="h-9 w-auto"
-              />
-            </Link>
-            <p className="text-xs text-atelier-cream/65 mt-2 leading-relaxed max-w-sm">
-              Charm Connect helps merchants accept payments, reduce chargebacks,
-              and manage the business from one simple platform.
-            </p>
-            <div className="mt-4 space-y-1">
-              <a
-                href="mailto:merchants@charmpayments.com"
-                className="block font-atelierMono text-xs text-atelier-cream/85 hover:text-atelier-cream transition-colors"
-              >
-                merchants@charmpayments.com
-              </a>
+          <Icon className="h-4 w-4" aria-hidden />
+        </a>
+      ))}
+    </div>
+  )
+}
+
+export function FooterAtelier() {
+  function handleNewsletterSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    // TODO: Wire newsletter signup to the selected email service.
+  }
+
+  return (
+    <footer role="contentinfo" className="border-t border-[#0f3520]/10 bg-brand-light text-[#11251b]">
+      <Container className="overflow-hidden">
+        <section
+          aria-labelledby="footer-newsletter-heading"
+          className="border-b border-[#0f3520]/10 py-12 sm:py-14 lg:py-16"
+        >
+          <div className="grid min-w-0 grid-cols-1 gap-8 rounded-[2px] border border-[#0f3520]/10 bg-[#fbf7ed] px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-14 lg:px-12 lg:py-12">
+            <div className="min-w-0">
+              <p className="font-atelierMono text-[10px] uppercase tracking-[0.28em] text-[#0f3520]/62">Merchant Insights</p>
+              <h2 id="footer-newsletter-heading" className="mt-4 max-w-2xl font-atelierSerif text-3xl leading-[1.08] text-[#0f3520] sm:text-4xl">
+                Get payment tips, chargeback alerts, and merchant updates.
+              </h2>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-[#11251b]/70 sm:text-base">
+                Practical updates for business owners who want cleaner payments, fewer disputes, and better control.
+              </p>
             </div>
+
+            <form onSubmit={handleNewsletterSubmit} className="min-w-0 w-full" aria-label="Newsletter signup">
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <label htmlFor="footer-newsletter-email" className="sr-only">
+                  Email address
+                </label>
+                <input
+                  id="footer-newsletter-email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="Enter your email"
+                  required
+                  className="min-h-12 w-full min-w-0 flex-1 rounded-none border border-[#0f3520]/18 bg-white px-4 text-base text-[#11251b] outline-none transition-colors placeholder:text-[#11251b]/42 focus:border-[#0f3520] focus:ring-2 focus:ring-[#0f3520]/12"
+                />
+                <button
+                  type="submit"
+                  className="min-h-12 w-full bg-[#0f3520] px-6 font-atelierMono text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#11251b] focus:outline-none focus:ring-2 focus:ring-[#0f3520]/25 focus:ring-offset-2 focus:ring-offset-[#fbf7ed] sm:w-auto sm:min-w-36"
+                >
+                  Subscribe
+                </button>
+              </div>
+              <p className="mt-3 text-xs leading-5 text-[#11251b]/58">No spam. Just useful merchant insights.</p>
+            </form>
+          </div>
+        </section>
+
+        <div className="grid grid-cols-1 gap-x-8 gap-y-12 py-12 md:grid-cols-3 lg:grid-cols-6 lg:py-14">
+          <div>
+            <Link href="/" aria-label="Charm Payments home" className="inline-block">
+              <Image src="/images/logo.png" alt="Charm Payments" width={320} height={120} className="h-9 w-auto" />
+            </Link>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#11251b]/70">
+              Premium payment infrastructure for modern businesses.
+            </p>
+            <SocialLinks />
           </div>
 
           <div>
-            <ColumnHeader>QUICK LINKS</ColumnHeader>
-            <ColumnLinks links={QUICK_LINKS} />
+            <ColumnHeader>Products</ColumnHeader>
+            <LinkList links={PRODUCT_LINKS} />
           </div>
 
           <div>
-            <ColumnHeader>SOLUTIONS</ColumnHeader>
-            <ColumnLinks links={SOLUTIONS} />
+            <ColumnHeader>Solutions</ColumnHeader>
+            <LinkList links={SOLUTION_LINKS} />
           </div>
 
           <div>
-            <ColumnHeader>RESOURCES</ColumnHeader>
-            <ColumnLinks links={RESOURCES} />
+            <ColumnHeader>Company</ColumnHeader>
+            <LinkList links={COMPANY_LINKS} />
+          </div>
+
+          <div>
+            <ColumnHeader>Resources</ColumnHeader>
+            <LinkList links={RESOURCE_LINKS} />
+          </div>
+
+          <div>
+            <ColumnHeader>Compliance</ColumnHeader>
+            <LinkList links={COMPLIANCE_LINKS} />
           </div>
         </div>
 
-        <div
-          className={cn(
-            'mt-xl pt-3.5 flex flex-col sm:flex-row justify-between gap-xs',
-            '[border-top-width:0.5px] border-atelier-cream/10',
-          )}
-        >
-          <span className="text-xs text-atelier-cream/70">
-            (c) Charm Connect by Charm Payments
-          </span>
-          <span className="font-atelierMono text-xs text-atelier-cream/70">
-            Premium merchant infrastructure journal
-          </span>
-        </div>
+        <div className="border-t border-[#0f3520]/10 py-4 text-xs text-[#11251b]/58">© 2025 Charm Payments. All rights reserved.</div>
       </Container>
     </footer>
   )
 }
-
-
-
-
-
