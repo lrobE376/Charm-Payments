@@ -12,6 +12,7 @@ type ContactBody = {
   phone?: string
   business?: string
   volume?: string
+  inquiryType?: string
   message?: string
 }
 
@@ -81,36 +82,38 @@ export async function POST(req: Request) {
     const business = typeof body.business === 'string' ? body.business.trim() : ''
     const phone = typeof body.phone === 'string' ? body.phone.trim() : ''
     const volume = typeof body.volume === 'string' ? body.volume.trim() : ''
+    const inquiryType = typeof body.inquiryType === 'string' ? body.inquiryType.trim() : ''
     const message = typeof body.message === 'string' ? body.message.trim() : ''
 
-    if (!name || !email || !business || !volume) {
-      return jsonError('Name, email, business name, and estimated volume are required.', 400, 'MISSING_FIELDS')
+    if (!name || !email || !business || !inquiryType || !message) {
+      return jsonError('Name, email, business name, inquiry type, and message are required.', 400, 'MISSING_FIELDS')
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return jsonError('Invalid email address', 400, 'INVALID_EMAIL')
     }
 
-    const notes = message || 'Sales inquiry via contact form.'
+    const monthlyVolume = volume || 'Not provided'
+    const notes = `Inquiry type: ${inquiryType}\n\n${message}`
 
     const lead = await createLead({
       name,
       businessName: business,
       email,
       phone,
-      monthlyVolume: volume,
+      monthlyVolume,
       source: 'contact',
       notes,
     })
 
-    // Fire-and-forget — do not await, must not block response
+    // Fire-and-forget; do not await, must not block response.
     triggerZap('contact', {
       name,
       email,
       phone: phone || undefined,
-      subject: `Contact form inquiry — ${business}`,
-      message: message || notes,
+      subject: `Contact form inquiry - ${business}`,
+      message: notes,
       businessName: business,
-      monthlyVolume: volume,
+      monthlyVolume,
     }).catch(() => {
       // Already logged inside triggerZap
     })
@@ -122,14 +125,15 @@ export async function POST(req: Request) {
     const safeBusiness = escapeHtml(business)
     const safeEmail = escapeHtml(email)
     const safePhone = escapeHtml(phone)
-    const safeVolume = escapeHtml(volume)
+    const safeMonthlyVolume = escapeHtml(monthlyVolume)
+    const safeInquiryType = escapeHtml(inquiryType)
     const safeMessage = escapeHtml(message)
     const safeLeadId = escapeHtml(lead.id)
 
     // Confirmation to the submitter
     await sendResendEmail(
       email,
-      "We received your message — Charm Payments",
+      'We received your message - Charm Payments',
       emailLayout(`
         <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">Hi ${safeName},</p>
         <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6;">
@@ -141,14 +145,14 @@ export async function POST(req: Request) {
           <a href="mailto:merchants@charmpayments.com" style="color:#0c3a30;">merchants@charmpayments.com</a>
          .
         </p>
-        <p style="margin:0;color:#374151;font-size:14px;">— The Charm Payments Team</p>
+        <p style="margin:0;color:#374151;font-size:14px;">- The Charm Payments Team</p>
       `),
     )
 
     // Internal notification to the sales inbox
     await sendResendEmail(
       'merchants@charmpayments.com',
-      `New contact form lead — ${business}`,
+      `New contact form lead - ${business}`,
       emailLayout(`
         <p style="margin:0 0 16px;color:#111827;font-size:15px;font-weight:600;">New lead from contact form</p>
         <table cellpadding="0" cellspacing="0" style="width:100%;font-size:14px;color:#374151;">
@@ -156,8 +160,9 @@ export async function POST(req: Request) {
           <tr><td style="padding:6px 0;color:#6b7280;">Business</td><td style="padding:6px 0;font-weight:600;">${safeBusiness}</td></tr>
           <tr><td style="padding:6px 0;color:#6b7280;">Email</td><td style="padding:6px 0;"><a href="mailto:${safeEmail}" style="color:#0c3a30;">${safeEmail}</a></td></tr>
           ${phone ? `<tr><td style="padding:6px 0;color:#6b7280;">Phone</td><td style="padding:6px 0;">${safePhone}</td></tr>` : ''}
-          <tr><td style="padding:6px 0;color:#6b7280;">Monthly Volume</td><td style="padding:6px 0;">${safeVolume}</td></tr>
-          ${message ? `<tr><td style="padding:6px 0;color:#6b7280;vertical-align:top;">Message</td><td style="padding:6px 0;">${safeMessage}</td></tr>` : ''}
+          <tr><td style="padding:6px 0;color:#6b7280;">Inquiry Type</td><td style="padding:6px 0;">${safeInquiryType}</td></tr>
+          <tr><td style="padding:6px 0;color:#6b7280;">Monthly Volume</td><td style="padding:6px 0;">${safeMonthlyVolume}</td></tr>
+          <tr><td style="padding:6px 0;color:#6b7280;vertical-align:top;">Message</td><td style="padding:6px 0;">${safeMessage}</td></tr>
         </table>
         <p style="margin:16px 0 0;color:#6b7280;font-size:12px;">Lead ID: ${safeLeadId}</p>
       `),

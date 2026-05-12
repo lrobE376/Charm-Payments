@@ -2,9 +2,9 @@
 import { ContactPageClient } from './contact-page-client'
 
 export const metadata: Metadata = {
-  title: 'Get Approved in 24–48 Hours — Contact Charm Payments',
+  title: 'Contact Charm Payments',
   description:
-    'No setup fees. No long-term contracts. Contact Charm Payments for merchant payment processing — call, email, or start your application online.',
+    'Talk with Charm Payments about payment processing, merchant accounts, gateways, chargeback protection, and payment infrastructure.',
 }
 
 export default function ContactPage() {

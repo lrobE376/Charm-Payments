@@ -202,6 +202,13 @@ export function HeaderAtelier() {
                   </div>
                 )
               })}
+              <Link
+                href="/contact"
+                onClick={closeMenus}
+                className="py-2 font-atelierMono text-[11px] uppercase tracking-[0.22em] text-[#11251b]/72 transition-colors hover:text-[#11251b]"
+              >
+                Contact
+              </Link>
             </nav>
 
             <div className="flex min-w-0 items-center justify-end gap-2">
