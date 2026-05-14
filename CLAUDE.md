@@ -70,10 +70,15 @@ ZAPIER_SALESFORCE_WEBHOOK=https://hooks.zapier.com/hooks/catch/27240665/ujus70m/
 
 ## Compliance
 Every page mentioning payment processing MUST include:
-"Charm Payments is a payment facilitator, not a bank.
-Payment processing services are provided through our
-licensed acquiring bank partner. Merchant funds are
-subject to the terms of the Merchant Agreement."
+"Charm Payments is a registered Independent Sales Organization / Member Service Provider (ISO/MSP). Payment processing services are provided through our sponsor bank and acquiring partners. Merchant funds are subject to the terms of the Merchant Processing Agreement."
+
+## Legal Disclosure Rules
+
+1. Charm Payments is an ISO/MSP, not a payment facilitator. Never use "payfac," "payment facilitator," "sub-merchant," or "master merchant" language to describe Charm Payments.
+2. The canonical short disclosure is: "Charm Payments is a registered ISO/MSP. Payment processing services are provided through our sponsor bank and acquiring partners."
+3. The canonical corporate footer attribution is: "Charm Payments — A Charm Holdings LLC Company"
+4. Never display the Charm Holdings EIN, or any business EIN, on public-facing pages or marketing materials. Internal/legal documents only.
+5. Sponsor bank and acquirer names (Fiserv/First Data, NMI) may be referenced generically as "our sponsor bank and acquirer partners" in marketing copy. Specific bank names require legal review before going on the public site.
 
 ## Business Context
 - Owner: Lee Robertson · St. Louis MO
