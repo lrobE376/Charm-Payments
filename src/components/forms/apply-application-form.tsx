@@ -23,6 +23,13 @@ function last4(raw: string): string | null {
   return digits.slice(-4).padStart(4, '0')
 }
 
+// Accepts XX-XXXXXXX or XXXXXXXXX (with or without dash).
+const EIN_RE = /^\d{2}-?\d{7}$/
+
+function isValidEin(value: string): boolean {
+  return EIN_RE.test(value.trim())
+}
+
 export default function ApplyApplicationForm() {
   const router = useRouter()
   const [step, setStep] = useState(1)
@@ -179,13 +186,6 @@ export default function ApplyApplicationForm() {
               ))}
             </select>
           </div>
-          <Input
-            label="EIN (Employer Identification Number)"
-            required
-            hint="Required for Know Your Customer (KYC) and underwriting. We verify this with your application documents."
-            value={form.ein}
-            onChange={(e) => update('ein', e.target.value)}
-          />
           <Input label="Website (optional)" type="url" value={form.website} onChange={(e) => update('website', e.target.value)} />
           <Input
             label="Estimated monthly processing volume"
@@ -207,6 +207,27 @@ export default function ApplyApplicationForm() {
       {step === 2 && (
         <div className="mt-8 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-wide text-brand-dark">Ownership &amp; KYC</h2>
+          <div className="rounded-xl border border-brand-dark/10 bg-brand-light p-4 text-xs leading-relaxed text-gray-700">
+            <p className="font-semibold text-brand-dark">Underwriting information.</p>
+            <p className="mt-1">
+              The following details are required for Know Your Customer (KYC) and underwriting. We verify this with your application documents and our sponsor bank. Your EIN and any banking details you provide are encrypted in transit and at rest.
+            </p>
+          </div>
+          <Input
+            label="EIN (Employer Identification Number)"
+            required
+            type="text"
+            inputMode="numeric"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
+            placeholder="XX-XXXXXXX"
+            maxLength={10}
+            hint="Used for KYC and underwriting verification. We accept either dashed (12-3456789) or undashed format."
+            value={form.ein}
+            onChange={(e) => update('ein', e.target.value)}
+          />
           <p className="text-xs text-gray-500">
             Primary owner details below; additional owners may be requested during review.
           </p>
@@ -335,9 +356,10 @@ export default function ApplyApplicationForm() {
             onClick={() => setStep((s) => s + 1)}
             disabled={
               (step === 1 &&
-                (!form.business_name || !form.business_type || !form.ein || !form.monthly_volume || !form.average_ticket)) ||
+                (!form.business_name || !form.business_type || !form.monthly_volume || !form.average_ticket)) ||
               (step === 2 &&
-                (!form.owner_first_name ||
+                (!isValidEin(form.ein) ||
+                  !form.owner_first_name ||
                   !form.owner_last_name ||
                   !form.owner_email ||
                   !form.owner_phone ||
