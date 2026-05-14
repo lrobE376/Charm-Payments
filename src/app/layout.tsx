@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { Manrope, Fraunces, JetBrains_Mono, Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'sonner'
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   title: { default: 'Charm Payments — Payment Processing Built for Business', template: '%s — Charm Payments' },
   description:
     'Charm Payments gives St. Louis small businesses enterprise-grade payment processing — credit cards, ACH, Apple Pay, and more. Built for connected payments and licensed acquiring partners.',
-  metadataBase: new URL('https://charm-payments.vercel.app'),
+  metadataBase: new URL('https://www.charmpayments.com'),
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -50,6 +50,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
-
-
-
