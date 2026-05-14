@@ -230,8 +230,8 @@ export function FaqPageClient() {
           <PrimaryCTA primary="Get Free Rate Audit" secondary="Talk to Charm" />
         </div>
         <p className="mx-auto mt-8 max-w-2xl text-xs leading-relaxed text-gray-500">
-          Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant
-          funds are subject to the terms of the Merchant Agreement.
+          Charm Payments is a registered Independent Sales Organization / Member Service Provider (ISO/MSP). Payment processing services are provided through our
+          sponsor bank and acquiring partners. Merchant funds are subject to the terms of the Merchant Processing Agreement.
         </p>
       </section>
     </>

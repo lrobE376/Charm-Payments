@@ -50,8 +50,8 @@ export default function TermsPage() {
         </h2>
         <p className="text-paragraph mb-4">Questions? Email merchants@charmpayments.com or call merchants@charmpayments.com.</p>
         <p className="text-sm text-gray-400 mt-12">
-          Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds
-          are subject to the terms of the Merchant Agreement.
+          Charm Payments is a registered Independent Sales Organization / Member Service Provider (ISO/MSP). Payment processing services are provided through our
+          sponsor bank and acquiring partners. Merchant funds are subject to the terms of the Merchant Processing Agreement.
         </p>
       </div>
     </section>

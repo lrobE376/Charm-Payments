@@ -49,7 +49,7 @@ function layout(body: string): string {
       <tr>
         <td style="background:#f9fafb;padding:16px 32px;border:1px solid #e5e7eb;border-top:0;border-radius:0 0 12px 12px;">
           <p style="margin:0;color:#9ca3af;font-size:11px;line-height:1.6;">
-            Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner. Merchant funds are subject to the terms of the Merchant Agreement.
+            Charm Payments is a registered Independent Sales Organization / Member Service Provider (ISO/MSP). Payment processing services are provided through our sponsor bank and acquiring partners. Merchant funds are subject to the terms of the Merchant Processing Agreement.
           </p>
           <p style="margin:6px 0 0;color:#9ca3af;font-size:11px;">&copy; Charm Holdings LLC &middot; St. Louis, MO</p>
         </td>

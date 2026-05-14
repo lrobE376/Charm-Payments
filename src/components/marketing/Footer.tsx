@@ -83,8 +83,8 @@ export default function Footer() {
               </li>
             </ul>
             <p className="mt-6 text-xs text-white/35 leading-relaxed">
-              Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner.
-              Merchant funds are subject to the terms of the Merchant Agreement.
+              Charm Payments is a registered Independent Sales Organization / Member Service Provider (ISO/MSP). Payment processing services are provided through
+              our sponsor bank and acquiring partners. Merchant funds are subject to the terms of the Merchant Processing Agreement.
             </p>
           </div>
         </div>

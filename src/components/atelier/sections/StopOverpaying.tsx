@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 const FOOTNOTES = [
   {
     id: 'facilitator',
-    body: 'Charm Payments is a payment facilitator, not a bank. Payment processing services are provided through our licensed acquiring bank partner.',
+    body: 'Charm Payments is a registered ISO/MSP. Payment processing services are provided through our sponsor bank and acquiring partners.',
   },
   {
     id: 'agreement',

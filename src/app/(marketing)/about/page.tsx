@@ -7,7 +7,7 @@ import PrimaryCTA from '@/components/conversion/PrimaryCTA'
 export const metadata: Metadata = {
   title: { absolute: 'About — Charm Payments' },
   description:
-    'Charm Payments is a St. Louis-based payment facilitator founded by Lee Robertson. We give Main Street merchants a local alternative to Square and Stripe — built on payment infrastructure and licensed acquiring partners.',
+    'Charm Payments provides merchant accounts and payment processing for St. Louis small businesses, founded by Lee Robertson. A local alternative to Square and Stripe — a registered ISO/MSP backed by sponsor bank and acquiring partners.',
 }
 
 export default function AboutPage() {
@@ -192,9 +192,10 @@ export default function AboutPage() {
             <div className="rounded-2xl border border-brand-dark/10 bg-brand-dark/5 p-6 text-sm text-gray-600 leading-relaxed">
               <strong className="text-gray-900">Compliance &amp; Security:</strong> Charm Payments
               mandates CB911 chargeback protection on all accounts. All transactions are processed
-              through PCI DSS-compliant infrastructure. Charm Payments is a payment facilitator,
-              not a bank. Payment processing services are provided through our licensed acquiring
-              bank partner. Merchant funds are subject to the terms of the Merchant Agreement.
+              through PCI DSS-compliant infrastructure. Charm Payments is a registered Independent
+              Sales Organization / Member Service Provider (ISO/MSP). Payment processing services
+              are provided through our sponsor bank and acquiring partners. Merchant funds are
+              subject to the terms of the Merchant Processing Agreement.
             </div>
           </div>
         </div>
