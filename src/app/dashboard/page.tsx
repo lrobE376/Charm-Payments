@@ -1,6 +1,7 @@
 // src/app/dashboard/page.tsx
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 
 type Requirements = {
@@ -129,13 +130,13 @@ export default function DashboardPage() {
             <span style={{ color: '#C9A96E' }}>Charm</span>{' '}
             <span style={{ color: '#2ABFA0' }}>Connect</span>
           </div>
-          <a
+          <Link
             href="/"
             className="text-sm transition hover:opacity-80"
             style={{ color: '#8BAF96' }}
           >
             Back to site
-          </a>
+          </Link>
         </div>
       </header>
 
@@ -470,13 +471,13 @@ function NoAccountState() {
       <p className="mt-2 text-sm" style={{ color: '#8BAF96' }}>
         We couldn&apos;t find a Charm account in this browser. Start onboarding to connect one.
       </p>
-      <a
+      <Link
         href="/onboarding"
         className="mt-6 inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold transition"
         style={{ backgroundColor: '#2ABFA0', color: '#0D1F15' }}
       >
         Begin onboarding
-      </a>
+      </Link>
     </div>
   );
 }
@@ -496,13 +497,13 @@ function ErrorState({ message }: { message: string }) {
       <p className="mt-1 text-sm" style={{ color: '#fecaca' }}>
         {message}
       </p>
-      <a
+      <Link
         href="/onboarding"
         className="mt-4 inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold transition"
         style={{ backgroundColor: '#2ABFA0', color: '#0D1F15' }}
       >
         Restart onboarding
-      </a>
+      </Link>
     </div>
   );
 }
